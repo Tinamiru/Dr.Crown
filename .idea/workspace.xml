@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a289cd1-17a3-49b6-9302-2d5f93c9b0aa" name="변경" comment="" />
+    <list default="true" id="0a289cd1-17a3-49b6-9302-2d5f93c9b0aa" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/indexPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/indexPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/indexPage.jsp" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,7 +55,7 @@
       <option name="presentableId" value="Default" />
       <updated>1665630832956</updated>
       <workItem from="1665630836221" duration="55000" />
-      <workItem from="1665631709866" duration="1346000" />
+      <workItem from="1665631709866" duration="1529000" />
     </task>
     <task id="LOCAL-00001" summary="asd">
       <created>1665632524275</created>
@@ -61,7 +64,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665632524275</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="asd">
+      <created>1665639652141</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665639652141</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

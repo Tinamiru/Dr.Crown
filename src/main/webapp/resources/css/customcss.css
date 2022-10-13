@@ -1,0 +1,48 @@
+.loginFormBackground {
+	background-color: #484769;
+}
+
+.loginBoxBackground {
+	background-color: #ffffff;
+}
+
+.loginBtn {
+	background-color: #333258;
+	color: white;
+	text-align: center;
+}
+
+.loginOR {
+	text-align: center;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.form-control-input {
+	border: solid 1px;
+}
+
+.login-form-li {
+	list-style: none;
+	float: left;
+	padding: 0 15px;
+}
+
+li[class="login-form-li"]::after {
+	content: "|";
+	float: right;
+	color: #ccc;
+	margin-right: -17px;
+}
+
+li[class="login-form-li"]:last-child::after {
+	content: "";
+}
+
+.input-padding-top{
+	padding-top: 35px;
+}
+
+.white-text{
+	color: white;
+}

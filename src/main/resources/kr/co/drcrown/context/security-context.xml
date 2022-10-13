@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<beans:bean id="customAuthenticationProvider" 
+	            class="kr.co.drcrown.security.CustomAuthenticationProvider"
+	            p:memberService-ref="memberService"
+	            />
+	<beans:bean id="loginSuccessHandler"
+			 	class="kr.co.drcrown.security.LoginSuccessHandler"
+			 	p:defaultTargetUrl="/index"
+			 	/>
+			 	
+	<beans:bean id="loginFailureHandler"
+	            class="kr.co.drcrown.security.LoginFailureHandler"
+	            />	            
+	<!-- 세션동기화 -->
+	<beans:bean id="sessionRegistry" 
+ 		class="org.springframework.security.core.session.SessionRegistryImpl"
+ 	/>
+ 			 	            
+	<!-- 인증 -->
+	<authentication-manager id="auth">
+		<authentication-provider ref="customAuthenticationProvider" />
+	</authentication-manager>
+	            
+	<!-- 인허가 -->	
+	<http pattern="/resources/**" security="none" />
+	<http use-expressions="true" pattern="/**" authentication-manager-ref="auth">
+		<access-denied-handler error-page="/security/accessDenied" />
+		
+			<!-- 2 depth 이후 -->
+<!-- 		<intercept-url pattern="/**/regist*" access="hasAnyRole('ROLE_ADMIN,ROLE_MANAGER')" /> -->
+<!-- 		<intercept-url pattern="/**/modify*" access="hasRole('ROLE_ADMIN')" /> -->
+<!-- 		<intercept-url pattern="/**/stop*" access="hasRole('ROLE_ADMIN')" /> -->
+<!-- 		<intercept-url pattern="/**/remove*" access="hasRole('ROLE_ADMIN')" /> -->
+		
+		<!-- 1 depth 접근제한 -->
+		<!-- 메인 -->
+		<intercept-url pattern="/index*" access="isAuthenticated()"/>
+		<!-- 1.게시판 -->
+		<intercept-url pattern="/board/**" access="isAuthenticated()"/>
+		<!-- 2.데스크 -->
+		<intercept-url pattern="/desk/**" access="isAuthenticated()"/>
+		<!-- 3.진료차트 -->
+		<intercept-url pattern="/chart/**" access="isAuthenticated()"/>
+		<!-- 4.사진 -->
+		<intercept-url pattern="/picture/**" access="isAuthenticated()"/>		
+		<!-- 5.비품 -->
+		<intercept-url pattern="/stock/**" access="isAuthenticated()" />
+		<!-- 6.결재 -->
+		<intercept-url pattern="/approval/**" access="isAuthenticated()" />
+		<!-- 7.경영관리 -->
+		<intercept-url pattern="/manage/**" access="isAuthenticated()" />
+		
+		<!-- 모두접근허용 -->
+		<intercept-url pattern="/**" access="permitAll"/>
+		
+		
+		<!-- 로그인 처리 -->
+		<form-login  login-page="/common/loginForm?error=-1"
+					 login-processing-url="/common/login"
+					 username-parameter="empId"
+					 password-parameter="memPwd"
+					 authentication-success-handler-ref="loginSuccessHandler"
+					 authentication-failure-handler-ref="loginFailureHandler"
+					 />
+		<!-- 로그아웃 처리 -->
+		<logout  logout-url="/common/logout"	
+				 invalidate-session="true"
+				 logout-success-url="/index"
+				 delete-cookies="JSESSIONID"
+				  />
+		<!-- 세션만료 처리 -->
+		<session-management invalid-session-url="/common/loginTimeOut" >
+			<concurrency-control					
+				expired-url="/common/loginExpired"
+				max-sessions="1"
+				session-registry-ref="sessionRegistry"
+								
+			/>		
+		</session-management>	
+		
+		 
+	</http>
+
+
+</beans:beans>
+
+
+
+
+
+
+
+
+
+

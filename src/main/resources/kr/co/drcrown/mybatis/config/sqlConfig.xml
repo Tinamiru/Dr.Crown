@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+  <configuration>
+  
+  	<settings>
+	 	<!-- DB 컬럼명을 낙타표기법으로 속성명과 자동 매핑하도록 설정하기 -->
+	 	<setting name="mapUnderscoreToCamelCase" value="true"/>
+	 	<setting name="jdbcTypeForNull" value="NULL" />
+	 	<setting name="logImpl" value="LOG4J"/>
+ 	</settings>
+  	  	
+  	<typeAliases>
+  		<typeAlias type="java.lang.String" alias="str" />
+		<typeAlias type="java.lang.Integer" alias="int" />
+		
+		<typeAlias type="kr.co.drcrown.dto.MenuVO"  alias="menu"/>
+		<typeAlias type="kr.co.drcrown.dto.MinfoVO"  alias="minfo"/>
+ 		<typeAlias type="kr.co.drcrown.dto.MemberVO"  alias="member"/>
+		<typeAlias type="kr.co.drcrown.dto.NoticeVO"  alias="notice"/>
+<!-- 		<typeAlias type="com.jsp.dto.BoardVO"  alias="board"/> -->
+<!-- 		<typeAlias type="com.jsp.dto.ReplyVO"  alias="reply"/> -->
+<!-- 		<typeAlias type="com.jsp.dto.PdsVO"  alias="pds"/>
+		<typeAlias type="com.jsp.dto.AttachVO"  alias="attach"/> -->
+		
+		
+		<typeAlias type="kr.co.drcrown.dto.ApprovalVO"  alias="Approval"/>
+  	</typeAliases>
+    
+	
+  </configuration>
+  
+  
+  
+  
+  
+  
+  

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+	
+	
+	
+	<!-- summernote Image Path -->
+	<bean id="imgPath" class="java.lang.String">
+		<constructor-arg value="${summernote.img}" />      
+	</bean>
+	
+	<!-- member.picture -->
+	<bean id="picturePath" class="java.lang.String">
+		<constructor-arg value="${member.picture.upload}" />      
+	</bean>
+	
+	<!-- file upload -->
+	<bean id="fileUploadPath" class="java.lang.String">
+		<constructor-arg value="${pds.upload}"/>
+	</bean>
+			
+
+	
+	<!-- Repository -->		
+	<bean id="menuDAO" class="kr.co.drcrown.dao.MenuDAOImpl"
+		p:session-ref="sqlSession"			
+	/>
+	<bean id="minfoDAO" class="kr.co.drcrown.dao.MinfoDAOImpl"
+		p:session-ref="sqlSession"
+	/> 
+	<bean id="ApprovalDAO" class="kr.co.drcrown.dao.ApprovalDAOImpl"
+		p:session-ref="sqlSession"
+	/> 
+	<bean id="noticeDAO" class="kr.co.drcrown.dao.NoticeDAOImpl"
+		p:session-ref="sqlSession"
+	/> 
+	<bean id="memberDAO" class="kr.co.drcrown.dao.MemberDAOImpl"
+		p:session-ref="sqlSession"	
+	/> 
+	
+	
+	
+	<bean id="menuService" class="kr.co.drcrown.service.MenuServiceImpl" 
+		p:menuDAO-ref="menuDAO"
+	/>
+  	<bean id="minfoService" class="kr.co.drcrown.service.MinfoServiceImpl" 
+		p:minfoDAO-ref="minfoDAO"
+	/> 
+  	<bean id="noticeService" class="kr.co.drcrown.service.NoticeServiceImpl" 
+		p:noticeDAO-ref="noticeDAO"
+	/> 
+  	<bean id="memberService" class="kr.co.drcrown.service.MemberServiceImpl" 
+		p:memberDAO-ref="memberDAO"
+	/> 
+
+</beans>

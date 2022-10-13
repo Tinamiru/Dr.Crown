@@ -1,0 +1,42 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Menu-Mapper">
+	<resultMap type="menu" id="menuboard">
+		<result property="mcode" column="M_CODE"/>
+		<result property="mname" column="M_NAME"/>
+		<result property="murl" column="M_URL"/>
+		<result property="micon" column="M_ICON"/>
+		<result property="upcode" column="M_UPCODE"/>
+		<result property="mlevel" column="M_LEVEL"/>
+		<result property="misnav" column="M_ISNAV"/>
+		<result property="mcollapseyn" column="M_COLLAPSE_YN"/>
+	</resultMap>
+	
+	<select id="selectMainMenu" resultType="menu" resultMap="menuboard">
+		select *
+		from menu
+		where M_CODE like '%'||'0000'||'%' and M_CODE != 'M000000'
+		order by M_CODE asc 
+	</select>
+	
+	<select id="selectSubMenu" resultType="menu" resultMap="menuboard">
+		select *
+		from menu
+		where M_UPCODE = #{mcode} and M_ISNAV=1
+		order by M_CODE asc
+	</select>
+	
+	<select id="selectMenuByMcode" resultType="menu" resultMap="menuboard">
+		select *
+		from menu
+		where M_CODE = #{mcode}
+	</select>
+	<select id="selectMenuByMname" resultType="menu" resultMap="menuboard">
+		select *
+		from menu
+		where M_NAME = #{mname}
+	</select>
+	
+</mapper>

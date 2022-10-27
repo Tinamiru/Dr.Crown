@@ -13,7 +13,6 @@
 
 
 
-<body>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
   <style>
@@ -32,6 +31,33 @@
   <input class="form-control" type="text" readonly />
   <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 </div>
+
+				<select class="selectpicker" tabindex="-98" data-size="5">
+					<option>Mustard</option>
+					<option>Ketchup</option>
+					<option>Relish</option>
+					<option>Mayonnaise</option>
+					<option>Barbecue Sauce</option>
+					<option>Salad Dressing</option>
+					<option>Tabasco</option>
+					<option>Salsa</option>
+					<option>Mustard</option>
+					<option>Ketchup</option>
+					<option>Relish</option>
+					<option>Mayonnaise</option>
+					<option>Barbecue Sauce</option>
+					<option>Salad Dressing</option>
+					<option>Tabasco</option>
+					<option>Salsa</option>
+					<option>Mustard</option>
+					<option>Ketchup</option>
+					<option>Relish</option>
+					<option>Mayonnaise</option>
+					<option>Barbecue Sauce</option>
+					<option>Salad Dressing</option>
+					<option>Tabasco</option>
+					<option>Salsa</option>
+				</select>
                 <div class="col-lg-10 col-md-10 col-xs-12 col-sm-12" style="min-height:60px; padding-left:0px; padding-right:0px;">
                     </div>
 
@@ -420,11 +446,16 @@
 
 
 
+
+
+
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
 	$(function () {
 		  $("#datepicker").datepicker({ 
 		        autoclose: true, 
 		        todayHighlight: true
 		  }).datepicker('update', new Date());
 		});
+	</script>
 

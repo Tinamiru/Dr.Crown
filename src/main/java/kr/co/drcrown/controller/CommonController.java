@@ -117,16 +117,12 @@ public class CommonController {
 		return url;
 	}
 	
-	@GetMapping("/common/findEmpnumForm")
+	@GetMapping("/common/findMemNumForm")
 	public String findEmpnumForm() {
-		String url = "/common/findEmpnumForm";
+		String url = "/common/findMemNumForm";
 		return url;
 	}
 	
-	@GetMapping("/common/regist")
-	public String regist() {
-		String url = "/common/regist";
-		return url;
-	}
+	
 	
 }

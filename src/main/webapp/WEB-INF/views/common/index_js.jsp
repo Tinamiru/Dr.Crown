@@ -27,7 +27,6 @@ function subMenu_go(mCode){
 				AjaxErrorSecurityRedirectHandler(error.status);	
 			}
 		});
-		
 	}else{
 		$('.subMenuList').html("");	
 	}

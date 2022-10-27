@@ -7,9 +7,11 @@
 	</configSuffixes>
 	<enableImports><![CDATA[true]]></enableImports>
 	<configs>
+		<config>src/main/resources/kr/co/drcrown/context/security-context.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/resources/kr/co/drcrown/context/root-context.xml</config>
+		<config>src/main/resources/kr/co/drcrown/context/servlet-context.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

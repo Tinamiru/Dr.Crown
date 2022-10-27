@@ -26,7 +26,7 @@ public class User implements UserDetails {
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();				
 		roles.add(new SimpleGrantedAuthority(member.getMemAuthority()));
-		System.out.println(member.getEmpId());
+		System.out.println(member.getMemId());
 		return roles;
 	}
 
@@ -37,8 +37,8 @@ public class User implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		System.out.println(member.getEmpId());
-		return member.getEmpId();
+		System.out.println(member.getMemId());
+		return member.getMemId();
 	}
 
 	@Override

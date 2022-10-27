@@ -12,4 +12,6 @@ public class HomeController {
 	public void diner()throws Exception{}
 	@RequestMapping("/atten/main")
 	public void atten()throws Exception{}
+	
+	
 }

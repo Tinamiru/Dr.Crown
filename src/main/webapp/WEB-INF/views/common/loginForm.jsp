@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<body class="h-100">
-    <div class="authincation h-100 loginFormBackground">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+    <div class="authincation loginFormBackground" style="height: 100vh">
         <div class="container h-100">
             <div class="row justify-content-center h-100 align-items-center">
                 <div class="col-md-6">
@@ -19,7 +20,7 @@
 										<input name="retUrl" value="${retUrl }" type="hidden" />
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>사번</strong></label>
-                                            <input type="text" class="form-control form-control-input" name="empId" value="${pastID }">
+                                            <input type="text" class="form-control form-control-input" name="memId" value="${pastID }">
                                         </div>
                                         <div class="form-group">
                                             <label class="mb-1 text-white"><strong>비밀번호</strong></label>
@@ -40,9 +41,9 @@
                                     <div class="container-fluid">
 	                                    <div class="d-flex justify-content-center input-padding-top">
 		                                    <ul>
-											    <li class="login-form-li"><a class="text-blue" href="<%=request.getContextPath()%>/common/findEmpnumForm">사번찾기</a></li>
+											    <li class="login-form-li"><a class="text-blue" href="<%=request.getContextPath()%>/common/findMemNumForm">사번찾기</a></li>
 											    <li class="login-form-li"><a class="text-blue" href="<%=request.getContextPath()%>/common/findPwdForm">비밀번호찾기</a></li>
-											    <li class="login-form-li"><a class="text-blue" href="<%=request.getContextPath()%>/common/regist">회원가입</a></li>
+											 
 											</ul>
 	                                    </div>
                                     </div>
@@ -54,4 +55,10 @@
             </div>
         </div>
     </div>
+    
+<c:if test="${from eq 'regist' }" >
+	<script>
+		alert("등록되었습니다.");
+	</script>
+</c:if>
 </body>

@@ -1,0 +1,123 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Stock-Mapper">
+	 <sql id="search">
+		<if test="searchType == 'n'.toString()">
+			and equ_name like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'c'.toString()">
+			and equ_code like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'm'.toString()">
+			and equ_maker like '%'||#{keyword}||'%'			
+		</if>
+		<!-- <if test="searchType == 'tc'.toString()">
+			and (
+			notice_title like '%'||#{keyword}||'%'
+			or
+			notice_content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+		<if test="searchType == 'cw'.toString()">
+			and (
+			notice_writer like '%'||#{keyword}||'%'
+			or
+			notice_content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+		<if test="searchType == 'tcw'.toString()">
+			and (
+			notice_title like '%'||#{keyword}||'%'
+			or
+			notice_writer like '%'||#{keyword}||'%'
+			or
+			notice_content like '%'||#{keyword}||'%'						
+			)			
+		</if> -->
+	</sql>
+	
+	<select id="selectSearchEquipList" resultType="stock">		
+		select *
+		from(
+		    select rownum as rnum,SearchEquipResult.*
+		    from ( 
+		    	select EQU_CODE, EQU_NAME, EQU_DATE, EQU_AMOUNT, EQU_MAKER, EQU_DISTR, EQU_PRICE
+				from equipment
+				where equ_code is not null
+				<include refid="search" />				
+				order by equ_date desc
+		    )  SearchEquipResult
+		    <![CDATA[
+		    where rownum <= #{endRow}
+		    ]]>
+		)
+		 <![CDATA[
+		where rnum >= #{startRow}		
+		 ]]>
+	</select>
+	
+	<select id="selectEquipCount" resultType="int">
+		select 
+		count(*) 
+		from equipment
+		where equ_code is not null
+		<include refid="search" />
+		order by equ_date desc
+		
+	</select>
+
+	<select id="selectEquipByNo" parameterType="string" resultType="stock">
+		select 
+		* 
+		from equipment
+		where equ_code=#{equipCode}
+	</select>
+	
+	<select id="selectEquipList" parameterType="string" resultType="stock">
+		select 
+		* 
+		from equipment
+	</select>
+	
+	<update id="insertEquip" parameterType="stock">
+		insert into 
+		equipment(equ_code,equ_n ame,equ_amount,equ_maker,equ_distr,equ_price)
+		values('equ' || EQUIPMENT_SEQ.nextval,#{name},#{amount},#{maker},#{distr},#{price})
+	</update>	
+	
+<!--	<select id="selectNoticeByImage" resultType="notice">
+		select 
+		* 
+		from notice_bo
+		where content like '%'||#{imageFile}||'%'	
+	</select>	
+	
+	
+	
+	
+	<update id="increaseViewCount" parameterType="int">
+		update notice
+		set viewcnt=viewcnt+1
+		where nno=#{nno}
+	</update>
+	
+	
+	
+		
+	<update id="updateNotice" parameterType="notice">
+		update notice 
+		set 
+		title=#{title},content=#{content}		
+		where nno=#{nno}
+	</update>
+	
+	<update id="deleteNotice" parameterType="int" >
+		delete 
+		from notice_bo 
+		where nno=#{nno}		
+	</update>
+ -->
+	
+</mapper>

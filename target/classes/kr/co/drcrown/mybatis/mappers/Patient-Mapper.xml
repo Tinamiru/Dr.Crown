@@ -1,0 +1,118 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Patient-Mapper">
+<!-- 	 <sql id="search"> -->
+<!-- 		<if test="searchType == 't'.toString()"> -->
+<!-- 			and notice_title like '%'||#{keyword}||'%'			 -->
+<!-- 		</if> -->
+<!-- 		<if test="searchType == 'w'.toString()"> -->
+<!-- 			and notice_writer like '%'||#{keyword}||'%'			 -->
+<!-- 		</if> -->
+<!-- 		<if test="searchType == 'c'.toString()"> -->
+<!-- 			and notice_content like '%'||#{keyword}||'%'			 -->
+<!-- 		</if> -->
+<!-- 		<if test="searchType == 'tc'.toString()"> -->
+<!-- 			and ( -->
+<!-- 			notice_title like '%'||#{keyword}||'%' -->
+<!-- 			or -->
+<!-- 			notice_content like '%'||#{keyword}||'%'						 -->
+<!-- 			)			 -->
+<!-- 		</if> -->
+<!-- 		<if test="searchType == 'cw'.toString()"> -->
+<!-- 			and ( -->
+<!-- 			notice_writer like '%'||#{keyword}||'%' -->
+<!-- 			or -->
+<!-- 			notice_content like '%'||#{keyword}||'%'						 -->
+<!-- 			)			 -->
+<!-- 		</if> -->
+<!-- 		<if test="searchType == 'tcw'.toString()"> -->
+<!-- 			and ( -->
+<!-- 			notice_title like '%'||#{keyword}||'%' -->
+<!-- 			or -->
+<!-- 			notice_writer like '%'||#{keyword}||'%' -->
+<!-- 			or -->
+<!-- 			notice_content like '%'||#{keyword}||'%'						 -->
+<!-- 			)			 -->
+<!-- 		</if> -->
+<!-- 	</sql> -->
+	
+	<select id="selectSearchPatientList" resultType="patient">		
+<!-- 		select * -->
+<!-- 		from( -->
+<!-- 		    select rownum as rnum,SearchNoticeResult.* -->
+<!-- 		    from (  -->
+		    	select *
+				from patient
+				where p_no is not null
+<!-- 				<include refid="search" />				 -->
+				order by p_no
+<!-- 		    )  SearchNoticeResult -->
+<!-- 		    <![CDATA[ -->
+<!-- 		    where rownum <= #{endRow} -->
+<!-- 		    ]]> -->
+<!-- 		) -->
+<!-- 		 <![CDATA[ -->
+<!-- 		where rnum >= #{startRow}		 -->
+<!-- 		 ]]> -->
+	</select>
+	
+	<select id="selectSearchPatientListCount" resultType="int">
+		select 
+		count(*) 
+		from patient
+		where p_no is not null
+<!-- 		<include refid="search" /> -->
+		order by p_name
+		
+	</select>
+	<select id="selectPatientByPatientNo" parameterType="int" resultType="patient">
+		select 
+		* 
+		from patient
+		where p_no=#{pNo}
+	</select>
+	
+	<update id="insertPatient" parameterType="patient">
+		insert into 
+		patient(P_NO,P_NAME,P_SFX,P_BIR,P_RNUM,P_TEL,P_ZIPCODE,P_ADDR1,P_ADDR2,P_FDATE,P_LASTDATE,P_INSURANCE)
+		values(#{pNo},#{pName},#{pSfx},#{pBir},#{pRnum},#{pTel},#{pZipcode},#{pAddr1},#{pAddr2},#{pFdate},#{pLastdate},#{pInsurance})
+	</update>	
+<!--
+	<select id="selectNoticeByImage" resultType="notice">
+		select 
+		* 
+		from notice
+		where content like '%'||#{imageFile}||'%'	
+	</select>	
+	
+	
+	<select id="selectNoticeSequenceNextValue" resultType="int">
+		select notice_seq.nextVal
+		from dual
+	</select>
+	
+	<update id="increaseViewCount" parameterType="int">
+		update notice
+		set viewcnt=viewcnt+1
+		where nno=#{nno}
+	</update>
+	
+	
+		
+	<update id="updateNotice" parameterType="notice">
+		update notice 
+		set 
+		title=#{title},content=#{content}		
+		where nno=#{nno}
+	</update>
+	
+	<update id="deleteNotice" parameterType="int" >
+		delete 
+		from notice 
+		where nno=#{nno}		
+	</update>
+ -->
+	
+</mapper>

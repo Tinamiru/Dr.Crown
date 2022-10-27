@@ -8,7 +8,6 @@ import java.util.Map;
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.command.PageMaker;
 import kr.co.drcrown.dto.NoticeVO;
-import kr.co.drcrown.service.NoticeService;
 
 import kr.co.drcrown.dao.NoticeDAO;
 

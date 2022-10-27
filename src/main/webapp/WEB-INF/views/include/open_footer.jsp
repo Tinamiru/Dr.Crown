@@ -8,7 +8,7 @@
    	<script src="<%=request.getContextPath()%>/resources/vendor/jqueryui/js/jquery-ui.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/js/plugins-init/sweetalert.init.js"></script>
     <script src="<%=request.getContextPath()%>/resources/vendor/peity/jquery.peity.min.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/vendor/fullcalendar/js/main.js"></script>
+	<%-- <script src="<%=request.getContextPath()%>/resources/vendor/fullcalendar/js/main.js"></script>--%>
 	<script src="<%=request.getContextPath()%>/resources/vendor/moment/moment.min.js"></script>
     <script src="<%=request.getContextPath()%>/resources/vendor/global/global.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/dashboard/dashboard-1.js"></script>
@@ -31,5 +31,19 @@
 			});
 		});
 	</script>
+	<script>
+	$(function () {
+		let today = new Date();   
+		
+		let year = today.getFullYear(); // 년도
+		let month = today.getMonth() + 1;  // 월
+		let date = today.getDate();  // 날짜
+		let day = today.getDay();  // 요일
+
+		sessionStorage.setItem("mineSession",year+""  + month +""+ date) 
+		});
+	</script>
+	
+	
 </body>
 </html>

@@ -7,7 +7,7 @@
 
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cri" value="${dataMap.pageMaker.cri }" />
-<c:set var="noticeList" value="${dataMap.noticeList }" />
+<c:set var="minfoList" value="${dataMap.minfoList }" />
 
 <body>
 <div class="container-fluid">
@@ -59,7 +59,7 @@
 						<select class="form-control" name="searchType" id="searchType">
 							<option value="tcw"  ${cri.searchType eq 'tcw' ? 'selected':'' }>전 체</option>
 							<option value="t" ${cri.searchType eq 't' ? 'selected':'' }>제 목</option>
-							<option value="w" ${cri.searchType eq 'w' ? 'selected':'' }>작성자</option>
+							<%-- <option value="w" ${cri.searchType eq 'w' ? 'selected':'' }>작성자</option> --%>
 							<option value="c" ${cri.searchType eq 'c' ? 'selected':'' }>내 용</option>
 							<option value="tc" ${cri.searchType eq 'tc' ? 'selected':'' }>제목+내용</option>
 							<option value="cw" ${cri.searchType eq 'cw' ? 'selected':'' }>작성자+내용</option>							
@@ -80,7 +80,7 @@
 				
 
 		<!-- 테이블 -->
-		<div class="card-body">
+		<div class="card-body" style="overflow-y:scroll;height: 60vh;">
 			<div class="table-responsive">
 				<table class="table table-bordered"
 					style="margin: auto; text-align: center;">
@@ -89,37 +89,38 @@
 							<th scope="col" style="width:8%">순번</th>
 							<th scope="col" style="width:10%">분류</th>
 							<th scope="col" style="width:40%">제목</th>
-							<th scope="col" style="width:10%">작성자</th>
+							<th scope="col" style="width:10%">저자</th>
 							<th scope="col" style="width:14%">작성일자</th>
 							<th scope="col" style="width:10%">첨부파일</th>
 							<th scope="col" style="width:8%">조회수</th>
 						</tr>
 					</thead>
-					<c:if test="${empty noticeList }" >
+					<c:if test="${empty minfoList }" >
 						<tr>
 							<td colspan="8">
 								<strong>해당 내용이 없습니다.</strong>
 							</td>
 						</tr>
 					</c:if>	
-					<c:forEach items="${noticeList}" var="notice">
+					<c:forEach items="${minfoList}" var="minfo">
 						<tbody>
 							<tr>
-								<td>${notice.noticeNo}</td>
+								<td>${minfo.minfoCode }</td>
 								<td>
 									<c:choose>
-										<c:when test="${notice.noticeCategory == '2'}"><span class="btn light btn-primary">${notice.noticeCategory}</span></c:when>
-										<c:when test="${notice.noticeCategory == '1'}"><span class="btn light btn-secondary">${notice.noticeCategory}</span></c:when>
-										<c:when test="${notice.noticeCategory == '0'}"><span class="btn light btn-info">${notice.noticeCategory}</span></c:when>
+										<c:when test="${minfo.minfoClass == '0'}"><span class="btn-square btn-xs btn-info">해외논문</span></c:when>
+										<c:when test="${minfo.minfoClass == '1'}"><span class="btn-square btn-xs btn-secondary">석사논문</span></c:when>
+										<c:when test="${minfo.minfoClass == '2'}"><span class="btn-square btn-xs btn-primary">학사논문</span></c:when>
+										<c:when test="${minfo.minfoClass == '3'}"><span class="btn-square btn-xs btn-dark">의학지</span></c:when>
 										<c:otherwise></c:otherwise>
 									</c:choose>
 								</td>	
-								<td>${notice.noticeTitle}</td>
-								<td>${notice.noticeWriter}</td>
-								<td><fmt:formatDate value="${notice.noticeRegdate }"
+								<td>${minfo.minfoTitle }</td>
+								<td>${minfo.minfoWriter}</td>
+								<td><fmt:formatDate value="${minfo.minfoRegdate}"
 										pattern="yyyy-MM-dd" /></td>
 								<td></td>
-								<td>${notice.noticeCount}</td>
+								<td>${minfo.minfoCount}</td>
 							</tr>
 						</tbody>
 					</c:forEach>

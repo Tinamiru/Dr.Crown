@@ -46,8 +46,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void regist(MemberVO member) throws Exception {
-		memberDAO.insertMember(member);
+	public void regist(MemberVO member, String typeAuthority) throws Exception {
+		memberDAO.insertMember(member, typeAuthority);
 
 	}
 
@@ -57,8 +57,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void remove(String id) throws Exception {
-		memberDAO.deleteMember(id);
+	public void remove(String memId) throws Exception {
+		memberDAO.deleteMember(memId);
 	}
 
 	@Override

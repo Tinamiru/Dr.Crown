@@ -52,7 +52,7 @@
 	</div>
 
 	<div class="row justify-content-between pl-5 pr-3">
-		<div class="col-3">
+		<div class="col-2">
 			<select class="form-control " name="perPageNum" id="perPageNum" onchange="list_go(1);">					  		  		
 		 		<option value="5" ${cri.perPageNum eq 5 ? 'selected' : '' } >5개씩</option>
 		 		<option value="10" ${cri.perPageNum eq 10 ? 'selected' : '' }>10개씩</option>
@@ -140,7 +140,6 @@
 		</div>
 	</div>
 </div>
-
 
 
 <%@ include file="/WEB-INF/views/include/pagination.jsp" %>

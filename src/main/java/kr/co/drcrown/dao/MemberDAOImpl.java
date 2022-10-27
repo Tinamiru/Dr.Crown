@@ -1,8 +1,11 @@
 package kr.co.drcrown.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
@@ -47,21 +50,25 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void insertMember(MemberVO member) throws SQLException {
-
-		session.update("Member-Mapper.insertMember", member);
+	
+	public void insertMember(MemberVO member, String typeAuthority) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		dataMap.put("member", member);
+		dataMap.put("typeAuthority",typeAuthority);
+		session.update("Member-Mapper.insertMember", dataMap);
 
 	}
 
 	@Override
 	public void updateMember(MemberVO member) throws SQLException {
+	
 		session.update("Member-Mapper.updateMember", member);
 
 	}
 
 	@Override
-	public void deleteMember(String id) throws SQLException {
-		session.update("Member-Mapper.deleteMember", id);
+	public void deleteMember(String memId) throws SQLException {
+		session.update("Member-Mapper.deleteMember", memId);
 
 	}
 

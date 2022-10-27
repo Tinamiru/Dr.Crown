@@ -22,11 +22,11 @@ public interface MemberService {
 	MemberVO getMember(String id)throws SQLException;	
 
 	//회원등록
-	public void regist(MemberVO member) throws Exception;
+	public void regist(MemberVO member,String typeAuthority) throws Exception;
 	
 	//회원수정
 	public void modify(MemberVO member)throws Exception;
 	
 	//회원탈퇴
-	public void remove(String id)throws Exception; 
+	public void remove(String memId)throws Exception; 
 }

@@ -15,13 +15,13 @@ public interface MemberDAO{
 	
 	
 	// 회원 추가
-	public void insertMember(MemberVO member) throws SQLException;
+	public void insertMember(MemberVO member, String typeAuthority) throws SQLException;
 	
 	// 회원 수정
 	public void updateMember(MemberVO member) throws SQLException;
 	
 	// 회원정보 삭제
-	void deleteMember(String id) throws SQLException;
+	void deleteMember(String memId) throws SQLException;
 	
 	MemberVO selectMemberByPicture(String picture) throws SQLException;
 }

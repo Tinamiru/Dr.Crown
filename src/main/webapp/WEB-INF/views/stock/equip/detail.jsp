@@ -1,130 +1,238 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+
+<style>
+#mainFrame {
+	overflow: hidden; 
+	height:100vh; 
+	width:100vw; 
+	align-items: center;
+}
+
+#mainFrame_top{
+	background-color: #333258; 
+	height: 12vh; 
+	align-items:center; 
+	display: flex; 
+	justify-content:center;
+
+}
+#bar{
+	margin: 5px 20px; 
+	background: #CCCCCC;
+}
+
+#bigTitle{ 
+	margin-top: 12px; 
+	margin-bottom: 12px;
+}
+
+#bigTitle > h1{
+	font-weight:bold; ; 
+	text-align: center;
+	font-size: 35px;
+	margin: 0px;
+	
+}
+
+#detailFrame{
+	height: 64vh; 
+	width: 97vw; 
+	margin: 10px;
+}
+
+#detailFrameLeft{
+	float: left; 
+	height: 64vh; 
+	width: 35vw; 
+}
+
+#detailFrameLeftImg{
+	height: 64vh; 
+	width: 35vw; 
+	align-items:center; 
+	display: flex; 
+	justify-content:center; 
+	border:1px black solid;
+}
+
+#detailFrameLeftImg > img{
+	height: 64vh; 
+	width: 35vw;
+}
+
+#detailFrameRight{
+	float: right; 
+	height: 64vh; 
+	width: 61vw; 
+	right: 50%
+}
+
+#detailFrameRightUp {
+	border: solid black 1px; 
+	height: 100%; 
+	width: 61vw; 
+	text-align: center; 
+	padding-top: 10px;
+	
+}
+
+#detailFrameRightUp > h2{
+	padding: 5px; 
+	font-weight: 600; 
+	color: #333258;
+	font-size: 30px
+}
+
+#detailFrameRightUpContent{
+	height: 90%; 
+	width: 90%; 
+	text-align: center;
+	margin: 11% 8%;
+	float: left; 
+	font-size: 15px;
+
+}
+
+#detailListRow{
+	margin-bottom: 1px;
+}
+
+#detailListRow > div{
+	float: left; 
+	width: 120px; 
+	text-align: center; 
+	padding: 5px;
+	font-weight: bolder;
+	background-color : #333258;
+	color: white; 
+}
+
+#detailListRow > input {
+	width: 38vw; 
+	margin-left: 10px;
+	border : 0px;
+	border-bottom: 2px solid #333258;
+	background: none;
+	
+}
+
+
+#underBar{
+	background-color: #333258; 
+	height: 9vh; 
+	text-align: center ;
+}
+
+#underBar > div {
+	text-align: center; 
+	padding-top: 15px;
+}
+
+#underBar > div > a{
+	padding: 5px; 
+	border-radius : 5px; 
+	color : black;
+	background-color: white; 
+	font-weight: bolder;
+
+}
+
+textarea::placeholder {
+	color: #ccc;
+}
+
+</style>
 
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cri" value="${dataMap.pageMaker.cri }" />
 <c:set var="minfoList" value="${dataMap.minfoList }" />
 
 
-<div>
-	<section class="content-header">
-	  	<div class="container-fluid">
-	  		<div class="row md-2">
-	  			<div class="col-sm-6">
-	  				<h1>비품 재고현황</h1>  				
-	  			</div>
-	  			<div class="col-sm-6">
-	  				<ol class="breadcrumb float-sm-right">
-			        <li class="breadcrumb-item">
-			        	<a href="list.do">
-				        	<i class="fa fa-dashboard"></i>회원관리
-				        </a>
-			        </li>
-			        <li class="breadcrumb-item active">
-			        	목록0	
-			        </li>		        
-	    	  </ol>
-	  			</div>
-	  		</div>
-	  	</div>
-	</section>
-	
-	<section class="content">  
-   		<div class="card">
-   			<div class="card-header with-border" >
-   				
-   				<div id="keyword" class="card-tools" style="width:550px; "  >
-   					 <div class="input-group row">
-   					 	<!-- search bar -->
-   					 	<!-- sort num -->
-					  	<select class="form-control col-md-3" name="perPageNum" id="perPageNum" onchange="list_go(1);">					  		  		
-					  		<option value="10" ${cri.perPageNum eq 10 ? 'selected' : '' } >정렬개수</option>
-					  		<option value="2" ${cri.perPageNum eq 2 ? 'selected' : '' }>2개씩</option>
-					  		<option value="3" ${cri.perPageNum eq 3 ? 'selected' : '' }>3개씩</option>
-					  		<option value="5" ${cri.perPageNum eq 5 ? 'selected' : '' }>5개씩</option>
-					  	</select>
-					  	
-					  	
-					  	<!-- search bar -->
-					 	<select class="form-control col-md-3" name="searchType" id="searchType">
-					 		<option value=""  >검색구분</option>
-				
-							<option value="i" ${param.searchType=='i' ? "selected":"" } >아이디</option>
-							<option value="n" ${param.searchType=='n' ? "selected":"" }>이 름</option>
-							<option value="p" ${param.searchType=='p' ? "selected":"" }>전화번호</option>
-							<option value="e" ${param.searchType=='e' ? "selected":"" }>이메일</option>	
-											 									
-						</select>
-						<!-- keyword -->
-   					 	<input  class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value="${cri.keyword }"/>
-						<span class="input-group-append">
-							<button class="btn btn-primary" type="button" 
-									id="searchBtn" data-card-widget="search" onclick="list_go(1);">
-								<i class="fa fa-fw fa-search"></i>
-							</button>
-						</span>
-					<!-- end : search bar -->		
-   					 </div>
-   				</div>   			
-   			</div>
-   			<div class="card-body" style="text-align:center;">
-    		  <div class="row">
-	             <div class="col-sm-12">	
-		    		<table class="table table-bordered">
-		    			<tr>
-		    				<th>비품코드</th>
-		                	<th>비품명</th>
-		                	<th>제조사</th>
-		                	<th>유통사</th>
-		                	<th>상세정보</th>
-		                	<th>입고일</th>
-		                	<th>수량</th> <!-- yyyy-MM-dd  -->
-		               	</tr>
-		               	<tr>
-		               		<td>EQU1</td>
-		               		<td>거즈</td>
-		               		<td>재림산업</td>
-		               		<td>금규산업</td>
-		               		<td><a href="/stock/supply/detail" class="btn btn-primary mb-1 mr-1">상세정보</a></td>
-		               		<td>2022/10/11</td>
-		               		<td>200</td>
-		               	</tr>
-		               	
-		               	
-		              
-		               		
-		     			<c:if test="${!empty minfoList }" >
-		            		<c:forEach items="${minfoList}" var="minfo">		     						     				
-		     					 <tr>
 
-		            		  	   	<td>${minfo.minfoClass }</td>
-				              		<td>${minfo.minfoCode }</td>
-				              		<td>${minfo.minfoContent }
-				              		<td>${minfo.minfoWriter }</td>
-				              		<td>${minfo.minfoWriter }</td>
-				              		<td>${minfo.minfoWriter }</td>
-		            		  	   	<td><fmt:formatDate value="${minfo.minfoRegdate }" pattern="yyyy-MM-dd"/></td>
-		            		  	  </tr>	
-		     					
-		     				</c:forEach>
-		            	</c:if>		
-		     			<c:if test="${empty minfoList }" >
-			     			<tr>
-		            			<td colspan="7" class="text-center">
-		            				해당내용이 없습니다.
-		            			</td>
-		            		</tr>
-		     			</c:if>	
-		            </table>
-    		     </div> <!-- col-sm-12 -->
-    	       </div> <!-- row -->
-    		</div> <!-- card-body -->
-    		<div class="card-footer">
-    			<%@ include file="/WEB-INF/views/include/pagination.jsp" %>
-    		</div>
-  	 	</div>
-   	</section>
+<div id="mainFrame">
+	<div id="mainFrame_top">
+		<img src="<%=request.getContextPath()%>/resources/images/logo-full.png" 
+			 style="width: 30vw; height: 10vh;">
+	</div>
+	
+	<div id="bigTitle">
+		<h1>비품 상세 정보</h1>
+	</div>
+	<hr id="bar">
+	<div id="detailFrame" class = "content" >
+		<div id="detailFrameLeft" >
+			<div id="detailFrameLeftImg">
+				<img src="<%=request.getContextPath()%>/resources/images/stock/stock_detail_example.jpg">
+			</div>	
+		</div>
+	
+		<div id="detailFrameRight">
+			<div id="detailFrameRightUp">
+				<h2>상세정보</h2>
+					<div style="width: 100%; height: 80%; background-color: white;">
+						<div id="detailFrameRightUpContent">
+							
+							
+							<div class="row" id="detailListRow" >
+								<div>
+									일련코드
+								</div>
+								<input type="text"  readonly="readonly" value="EQ001">
+							</div>
+							
+							<div class="row" id="detailListRow" >
+								<div>
+									품목명
+								</div>
+								<input type="text"  readonly="readonly" value="대충품목명10자리넘는대충품목명10자리">
+							</div>
+							
+							<div class="row" id="detailListRow" >
+								<div>
+									단위
+								</div>
+								<input type="text"  readonly="readonly" value="개">
+							</div>
+							<div class="row" id="detailListRow" >
+								<div>
+									재고
+								</div>
+								<input type="text"  readonly="readonly" value="100">
+							</div>
+							<div class="row" id="detailListRow" >
+								<div>
+									업체명
+								</div>
+								<input type="text"  readonly="readonly" value="대덕제약">
+							</div>
+							<div class="row" id="detailListRow" >
+								<div>
+									입고일
+								</div>
+								<input type="text"  readonly="readonly" value="2023.9.23">
+							</div>
+					</div>
+						
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<hr id="bar">
+
+	<div id = "underBar">
+		<div onclick="window.close()">
+				<a>
+				  돌아가기
+				</a>
+		</div>
+	</div>
+
 </div>
+
+

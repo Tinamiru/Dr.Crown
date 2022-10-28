@@ -90,6 +90,19 @@ public class DeskController {
 		return url;
 	}
 	
+	   
+    @GetMapping("/booking/patientList")
+    public String bokingPatientList(Criteria cri, Model model) throws Exception {
+        String url = "/desk/booking/patientList";
+        
+        Map<String,Object> dataMap = patientService.getPatientList(cri);        
+        model.addAttribute("dataMap",dataMap);
+        
+        
+        return url;
+    }
+	
+	
 	@GetMapping("/booking/toothList")
 	public String bookingToothList() {
 		String url = "/desk/booking/toothList";

@@ -22,22 +22,13 @@ public class StockDAOImpl implements StockDAO {
 	}
 
 	@Override
-	public List<StockVO> selectEquipList(Criteria cri) throws SQLException
+	public List<StockVO> selectEquipList() throws SQLException
 	{
-		int offset = cri.getStartRowNum();
-		int limit = cri.getPerPageNum();
-		RowBounds rowBounds = new RowBounds(offset, limit);
 
 		List<StockVO> equipList = 
-				session.selectList("Stock-Mapper.selectEquipList", cri,rowBounds);
+				session.selectList("Stock-Mapper.selectEquipList");
 
 		return equipList;
-	}
-	@Override
-	public int selectEquipListCount(Criteria cri) throws SQLException
-	{
-		int count = session.selectOne("Stock-Mapper.selectEquipCount",cri);
-		return count;
 	}
 	@Override
 	public StockVO selectEquipByEquipNo(String equCode) throws SQLException
@@ -56,4 +47,9 @@ public class StockDAOImpl implements StockDAO {
 	{
 		session.update("Stock-Mapper.insertEquip",equip);
 	}
+
+    @Override
+    public void insertEpuipPreOrder(StockVO equip) throws SQLException {
+        session.update("Stock-Mapper.insertEpuipPreOrder",equip);
+    }
 }

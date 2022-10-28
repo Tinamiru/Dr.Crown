@@ -58,7 +58,7 @@
 		 ]]>
 	</select>
 	
-	<select id="selectEquipCount" resultType="int">
+	<!-- <select id="selectEquipCount" resultType="int">
 		select 
 		count(*) 
 		from equipment
@@ -67,26 +67,34 @@
 		order by equ_date desc
 		
 	</select>
-
+ -->
 	<select id="selectEquipByNo" parameterType="string" resultType="stock">
 		select 
 		* 
 		from equipment
-		where equ_code=#{equipCode}
+		where equ_code=#{equCode}
 	</select>
 	
 	<select id="selectEquipList" parameterType="string" resultType="stock">
 		select 
 		* 
 		from equipment
+		order by equ_code
 	</select>
+	
+	
 	
 	<update id="insertEquip" parameterType="stock">
 		insert into 
-		equipment(equ_code,equ_n ame,equ_amount,equ_maker,equ_distr,equ_price)
-		values('equ' || EQUIPMENT_SEQ.nextval,#{name},#{amount},#{maker},#{distr},#{price})
+		equipment(equ_code,equ_name,equ_unit,equ_maker,equ_distr,equ_price)
+		values('equ' || LPAD(EQUIPMENT_SEQ.nextval,3,0),#{equName},#{equUnit},#{equMaker},#{equDistr},#{equPrice})
 	</update>	
 	
+	<update id="insertEpuipPreOrder" parameterType="stock">
+		insert into
+		pre_order (reo_code, equ_code, reo_amount, reo_date, reo_price, reo_totalpay)
+		VALUES ('reo'||LPAD(EQUIPMENT_PREODER_SEQ.nextval,5,0),#{equCode},to_number(#{equStock}),TO_CHAR(SYSDATE, 'YYYYMMDD'),#{equPrice},to_number(#{equStock})*#{equPrice})		
+	</update>
 <!--	<select id="selectNoticeByImage" resultType="notice">
 		select 
 		* 

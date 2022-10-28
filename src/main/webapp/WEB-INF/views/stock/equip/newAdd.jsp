@@ -201,14 +201,14 @@ textarea::placeholder {
 			<div id="detailFrameRightUp">
 				<h2>상세정보입력</h2>
 					<div style="width: 100%; height: 80%; background-color: white;">
-						<form role="form" method="post"  name="registForm">
+						<form role="form" class="form-horizontal" action="/equip/newAddsucces" method="post">
 							<div id="detailFrameRightUpContent">
 								<div class="row" id="detailListRow" >
 									<div>
 										품목명
 									</div>
-									<input type="text" placeholder="품목명을 입력하세요" 
-									 	   class="input-text" maxlength="100" id="name">
+									<input type="text" name="equName" placeholder="품목명을 입력하세요" 
+									 	   class="input-text" maxlength="100" value="">
 								</div>
 							
 								<div class="row" id="detailListRow">
@@ -216,7 +216,7 @@ textarea::placeholder {
 										단위
 									</div>
 									<input type="text" placeholder="ex) 박스" maxlength="8" class="input-text"
-										   id="unit">
+										    name="equUnit" value="">
 								</div>
 							
 							<div class="row" id="detailListRow">
@@ -224,7 +224,7 @@ textarea::placeholder {
 									업체명
 								</div>
 								<input type="text" placeholder="업체명을 입력하세요" class="input-text" maxlength="100"
-									   id="companyName">
+									  name="equMaker" value="">
 							</div>
 							
 							<div class="row" id="detailListRow">
@@ -232,7 +232,7 @@ textarea::placeholder {
 									유통사
 								</div>
 								<input type="text" placeholder="유통사를 입력하세요"class="input-text" maxlength="100"
-									   id="distributor">
+									    name="equDistr" value="">
 							</div>
 				
 							<div class="row" id="detailListRow">
@@ -240,7 +240,7 @@ textarea::placeholder {
 									단가
 								</div>
 								<input type="text"  placeholder="ex) 100000원" class="input-text" maxlength="12"
-									   id="cost">
+									    name="equPrice" value="">
 							</div>
 							</div>
 						</form>
@@ -289,21 +289,40 @@ function clearInput()
 }
 
 function orderRQ(){
-	var form = document.registForm;
-	if(form.name.value=="" || form.unit.value=="" || form.companyName.value=="" || form.distributor.value=="" || form.cost.value=="")
-	{
-		alert("내용은 필수입니다.");
-		return;
+	if(!$('input[name="equName"]').val()){
+		swal ( "실패" ,  "품명입력은 필수입니다." ,  "error" );  	
+	  return;
 	}
-
-	if (!confirm("신규 비품을 추가하시겠습니까?")) {
-		alert("취소하셨습니다");
-	} else {
-		alert("추가되었습니다.");
-		opener.location.reload();
-		window.close();
-	}
+    
+	//if($('input[name="id"]').val()!=checkedID){
+    //  alert("사번 생성 여부 확인이 필요합니다.");
+    //  return;
+    //}
 	
+    if(!$('input[name="equUnit"]').val()){
+    	swal ( "실패" ,  "단위는 필수입니다." ,  "error" );
+	  return;
+    }
+    if(!$('input[name="equMaker"]').val()){
+    	swal ( "실패" ,  "제조사는 필수입니다." ,  "error" );
+	  return;
+	}
+    if(!$('input[name="equDistr"]').val()){
+    	swal ( "실패" ,  "유통사는 필수입니다." ,  "error" );
+	  return;
+	}
+    if(!$('input[name="equPrice"]').val()){
+    	swal ( "실패" ,  "가격은 필수입니다." ,  "error" );
+	  return;
+	}
+    
+    
+    var form = $('form[role="form"]');
+	form.attr({"method":"post",
+	     	   "action":"newAddsucces"
+	   		  });	
+	
+	form.submit();
 }
 
 

@@ -11,6 +11,8 @@
 <c:set var="cri" value="${dataMap.pageMaker.cri }" />
 
 <style>
+
+
 .td_content {
 	white-space: nowrap;
 	overflow: hidden;
@@ -70,13 +72,13 @@
 								<div id="keyword" class="card-tools"
 								style="font-size: 12px; float: right;">
 									<div class="input-group row">
-										<select class="form-control " name="perPageNum"
+										<%-- <select class="form-control " name="perPageNum"
 											id="perPageNum" onchange="list_go(1);">
 											<option value="10" ${cri.perPageNum eq 10 ? 'selected' : '' }>정렬개수</option>
 											<option value="5" ${cri.perPageNum eq 5 ? 'selected' : '' }>5개씩</option>
 											<option value="10" ${cri.perPageNum eq 10 ? 'selected' : '' }>10개씩</option>
 											<option value="20" ${cri.perPageNum eq 20 ? 'selected' : '' }>20개씩</option>
-										</select>
+										</select> --%>
 
 
 									<!-- search bar -->
@@ -92,10 +94,13 @@
 										<!-- keyword -->
 										<input class="form-control" type="text" name="keyword"
 											placeholder="검색어를 입력하세요." value="${cri.keyword }" /> 
-										<div style="background: #333258; width: 5vw; height: 7%; text-align: center;
-													color: white; font-weight: bolder;font-size:13px; padding:2% 4%">
-											검색
-										</div>
+										<span
+											class="input-group-append">
+											<button class="btn btn-primary" type="button" id="searchBtn"
+												data-card-widget="search" onclick="list_go(1);">
+												<i class="fa fa-fw fa-search"></i>
+											</button>
+										</span>
 										<!-- end : search bar -->
 									</div>
 								</div>
@@ -104,7 +109,7 @@
 						</div>
 					</div>
 					
-					<div class="card" style="height: 73vh; overflow-y: scroll;" >
+					<div class="card" style="height: 80vh; overflow-y: scroll;" >
 						
 
 						<div class="card-body" style="text-align: center; font-size: 12px; padding: 25px 20px 0px 20px;">
@@ -114,8 +119,8 @@
 										<tr bgcolor="#333258" style="color: white">
 											<th width="14%">일련코드</th>
 											<th >품목명</th>
-											<th width="10%">단위</th>
 											<th width="10%">재고</th>
+											<th width="10%">단위</th>
 											<th width="15%">업체명</th>
 											<th width="15%">입고일</th>
 											<th width="10%">추가</th>
@@ -124,19 +129,53 @@
 										 <c:if test="${!empty equipList }">
 											<c:forEach items="${equipList}" var="stock">
 												<tr class="tr-select" >
-													<td onclick="detail()">${stock.equCode }</td>
-													<td onclick="detail()" class="td_content">${stock.equName }</td>
-													<td onclick="detail()">${stock.equStock }
-													<td onclick="detail()">${stock.equUnit }</td>
-													<td onclick="detail()" class="td_content">${stock.equMaker }</td>
-													<td onclick="detail()" >
-														<fmt:formatDate value="${stock.equDate }" pattern="yyyy-MM-dd"/>
+													<td>
+														<a href="javascript:OpenWindow('detail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
+															${stock.equCode }
+														</a>
+														<input style="display: none;" name="equCode" value="${stock.equCode }"/>
 													</td>
-													<td style="display: none;">${stock.equPrice }</td>
+														<td class="td_content">
+														<a href="javascript:OpenWindow('detail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
+															${stock.equName }
+														</a>
+													</td>
+													<td>
+														<a href="javascript:OpenWindow('detail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
+															${stock.equStock }
+														</a>
+													<td>
+														<a href="javascript:OpenWindow('detail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
+															${stock.equUnit }
+														</a>
+														<input style="display: none;" name="equUnit" value="${stock.equUnit }"/>
+													</td>
+														<td class="td_content">
+														<a href="javascript:OpenWindow('detail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
+															${stock.equMaker }
+														</a>
+													</td>
+													<td >
+														<a href="javascript:OpenWindow('detail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
+															<fmt:formatDate value="${stock.equDate }" pattern="yyyy-MM-dd"/>
+														</a>
+														</td>
+													<td style="display: none;">
+														<a href="javascript:OpenWindow('detail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
+															${stock.equPrice }
+														
+														</a>
+														<input style="display: none;" name="equPrice" value="${stock.equPrice }"/>
+													</td>
+													<td style="display: none;">
+														<input type="text" style="width: 2vw;" name="equStock"
+															   placeholder="${stock.equStock }" value="" >
+													</td>
+													
 													<td onclick="addRow()">
-													<div id="Detail_main_add">
-														추가
-													</div>	
+														<div id="Detail_main_add">
+															추가
+														</div>	
 													</td>
 												</tr>
 											</c:forEach>
@@ -156,9 +195,7 @@
 						
 					</div>
 				</section>
-				<div class="card-footer">
-				    <%@ include file="/WEB-INF/views/include/pagination.jsp"%>
-				</div>
+				
 
 			</div>
 			<div class="col-sm-6">
@@ -172,7 +209,7 @@
 								추가
 							</div> -->
 							<div class="container-fluid" >
-								<h2 style="text-align: center; font-weight: bolder; font-size: 27px;">비품 발주 신청</h2>
+								<h2 style="text-align: center; font-weight: bolder; font-size: 27px;">비품 주문 신청</h2>
 							</div>
 							
 						</section>
@@ -180,20 +217,22 @@
 							<div class="card-body" style="text-align: center; font-size: 11px; ">
 								<div class="row">
 									<div class="col-sm-12">
-										<table  id="requestList" class="table table-bordered">
-											<tr bgcolor="#333258" style="color: white">
-												<th width="8%">순번</th>
-												<th width="12%">일련코드</th>
-												<th>품목명</th>
-												<th width="10%">단위</th>
-												<th width="10%">수량</th>
-												<th width="15%">업체명</th>
-												<th width="15%">단가(원)</th>
-												<th width="8%">취소</th>
-												<!-- yyyy-MM-dd  -->
-											</tr>
-											
-										</table>
+										<form name="" role="form" class="form-horizontal" action="/equip/listSuccess" method="post">
+											<table  id="requestList" class="table table-bordered">
+												<tr bgcolor="#333258" style="color: white">
+													<th width="8%">순번</th>
+													<th width="12%">일련코드</th>
+													<th>품목명</th>
+													<th width="10%">수량</th>
+													<th width="10%">단위</th>
+													<th width="15%">업체명</th>
+													<th width="15%">단가(원)</th>
+													<th width="8%">취소</th>
+													<!-- yyyy-MM-dd  -->
+												</tr>
+												
+											</table>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -222,7 +261,7 @@
 					<section class="content" style="height: 40vh; width: 95%;" >
 						<section class="content-header">
 							<div class="container-fluid">
-								<h2 style="text-align: center; font-weight: bolder; font-size: 27px;">비품 발주목록</h2>
+								<h2 style="text-align: center; font-weight: bolder; font-size: 27px;">비품 주문 목록</h2>
 							</div>
 						</section>
 						<div class="card" style="overflow-y: scroll;">
@@ -298,7 +337,32 @@
 
 <script type="text/javascript">
 
-	function detail() {
+/* function createTable(){
+    
+    var param = {};
+    param.Stock.equ = "01111";
+    param = JSON.stringify(param);
+
+    $.ajax({
+        url : "/getBoardList.do",
+        data : param,
+        type : 'post',
+        success : function(data){
+            var results = data.boardList;
+            var str = '<TR>';
+            $.each(results , function(i){
+                str += '<TD>' + results[i].bdTitl + '</TD><TD>' + results[i].bdWriter + '</TD><TD>' + results[i].bdRgDt + '</TD>';
+                str += '</TR>';
+           });
+           $("#boardList").append(str); 
+        },
+        error : function(){
+            alert("error");
+        }
+    });
+} */
+
+	/* function detail() {
 		
 		var popupWidth = 600;
 		var popupHeight = 800;
@@ -310,8 +374,8 @@
 		// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 		
 		
-		window.open('detail','detail','height=600, width=800, left='+ popupX + ', top='+ popupY);
-	}
+		window.open('detail?from=list&euqCode='${stock.euqCode }'','detail','height=600, width=800, left='+ popupX + ', top='+ popupY);
+	} */
 	
 	function newAdd() {
 		
@@ -361,7 +425,7 @@ var increseNum = 1;
 	          newRow.insertCell(0).innerText = increseNum++;
 	          newRow.insertCell(1).innerHTML =this.cells[0].innerHTML; 
 	          newRow.insertCell(2).innerHTML =this.cells[1].innerHTML; 
-	          newRow.insertCell(3).innerHTML =this.cells[2].innerHTML; 
+	          newRow.insertCell(3).innerHTML =this.cells[7].innerHTML; 
 	          newRow.insertCell(4).innerHTML =this.cells[3].innerHTML;
 	          newRow.insertCell(5).innerHTML =this.cells[4].innerHTML; 
 	          newRow.insertCell(6).innerHTML =this.cells[6].innerHTML;
@@ -394,13 +458,26 @@ var increseNum = 1;
 		}
 	}
 	
-	function orderRQ() {
-		if (!confirm("결제요청을 하시겠습니까?")) {
-            alert("취소하셨습니다");
-        } else {
-            alert("결체요청하셨습니다.");
-            location.reload();
-        }
+	function orderRQ(){
+		if(!$('input[name="equCode"]').val()){
+			swal ( "실패" ,  "신청비품은 1개 이상이어야합니다." ,  "error" );  	
+		  return;
+		}
+		
+	    
+		//if($('input[name="id"]').val()!=checkedID){
+	    //  alert("사번 생성 여부 확인이 필요합니다.");
+	    //  return;
+	    //}
+	    
+	    var form = $('form[role="form"]');
+		form.attr({"method":"post",
+		     	   "action":"listSucces"
+		   		  });	
+		
+		form.submit();
+		alert('신청이 완료되었습니다.')
+		
 		
 	}
 	

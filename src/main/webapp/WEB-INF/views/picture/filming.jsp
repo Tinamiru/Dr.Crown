@@ -17,7 +17,9 @@
 <div class="row" style="margin-top: 10px;">
 	<div class="col-sm-5 justify-content-center" style="border-right: solid 1px;">  
 		 
-		 <video id="video" width="640" height="480" autoplay></video>
+		<!--   <video id="video" width="640" height="480" autoplay></video>  -->
+		  
+		  <iframe src="http://192.168.141.6:5000" width="650" height="500"></iframe>
 		  <button id="snap" class="loginBtn btn btn-block">사진촬영</button>
 		
 	

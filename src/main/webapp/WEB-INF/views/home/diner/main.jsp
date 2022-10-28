@@ -140,25 +140,25 @@
 	                                        <div class="row pl-4 pt-4 justify-content-around">
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox01" value="김치찌개">
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox1" value="김치찌개" onclick="menuCheckBox('1')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox1">김치찌개</label><br><label style="font-size:12px;">4500원</label>               
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox02" >
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox2" onclick="menuCheckBox('2')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox2">된장찌개</label><br><label style="font-size:12px;">4500원</label> 
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox03" >
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox3" onclick="menuCheckBox('3')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox3">고등어정식</label><br><label style="font-size:12px;">6500원</label> 
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox04" >
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox4" onclick="menuCheckBox('4')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox4">보쌈</label><br><label style="font-size:12px;">7500원</label> 
 													</div>
 												</div>
@@ -169,25 +169,25 @@
 	                                        <div class="row pl-4 pt-4 justify-content-around">
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox05" >
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox5" onclick="menuCheckBox('5')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox5">짜장면</label><br><label style="font-size:12px;">5,000원</label> 
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox06" >
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox6" onclick="menuCheckBox('6')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox6">짬뽕</label><br><label style="font-size:12px;">6,000원</label> 
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox07" >
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox7" onclick="menuCheckBox('7')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox7">볶음밥</label><br><label style="font-size:12px;">5,500원</label> 
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox08" >
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox8" onclick="menuCheckBox('8')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox8">탕수육</label><br><label style="font-size:12px;">14,500원</label> 
 													</div>
 												</div>
@@ -198,25 +198,25 @@
 	                                        <div class="row pl-3  pt-4 justify-content-around">
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox09">
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox9" onclick="menuCheckBox('9')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox9">라면</label><br><label style="font-size:12px;">3,500원</label> 
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox10" >
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox10" onclick="menuCheckBox('10')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox10">김밥</label><br><label style="font-size:12px;">2,000원</label> 
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox11" >
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox11" onclick="menuCheckBox('11')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox11">만두</label><br><label style="font-size:12px;">3,000원</label> 
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox12" >
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox12" onclick="menuCheckBox('12')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox12">순대</label><br><label style="font-size:12px;">4,500원</label> 
 													</div>
 												</div>
@@ -227,14 +227,14 @@
 	                                        <div class="row pt-4 justify-content-around">
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox13" >
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox13">패스트푸드</label><br><label style="font-size:12px;">4,500원</label> 
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox13" onclick="menuCheckBox('13')">
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox13">패스트푸드</label><br><label style="font-size:12px;"><span id="menuPrice13">4500</span>원</label> 
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3 ">
-														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox14" >
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox14">돈까스</label><br><label style="font-size:12px;">6,500원</label> 
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox14" onclick="menuCheckBox('14')">
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox14">돈까스</label><br><label style="font-size:12px;"><span id="menuPrice14">6500</span>원</label> 
 													</div>
 												</div>
 	                                        </div>
@@ -247,117 +247,117 @@
 		  				<td style="width:20%; height:25vh;"><div style="width:100%;">선택된<br>메뉴</div></td>
 		  				<td>
 		  					<div class="pt-2 pb-2" style="width:100%; height:25vh; overflow-y:scroll; overflow-x:hidden;">
-			  					<div class="row justify-content-center p-2" id="menu001" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu1" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">김치찌개</div>
-			  						<div class="row col-4 align-self-center">4,500원</div>
-			  						<div class="row col-3 align-self-center">1개</div>
-			  						<button id="menu014add" value="4500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button id="menu014sub" value="4500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button id="menu014del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown1">4500</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown1" >1</span>개</div>
+			  						<button onclick="addOrDiscount('plus1')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="addOrDiscount('minus1')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button name="menuDel" id="menuDel1"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu002" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu2" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">된장찌개</div>
-			  						<div class="row col-4 align-self-center">4,500원</div>
-			  						<div class="row col-3 align-self-center">1개</div>
-			  						<button id="menu014add" value="4500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button id="menu014sub" value="4500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button id="menu014del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown2">4500</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown2" >1</span>개</div>
+			  						<button onclick="addOrDiscount('plus2')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="addOrDiscount('minus2')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button name="menuDel" id="menuDel2"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu003" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu3" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">고등어정식</div>
-			  						<div class="row col-4 align-self-center">6,500원</div>
-			  						<div class="row col-3 align-self-center">1개</div>
-			  						<button id="menu014add" value="6500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button id="menu014sub" value="6500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button id="menu014del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown3">6500</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown3" >1</span>개</div>
+			  						<button onclick="addOrDiscount('plus3')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="addOrDiscount('minus3')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button name="menuDel" id="menuDel3"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu004" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu4" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">보쌈</div>
-			  						<div class="row col-4 align-self-center">7,500원</div>
-			  						<div class="row col-3 align-self-center">1개</div>
-			  						<button id="menu014add" value="7500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button id="menu014sub" value="7500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button id="menu014del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown4">7500</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown4" >1</span>개</div>
+			  						<button onclick="addOrDiscount('plus4')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="addOrDiscount('minus4')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button name="menuDel" id="menuDel4"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu005" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu5" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">짜장면</div>
-			  						<div class="row col-4 align-self-center">5,000원</div>
-			  						<div class="row col-3 align-self-center">1개</div>
-			  						<button id="menu014add" value="5000" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button id="menu014sub" value="5000" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button id="menu014del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown5">5000</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown5" >1</span>개</div>
+			  						<button onclick="addOrDiscount('plus5')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="addOrDiscount('minus5')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button name="menuDel" id="menuDel5"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu006" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu6" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">짬뽕</div>
-			  						<div class="row col-4 align-self-center">6,000원</div>
-			  						<div class="row col-3 align-self-center">1개</div>
-			  						<button id="menu014add" value="6000" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button id="menu014sub" value="6000" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button id="menu014del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown6">6000</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown6" >1</span>개</div>
+			  						<button onclick="addOrDiscount('plus6')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="addOrDiscount('minus6')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button name="menuDel" id="menuDel6"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu007" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu7" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">볶음밥</div>
-			  						<div class="row col-4 align-self-center">5,500원</div>
-			  						<div class="row col-3 align-self-center">1개</div>
-			  						<button id="menu014add" value="5500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button id="menu014sub" value="5500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button id="menu014del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown7">5500</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown7" >1</span>개</div>개
+			  						<button onclick="addOrDiscount('plus7')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="addOrDiscount('minus7')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button name="menuDel" id="menuDel7"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu008" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu8" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">탕수육</div>
-			  						<div class="row col-4 align-self-center">14,500원</div>
-			  						<div class="row col-3 align-self-center">1개</div>
-			  						<button id="menu014add" value="14500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button id="menu014sub" value="14500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button id="menu014del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown8">14500</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown8" >1</span>개</div>
+			  						<button onclick="addOrDiscount('plus8')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="addOrDiscount('minus8')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('8')" name="menuDel" id="menuDel8"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu009" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu9" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">라면</div>
-			  						<div class="row col-4 align-self-center">3,500원</div>
-			  						<div class="row col-3 align-self-center">1개</div>
-			  						<button id="menu014add" value="3500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button id="menu014sub" value="3500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button id="menu014del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown9">3500</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown9" >1</span>개</div>
+			  						<button onclick="addOrDiscount('plus9')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="addOrDiscount('minus9')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('9')" name="menuDel" id="menuDel9"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu010" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu10" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">김밥</div>
-			  						<div class="row col-4 align-self-center">2,000원</div>
-			  						<div class="row col-3 align-self-center">1개</div>
-			  						<button id="menu014add" value="2000" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button id="menu014sub" value="2000" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button id="menu014del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown10">2000</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown10" >1</span>개</div>
+			  						<button onclick="addOrDiscount('plus10')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="addOrDiscount('minus10')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('10')" name="menuDel" id="menuDel10" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu011" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu11" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">만두</div>
-			  						<div class="row col-4 align-self-center">3,000원</div>
-			  						<div class="row col-3 align-self-center">1개</div>
-			  						<button id="menu014add" value="3000" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button id="menu014sub" value="3000" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button id="menu014del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown11">3000</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown11" >1</span>개</div>
+			  						<button onclick="addOrDiscount('plus11')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="addOrDiscount('minus11')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('11')" name="menuDel" id="menuDel11" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu012" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu12" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">순대</div>
-			  						<div class="row col-4 align-self-center">4,500원</div>
-			  						<div class="row col-3 align-self-center">1개</div>
-			  						<button id="menu014add" value="4500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button id="menu014sub" value="4500" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button id="menu014del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown12">4500</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown12" >1</span>개</div>
+			  						<button onclick="addOrDiscount('plus12')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="addOrDiscount('minus12')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('12')" name="menuDel" id="menuDel12" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu013" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu13" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">패스트푸드</div>
-			  						<div class="row number col-4 align-self-center"><span id="price13UpDown">4500</span>원</div>
-			  						<div class="row number col-3 align-self-center"><span id="quantity13UpDown" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus13')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus13')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button name="menuDel" id="menu013del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown13">4500</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown13" >1</span>개</div>
+			  						<button onclick="menuCountAddAndDiscount('13','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('13','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('13')" name="menuDel" id="menuDel13" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
-			  					<div class="row justify-content-center p-2" id="menu014" style="display:none; font-size:12px;">
+			  					<div class="row justify-content-center p-2" id="menu14" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">돈까스</div>
-			  						<div class="row number col-4 align-self-center"><span id="price14UpDown">6500</span>원</div>
-			  						<div class="row number col-3 align-self-center"><span id="quantity14UpDown" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus14')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus14')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button name="menuDel" id="menu14del" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown14">6500</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown14" >1</span>개</div>
+			  						<button onclick="menuCountAddAndDiscount('14','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('14','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('14')" name="menuDel" id="menuDel14" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 		  					</div>
 		  				</td>
@@ -451,7 +451,7 @@ $.ajax({
   
 
 <script>
-
+//체크박스 글자 강조 펑션 
 $(document).ready(function() {
 	$("input:checkbox").on('click', function() {
 	      if ( $(this).prop('checked') ) {
@@ -463,100 +463,69 @@ $(document).ready(function() {
 });
 </script>
 
-
-<!-- 메뉴 선택 -->
 <script>
+//체크박스 펑션
+function menuCheckBox(menu_id){
+    if ($('#foodCheckBox'+menu_id).is(":checked")) {
+        $("#menu"+menu_id).show();
+    } else {
+        $("#menu"+menu_id).hide();
+        menuReset(menu_id);
+    }
+}
+</script>
 
-$(function () {
+<script>
+// 메뉴 비활성시 초기화
+	function menuReset(menu_id){
+        $('#quantityUpDown'+menu_id).text('1');
+    	$('#priceUpDown'+menu_id).text($('#menuPrice'+menu_id).text());
+	}
+</script>
 
-	$("#customCheckBox1").click(function () {
-        if ($(this).is(":checked")) {
-            $("#menu001").show();
-        } else {
-            $("#menu001").hide();
-        }
-    });
-	$("#customCheckBox2").click(function () {
-        if ($(this).is(":checked")) {
-            $("#menu002").show();
-        } else {
-            $("#menu002").hide();
-        }
-    });
-	$("#customCheckBox3").click(function () {
-        if ($(this).is(":checked")) {
-            $("#menu003").show();
-        } else {
-            $("#menu003").hide();
-        }
-    });
-	$("#customCheckBox4").click(function () {
-        if ($(this).is(":checked")) {
-            $("#menu004").show();
-        } else {
-            $("#menu004").hide();
-        }
-    });
-	$("#customCheckBox5").click(function () {
-        if ($(this).is(":checked")) {
-            $("#menu005").show();
-        } else {
-            $("#menu005").hide();
-        }
-    });
-	$("#customCheckBox6").click(function () {
-        if ($(this).is(":checked")) {
-            $("#menu006").show();
-        } else {
-            $("#menu006").hide();
-        }
-    });
-	$("#customCheckBox7").click(function () {
-        if ($(this).is(":checked")) {
-            $("#menu007").show();
-        } else {
-            $("#menu007").hide();
-        }
-    });
-	$("#customCheckBox8").click(function () {
-        if ($(this).is(":checked")) {
-            $("#menu008").show();
-        } else {
-            $("#menu008").hide();
-        }
-    });
-	$("#customCheckBox9").click(function () {
-        if ($(this).is(":checked")) {
-            $("#menu009").show();
-        } else {
-            $("#menu009").hide();
-        }
-    });
-	$("#customCheckBox10").click(function () {
-        if ($(this).is(":checked")) {
-            $("#menu010").show();
-        } else {
-            $("#menu010").hide();
-        }
-    });
-	$("#customCheckBox11").click(function () {
-        if ($(this).is(":checked")) {
-            $("#menu011").show();
-        } else {
-            $("#menu011").hide();
-        }
-    });
-	$("#customCheckBox12").click(function () {
-        if ($(this).is(":checked")) {
-            $("#menu012").show();
-        } else {
-            $("#menu012").hide();
-        }
-    });
-    
-});
-	
-	
+<script>
+// 활성화 메뉴 X버튼 클릭 펑션
+function clickToExit(menu_id){
+	var menu = document.getElementById('priceUpDown'+menu_id);
+	$("#menu"+menu_id).hide();
+	$("#foodCheckBox"+menu_id).prop("checked", false);
+	$("#foodCheckBox"+menu_id).parent().removeClass("selected");
+	menuReset(menu_id);
+}
+</script>
+
+<script>
+// 메뉴 갯수 설정 버튼 펑션
+	function menuCountAddAndDiscount(menu_id,seperator){
+		var q_id = '#quantityUpDown'+menu_id;
+		var p_total_id = '#priceUpDown'+menu_id;
+		var price_id = '#menuPrice'+menu_id;
+		
+		var stat = $(q_id).text();
+		
+		const menuPrice = parseInt($(price_id).text(),10);
+		var countNum = parseInt(stat, 10);
+
+		if (countNum <= 1 && seperator == "minus") {
+			alert('더이상 줄일 수 없습니다.');
+		} else {
+			if (seperator == "plus") {
+				countNum++;
+			} else if (seperator == "minus"){
+				countNum--;
+			}
+		}
+		$(q_id).text(countNum);
+		$(p_total_id).text(menuPrice * countNum);
+	}
+</script>
+
+
+
+
+
+
+<script>
 		// 예시는 돈가스. 여러 메뉴가 같은 함수를 사용할 수 있게 변경이 필요함
 		
 		
@@ -653,7 +622,7 @@ $(function () {
 		//var menu13del = $("#menu13del").click;
 		//var menu14del = $("#menu14del").click;
 		
-		//console.log(typeof menuDel)
+		//console.log(typeof menuDel) 
 		//console.log(typeof menu13del)
 		//console.log(typeof menu14del)
 
@@ -690,31 +659,31 @@ $(function () {
         
         
         //이프문
- 		 if ($("#menu13del").mouseup) { 
-					console.log("menu13del-case")	 
+//  		 if ($("#menuDel13").click) { 
+// 					console.log("menu13del-case")	 
 					
-					$("#foodCheckBox13").prop("checked", false);
-		    		$("#menu013").hide();
-		            $("#foodCheckBox13").parent().removeClass("selected");
-		            $('#price13UpDown').text('0');
-		            //primalPrice();
-		            //totalPriceShow();
- 		}		
- 		else if ($("#menu14del").mouseup) {  
-					console.log("menu14del-case")
+// 					$("#foodCheckBox13").prop("checked", false);
+// 		    		$("#menu013").hide();
+// 		            $("#foodCheckBox13").parent().removeClass("selected");
+// 		            $('#price13UpDown').text('0');
+// 		            //primalPrice();
+// 		            //totalPriceShow();
+//  		}		
+//  		else if ($("#menuDel14").click) {  
+// 					console.log("menu14del-case")
 	    	
-		    		$("#foodCheckBox14").prop("checked", false);
-		    		$("#menu014").hide();
-		            $("#foodCheckBox14").parent().removeClass("selected");
-		            $('#price14UpDown').text('0');
-		            //primalPrice();
-		            //totalPriceShow();  
+// 		    		$("#foodCheckBox14").prop("checked", false);
+// 		    		$("#menu014").hide();
+// 		            $("#foodCheckBox14").parent().removeClass("selected");
+// 		            $('#price14UpDown').text('0');
+// 		            //primalPrice();
+// 		            //totalPriceShow();  
 	            
- 		}  
+//  		}  
     });
 
         
-        
+  
         
         
         
@@ -767,6 +736,82 @@ $(function () {
         };  */
 	
 
+
+</script>
+
+
+
+<script>
+
+	
+	function getName() {
+		
+		var nameFoodCheckBox = document.getElementsByName("foodCheckBox");
+		var nameMenuDel = document.getElementsByName("menuDel");
+		
+	}	
+	
+	
+	function getIdFoodCheckBox(){	
+		
+		var getId = 0;
+	    for(var i = 1; i <= 14; i++ ) {
+	        var getId = document.getElementById("foodCheckBox" + i);
+
+        	console.log(getId);
+        }
+    }
+
+	    
+    function getIdMenuDel(){    
+	    
+	    var getId = 0;
+	    for(var i = 1; i <= 14; i++ ) {
+	        var getId = document.getElementById("menuDel" + i);
+
+        	console.log(getId);
+        }
+    }
+	
+    
+    function getIdPriceUpDown() {
+    	var getId = 0;
+	    for(var i = 1; i <= 14; i++ ) {
+	        var getId = document.getElementById("priceUpDown" + i);
+
+        	console.log(getId);
+        }
+    }
+    
+    
+    function getIdQuantityUpDown() {
+    	var getId = 0;
+	    for(var i = 1; i <= 14; i++ ) {
+	        var getId = document.getElementById("quantityUpDown" + i);
+
+        	console.log(getId);
+        }
+    }
+
+    
+    
+    function getFunctionOnclickPlus(){
+    	var getFunction = "";
+	    for(var i = 1; i <= 14; i++ ) {
+	        var getFunction = document.getElementByFunction("plus" + i);
+
+        	console.log(getFunction);
+        }
+    }
+    
+    
+
+    //getIdFoodCheckBox()
+	//getIdMenuDel()
+	//getIdPriceUpDown()
+	//getIdQuantityUpDown()
+	//getIdQuantityUpDown()
+	getFunctionOnclickPlus()
 
 </script>
 

@@ -5,11 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.command.PageMaker;
-import kr.co.drcrown.dto.NoticeVO;
 import kr.co.drcrown.dto.StockVO;
-import kr.co.drcrown.dao.NoticeDAO;
 import kr.co.drcrown.dao.StockDAO;
 
 
@@ -22,40 +21,44 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	public Map<String, Object> getEquipmentList(Criteria cri) throws SQLException
+	public Map<String, Object> getEquipmentList() throws SQLException
 	{
 		Map<String, Object> dataMap = null;
 		
-		List<StockVO> equipList = stockDAO.selectEquipList(cri);
-
-		int totalCount = stockDAO.selectEquipListCount(cri);
-		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(totalCount);
+		List<StockVO> equipList = stockDAO.selectEquipList();
 		
 		dataMap = new HashMap<String, Object>();
 		dataMap.put("equipList", equipList);
-		dataMap.put("pageMaker", pageMaker);
 
 		return dataMap;
 	}
 
-	@Override
-	public StockVO getEquipment(String equCode) throws SQLException
-	{
-		StockVO stock = stockDAO.selectEquipByEquipNo(equCode);
-		return stock;
-	}
+	
 
 	@Override
-	public void regist(StockVO equiomnet) throws SQLException
+	public void insert(StockVO equip) throws SQLException
 	{
-		String equipCode = stockDAO.selectEquipSequenceNextValue();
-		equiomnet.setEquCode(equipCode);
-		stockDAO.insertEquip(equiomnet);
+		stockDAO.insertEquip(equip);
 		
 	}
+
+    @Override
+    public StockVO getEquipDetail(String equCode) throws SQLException {
+        StockVO EquipDetail = stockDAO.selectEquipByEquipNo(equCode);
+        return EquipDetail;
+    }
+
+    @Override
+    public StockVO getEquipDetailForModify(String equCode) throws SQLException {
+        StockVO EquipDetail = stockDAO.selectEquipByEquipNo(equCode);
+        return EquipDetail;
+    }
+
+    @Override
+    public void insertPreOrder(StockVO equip) throws SQLException {
+        stockDAO.insertEpuipPreOrder(equip);
+        
+    }
 
 	
 }

@@ -5,6 +5,10 @@
 .loginBoxBackground {
 	background-color: #ffffff;
 }
+.memberDetailBoxBackground {
+	background-color: #ffffff;
+    padding: 3vh 4vw 3vh 4vw;
+}
 
 .loginBtn {
 	background-color: #333258;

@@ -71,13 +71,13 @@
 	                                    
 	                                    	 	<div class="form-row">
 			                                        <div class="col-sm-5">
-			                                    		  <label class="text-white"><strong>환자 성함</strong></label>
+			                                    		  <label class="text-white" ><strong>환자 성함</strong></label>
 					                                         <div class="input-group mb-1">
-					                                            <input type="text" id="P_NAME" class="form-control form-control-input" >
+					                                            <input type="text" id="P_NAME" class="form-control form-control-input" placeholder="${patient.PName}" onclick="OpenWindow('/desk/booking/patientList','예약등록',800,900);">
 			                                    		 </div>
 			                                         </div>
 			                                        <div class="col-sm-5">
-			                                    		  <label class="text-white"><strong>환자 번호</strong></label>
+			                                    		  <label class="text-white"><strong>차트 번호</strong></label>
 					                                         <div class="input-group mb-1">
 					                                            <input type="text" class="form-control form-control-input" >
 	
@@ -96,13 +96,13 @@
 			                                        <div class="col-sm-6">
 			                                    		  <label class="text-white"><strong>생년 월일</strong></label>
 					                                         <div class="input-group mb-1">
-					                                            <input type="text" id="P_BIR" class="form-control form-control-input"  disabled >
+					                                            <input type="text" id="P_BIR" class="form-control form-control-input"  placeholder=""  disabled >
 			                                    		 </div>
 			                                         </div>
 			                                        <div class="col-sm-6">
-			                                    		  <label class="text-white"><strong>최종방문일</strong></label>
+			                                    		  <label class="text-white"><strong>최종내원일</strong></label>
 					                                         <div class="input-group mb-1">
-					                                            <input type="text" id="P_LASTDATE" class="form-control form-control-input" placeholder="최종방문일" disabled >
+					                                            <input type="text" id="P_LASTDATE" class="form-control form-control-input" placeholder="${patient.PLastdate}" disabled >
 					                                            
 			                                    		 </div>
 			                                         </div>
@@ -111,7 +111,7 @@
 		                                           
 		                                             <label class="text-white"><strong>전화 번호</strong></label>
 		                                         <div class="input-group mb-3">
-		                                            <input type="text" class="form-control form-control-input" placeholder="전화번호" disabled >
+		                                            <input type="text" class="form-control form-control-input" placeholder="${patient.PTel}" disabled >
 		                                            <div class="input-group-append ">
 		                                                <button class="loginBtn btn btn-block"  id="P_TEL" type="button">문자전송</button>
 		                                            </div> 

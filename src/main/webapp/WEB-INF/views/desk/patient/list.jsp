@@ -77,14 +77,19 @@
 									<td>${patient.PName}</td>
 									<td><fmt:formatDate value="${patient.PBir}"
 											pattern="yyMMdd" /></td>
-									<c:set var="gender" value="${fn:substring(patient.PRnum,7,8)}"/>
+									<c:set var="gender" value="${fn:substring(patient.PRnum,6,7)}"/>
+									
 									<c:choose>
 										<c:when test="${(gender eq '1') or (gender eq '3') }">
 											<td>남</td>
 										</c:when >
-										<c:otherwise>
+										<c:when test="${(gender eq '2') or (gender eq '4') }">
 											<td>여</td>
+										</c:when >
+										<c:otherwise>
+											<td></td>
 										</c:otherwise>
+
 									</c:choose>
 									<td>담당의</td>
 									<td>${patient.PTel}</td>

@@ -11,13 +11,14 @@ import kr.co.drcrown.dto.StockVO;
 public interface StockDAO
 {
 
-	List<StockVO> selectEquipList(Criteria cri) throws SQLException;
+	List<StockVO> selectEquipList() throws SQLException;
 	
-	int selectEquipListCount(Criteria cri) throws SQLException;
 
 	StockVO selectEquipByEquipNo(String equCode) throws SQLException;
-
+	
 	String selectEquipSequenceNextValue() throws SQLException;
 	
 	void insertEquip(StockVO equip) throws SQLException;
+	
+	void insertEpuipPreOrder(StockVO equip) throws SQLException;
 }

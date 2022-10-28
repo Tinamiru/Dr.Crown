@@ -1,19 +1,32 @@
 package kr.co.drcrown.controller;
 
 
+import java.sql.SQLException;
 import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.josephoconnell.html.HTMLInputFilter;
 
 import kr.co.drcrown.command.Criteria;
+import kr.co.drcrown.dto.StockVO;
 import kr.co.drcrown.service.StockService;
 
 @Controller
 @RequestMapping("/stock")
 public class StockController
 {
+    
 	@Autowired
 	private StockService stockService;
 
@@ -21,19 +34,40 @@ public class StockController
 	public void main() {}
 	
 	@RequestMapping("/equip/list")
-	public String equipList(Criteria cri, Model model)throws Exception{
+	public ModelAndView equipList(ModelAndView mnv)throws Exception{
 		String url = "stock/equip/list";
 		
-		Map<String,Object> dataMap = stockService.getEquipmentList(cri);	
-		model.addAttribute("dataMap",dataMap);
+		Map<String,Object> dataMap = stockService.getEquipmentList();	
+		mnv.addObject("dataMap",dataMap);
+        mnv.setViewName(url);
 		
-		return url;
+		return mnv;
 	}
 	
+	@RequestMapping(value = "/equip/listSucces",method = RequestMethod.POST)
+    public String equipListInsert(StockVO equip) throws SQLException {
+        String url = "stock/equip/listSucces";
+        stockService.insertPreOrder(equip);
+        
+        return url;
+    }
+	
 	@RequestMapping("/equip/detail")
-	public String equipDetail() {
-		String url = "stock/equip/detail";
-		return url;
+	public ModelAndView equipDetail(String equCode,String from, ModelAndView mnv )throws SQLException{
+	    String url="stock/equip/detail";      
+	    
+	    StockVO stock =null;
+	    if(from!=null && from.equals("eequipList")) {
+	        stock=stockService.getEquipDetail(equCode);
+	        url="redirect:/equip/detail?equCode="+equCode;
+	    }else {
+	        stock=stockService.getEquipDetailForModify(equCode);
+	    }
+	                
+	    mnv.addObject("stock",stock);       
+	    mnv.setViewName(url);
+	    
+	    return mnv;	
 	}
 	
 	
@@ -48,6 +82,16 @@ public class StockController
 		String url = "stock/equip/newAdd";
 		return url;
 	}
+	
+    
+     @RequestMapping(value = "/equip/newAddsucces",method = RequestMethod.POST)
+     public String equipInsert(StockVO equip) throws SQLException {
+         String url = "stock/equip/newAddsucces";
+         stockService.insert(equip);
+         
+         return url;
+     }
+     
 	
 	@RequestMapping("/consum/list")
 	public String consumList() {

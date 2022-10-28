@@ -99,16 +99,16 @@
 					<div class="tab-pane fade active show" id="chat" role="tabpanel">
 						<div class="card mb-sm-3 mb-md-0 contacts_card dz-chat-user-box">
 							<div class="card-header chat-list-header text-center">
-								${loginUser.memId }
+<%-- 								${loginUser.memId } --%>
 								${loginUser.memName }님 환영합니다.
 							</div>
 							<div class="card-body contacts_body p-0 dz-scroll  "
 								id="DZ_W_Contacts_Body">
 								내용이 드감
-								<div class="row">
+								<div class="row justify-contents-center">
 									<div class="col-6">
-										<a onclick="OpenWindow('member/detail','회원등록',600,700);"
-											class="dropdown-item ai-icon">
+										<a href="#" onclick="OpenWindow('member/detail','회원 상세정보',1000,600);"
+											class="ai-icon ml-4">
 											<svg id="icon-user1" xmlns="http://www.w3.org/2000/svg"
 												class="text-primary" width="18" height="18"
 												viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -120,7 +120,7 @@
 										</a>
 									</div>
 									<div class="col-6">
-										<a href="/common/logout" class="dropdown-item ai-icon">
+										<a href="/common/logout" class="ai-icon">
 											<svg id="icon-logout" xmlns="http://www.w3.org/2000/svg"
 												class="text-danger" width="18" height="18"
 												viewBox="0 0 24 24" fill="none" stroke="currentColor"

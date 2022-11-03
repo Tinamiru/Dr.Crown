@@ -9,11 +9,15 @@ import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.command.PageMaker;
 import kr.co.drcrown.dao.BookingDAO;
 import kr.co.drcrown.dto.BookingVO;
+import kr.co.drcrown.dto.PatientVO;
+
 
 
 public class BookingServiceImpl implements BookingService {
 	
 	private BookingDAO bookingDAO;
+	
+	
 	
 	public void setBookingDAO(BookingDAO bookingDAO) {
 		this.bookingDAO = bookingDAO;
@@ -69,4 +73,20 @@ public class BookingServiceImpl implements BookingService {
 		return dataMap;
 	}
 
+	   @Override
+       public BookingVO selectBookingById(String bookingCode) throws SQLException {
+
+	       BookingVO booking = bookingDAO.selectBookingById(bookingCode);
+           return booking;
+
+       }
+	   
+	   @Override
+       public BookingVO getPatientbybookingCode(String bookingCode) throws SQLException {
+
+	       BookingVO booking =  bookingDAO.selectPatientBybookingCode(bookingCode);
+           return booking;
+
+       }
+	
 }

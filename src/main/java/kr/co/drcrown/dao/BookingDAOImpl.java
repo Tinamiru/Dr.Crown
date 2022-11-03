@@ -1,7 +1,9 @@
 package kr.co.drcrown.dao;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.dto.BookingVO;
 import kr.co.drcrown.dto.MemberVO;
+import kr.co.drcrown.dto.PatientVO;
 
 public class BookingDAOImpl implements BookingDAO {
 
@@ -45,7 +48,6 @@ public class BookingDAOImpl implements BookingDAO {
 
 	@Override
 	public void insertBooking(BookingVO booking) throws SQLException {
-
 		session.update("Booking-Mapper.insertBooking", booking);
 
 	}
@@ -69,5 +71,20 @@ public class BookingDAOImpl implements BookingDAO {
 
 		return bookingDateList;
 	}
+	
+	 @Override
+     public List<BookingVO> selectBookingByList(Criteria cri) throws SQLException {
+
+         List<BookingVO> selectBookingByList 
+                 = session.selectList("Booking-Mapper.selectBookingByList", cri);
+         return selectBookingByList;
+
+     }
+	 
+	  @Override
+	    public BookingVO selectPatientBybookingCode(String bookingCode) throws SQLException {
+	      BookingVO booking = session.selectOne("Booking-Mapper.selectPatientBybookingCode", bookingCode);
+	        return booking;
+	    }
 
 }

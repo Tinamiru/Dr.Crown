@@ -10,7 +10,7 @@
   
 
 <style>
-	.selected{font-weight:700;color:blue}
+	.strong {font-weight:700;color:blue}
 </style>
 
   
@@ -131,7 +131,7 @@
 	                                        <a class="nav-link" data-toggle="tab" href="#contact1" style="font-size:14px;">분식</a>
 	                                    </li>
 	                                    <li class="nav-item">
-	                                        <a class="nav-link active" data-toggle="tab" href="#message1" style="font-size:14px;">경양식/패스트푸드</a>
+	                                        <a class="nav-link active" data-toggle="tab" href="#message1" style="font-size:14px;">기타메뉴/식당식권</a>
 	                                    </li>
 	                                </ul>
 	                                <div class="tab-content">
@@ -141,54 +141,54 @@
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox1" value="김치찌개" onclick="menuCheckBox('1')">
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox1">김치찌개</label><br><label style="font-size:12px;">4500원</label>               
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox1">김치찌개</label><br><label style="font-size:12px;"><span id="menuPrice1">4500</span>원</label>               
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox2" onclick="menuCheckBox('2')">
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox2">된장찌개</label><br><label style="font-size:12px;">4500원</label> 
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox2">된장찌개</label><br><label style="font-size:12px;"><span id="menuPrice2">4500</span>원</label>
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox3" onclick="menuCheckBox('3')">
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox3">고등어정식</label><br><label style="font-size:12px;">6500원</label> 
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox3">고등어정식</label><br><label style="font-size:12px;"><span id="menuPrice3">6500</span>원</label>
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox4" onclick="menuCheckBox('4')">
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox4">보쌈</label><br><label style="font-size:12px;">7500원</label> 
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox4">보쌈</label><br><label style="font-size:12px;"><span id="menuPrice4">7500</span>원</label>
 													</div>
 												</div>
 	                                        </div>
 	                                    </div>
 	                                    <div class="tab-pane fade" id="profile1">
 	                                        <div class="pt-3">중식메뉴</div>
-	                                        <div class="row pl-4 pt-4 justify-content-around">
+	                                        <div class="row pl-3 pt-4 justify-content-around">
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox5" onclick="menuCheckBox('5')">
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox5">짜장면</label><br><label style="font-size:12px;">5,000원</label> 
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox5">짜장면</label><br><label style="font-size:12px;"><span id="menuPrice5">5000</span>원</label> 
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox6" onclick="menuCheckBox('6')">
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox6">짬뽕</label><br><label style="font-size:12px;">6,000원</label> 
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox6">짬뽕</label><br><label style="font-size:12px;"><span id="menuPrice6">6000</span>원</label>
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox7" onclick="menuCheckBox('7')">
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox7">볶음밥</label><br><label style="font-size:12px;">5,500원</label> 
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox7">볶음밥</label><br><label style="font-size:12px;"><span id="menuPrice7">5500</span>원</label>
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox8" onclick="menuCheckBox('8')">
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox8">탕수육</label><br><label style="font-size:12px;">14,500원</label> 
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox8">탕수육</label><br><label style="font-size:12px;"><span id="menuPrice8">14500</span>원</label>
 													</div>
 												</div>
 	                                        </div>
@@ -199,31 +199,31 @@
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox9" onclick="menuCheckBox('9')">
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox9">라면</label><br><label style="font-size:12px;">3,500원</label> 
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox9">라면</label><br><label style="font-size:12px;"><span id="menuPrice9">3500</span>원</label>> 
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox10" onclick="menuCheckBox('10')">
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox10">김밥</label><br><label style="font-size:12px;">2,000원</label> 
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox10">김밥</label><br><label style="font-size:12px;"><span id="menuPrice10">2000</span>원</label> 
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox11" onclick="menuCheckBox('11')">
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox11">만두</label><br><label style="font-size:12px;">3,000원</label> 
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox11">만두</label><br><label style="font-size:12px;"><span id="menuPrice11">3000</span>원</label>
 													</div>
 												</div>
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox12" onclick="menuCheckBox('12')">
-														<label class="custom-control-label col-form-label-sm" for="foodCheckBox12">순대</label><br><label style="font-size:12px;">4,500원</label> 
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox12">순대</label><br><label style="font-size:12px;"><span id="menuPrice12">4500</span>원</label> 
 													</div>
 												</div>
 	                                        </div>
 	                                    </div>
 	                                    <div class="tab-pane fade active show" id="message1">
-	                                        <div class="pt-3">경양식/패스트푸드 메뉴</div>
+	                                        <div class="pt-3">기타메뉴/식당식권</div>
 	                                        <div class="row pt-4 justify-content-around">
 	                                            <div class="row col-md-3 ">
 													<div class="row custom-control custom-checkbox mb-3">
@@ -235,6 +235,12 @@
 													<div class="row custom-control custom-checkbox mb-3 ">
 														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox14" onclick="menuCheckBox('14')">
 														<label class="custom-control-label col-form-label-sm" for="foodCheckBox14">돈까스</label><br><label style="font-size:12px;"><span id="menuPrice14">6500</span>원</label> 
+													</div>
+												</div>
+	                                            <div class="row col-md-3 ">
+													<div class="row custom-control custom-checkbox mb-3 ">
+														<input type="checkbox" class="custom-control-input" name="foodCheckBox" id="foodCheckBox15" onclick="menuCheckBox('15')">
+														<label class="custom-control-label col-form-label-sm" for="foodCheckBox15">식당식권</label><br><label style="font-size:12px;"><span id="menuPrice15">7000</span>원</label> 
 													</div>
 												</div>
 	                                        </div>
@@ -251,96 +257,96 @@
 			  						<div class="row col-4 align-self-center">김치찌개</div>
 			  						<div class="row number col-4 align-self-center"><span id="priceUpDown1">4500</span>원</div>
 			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown1" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus1')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus1')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button name="menuDel" id="menuDel1"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<button onclick="menuCountAddAndDiscount('1','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('1','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('1')" name="menuDel" id="menuDel1"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 			  					<div class="row justify-content-center p-2" id="menu2" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">된장찌개</div>
 			  						<div class="row number col-4 align-self-center"><span id="priceUpDown2">4500</span>원</div>
 			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown2" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus2')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus2')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button name="menuDel" id="menuDel2"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<button onclick="menuCountAddAndDiscount('2','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('2','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('2')" name="menuDel" id="menuDel2"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 			  					<div class="row justify-content-center p-2" id="menu3" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">고등어정식</div>
 			  						<div class="row number col-4 align-self-center"><span id="priceUpDown3">6500</span>원</div>
 			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown3" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus3')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus3')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button name="menuDel" id="menuDel3"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<button onclick="menuCountAddAndDiscount('3','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('3','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('3')" name="menuDel" id="menuDel3"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 			  					<div class="row justify-content-center p-2" id="menu4" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">보쌈</div>
 			  						<div class="row number col-4 align-self-center"><span id="priceUpDown4">7500</span>원</div>
 			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown4" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus4')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus4')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button name="menuDel" id="menuDel4"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<button onclick="menuCountAddAndDiscount('4','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('4','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('4')" name="menuDel" id="menuDel4"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 			  					<div class="row justify-content-center p-2" id="menu5" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">짜장면</div>
 			  						<div class="row number col-4 align-self-center"><span id="priceUpDown5">5000</span>원</div>
 			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown5" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus5')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus5')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button name="menuDel" id="menuDel5"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<button onclick="menuCountAddAndDiscount('5','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('5','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('5')"  name="menuDel" id="menuDel5"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 			  					<div class="row justify-content-center p-2" id="menu6" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">짬뽕</div>
 			  						<div class="row number col-4 align-self-center"><span id="priceUpDown6">6000</span>원</div>
 			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown6" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus6')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus6')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button name="menuDel" id="menuDel6"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<button onclick="menuCountAddAndDiscount('6','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('6','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('6')" name="menuDel" id="menuDel6"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 			  					<div class="row justify-content-center p-2" id="menu7" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">볶음밥</div>
 			  						<div class="row number col-4 align-self-center"><span id="priceUpDown7">5500</span>원</div>
-			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown7" >1</span>개</div>개
-			  						<button onclick="addOrDiscount('plus7')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus7')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
-			  						<button name="menuDel" id="menuDel7"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown7" >1</span>개</div>
+			  						<button onclick="menuCountAddAndDiscount('7','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('7','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('7')" name="menuDel" id="menuDel7"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 			  					<div class="row justify-content-center p-2" id="menu8" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">탕수육</div>
 			  						<div class="row number col-4 align-self-center"><span id="priceUpDown8">14500</span>원</div>
 			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown8" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus8')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus8')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="menuCountAddAndDiscount('8','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('8','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
 			  						<button onclick="clickToExit('8')" name="menuDel" id="menuDel8"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 			  					<div class="row justify-content-center p-2" id="menu9" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">라면</div>
 			  						<div class="row number col-4 align-self-center"><span id="priceUpDown9">3500</span>원</div>
 			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown9" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus9')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus9')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="menuCountAddAndDiscount('9','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('9','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
 			  						<button onclick="clickToExit('9')" name="menuDel" id="menuDel9"  style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 			  					<div class="row justify-content-center p-2" id="menu10" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">김밥</div>
 			  						<div class="row number col-4 align-self-center"><span id="priceUpDown10">2000</span>원</div>
 			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown10" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus10')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus10')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="menuCountAddAndDiscount('10','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('10','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
 			  						<button onclick="clickToExit('10')" name="menuDel" id="menuDel10" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 			  					<div class="row justify-content-center p-2" id="menu11" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">만두</div>
 			  						<div class="row number col-4 align-self-center"><span id="priceUpDown11">3000</span>원</div>
 			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown11" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus11')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus11')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="menuCountAddAndDiscount('11','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('11','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
 			  						<button onclick="clickToExit('11')" name="menuDel" id="menuDel11" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 			  					<div class="row justify-content-center p-2" id="menu12" style="display:none; font-size:12px;">
 			  						<div class="row col-4 align-self-center">순대</div>
 			  						<div class="row number col-4 align-self-center"><span id="priceUpDown12">4500</span>원</div>
 			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown12" >1</span>개</div>
-			  						<button onclick="addOrDiscount('plus12')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
-			  						<button onclick="addOrDiscount('minus12')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="menuCountAddAndDiscount('12','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('12','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
 			  						<button onclick="clickToExit('12')" name="menuDel" id="menuDel12" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
 			  					<div class="row justify-content-center p-2" id="menu13" style="display:none; font-size:12px;">
@@ -359,12 +365,42 @@
 			  						<button onclick="menuCountAddAndDiscount('14','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
 			  						<button onclick="clickToExit('14')" name="menuDel" id="menuDel14" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
 			  					</div>
+			  					<div class="row justify-content-center p-2" id="menu15" style="display:none; font-size:12px;">
+			  						<div class="row col-4 align-self-center">식당식권</div>
+			  						<div class="row number col-4 align-self-center"><span id="priceUpDown15">7000</span>원</div>
+			  						<div class="row number col-3 align-self-center"><span id="quantityUpDown15" >1</span>개</div>
+			  						<button onclick="menuCountAddAndDiscount('15','plus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray; margin-right:5px; border-radius:5px; color:white;"> + </button>
+			  						<button onclick="menuCountAddAndDiscount('15','minus')" style="font-size:20px; background-color:#333258; width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px; color:white;"> - </button>
+			  						<button onclick="clickToExit('15')" name="menuDel" id="menuDel15" style="font-size:20px;  width:30px; height:30px; vertical-align:middle; border-color:darkgray;  margin-right:5px; border-radius:5px;"> x </button>
+			  					</div>
 		  					</div>
 		  				</td>
 		  			</tr>
 		  			<tr style="border-top:1px solid lightgray;">
 		  				<td style="height:15vh; "><div class="align-self-center"><button  style="border-radius:5px; border-color:darkgray;">결제하기</button></div></td>
-		  				<td><div class="align-self-center"><span id="resultPrice">0</span>원</div></td>
+		  				<td><div class="align-self-center"><span id=totalPaymentPrice onclick=" sumPrice()">0</span>원</div></td>
+		  			</tr>
+		  			<tr style="border-top:1px solid lightgray;  display:none;">
+		  				<td style="height:25vh; "><div class="align-self-center" style="border-radius:5px; border-color:darkgray;">합계구하기</div></td>
+		  				<td>
+		  					<div class="align-self-center " style= "overflow-y:scroll; height:15vh;">
+ 		  						<span id ="resultPrice1" >0</span><br>
+		  						<span id ="resultPrice2" >0</span><br>
+		  						<span id ="resultPrice3" >0</span><br>
+		  						<span id ="resultPrice4" >0</span><br>
+		  						<span id ="resultPrice5" >0</span><br>
+		  						<span id ="resultPrice6" >0</span><br>
+		  						<span id ="resultPrice7" >0</span><br>
+		  						<span id ="resultPrice8" >0</span><br>
+		  						<span id ="resultPrice9" >0</span><br>
+		  						<span id ="resultPrice10" >0</span><br>
+		  						<span id ="resultPrice11" >0</span><br>
+		  						<span id ="resultPrice12" >0</span><br>
+		  						<span id ="resultPrice13" >0</span><br>
+		  						<span id ="resultPrice14" >0</span><br>
+		  						<span id ="resultPrice15" >0</span>
+		  					</div>
+	  					</td>
 		  			</tr>
 		  		</table>
 		  	</div>
@@ -374,43 +410,48 @@
 	  	<div class="row col-7 justify-content-center table table-bordered border-primary border-2 rounded" style="margin:10px;">
 	  		<table class="text-center" style="width:90%; height: 30vh;">
 	  			<tr>
-	  				<th colspan="10"> 월간 식단 </th>
+	  				<th colspan="11">
+	  					<span>월간 식단 </span><br>
+	  					<span style="display:none;">오늘날짜 = </span>&nbsp;&nbsp;
+	  					<span id="todate"></span>
+  					</th>
 	  			</tr>
 	  			<tr>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/1</div><div style="font-size:12px;">김치찌개</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/2</div><div style="font-size:12px;">두루치기</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/3</div><div style="font-size:12px;">된장찌개</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/4</div><div style="font-size:12px;">김밥,떡볶이</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/5</div><div style="font-size:12px;">순대</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/6</div><div style="font-size:12px;">라면</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/7</div><div style="font-size:12px;">짜장면</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/8</div><div style="font-size:12px;">탕수육</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/9</div><div style="font-size:12px;">된장찌개</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/10</div><div style="font-size:12px;">짬뽕</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput1" style="font-size:12px;">8/1</div><div style="font-size:12px;">김치찌개</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput2" style="font-size:12px;">8/2</div><div style="font-size:12px;">두루치기</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput3" style="font-size:12px;">8/3</div><div style="font-size:12px;">된장찌개</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput4" style="font-size:12px;">8/4</div><div style="font-size:12px;">김밥,떡볶이</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput5" style="font-size:12px;">8/5</div><div style="font-size:12px;">순대</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput6" style="font-size:12px;">8/6</div><div style="font-size:12px;">라면</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput7" style="font-size:12px;">8/7</div><div style="font-size:12px;">짜장면</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput8" style="font-size:12px;">8/8</div><div style="font-size:12px;">탕수육</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput9" style="font-size:12px;">8/9</div><div style="font-size:12px;">된장찌개</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput10" style="font-size:12px;">8/10</div><div style="font-size:12px;">짬뽕</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput11" style="font-size:12px;">8/11</div><div style="font-size:12px;">볶음밥</div></td>
 	  			</tr>
 	  			<tr>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/11</div><div style="font-size:12px;">볶음밥</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/12</div><div style="font-size:12px;">패스트푸드</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/13</div><div style="font-size:12px;">김치찌개</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/14</div><div style="font-size:12px;">두루치기</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/15</div><div style="font-size:12px;">쌈밥</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/16</div><div style="font-size:12px;">우렁된장밥</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/17</div><div style="font-size:12px;">짜장면</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/18</div><div style="font-size:12px;">라면</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/19</div><div style="font-size:12px;">떡국</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/20</div><div style="font-size:12px;">순대</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput12" style="font-size:12px;">8/12</div><div style="font-size:12px;">패스트푸드</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput13" style="font-size:12px;">8/13</div><div style="font-size:12px;">김치찌개</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput14" style="font-size:12px;">8/14</div><div style="font-size:12px;">두루치기</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput15" style="font-size:12px;">8/15</div><div style="font-size:12px;">쌈밥</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput16" style="font-size:12px;">8/16</div><div style="font-size:12px;">우렁된장밥</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput17" style="font-size:12px;">8/17</div><div style="font-size:12px;">짜장면</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput18" style="font-size:12px;">8/18</div><div style="font-size:12px;">라면</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput19" style="font-size:12px;">8/19</div><div style="font-size:12px;">떡국</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput20" style="font-size:12px;">8/20</div><div style="font-size:12px;">순대</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput21" style="font-size:12px;">8/21</div><div style="font-size:12px;">김밥,떡볶이</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput22" style="font-size:12px;">8/22</div><div style="font-size:12px;">짬뽕</div></td>
 	  			</tr>
 	  			<tr>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/21</div><div style="font-size:12px;">김밥,떡볶이</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/22</div><div style="font-size:12px;">짬뽕</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/23</div><div style="font-size:12px;">라면</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/24</div><div style="font-size:12px;">탕수육</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/25</div><div style="font-size:12px;">된장찌개</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/26</div><div style="font-size:12px;">김치찌개</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/27</div><div style="font-size:12px;">김치찌개</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/28</div><div style="font-size:12px;">김치찌개</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/29</div><div style="font-size:12px;">김치찌개</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div style="font-size:12px;">8/30</div><div style="font-size:12px;">김치찌개</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput23" style="font-size:12px;">8/23</div><div style="font-size:12px;">라면</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput24" style="font-size:12px;">8/24</div><div style="font-size:12px;">탕수육</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput25" style="font-size:12px;">8/25</div><div style="font-size:12px;">된장찌개</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput26" style="font-size:12px;">8/26</div><div style="font-size:12px;">김치찌개</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput27" style="font-size:12px;">8/27</div><div style="font-size:12px;">김치찌개</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput28" style="font-size:12px;">8/28</div><div style="font-size:12px;">김치찌개</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput29" style="font-size:12px;">8/29</div><div style="font-size:12px;">김치찌개</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput30" style="font-size:12px;">8/30</div><div style="font-size:12px;">김치찌개</div></td>
+	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput31" style="font-size:12px;">8/31</div><div style="font-size:12px;">김치찌개</div></td>
 	  			</tr>
 	  		</table>
  		</div>
@@ -455,9 +496,9 @@ $.ajax({
 $(document).ready(function() {
 	$("input:checkbox").on('click', function() {
 	      if ( $(this).prop('checked') ) {
-	        $(this).parent().addClass("selected");
+	        $(this).parent().addClass("strong");
 	      } else {
-	        $(this).parent().removeClass("selected");
+	        $(this).parent().removeClass("strong");
 	      }
 	});
 });
@@ -468,9 +509,19 @@ $(document).ready(function() {
 function menuCheckBox(menu_id){
     if ($('#foodCheckBox'+menu_id).is(":checked")) {
         $("#menu"+menu_id).show();
+       
+        var dongas = parseInt($('#priceUpDown'+menu_id).text(), 10);
+		$('#resultPrice'+menu_id).text(dongas);
+		sumPrice();
+        
+        
     } else {
         $("#menu"+menu_id).hide();
-        menuReset(menu_id);
+        
+        $('#resultPrice'+menu_id).text('0'); 
+		sumPrice();
+		menuReset(menu_id);
+        
     }
 }
 </script>
@@ -489,10 +540,14 @@ function clickToExit(menu_id){
 	var menu = document.getElementById('priceUpDown'+menu_id);
 	$("#menu"+menu_id).hide();
 	$("#foodCheckBox"+menu_id).prop("checked", false);
-	$("#foodCheckBox"+menu_id).parent().removeClass("selected");
+	$("#foodCheckBox"+menu_id).parent().removeClass("strong");
 	menuReset(menu_id);
+    $('#resultPrice'+menu_id).text('0'); 
+	sumPrice();
 }
 </script>
+
+
 
 <script>
 // 메뉴 갯수 설정 버튼 펑션
@@ -500,6 +555,7 @@ function clickToExit(menu_id){
 		var q_id = '#quantityUpDown'+menu_id;
 		var p_total_id = '#priceUpDown'+menu_id;
 		var price_id = '#menuPrice'+menu_id;
+		//var result_price = '#resultPrice';
 		
 		var stat = $(q_id).text();
 		
@@ -517,396 +573,184 @@ function clickToExit(menu_id){
 		}
 		$(q_id).text(countNum);
 		$(p_total_id).text(menuPrice * countNum);
+		
+		
+		totalPriceShow(menu_id);
+		sumPrice();
+		
+		/* var arr = [];
+		var lol = parseInt($(wow).text(),10);
+		
+		
+		return lol; */
+	}
+		
+</script>
+
+
+
+
+
+<script> // 각 가격 합계구하는 장소로 보내는 펑션
+	function totalPriceShow(menu_id){
+		var p_total_id = '#priceUpDown'+menu_id;
+		var result_price = '#resultPrice'+menu_id;
+		
+		var dongas = parseInt($(p_total_id).text(), 10);
+		$(result_price).text(dongas);
+		
 	}
 </script>
 
 
-
-
-
-
-<script>
-		// 예시는 돈가스. 여러 메뉴가 같은 함수를 사용할 수 있게 변경이 필요함
-		
-		
-	$("input[name=foodCheckBox]").change(function() {
-	    	
-		var foodCheckBox = $("input[name=foodCheckBox]").is(":checked");
-			
-		/* var foodCheckBox01 = $("#foodCheckBox01").is(":checked");
-		var foodCheckBox02 = $("#foodCheckBox02").is(":checked");
-		var foodCheckBox03 = $("#foodCheckBox03").is(":checked");
-		var foodCheckBox04 = $("#foodCheckBox04").is(":checked");
-		var foodCheckBox05 = $("#foodCheckBox05").is(":checked");
-		var foodCheckBox06 = $("#foodCheckBox06").is(":checked");
-		var foodCheckBox07 = $("#foodCheckBox07").is(":checked");
-		var foodCheckBox08 = $("#foodCheckBox08").is(":checked");
-		var foodCheckBox09 = $("#foodCheckBox09").is(":checked");
-		var foodCheckBox10 = $("#foodCheckBox10").is(":checked");
-		var foodCheckBox11 = $("#foodCheckBox11").is(":checked");
-		var foodCheckBox12 = $("#foodCheckBox12").is(":checked");*/
-		var foodCheckBox13 = $("#foodCheckBox13").is(":checked"); 
-		var foodCheckBox14 = $("#foodCheckBox14").is(":checked");
+<script>//각 음식 결제 합계 계산하기 펑션
 	
-		//console.log(foodCheckBox)
-		//console.log(typeof foodCheckBox)
+	function sumPrice(){
 		
+ 		var lastDongas1 = parseInt($('#resultPrice1').text(), 10);
+		var lastDongas2 = parseInt($('#resultPrice2').text(), 10);
+		var lastDongas3 = parseInt($('#resultPrice3').text(), 10);
+		var lastDongas4 = parseInt($('#resultPrice4').text(), 10);
+		var lastDongas5 = parseInt($('#resultPrice5').text(), 10);
+		var lastDongas6 = parseInt($('#resultPrice6').text(), 10);
+		var lastDongas7 = parseInt($('#resultPrice7').text(), 10);
+		var lastDongas8 = parseInt($('#resultPrice8').text(), 10);
+		var lastDongas9 = parseInt($('#resultPrice9').text(), 10);
+		var lastDongas10 = parseInt($('#resultPrice10').text(), 10);
+		var lastDongas11 = parseInt($('#resultPrice11').text(), 10);
+		var lastDongas12 = parseInt($('#resultPrice12').text(), 10);
+		var lastDongas13 = parseInt($('#resultPrice13').text(), 10);
+		var lastDongas14 = parseInt($('#resultPrice14').text(), 10);
+		var lastDongas15 = parseInt($('#resultPrice15').text(), 10);
 		
-		switch (foodCheckBox == true || foodCheckBox == false) { 
+		//console.log(lastDongas14);
 		
-			case ((foodCheckBox13==true) || (foodCheckBox13==false)) : 
-				//console.log('enter13');
-				var stat = $('#quantity13UpDown').text();
-				var countNum = parseInt(stat, 10);
-
-				if (foodCheckBox13 == true){
-						//console.log('true13');
-						$('#price13UpDown').text(4500 * countNum);
-			            $("#menu013").show();
-			        	//totalPriceShow();
-				} else if (foodCheckBox13 == false){		
-		        		//console.log('false13');	
-		        		$('#price13UpDown').text('0');
-			            $("#menu013").hide();
-			            primalPrice13();
-			            //totalPriceShow();
-				} 
+		var totalPaymentPrice = (
 				
+				lastDongas1 +
+				lastDongas2 +
+				lastDongas3 +
+				lastDongas4 +
+				lastDongas5 +
+				lastDongas6 +
+				lastDongas7 +
+				lastDongas8 +
+				lastDongas9 +
+				lastDongas10 +
+				lastDongas11 + 
+				lastDongas12 +
+				lastDongas13 +
+				lastDongas14 +
+				lastDongas15
 				
- 			 case ((foodCheckBox14==true) || (foodCheckBox14==false)) : 
- 				//console.log('enter14');
-				var stat = $('#quantity14UpDown').text();
-				var countNum = parseInt(stat, 10);
- 			 
- 			 	if (foodCheckBox14 == true){
-        				//console.log('true14');
-        				$('#price14UpDown').text(6500 * countNum);
-			            $("#menu014").show();
-			        	//totalPriceShow();
-				} else if (foodCheckBox14 == false){		
-	        			//console.log('false14');	
-		        		$('#price14UpDown').text('0');
-			            $("#menu014").hide();
-			           	primalPrice14();
-			            //totalPriceShow();
-				}
- 			 
-			};
-
-	});
+		);
+		$('#totalPaymentPrice').text(totalPaymentPrice);  
 		
-		
-		
-		
-		
-		
-		
-		
-	$("button[name=menuDel]").click(function() {
-    	
-		//var menuDel = $("button[name=menuDel]").click;
-		
-		
-/* 		var menu01del = $("#menu01del").click;
-		var menu02del = $("#menu02del").click;
-		var menu03del = $("#menu03del").click;
-		var menu04del = $("#menu04del").click;
-		var menu05del = $("#menu05del").click;
-		var menu06del = $("#menu06del").click;
-		var menu07del = $("#menu07del").click;
-		var menu08del = $("#menu08del").click;
-		var menu09del = $("#menu09del").click;
-		var menu10del = $("#menu10del").click;
-		var menu11del = $("#menu11del").click;
-		var menu12del = $("#menu12del").click; */
-		//var menu13del = $("#menu13del").click;
-		//var menu14del = $("#menu14del").click;
-		
-		//console.log(typeof menuDel) 
-		//console.log(typeof menu13del)
-		//console.log(typeof menu14del)
-
-		//console.log(menuDel)
-		//console.log(menu13del)
-		//console.log(menu14del)
-		
- 		
-		
-		// 케이스문
-		/* switch (menuDel) { 
-			case (menu13del): 
-					console.log("menu13del-case")	 
-					
-					$("#foodCheckBox13").prop("checked", false);
-		    		$("#menu013").hide();
-		            $("#foodCheckBox13").parent().removeClass("selected");
-		            $('#price13UpDown').text('0');
-		            //primalPrice();
-		            //totalPriceShow();
-				
-	            
-	    	case (menu14del) :  
-					console.log("menu14del-case")
-	    	
-		    		$("#foodCheckBox14").prop("checked", false);
-		    		$("#menu014").hide();
-		            $("#foodCheckBox14").parent().removeClass("selected");
-		            $('#price14UpDown').text('0');
-		            //primalPrice();
-		            //totalPriceShow();  
-	            
-        };  */
-        
-        
-        //이프문
-//  		 if ($("#menuDel13").click) { 
-// 					console.log("menu13del-case")	 
-					
-// 					$("#foodCheckBox13").prop("checked", false);
-// 		    		$("#menu013").hide();
-// 		            $("#foodCheckBox13").parent().removeClass("selected");
-// 		            $('#price13UpDown').text('0');
-// 		            //primalPrice();
-// 		            //totalPriceShow();
-//  		}		
-//  		else if ($("#menuDel14").click) {  
-// 					console.log("menu14del-case")
-	    	
-// 		    		$("#foodCheckBox14").prop("checked", false);
-// 		    		$("#menu014").hide();
-// 		            $("#foodCheckBox14").parent().removeClass("selected");
-// 		            $('#price14UpDown').text('0');
-// 		            //primalPrice();
-// 		            //totalPriceShow();  
-	            
-//  		}  
-    });
-
-        
-  
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-/*  		switch (menuDel) {  
-			case (menu13del): 
-					console.log("menu13del-case")	 
-	    			
-				
-				if (menu13del) {
-					console.log("menu13del-if")	
-					
-					$("#foodCheckBox13").prop("checked", false);
-		    		$("#menu013").hide();
-		            $("#foodCheckBox13").parent().removeClass("selected");
-		            $('#price13UpDown').text('0');
-		            menuDel=false;
-		            //primalPrice();
-		            //totalPriceShow();
-				} else if (menuDel != menu13del)
-					return;  
-				
-	            
-	    	case (menu14del) :  
-					console.log("menu14del-case")
-	    	
-				if (menuDel == menu14del) {
-	 	    		console.log("menu14del-if")
-	 	    		
-		    		$("#foodCheckBox14").prop("checked", false);
-		    		$("#menu014").hide();
-		            $("#foodCheckBox14").parent().removeClass("selected");
-		            $('#price14UpDown').text('0');
-		            menuDel=false;
-		            //primalPrice();
-		            //totalPriceShow();  
-				} else if (menuDel != menu14del)
-					return;    
-	            
-	            
-        };  */
+	}
 	
+//totalPriceShow()
+</script>	
 
 
-</script>
+<script> //날짜 구하는 평션
 
-
-
-<script>
-
-	
-	function getName() {
+	function thisMonth(){
+		const date = new Date();
 		
-		var nameFoodCheckBox = document.getElementsByName("foodCheckBox");
-		var nameMenuDel = document.getElementsByName("menuDel");
 		
-	}	
-	
-	
-	function getIdFoodCheckBox(){	
+		const year = date.getFullYear();
+		const month = ('0' + (date.getMonth() + 1)).slice(-2);
+		const day = ('0' + date.getDate()).slice(-2);
+		const dateStr = year + '-' + month + '-' + day;
 		
-		var getId = 0;
-	    for(var i = 1; i <= 14; i++ ) {
-	        var getId = document.getElementById("foodCheckBox" + i);
+		//console.log(dateStr);
+		
+		$('#todate').text(dateStr);
 
-        	console.log(getId);
-        }
-    }
+		
+		
+		//const monthDay = month + '-' + day;
+		
+		
+	}
+	
+thisMonth();
 
+</script> 
+
+<script> //오늘날짜 가져와서 이번달 모든날짜 만들기 펑션
+
+	function squeceDateInput(date_index) {
+		
+		var getTextDate = $('#todate').text();
+	
+		var arrSplitMonth = getTextDate.split('-');
+		//console.log(arrSplitMonth);
+		
+		var getMonthOfIndex = arrSplitMonth[1];
+		//console.log(getMonthOfIndex);
+		
+		var lastDateOfThisMonth = new Date(0, getMonthOfIndex, 0).getDate()
+	    //console.log(new Date(0, lastDateOfThisMonth, 0).getDate());
 	    
-    function getIdMenuDel(){    
-	    
-	    var getId = 0;
-	    for(var i = 1; i <= 14; i++ ) {
-	        var getId = document.getElementById("menuDel" + i);
-
-        	console.log(getId);
-        }
-    }
-	
-    
-    function getIdPriceUpDown() {
-    	var getId = 0;
-	    for(var i = 1; i <= 14; i++ ) {
-	        var getId = document.getElementById("priceUpDown" + i);
-
-        	console.log(getId);
-        }
-    }
-    
-    
-    function getIdQuantityUpDown() {
-    	var getId = 0;
-	    for(var i = 1; i <= 14; i++ ) {
-	        var getId = document.getElementById("quantityUpDown" + i);
-
-        	console.log(getId);
-        }
-    }
-
-    
-    
-    function getFunctionOnclickPlus(){
-    	var getFunction = "";
-	    for(var i = 1; i <= 14; i++ ) {
-	        var getFunction = document.getElementByFunction("plus" + i);
-
-        	console.log(getFunction);
-        }
-    }
-    
-    
-
-    //getIdFoodCheckBox()
-	//getIdMenuDel()
-	//getIdPriceUpDown()
-	//getIdQuantityUpDown()
-	//getIdQuantityUpDown()
-	getFunctionOnclickPlus()
-
-</script>
-
-
-
-
-
-<!-- 메뉴 개수  -->
-<script>
-
-// 예시는 돈가스. 여러 메뉴가 같은 함수를 사용할 수 있게 변경이 필요함	
-	
-	
-	function addOrDiscount(plusOrMinus) {
+		for (var i=1; i<=lastDateOfThisMonth; i++) {
+			
+			var getDate = (getMonthOfIndex + '/' + i);
+			console.log(getDate)
 		
-   		 {
-			var stat = $('#quantity13UpDown').text();
-	
-			const menuPrice = parseInt($('#price13UpDown').text(),10);
-			var countNum = parseInt(stat, 10);
-	
-			if (plusOrMinus != "plus13" && countNum <= 1) {
-				/* alert('더이상 줄일 수 없습니다.'); */
-	
-			} else {
-				if (plusOrMinus == "plus13") {
-					countNum++;
-				} else if (plusOrMinus == "minus13"){
-					countNum--;
-				}
-			}
-			$('#quantity13UpDown').text(countNum);
-			$('#price13UpDown').text(4500 * countNum);
 			
-			
-			/* totalPriceShow(); */
-		 } 
-		 
-		 
- 		  {
-			var stat = $('#quantity14UpDown').text();
-	
-			const menuPrice = parseInt($('#price14UpDown').text(),10);
-			var countNum = parseInt(stat, 10);
-	
-			if (plusOrMinus != "plus14" && countNum <= 1) {
-				/* alert('더이상 줄일 수 없습니다.'); */
-	
-			} else {
-				if (plusOrMinus == "plus14") {
-					countNum++;
-				} else if (plusOrMinus == "minus14"){
-					countNum--;
-				}
-			}
-			$('#quantity14UpDown').text(countNum);
-			$('#price14UpDown').text(6500 * countNum);
-			
-			/* totalPriceShow(); */
- 		 } 
-		
-	};
-	
-	
-	
-	
-</script>
-
-
- 
-<script>
- 	function primalPrice13(){ // 추후 아이디값을 받아와서 여러 메뉴를 받은 값에 따라 컨트롤 할 수 있게 코드 수정 필요  
-		$('#quantity13UpDown').text('1');
+			var dateInput = $('#squeceDateInput'+i).text(getDate);
+			//console.log(dateInput);
+		}
 	}
-	function primalPrice14(){ // 추후 아이디값을 받아와서 여러 메뉴를 받은 값에 따라 컨트롤 할 수 있게 코드 수정 필요  
-		$('#quantity14UpDown').text('1');
-	} 
+
 
 </script>
 
 
-<script>
-	function totalPriceShow(){
-		var dongas = parseInt($('#price13UpDown').text(), 10);
-		// 메뉴가 많을수록 더해지는 메뉴들이 많아짐
+<script> // 오늘날짜에 하이라이트 펑션
 
-		var finalPrice = dongas; // ex. + 패스트푸드 + 치킨 + 짜장면;
+	function hilightToday(i) {
 		
-		$('#resultPrice').text(finalPrice);
+		squeceDateInput();
+		
+		var getTextDate = $('#todate').text();
+		var arrSplitMonth = getTextDate.split('-');
+		var getDayOfInt = parseInt(arrSplitMonth[2]);
+		
+		//console.log(getDayOfInt);
+	
+	
+		const date = new Date();
+		const day = ('0' + date.getDate()).slice(-2);
+		const dateInt = parseInt(day);
+		
+		//console.log(dateInt);
+		
+		
+		var getMonthOfIndex = arrSplitMonth[1];
+		var lastDateOfThisMonth = new Date(0, getMonthOfIndex, 0).getDate()
+		
+		for (var i=1; i<=lastDateOfThisMonth; i++) {
+			var letTo = $('#squeceDateInput'+i).text();
+			var arrLetTo = letTo.split('/');
+			var getLetToInt = parseInt(arrLetTo[1]);
+		
+			console.log(getLetToInt);
+		
+			if (dateInt == getDayOfInt) {
+				console.log("wow");
+				if (dateInt == getLetToInt) {
+					console.log("jackPot!");
+					$('#squeceDateInput' + i).parent().addClass("strong");
+				}
+			} else {
+				return;
+			}
+		}
 	}
+	hilightToday()
 </script>
-
-
-
-
 
 
 

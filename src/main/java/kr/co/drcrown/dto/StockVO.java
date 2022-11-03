@@ -25,33 +25,47 @@ public class StockVO {
 	
 	private String durgCode;
 	private String durgName;
-	private Date durgDate = new Date();
-	private String durgAmount;
+	private Date durgDate;
+	private int durgStock;
 	private String durgMaker;
 	private String durgDistr;
 	private String durgSpec;
 	private String durgPicture;
 	private int durgPrice;
 	
-	private String consumeCode;
-	private String consumeName;
-	private Date consumeDate = new Date();
-	private String consumeAmount;
-	private String consumeMaker;
-	private String consumeDistr;
-	private String consumeSpec;
-	private String consumePicture;
-	private int consumePrice;
+	private String conCode;
+	private String conName;
+	private Date conDate;
+	private int conStock;
+	private String conUnit;
+	private String conMaker;
+	private String conDistr;
+	private String conSpec;
+	private String conPicture;
+	private int conPrice;
 	
-	private String medideviceCode;
-	private String medideviceName;
-	private Date medideviceDate = new Date();
-	private String medideviceAmount;
-	private String medideviceMake;
-	private String medideviceDistr;
-	private String medideviceSpec;
-	private String medidevicePicture;
-	private int medidevicePrice;
+	private String mediCode;
+	private String mediName;
+	private Date mediDate;
+	private int mediStock;
+	private String mediMaker;
+	private String mediDistr;
+	private String mediSpec;
+	private String mediPicture;
+	private int mediPrice;
+	
+	private String dstCode;
+	private String drugNo;
+	private String dstName;
+	private String dstElement;
+	private int dstStock;
+	private String dstUnit;
+	private String dstMaker;
+	private String dstNO;
+	private Date dstDate;
+	private int dstPrice;
+	
+	
 	
 	
 }

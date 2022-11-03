@@ -1,0 +1,144 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CureDetail-Mapper">
+
+
+<!--     <resultMap type="curedetail" id="curedetail">
+       
+        <collection property="cure" resultMap="cure">
+        </collection>
+    </resultMap>  -->
+
+ <!--    <resultMap type="cure" id="cure">
+      
+    </resultMap> --> 
+
+ 	 <sql id="search">	
+		<if test="searchType == 'i'.toString()">
+			and mem_id like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'p'.toString()">
+			and mem_phone like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'e'.toString()">
+			and mem_mail like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'n'.toString()">
+			and mem_name like '%'||#{keyword}||'%'			
+		</if>			
+	</sql>	
+	
+	<select id="selectCureDetailList" parameterType="str" resultType="curedlist">
+		SELECT 	p_no,
+				cd.cd_code as CD_CODE, 
+				c.cure_code as CURE_CODE, 
+				cd.CD_REGDATE as CD_REGDATE, 
+				(SELECT sym_ko
+				FROM SYMPTOM s
+				WHERE s.sym_code = c.SYM_CODE)AS sym_ko, 
+				(SELECT mpr_ko
+				FROM MPRICE m
+				WHERE  m.MPR_CODE = c.MPR_CODE ) AS mpr_ko
+		FROM cure c, CURE_DETAIL cd, SYMPTOM s, MPRICE m 
+		WHERE c.CD_CODE = cd.CD_CODE
+		AND s.SYM_CODE =c.SYM_CODE
+		AND m.MPR_CODE = c.MPR_CODE 
+		and cd.P_NO = #{pNo}
+	</select> 
+	<select id="selectCureDetailListCount" resultType="int">
+		select
+		count(*) 
+		from CURE_DETAIL
+		where CD_CODE is not null
+		<include refid="search" />
+	</select>
+	<select id="selectCureDetail" parameterType="str" resultType="curedlist">
+		SELECT 	p_no,
+				cd.cd_code as CD_CODE, 
+				c.cure_code as CURE_CODE, 
+				cd.CD_REGDATE as CD_REGDATE, 
+				(SELECT sym_ko
+				FROM SYMPTOM s
+				WHERE s.sym_code = c.SYM_CODE)AS sym_ko, 
+				(SELECT mpr_ko
+				FROM MPRICE m
+				WHERE  m.MPR_CODE = c.MPR_CODE ) AS mpr_ko
+		FROM cure c, CURE_DETAIL cd, SYMPTOM s, MPRICE m 
+		WHERE c.CD_CODE = cd.CD_CODE
+		AND s.SYM_CODE =c.SYM_CODE
+		AND m.MPR_CODE = c.MPR_CODE 
+		and cd.P_NO = #{pNo}
+	</select>
+	<select id="selectCureD" parameterType="map" resultType="map">
+		SELECT 	p_no,
+				cd.cd_code as CD_CODE, 
+				c.cure_code as CURE_CODE, 
+				cd.CD_REGDATE as CD_REGDATE, 
+				(SELECT sym_ko
+				FROM SYMPTOM s
+				WHERE s.sym_code = c.SYM_CODE)AS sym_ko, 
+				(SELECT mpr_ko
+				FROM MPRICE m
+				WHERE  m.MPR_CODE = c.MPR_CODE ) AS mpr_ko
+		FROM cure c, CURE_DETAIL cd, SYMPTOM s, MPRICE m 
+		WHERE c.CD_CODE = cd.CD_CODE
+		AND s.SYM_CODE =c.SYM_CODE
+		AND m.MPR_CODE = c.MPR_CODE 
+		and cd.P_NO = #{pNo}
+	</select>
+<!-- 	<select id="selectMemberByPicture" parameterType="str" resultType="curedetail">
+		select
+		*
+		from member
+		where mem_pic=#{mem_pic}
+	</select>
+	
+	
+	<update id="insertMember" parameterType="member">
+		insert into 
+		member(mem_id, mem_pwd, mem_mail, mem_phone,mem_pic,mem_name,mem_authority)
+		values(#{memId},#{memPwd},#{memMail},#{memPhone},#{memPic},#{memName},#{memAuthority})
+	</update>
+	
+	<update id="updateMember" parameterType="member">
+		update member 
+		set 
+		mem_pwd=#{mem_pwd},mem_mail=#{mem_mail},mem_phone=#{mem_phone},mem_name=#{mem_name},
+		mem_pic=#{mem_pic},mem_enabled=1
+		
+		<if test="authority != null">
+			,mem_authority=#{mem_authority}
+		</if>
+		
+		where mem_id=#{mem_id}
+	</update>
+	
+	<update id="deleteMember" parameterType="str" >
+		delete 
+		from member 
+		where mem_id=#{mem_id}		
+	</update>
+	 -->
+	
+<!-- 	SELECT 	p_no,
+		cd.cd_code, 
+		c.cure_code, 
+		cd.CD_REGDATE, 
+		(SELECT sym_ko
+		FROM SYMPTOM s
+		WHERE s.sym_code = c.SYM_CODE), 
+		MPR_CODE
+FROM cure c, CURE_DETAIL cd, SYMPTOM s
+WHERE c.CD_CODE = cd.CD_CODE
+AND s.SYM_CODE =c.SYM_CODE
+and cd.P_NO = 22001; -->
+	
+</mapper>
+
+
+
+
+
+

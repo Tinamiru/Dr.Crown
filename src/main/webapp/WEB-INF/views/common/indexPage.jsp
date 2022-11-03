@@ -98,17 +98,22 @@
 				<div class="tab-content">
 					<div class="tab-pane fade active show" id="chat" role="tabpanel">
 						<div class="card mb-sm-3 mb-md-0 contacts_card dz-chat-user-box">
-							<div class="card-header chat-list-header text-center">
-<%-- 								${loginUser.memId } --%>
-								${loginUser.memName }님 환영합니다.
-							</div>
-							<div class="card-body contacts_body p-0 dz-scroll  "
-								id="DZ_W_Contacts_Body">
-								내용이 드감
-								<div class="row justify-contents-center">
+							<div class="card-header border-dark text-center mb-3" style="display: block;">
+								<div class="row justify-contents-center align-self-end">
 									<div class="col-6">
-										<a href="#" onclick="OpenWindow('member/detail','회원 상세정보',1000,600);"
-											class="ai-icon ml-4">
+<!-- 										<a href="#" onclick="OpenWindow('member/detail','회원 상세정보',1000,600);" -->
+<!-- 											class="ai-icon ml-4"> -->
+<!-- 											<svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" -->
+<!-- 												class="text-primary" width="18" height="18" -->
+<!-- 												viewBox="0 0 24 24" fill="none" stroke="currentColor" -->
+<!-- 												stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> -->
+<!-- 												<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path> -->
+<%-- 												<circle cx="12" cy="7" r="4"></circle> --%>
+<!-- 											</svg> -->
+<%-- 											<span class="ml-2"><b>${loginUser.memName }</b></span> --%>
+<!-- 										</a> -->
+										<a href="javascript:chatboxClose(),goPage('/member/mypage','M000100');"
+											class="ai-icon">
 											<svg id="icon-user1" xmlns="http://www.w3.org/2000/svg"
 												class="text-primary" width="18" height="18"
 												viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -116,9 +121,10 @@
 												<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
 												<circle cx="12" cy="7" r="4"></circle>
 											</svg>
-											<span class="ml-2">마이페이지</span>
+											<span class="ml-2"><b>마이페이지</b></span>
 										</a>
 									</div>
+										
 									<div class="col-6">
 										<a href="/common/logout" class="ai-icon">
 											<svg id="icon-logout" xmlns="http://www.w3.org/2000/svg"
@@ -129,9 +135,23 @@
 												<polyline points="16 17 21 12 16 7"></polyline>
 												<line x1="21" y1="12" x2="9" y2="12"></line>
 											</svg>
-											<span class="ml-2">로그아웃 </span>
+											<span class="ml-2"><b>로그아웃</b></span>
 										</a>
 									</div>
+								</div>
+							</div>
+							<div class="card-body contacts_body p-0"
+								id="DZ_W_Contacts_Body">
+								<div class="row justify-content-center">
+									<div class="col-8">
+										<img class="img-fluid rounded" src="<%=request.getContextPath() %>/member/getPicture.do">
+									</div>
+								</div>
+								<div class="row justify-contents-center">
+								
+								</div>
+								<div class="row justify-contents-center align-self-end">
+									내용
 								</div>
 							</div>
 						</div>
@@ -464,7 +484,8 @@
 							<li class="nav-item dropdown header-profile">
 								<a class="nav-link bell-link" href="javascript:void(0)">
 <%-- 								<img src="<%=request.getContextPath() %>/member/getPicture.do?id=${loginUser.id }" class="img-circle elevation-2" alt="User Image"> --%>
-									<img src="<%=request.getContextPath() %>/resources/images/profile/33.jpg" class="img-circle elevation-2" alt="User Image">
+									
+									<img src="<%=request.getContextPath() %>/member/getPicture.do" class="img-fluid rounded" alt="User Image">
 								</a>
 							</li>
 						</ul>
@@ -483,14 +504,16 @@
 			<div class="deznav-scroll">
 				<ul class="metismenu" id="menu">
 					<c:forEach items="${menuList }" var="menu">
-						<li style="cursor:pointer;" onclick="subMenu_go('${menu.mcode }'), goPage('<%=request.getContextPath()%>${menu.murl }','${menu.mcode }')"><a 
-							class="has-arrow ai-icon" aria-expanded="true"> <i
-								class="${menu.micon}"></i> <span class="nav-text">&nbsp;${menu.mname }</span>
-						</a>
+						<li>
+							<a class="has-arrow ai-icon" aria-expanded="true" onclick="subMenu_go('${menu.mcode }'), goPage('<%=request.getContextPath()%>${menu.murl }','${menu.mcode }')"">
+								<i class="${menu.micon}"></i>
+								<span class="nav-text">&nbsp;${menu.mname }</span>
+							</a>
 							<ul class="nav nav-pills nav-sidebar flex-column subMenuList"
 								data-widget="treeview" role="menu" data-accordion="false"
 								aria-expanded="false">
-							</ul></li>
+							</ul>
+						</li>
 					</c:forEach>
 				</ul>
 			</div>

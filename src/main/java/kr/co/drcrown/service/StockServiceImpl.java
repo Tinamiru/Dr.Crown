@@ -36,7 +36,7 @@ public class StockServiceImpl implements StockService {
 	
 
 	@Override
-	public void insert(StockVO equip) throws SQLException
+	public void insertEquip(StockVO equip) throws SQLException
 	{
 		stockDAO.insertEquip(equip);
 		
@@ -55,9 +55,129 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public void insertPreOrder(StockVO equip) throws SQLException {
+    public void insertEquipPreOrder(StockVO equip) throws SQLException {
         stockDAO.insertEpuipPreOrder(equip);
         
+    }
+
+    @Override
+    public Map<String, Object> getConsumeList() throws SQLException {
+        Map<String, Object> dataMap = null;
+        
+        List<StockVO> consumeList = stockDAO.selectConsumList();
+        
+        dataMap = new HashMap<String, Object>();
+        dataMap.put("consumeList", consumeList);
+
+        return dataMap;
+    }
+
+    @Override
+    public StockVO getConsumeDetail(String conCode) throws SQLException {
+        StockVO ConsumeDetail = stockDAO.selectConsumByConsumNo(conCode);
+        return ConsumeDetail;
+    }
+
+    @Override
+    public StockVO getConsumeDetailForModify(String conCode) throws SQLException {
+        StockVO ConsumeDetail = stockDAO.selectConsumByConsumNo(conCode);
+        return ConsumeDetail;
+    }
+
+    @Override
+    public void insertConsume(StockVO consume) throws SQLException {
+        stockDAO.insertConsum(consume);
+    }
+
+    @Override
+    public void insertConsumePreOrder(StockVO consume) throws SQLException {
+        stockDAO.insertConsumPreOrder(consume);
+    }
+
+    @Override
+    public Map<String, Object> getMedideciveList() throws SQLException {
+        Map<String, Object> dataMap = null;
+        
+        List<StockVO> mediList = stockDAO.selectMedideviceList();
+        
+        dataMap = new HashMap<String, Object>();
+        dataMap.put("mediList", mediList);
+
+        return dataMap;
+    }
+
+    @Override
+    public StockVO getMediDetail(String mediCode) throws SQLException {
+        StockVO MediDetail = stockDAO.selectMedideviceByMedideviceNo(mediCode);
+        return MediDetail;
+    }
+
+    @Override
+    public StockVO getMediDetailForModify(String mediCode) throws SQLException {
+        StockVO MediDetail = stockDAO.selectMedideviceByMedideviceNo(mediCode);
+        return MediDetail;
+    }
+
+    @Override
+    public void insertMedi(StockVO medi) throws SQLException {
+        stockDAO.insertMedidevice(medi);
+    }
+
+    @Override
+    public void insertMediPreOrder(StockVO medi) throws SQLException {
+        stockDAO.insertMedidevicePreOrder(medi);
+    }
+
+    @Override
+    public Map<String, Object> getDrugStockList() throws SQLException {
+        Map<String, Object> dataMap = null;
+        
+        List<StockVO> dstList = stockDAO.selectDrugStockList();
+        
+        dataMap = new HashMap<String, Object>();
+        dataMap.put("dstList", dstList);
+
+        return dataMap;
+    }
+
+    @Override
+    public StockVO getDstDetail(String dstCode) throws SQLException {
+        StockVO DstDetail = stockDAO.selectDrugStockByDrugStockeNo(dstCode);
+        return DstDetail;
+    }
+
+    @Override
+    public StockVO getDstDetailForModify(String dstCode) throws SQLException {
+        StockVO DstDetail = stockDAO.selectDrugStockByDrugStockeNo(dstCode);
+        return DstDetail;
+    }
+
+    @Override
+    public void insertDst(StockVO dst) throws SQLException {
+        stockDAO.insertDrugStock(dst);
+    }
+
+    @Override
+    public void insertDstPreOrder(StockVO dst) throws SQLException {
+        stockDAO.insertDrugStockPreOrder(dst);
+    }
+
+    @Override
+    public Map<String, Object> getALLList() throws SQLException {
+        Map<String, Object> dataMap = null;
+        
+        List<StockVO> equipList = stockDAO.selectEquipList();
+        List<StockVO> dstList = stockDAO.selectDrugStockList();
+        List<StockVO> mediList = stockDAO.selectMedideviceList();
+        List<StockVO> consumeList = stockDAO.selectConsumList();
+        
+        dataMap = new HashMap<String, Object>();
+        dataMap.put("equipList", equipList);
+        dataMap.put("dstList", dstList);
+        dataMap.put("mediList", mediList);
+        dataMap.put("consumeList", consumeList);
+
+        return dataMap;
     }
 
 	

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Map;
 
 import kr.co.drcrown.command.Criteria;
+import kr.co.drcrown.dto.FileVO;
 import kr.co.drcrown.dto.MemberVO;
 import kr.co.drcrown.exception.InvalidPasswordException;
 import kr.co.drcrown.exception.NotFoundIdException;
@@ -29,4 +30,7 @@ public interface MemberService {
 	
 	//회원탈퇴
 	public void remove(String memId)throws Exception; 
+	
+	Map<String,Object> getMemberDoctorList(Criteria cri)throws SQLException;
+
 }

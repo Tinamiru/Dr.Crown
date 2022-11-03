@@ -1,0 +1,50 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="File-Mapper">
+	<select id="selectMemberByPicture" parameterType="str" resultType="file">
+		select
+		*
+		from "FILE"
+		where file_no=#{mem_pic}
+	</select>
+	
+	<update id="registMemberPicture" parameterType="file">
+		update "FILE"
+		  set FILE_CLASS = #{fileClass},
+		      FILE_NAME = #{fileName},
+			  FILE_REGDATE = sysdate,
+			  FILE_SIZE = #{fileSize},
+			  FILE_LOCATION = #{fileLocation},
+			  FILE_ATTHCHER = #{fileAtthcher}
+		where FILE_NO = #{fileNo}
+	</update>
+	
+	<update id="insertFileByMemberPic" parameterType="member">
+		insert into 
+		"FILE"(FILE_NO, FILE_NAME)
+		values(#{memPic}, '기본프로필.jpg')
+	</update>
+	<update id="insertFileByMemberFace" parameterType="member">
+		insert into 
+		"FILE"(FILE_NO)
+		values(#{memFace})
+	</update>
+	<update id="insertFileByMemberFinger" parameterType="member">
+		insert into 
+		"FILE"(FILE_NO)
+		values(#{memFinger})
+	</update>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

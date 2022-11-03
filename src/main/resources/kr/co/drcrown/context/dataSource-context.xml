@@ -35,6 +35,7 @@
 		  p:dataSource-ref="dataSourceSpied"
 		  p:configLocation="classpath:kr/co/drcrown/mybatis/config/sqlConfig.xml"
 		  p:mapperLocations="classpath:kr/co/drcrown/mybatis/mappers/*-Mapper.xml"
+		  
 	/>	
 	
 		 

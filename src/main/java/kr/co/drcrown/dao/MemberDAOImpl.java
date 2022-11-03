@@ -10,6 +10,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import kr.co.drcrown.command.Criteria;
+import kr.co.drcrown.dto.FileVO;
 import kr.co.drcrown.dto.MemberVO;
 
 public class MemberDAOImpl implements MemberDAO {
@@ -33,6 +34,16 @@ public class MemberDAOImpl implements MemberDAO {
 		return memberList;
 
 	}
+	
+	   @Override
+	    public List<MemberVO> selectMemberDoctorList(Criteria cri) throws SQLException {
+
+	        List<MemberVO> MemberDoctorList 
+	                = session.selectList("Member-Mapper.selectMemberDoctorList", cri);
+	        return MemberDoctorList;
+
+	    }
+	
 
 	@Override
 	public int selectMemberListCount(Criteria cri) throws SQLException {
@@ -51,12 +62,14 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	
-	public void insertMember(MemberVO member, String typeAuthority) throws SQLException {
+	public String insertMember(MemberVO member, String typeAuthority) throws SQLException {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
+		String newMemId = session.selectOne("Member-Mapper.selectNewMember", typeAuthority);
+		member.setMemId(newMemId);
 		dataMap.put("member", member);
-		dataMap.put("typeAuthority",typeAuthority);
+		dataMap.put("typeAuthority", typeAuthority);
 		session.update("Member-Mapper.insertMember", dataMap);
-
+		return newMemId;
 	}
 
 	@Override
@@ -70,12 +83,6 @@ public class MemberDAOImpl implements MemberDAO {
 	public void deleteMember(String memId) throws SQLException {
 		session.update("Member-Mapper.deleteMember", memId);
 
-	}
-
-	@Override
-	public MemberVO selectMemberByPicture(String picture) throws SQLException {
-		MemberVO member = session.selectOne("Member-Mapper.selectMemberByPicture",picture);		
-		return member;
 	}
 
 }

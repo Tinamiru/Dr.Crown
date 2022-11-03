@@ -16,4 +16,10 @@ public class ChartController {
 		String url = "/chart/list";
 		return url;
 	}
+
+	@GetMapping("/diagnosisRegist")
+	public String diagnosisRegist() {
+	    String url = "/chart/diagnosisRegist";
+	    return url;
+	}
 }

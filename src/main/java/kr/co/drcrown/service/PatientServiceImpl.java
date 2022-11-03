@@ -51,16 +51,32 @@ public class PatientServiceImpl implements PatientService {
 	}
 
 	@Override
-	public PatientVO getPatient(int pNo) throws SQLException {
+	public PatientVO getPatient(String pNo) throws SQLException {
 
 		PatientVO patient = patientDAO.selectPatientByPatientNo(pNo);
 		return patient;
 
 	}
+	
+	  
 
 	@Override
 	public void regist(PatientVO patient) throws Exception {
 		patientDAO.insertPatient(patient);
 		
 	}
+
+    @Override
+    public Map<String, Object> getsearchPatientList(Criteria cri) throws SQLException {
+        Map<String, Object> dataMap = new HashMap<String, Object>();
+
+      
+        List<PatientVO> patientsearchList = patientDAO.searchPatientList(cri);
+
+
+        dataMap.put("patientsearchList", patientsearchList);
+
+        return dataMap;
+
+    }
 }

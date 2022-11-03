@@ -5,19 +5,47 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 	
+<script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+ <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css"/>
+ <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css"/>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <c:set var="equipList" value="${dataMap.equipList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cri" value="${dataMap.pageMaker.cri }" />
 
 <style>
+.ag-theme-alpine{
+	--ag-header-background-color: #333258;
+	--ag-header-foreground-color: white;
+	--ag-font-size: 11px;
+}
 
+.ag-theme-alpine .ag-icon-menu {
+	color : white;
+}
+
+.ag-header-icon.ag-header-cell-menu-button {
+  opacity: 1 !important;
+}
+.ag-center-cols-container div button{
+	border: none;
+	background: none;
+	color : #333258;
+	width: 80%;
+	height: 80%;
+	font-weight: bolder;
+	font-size: 13px;
+	text-align: center;
+	border-radius: 5px;
+}
 
 .td_content {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+
 
 #Detail_main_add{
 	padding:10%; 
@@ -44,13 +72,15 @@
 	margin-right: 2%;
 	background: #961E1E;
 }
-
+#number_textalign{
+	text-align: right;
+}
 
 </style>
 <div style="position: fixed; width: 100%; height: 100%">
 	<div class="contaner-fluid" style="margin: 1.5em;">
 		<div class="row">
-			<div class="col-sm-6 justify-content-center" style="border-right: solid 1px;">
+			<div class="col-sm-7 justify-content-center" style="border-right: solid 1px; padding: 5px;">
 				<section class="content">
 					<section class="content-header" >
 						<div class="container-fluid" >
@@ -82,7 +112,7 @@
 
 
 									<!-- search bar -->
-										<select class="form-control " name="searchType"
+										<%-- <select class="form-control " name="searchType"
 											id="searchType">
 											<option value="">검색구분</option>
 	
@@ -99,7 +129,7 @@
 											<button class="btn btn-primary" type="button" id="searchBtn"
 												data-card-widget="search" onclick="list_go(1);">
 												<i class="fa fa-fw fa-search"></i>
-											</button>
+											</button> --%>
 										</span>
 										<!-- end : search bar -->
 									</div>
@@ -109,13 +139,15 @@
 						</div>
 					</div>
 					
-					<div class="card" style="height: 80vh; overflow-y: scroll;" >
+					<div class="card" style="height: 80vh;" >
 						
 
-						<div class="card-body" style="text-align: center; font-size: 12px; padding: 25px 20px 0px 20px;">
+						<div class="card-body" style=" font-size: 12px; padding: 15px 10px 0px 10px;">
 							<div class="row">
 								<div class="col-sm-12">
-									<table  id="eqlist" class="table table-bordered" style="table-layout: fixed;">
+									<div id="myGrid" class="ag-theme-alpine" style="width: 56vw; height: 76vh;">
+										
+									<%-- <table  id="eqlist" class=" style="">
 										<tr bgcolor="#333258" style="color: white">
 											<th width="14%">일련코드</th>
 											<th >품목명</th>
@@ -185,7 +217,8 @@
 												<td colspan="7" class="text-center">해당내용이 없습니다.</td>
 											</tr>
 										</c:if>
-									</table>
+									</table> --%>
+								</div>
 								</div>
 								<!-- col-sm-12 -->
 							</div>
@@ -198,7 +231,7 @@
 				
 
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-5">
 				<div class="row justify-content-center" style="padding-bottom: 8vh;">
 					<section class="content" style="height: 40vh; width: 95%;">
 						<section class="content-header">
@@ -220,14 +253,13 @@
 										<form name="" role="form" class="form-horizontal" action="/equip/listSuccess" method="post">
 											<table  id="requestList" class="table table-bordered">
 												<tr bgcolor="#333258" style="color: white">
-													<th width="8%">순번</th>
-													<th width="12%">일련코드</th>
+													<th width="10%">순번</th>
+													<th width="15%">일련코드</th>
 													<th>품목명</th>
 													<th width="10%">수량</th>
-													<th width="10%">단위</th>
 													<th width="15%">업체명</th>
 													<th width="15%">단가(원)</th>
-													<th width="8%">취소</th>
+													<th width="10%">취소</th>
 													<!-- yyyy-MM-dd  -->
 												</tr>
 												
@@ -333,36 +365,152 @@
 		</div>
 	</div>
 </div>
+<script>
+class BtnCellRenderer {
+  init(params) {
+    this.params = params;
+	
+    //----------------
+    console.log("params", params);
+	
+    this.eGui = document.createElement('button');
+    this.eGui.innerHTML = '추가';
 
+    this.btnClickedHandler = this.btnClickedHandler.bind(this);
+    this.eGui.addEventListener('click', this.btnClickedHandler);
+  }
 
+  getGui() {
+    return this.eGui;
+  }
+
+  btnClickedHandler(event) {
+    //this.params.onClick(this.params.value);
+    //console.log("test", this.params);
+    onBtnClick1( this.params) 
+  }
+
+  destroy() {
+    this.eGui.removeEventListener('click', this.btnClickedHandler);
+  }
+  
+}
+</script>
+<script>
+class BtnCellRenderer2 {
+  init(params) {
+    this.params = params;
+	
+    //----------------
+    console.log("params", params);
+	
+    this.eGui = document.createElement('button');
+    this.eGui.innerHTML = '정보';
+
+    this.btnClickedHandler = this.btnClickedHandler.bind(this);
+    this.eGui.addEventListener('click', this.btnClickedHandler);
+  }
+
+  getGui() {
+    return this.eGui;
+  }
+
+  btnClickedHandler(event) {
+    //this.params.onClick(this.params.value);
+    //console.log("test", this.params);
+    detail( this.params) 
+  }
+
+  destroy() {
+    this.eGui.removeEventListener('click', this.btnClickedHandler);
+  }
+  
+}
+</script>
 <script type="text/javascript">
 
-/* function createTable(){
-    
-    var param = {};
-    param.Stock.equ = "01111";
-    param = JSON.stringify(param);
+//컬럼 정의
 
-    $.ajax({
-        url : "/getBoardList.do",
-        data : param,
-        type : 'post',
-        success : function(data){
-            var results = data.boardList;
-            var str = '<TR>';
-            $.each(results , function(i){
-                str += '<TD>' + results[i].bdTitl + '</TD><TD>' + results[i].bdWriter + '</TD><TD>' + results[i].bdRgDt + '</TD>';
-                str += '</TR>';
-           });
-           $("#boardList").append(str); 
-        },
-        error : function(){
-            alert("error");
-        }
-    });
-} */
+var columnDefs = [
+		{ headerName:"일련코드", field: "code", sortable : true, filter : true, width : 120},
+		{ headerName:"품목명", field: "name" , sortable : true, filter : true, width : 182},
+		{ headerName:"수량", field: "stock" , sortable : true, /* filter : true ,*/ width : 80, type: 'rightAligned'},
+		{ headerName:"단위", field: "unit" , /* sortable : true,  */filter : true, width : 80},
+		{ headerName:"업체명", field: "maker" , sortable : true, filter : true, width : 150},
+		{ headerName:"입고일", field: "date" , sortable : true, filter : true,  width : 120},
+		{ headerName:"추가",
+		      cellRenderer: BtnCellRenderer, width : 80, 
+// 		      cellRendererParams: {
+// 		    	  onClick: this.onBtnClick1.bind(this ),
+// 		    	  label: 'Click me2!'
+// 		        },
+		      },
+		{ headerName:"상세정보", cellRenderer: BtnCellRenderer2,width : 80}
+];
 
-	/* function detail() {
+// 데이타 정의
+var rowData = [
+	<c:forEach items="${equipList}" var="stock">
+		{ 
+		  code: "${stock.equCode}",
+		  name: "${stock.equName}", 
+		  stock: ${stock.equStock}, 
+		  unit: "${stock.equUnit}", 
+		  maker: "${stock.equMaker}", 
+		  date: "<fmt:formatDate value='${stock.equDate }' pattern='yyyy-MM-dd'/>",
+		},
+	</c:forEach>
+
+];
+
+// 그리드 옵션 지정
+var gridOptions = {
+	columnDefs: columnDefs,
+    rowData: rowData,
+    rowSelection: 'single',
+    getSelectedRows: 'getSelectedRows'
+}
+
+var eGridDiv = document.querySelector('#myGrid');
+
+new agGrid.Grid(eGridDiv, gridOptions);
+
+
+function onBtnClick1(clickData) 
+{
+// 	console.log("obj", this);
+// 	var rowDataClicked1 = this.rowData		
+// 	console.log(rowDataClicked1[3].code);
+	increseNum++;
+	console.log(clickData.data.code);
+	$.ajax({
+		url: "/stock/equip/listJson",
+		method : "GET",
+		data : {"equCode" : clickData.data.code},
+		
+		success:function(data)
+		{
+			var userList = data;
+			var tr = ""
+			//console.log(data)
+				tr += 
+				  "<tr><td>"+increseNum+
+				  "</td><td>"+data.equCode + 
+				  "</td><td>"+data.equName +
+				  "</td><td>"+'<input type="text" style="width: 2vw;" name="equStock" placeholder="'+data.equUnit+'" value="" >'+
+				  "</td><td>"+data.equMaker +
+				  "</td><td>"+'<div id="number_textalign">'+data.equPrice +'</div>'+
+				  "</td><td>"+'<div id="Detail_main_add" onclick="deleteRow(-1)">X</div>'+
+				  "</td></tr>";
+			
+			$("#requestList").append(tr);
+		},
+	});
+  } 
+
+
+	function detail(data) {
+		var hi = data.data.code
 		
 		var popupWidth = 600;
 		var popupHeight = 800;
@@ -372,10 +520,8 @@
 
 		var popupY= (window.screen.height / 2) - (600 / 2);
 		// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
-		
-		
-		window.open('detail?from=list&euqCode='${stock.euqCode }'','detail','height=600, width=800, left='+ popupX + ', top='+ popupY);
-	} */
+		window.open('detail?from=list&equCode='+data.data.code,'detail','height=600, width=800, left='+ popupX + ', top='+ popupY);
+	}
 	
 	function newAdd() {
 		
@@ -408,14 +554,8 @@
 	}
 	
  
-var increseNum = 1;
-	function addRow() {
-	 
-	  const table_requestList = document.getElementById('requestList');
-	  
-	  const table1 =document.getElementById('eqlist');
-	  const rowList = table1.rows;
-	  
+var increseNum = 0;
+	/* function addRow(	
 	  for (i=1; i<rowList.length; i++) 
 	  {
 	      var addlist = rowList[i]
@@ -433,7 +573,7 @@ var increseNum = 1;
 	          
 	      };
 	  };
-	 }; 
+	 };  */
 	    
 	 
 	
@@ -452,7 +592,7 @@ var increseNum = 1;
 		var tableHeaderRowCount = 1;
 		var table = document.getElementById('requestList');
 		var rowCount = table.rows.length;
-		increseNum = 1;
+		increseNum = 0;
 		for (var i = tableHeaderRowCount; i < rowCount; i++) {
 		    table.deleteRow(tableHeaderRowCount);
 		}

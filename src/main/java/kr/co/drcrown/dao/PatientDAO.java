@@ -17,7 +17,11 @@ public interface PatientDAO {
 	
 	int selectSearchPatientListCount(Criteria cri) throws SQLException;
 	
-	PatientVO selectPatientByPatientNo(int pNo) throws SQLException;
+	PatientVO selectPatientByPatientNo(String pNo) throws SQLException;
 	
 	public void insertPatient(PatientVO patient) throws SQLException;
+	
+	List<PatientVO> searchPatientList(Criteria cri) throws SQLException;
+
+ 
 }

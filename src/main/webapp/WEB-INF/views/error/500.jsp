@@ -24,10 +24,6 @@
                         </div>
                         <br>
                         <h4><i class="fa fa-times-circle text-danger"></i> 인터넷 서버 오류</h4>
-						<div>
-						<br>
-                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/index">메인 페이지</a>
-                        </div>
                     </div>
                 </div>
             </div>

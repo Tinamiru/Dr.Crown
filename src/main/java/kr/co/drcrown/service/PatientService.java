@@ -17,7 +17,10 @@ public interface PatientService {
 	// 목록조회
 	Map<String, Object> getPatientList(Criteria cri) throws SQLException;
 	
-	PatientVO getPatient(int pNo) throws SQLException;
+	PatientVO getPatient(String pNo) throws SQLException;
 	
 	public void regist(PatientVO patient) throws Exception;
+
+	Map<String, Object> getsearchPatientList(Criteria cri) throws SQLException;
+    
 }

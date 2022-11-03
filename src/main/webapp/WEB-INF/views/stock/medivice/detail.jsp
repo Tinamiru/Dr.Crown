@@ -92,7 +92,7 @@
 	height: 90%; 
 	width: 90%; 
 	text-align: center;
-	margin: 11% 8%;
+	margin: 5% 7%;
 	float: left; 
 	font-size: 15px;
 
@@ -150,7 +150,7 @@ textarea::placeholder {
 
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cri" value="${dataMap.pageMaker.cri }" />
-<c:set var="minfoList" value="${dataMap.minfoList }" />
+<c:set var="mediList" value="${dataMap.mediList }" />
 
 
 
@@ -182,39 +182,46 @@ textarea::placeholder {
 								<div>
 									일련코드
 								</div>
-								<input type="text"  readonly="readonly" value="EQ001">
+								<input type="text"  readonly="readonly" value="${stock.mediCode}">
 							</div>
 							
 							<div class="row" id="detailListRow" >
 								<div>
 									품목명
 								</div>
-								<input type="text"  readonly="readonly" value="대충품목명10자리넘는대충품목명10자리">
+								<input type="text"  readonly="readonly" value="${stock.mediName}">
 							</div>
-							
 							<div class="row" id="detailListRow" >
 								<div>
-									단위
+									단가
 								</div>
-								<input type="text"  readonly="readonly" value="개">
+								<input type="text"  readonly="readonly" value="${stock.mediPrice}원">
 							</div>
 							<div class="row" id="detailListRow" >
 								<div>
 									재고
 								</div>
-								<input type="text"  readonly="readonly" value="100">
+								<input type="text"  readonly="readonly" value="${stock.mediStock}">
 							</div>
+							
 							<div class="row" id="detailListRow" >
 								<div>
 									업체명
 								</div>
-								<input type="text"  readonly="readonly" value="대덕제약">
+								<input type="text"  readonly="readonly" value="${stock.mediMaker}">
+							</div>
+							<div class="row" id="detailListRow" >
+								<div>
+									유통사
+								</div>
+								<input type="text"  readonly="readonly" value="${stock.mediDistr}">
 							</div>
 							<div class="row" id="detailListRow" >
 								<div>
 									입고일
 								</div>
-								<input type="text"  readonly="readonly" value="2023.9.23">
+								<input type="text"  readonly="readonly" 
+										value="<fmt:formatDate value="${stock.mediDate }" pattern="yyyy-MM-dd" />" />
 							</div>
 					</div>
 						

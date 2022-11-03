@@ -14,6 +14,12 @@
 </script>
 
 <script>
+	function chatboxClose(){
+		document.querySelector('.chatbox').classList.remove("active");
+	}
+</script>
+
+<script>
 function subMenu_go(mCode){
 // 	alert(mCode);	
 	if(mCode!="M000000"){

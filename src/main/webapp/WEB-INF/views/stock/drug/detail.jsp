@@ -92,7 +92,7 @@
 	height: 90%; 
 	width: 90%; 
 	text-align: center;
-	margin: 11% 8%;
+	margin: 5% 7%;
 	float: left; 
 	font-size: 15px;
 
@@ -150,7 +150,7 @@ textarea::placeholder {
 
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cri" value="${dataMap.pageMaker.cri }" />
-<c:set var="minfoList" value="${dataMap.minfoList }" />
+<c:set var="dstList" value="${dataMap.dstList }" />
 
 
 
@@ -182,39 +182,76 @@ textarea::placeholder {
 								<div>
 									일련코드
 								</div>
-								<input type="text"  readonly="readonly" value="EQ001">
+								<input type="text"  readonly="readonly" value="${stock.dstCode}">
+							</div>
+							
+							<div class="row" id="detailListRow" >
+								<div>
+									약번호
+								</div>
+								<input type="text"  readonly="readonly" value="${stock.drugNo}">
+							</div>
+							
+							<div class="row" id="detailListRow" >
+								<div>
+									허가번호
+								</div>
+								<input type="text"  readonly="readonly" value="${stock.dstNo}">
 							</div>
 							
 							<div class="row" id="detailListRow" >
 								<div>
 									품목명
 								</div>
-								<input type="text"  readonly="readonly" value="대충품목명10자리넘는대충품목명10자리">
+								<input type="text"  readonly="readonly" value="${stock.dstName}">
+							</div>
+							<div class="row" id="detailListRow" >
+								<div>
+									주성분
+								</div>
+								<input type="text"  readonly="readonly" value="${stock.dstelement}">
+							</div>
+							<div class="row" id="detailListRow" >
+								<div>
+									단가
+								</div>
+								<input type="text"  readonly="readonly" value="${stock.dstPrice}원">
+							</div>
+							
+							<div class="row" id="detailListRow" >
+								<div>
+									재고
+								</div>
+								<input type="text"  readonly="readonly" value="${stock.dstStock}">
 							</div>
 							
 							<div class="row" id="detailListRow" >
 								<div>
 									단위
 								</div>
-								<input type="text"  readonly="readonly" value="개">
+								<input type="text"  readonly="readonly" value="${stock.dstUnit}">
 							</div>
-							<div class="row" id="detailListRow" >
-								<div>
-									재고
-								</div>
-								<input type="text"  readonly="readonly" value="100">
-							</div>
+							
 							<div class="row" id="detailListRow" >
 								<div>
 									업체명
 								</div>
-								<input type="text"  readonly="readonly" value="대덕제약">
+								<input type="text"  readonly="readonly" value="${stock.dstMaker}">
 							</div>
+							
+							<div class="row" id="detailListRow" >
+								<div>
+									유통사
+								</div>
+								<input type="text"  readonly="readonly" value="${stock.dstDistr}">
+							</div>
+							
 							<div class="row" id="detailListRow" >
 								<div>
 									입고일
 								</div>
-								<input type="text"  readonly="readonly" value="2023.9.23">
+								<input type="text"  readonly="readonly" 
+										value="<fmt:formatDate value="${stock.equDate }" pattern="yyyy-MM-dd" />" />
 							</div>
 					</div>
 						

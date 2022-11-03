@@ -25,22 +25,22 @@ public class PatientDAOImpl implements PatientDAO {
 	}
 	
 	@Override
-	public List<PatientVO> selectSearchPatientList(Criteria cri) throws SQLException {
+    public List<PatientVO> selectSearchPatientList(Criteria cri) throws SQLException {
 
-		
-		int startRow = cri.getStartRowNum()+1;
-		int endRow = startRow+cri.getPerPageNum()-1;		
-		
-		Map<String, Object> dataParam = new HashMap<String, Object>();
-		dataParam.put("startRow", startRow);
-		dataParam.put("endRow", endRow);
-		dataParam.put("searchType", cri.getSearchType());
-		dataParam.put("keyword", cri.getKeyword());
+        
+        int startRow = cri.getStartRowNum()+1;
+        int endRow = startRow+cri.getPerPageNum()-1;        
+        
+        Map<String, Object> dataParam = new HashMap<String, Object>();
+        dataParam.put("startRow", startRow);
+        dataParam.put("endRow", endRow);
+        dataParam.put("searchType", cri.getSearchType());
+        dataParam.put("keyword", cri.getKeyword());
 
-		List<PatientVO> patientList = session.selectList("Patient-Mapper.selectSearchPatientList", dataParam);
+        List<PatientVO> patientList = session.selectList("Patient-Mapper.selectSearchPatientList", dataParam);
 
-		return patientList;
-	}
+        return patientList;
+    }
 
 	@Override
 	public int selectSearchPatientListCount(Criteria cri) throws SQLException {
@@ -49,10 +49,11 @@ public class PatientDAOImpl implements PatientDAO {
 	}
 
 	@Override
-	public PatientVO selectPatientByPatientNo(int pNo) throws SQLException {
+	public PatientVO selectPatientByPatientNo(String pNo) throws SQLException {
 		PatientVO patient = session.selectOne("Patient-Mapper.selectPatientByPatientNo", pNo);
 		return patient;
 	}
+  
 
 	@Override
 	public void insertPatient(PatientVO patient) throws SQLException {
@@ -60,6 +61,16 @@ public class PatientDAOImpl implements PatientDAO {
 	
 		
 	}
+
+    @Override
+    public List<PatientVO> searchPatientList(Criteria cri) throws SQLException {
+        Map<String, Object> dataParam = new HashMap<String, Object>();
+        dataParam.put("searchType", cri.getSearchType());
+        dataParam.put("keyword", cri.getKeyword());
+
+        List<PatientVO> searchpatientList = session.selectList("Patient-Mapper.selectPatientBySerchKeyword", dataParam);
+        return searchpatientList;
+    }
 
 }
 

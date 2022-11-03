@@ -369,7 +369,9 @@ figure {
 
 img {
   vertical-align: middle;
-  border-style: none; }
+  object-fit: cover;
+  border-style: none;
+}
 
 svg {
   overflow: hidden;
@@ -2315,17 +2317,18 @@ fieldset:disabled a.btn {
     border-color: #444452; }
   .btn-primary:focus, .btn-primary.focus {
     color: #fff;
-    background-color: #005445;
-    border-color: #00473a;
-    box-shadow: 0 0 0 0.2rem rgba(38, 142, 123, 0.5); }
+    background-color: #333258db;
+    border-color: #333258db;
+    box-shadow: 0 0 0 0.2rem rgba(151 151 161, 0.5);
+    }
   .btn-primary.disabled, .btn-primary:disabled {
     color: #fff;
     background-color: #333258;
     border-color: #333258; }
   .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #00473a;
-    border-color: #003a30; }
+    background-color: #333258e8;
+    border-color: #333258e8; }
     .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(38, 142, 123, 0.5); }
 

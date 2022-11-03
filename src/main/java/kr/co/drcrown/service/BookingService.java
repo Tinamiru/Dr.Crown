@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.dto.BookingVO;
+import kr.co.drcrown.dto.PatientVO;
 
 
 public interface BookingService {
@@ -24,4 +25,10 @@ public interface BookingService {
 	
 	
 	Map<String,Object> getBookingDateList(String bookingRegdate)throws SQLException;
+	
+	
+	BookingVO selectBookingById(String bookingCode) throws SQLException;
+	
+	BookingVO getPatientbybookingCode(String bookingCode) throws SQLException;
+	
 }

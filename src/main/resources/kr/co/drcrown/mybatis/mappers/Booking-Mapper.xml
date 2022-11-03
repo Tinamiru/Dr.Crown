@@ -40,11 +40,54 @@
 		where BOOKING_CODE=#{bookingCode}
 	</select>
 	
+	
 	<select id="selectBookingByDate" parameterType="str" resultType="booking">
 		SELECT BOOKING_CODE, MEM_ID, P_NO, BOOKING_REGDATE, BOOKING_RDATE, BOOKING_CC, BOOKING_DOC, BOOKING_WRITER, BOOKING_YN
 		FROM BOOKING
 		WHERE BOOKING_REGDATE LIKE TO_DATE(#{bookingRegdate} , 'YYYY-MM-DD')
+		AND BOOKING_YN like 'n'
 	</select>
+	
+	
+	<select id="selectPatientBybookingCode" parameterType="String" resultType="booking">
+		select
+		p.*, b.*
+		from BOOKING b
+        inner join patient p
+        on b.P_NO = P.P_NO
+		where BOOKING_CODE=#{bookingCode}
+	
+	</select>
+	
+	
+	
+	<select id="selectBookingByList" resultType="booking">
+		select
+		* 
+		from BOOKING
+		where BOOKING_YN like 'y'
+	</select>
+	
+	<update id="insertBooking" parameterType="booking">
+		insert into 
+		BOOKING(BOOKING_CODE,MEM_ID,P_NO,BOOKING_REGDATE,BOOKING_RDATE,BOOKING_CC,BOOKING_DOC,BOOKING_WRITER,BOOKING_YN)
+		values(GET_BOOKINGCODE('now'),#{memNo},#{pNo},SYSDATE,#{bookingRdate},#{bookingCc},#{bookingDoc},#{bookingWriter},'y')
+	</update>	
+	
+	<update id="updateBooking" parameterType="booking">
+		update BOOKING
+		set
+		BOOKING_RDATE =#{bookingRdate}, BOOKING_CC = #{bookingCc}, BOOKING_DOC=#{bookingDoc},BOOKING_WRITER=#{bookingWriter}
+		where BOOKING_CODE=#{bookingCode}	
+	</update>	
+	
+	
+	<update id="deleteBooking" parameterType="str">
+		delete 
+		from BOOKING 
+		where BOOKING_CODE=#{bookingCode}		
+	</update>
+	
 <!-- 	<select id="selectMemberByPicture" parameterType="str" resultType="member">
 		select
 		*

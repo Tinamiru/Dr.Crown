@@ -6,6 +6,23 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 
+<style>
+#table10 {
+	overflow: auto !important;
+  }
+#table10::-webkit-scrollbar {
+	width: 50px !important;
+}
+#table10::-webkit-scrollbar-thumb {
+	background-color: #2f3542 !important;
+}
+#table10::-webkit-scrollbar-track {
+	background-color: grey !important;
+}
+</style>
+
+
+
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cri" value="${dataMap.pageMaker.cri }" />
 <c:set var="noticeList" value="${dataMap.noticeList }" />
@@ -219,7 +236,7 @@
 								</div>
 							</div>
 						</div>
-                           <div class="card-body">
+                           <div id="patientGraph" class="card-body">
                                <div class="table-responsive">
                                    <div id="example_wrapper" class="dataTables_wrapper">
 						       		<div class="row justify-content-center" >
@@ -385,8 +402,8 @@
                                    <div id="example_wrapper" class="dataTables_wrapper">
 						       		<div class="row justify-content-center" >
 						               <section class="content" style="height: 60vh; width: 95%;" >
-                                			<table class="table table-bordered border-white display min-w850" role="grid" 
-                                					style="margin: auto; text-align: center; height: 18vh; overflow-y:scroll;">
+                                			<table id="table10" class="table table-bordered border-white display min-w850" role="grid" 
+                                					style="margin: auto; text-align: center; height: 18vh; overflow-y:scroll;" >
 	                                        <thead>
 	                                            <tr role="row" bgcolor="#333258" style="color: white">
 	                                            	<th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 10px;">순번</th>

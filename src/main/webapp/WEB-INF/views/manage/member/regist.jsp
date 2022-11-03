@@ -130,8 +130,22 @@ function regist_go(){
 
 <c:if test="${from eq 'regist'}" >
 	<script>
-		window.close();
-		alert("사원아이디가 생성되었습니다.");
-		window.opener.parent.location.reload(true);
+	window.onload = function(){
+		swal({
+			  title: "성공",
+			  text: "사원아이디가 생성되었습니다.",
+			  icon: "success",
+			  button: "확인",
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+			  window.close();
+			  window.opener.parent.location.reload(true);
+		 
+		  }
+		});
+		
+	}
+
 	</script>
 </c:if>

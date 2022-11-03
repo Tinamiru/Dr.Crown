@@ -5,16 +5,16 @@
 <mapper namespace="Member-Mapper">
 	 <sql id="search">	
 		<if test="searchType == 'i'.toString()">
-			and mem_id like '%'||#{keyword}||'%'			
+			and mem_id like '%'||#{keyword}||'%'
 		</if>
 		<if test="searchType == 'p'.toString()">
-			and mem_phone like '%'||#{keyword}||'%'			
+			and mem_phone like '%'||#{keyword}||'%'
 		</if>
 		<if test="searchType == 'e'.toString()">
-			and mem_mail like '%'||#{keyword}||'%'			
+			and mem_mail like '%'||#{keyword}||'%'
 		</if>
 		<if test="searchType == 'n'.toString()">
-			and mem_name like '%'||#{keyword}||'%'			
+			and mem_name like '%'||#{keyword}||'%'
 		</if>			
 	</sql>	
 	 <sql id="registOptionAuthority">	
@@ -59,38 +59,49 @@
 		select
 		*
 		from member
-		where mem_id=#{mem_id}
+		where mem_id=#{id}
 	</select>
-	<select id="selectMemberByPicture" parameterType="str" resultType="member">
+	<select id="selectMemberByPicture" parameterType="str" resultType="file">
 		select
 		*
+		from "FILE"
+		where file_no=#{mem_pic}
+	</select>
+	
+	<select id="selectMemberDoctorList" resultType="member">
+		select
+		* 
 		from member
-		where mem_pic=#{mem_pic}
+		where MEM_OFCPS like '전문의'
+	</select>
+	
+	<select id="selectNewMember" resultType="str">
+		select
+		<include refid="registOptionAuthority" />
+		from dual
 	</select>
 	
 	
 	<update id="insertMember" parameterType="hashMap">
 		insert into 
-		member(mem_id, mem_pwd, mem_mail, mem_phone,mem_pic,mem_name,mem_authority,MEM_OFCPS,MEM_RSPOFC)
+		member(mem_id, mem_pwd, mem_mail, mem_phone,mem_name,mem_authority,MEM_OFCPS,MEM_RSPOFC,MEM_PIC,MEM_FACE,MEM_FINGER)
 		values(
-		<include refid="registOptionAuthority" />
-		,'1234',#{member.memMail},#{member.memPhone},#{member.memPic},#{member.memName},
+		#{member.memId}
+		,'1234',#{member.memMail},#{member.memPhone},#{member.memName},
 		<include refid="authority" />
-		,#{member.memOfcps},#{member.memRspofc}
+		,#{member.memOfcps},#{member.memRspofc},
+		#{member.memId} || 'PP',
+		#{member.memId} || 'FC',
+		#{member.memId} || 'FP'
 		)
 	</update>
 	
 	<update id="updateMember" parameterType="member">
 		update member 
 		set 
-		mem_pwd=#{mem_pwd},mem_mail=#{mem_mail},mem_phone=#{mem_phone},mem_name=#{mem_name},
-		mem_pic=#{mem_pic},mem_enabled=1
-		
-		<if test="authority != null">
-			,mem_authority=#{mem_authority}
-		</if>
-		
-		where mem_id=#{mem_id}
+		mem_name=#{memName},mem_mail=#{memMail},mem_phone=#{memPhone},mem_bir=#{memBir},
+		mem_addr=#{memAddr}, mem_addr2=#{memAddr2}, mem_pcode=#{memPcode}
+		where mem_id=#{memId}
 	</update>
 	
 	<update id="deleteMember" parameterType="str" >
@@ -98,8 +109,6 @@
 		from member 
 		where mem_id=#{mem_id}		
 	</update>
-	 
-	
 	
 </mapper>
 

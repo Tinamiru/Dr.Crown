@@ -5,6 +5,8 @@ import java.util.List;
 
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.dto.BookingVO;
+import kr.co.drcrown.dto.MemberVO;
+import kr.co.drcrown.dto.PatientVO;
 
 
 public interface BookingDAO {
@@ -20,4 +22,8 @@ public interface BookingDAO {
 	void deleteBooking(String bookingCode) throws SQLException;
 	
 	List<BookingVO> selectBookingByDate(String bookingRegdate)throws SQLException;
+	
+	List<BookingVO> selectBookingByList(Criteria cri)throws SQLException;
+	
+	BookingVO selectPatientBybookingCode(String bookingCode) throws SQLException;
 }

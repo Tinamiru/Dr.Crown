@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -50,13 +51,15 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 				result.setDetails(authUser);
 				// 리턴한다. successHandler로 전송된다.
 				return result;
-				
+			}
+			if (!invalidCheck) {
+			    throw new DisabledException("비활성화 계정입니다");
 			}
 			
 		} catch (NotFoundIdException e) {
-			throw new UsernameNotFoundException("존재하지 않는 아이디입니다.");
+			throw new UsernameNotFoundException("존재하지 않는 아이디입니다");
 		} catch (InvalidPasswordException e) {
-			throw new BadCredentialsException("패스워드가 일치하지 않습니다.");
+			throw new BadCredentialsException("패스워드가 일치하지 않습니다");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new BadCredentialsException("서버 에러");

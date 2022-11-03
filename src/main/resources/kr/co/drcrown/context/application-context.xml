@@ -47,6 +47,12 @@
 	<bean id="stockDAO" class="kr.co.drcrown.dao.StockDAOImpl"
 		p:session-ref="sqlSession"
 	/> 
+	<bean id="cureDetailDAO" class="kr.co.drcrown.dao.CureDetailDAOImpl"
+		p:session-ref="sqlSession"
+	/> 
+	<bean id="fileDAO" class="kr.co.drcrown.dao.FileDAOImpl"
+		p:session-ref="sqlSession"
+	/> 
 	
 	
 	
@@ -61,6 +67,9 @@
 	/> 
   	<bean id="memberService" class="kr.co.drcrown.service.MemberServiceImpl" 
 		p:memberDAO-ref="memberDAO"
+		p:bookingDAO-ref="bookingDAO"
+		p:patientDAO-ref="patientDAO"
+		p:fileDAO-ref="fileDAO"
 	/> 
   	<bean id="bookingService" class="kr.co.drcrown.service.BookingServiceImpl" 
 		p:bookingDAO-ref="bookingDAO"
@@ -70,6 +79,12 @@
 	/> 
 	<bean id="stockService" class="kr.co.drcrown.service.StockServiceImpl" 
 		p:stockDAO-ref="stockDAO"
+	/> 
+	<bean id="cureDetailService" class="kr.co.drcrown.service.CureDetailServiceImpl" 
+		p:cureDetailDAO-ref="cureDetailDAO"
+	/> 
+	<bean id="fileService" class="kr.co.drcrown.service.FileServiceImpl" 
+		p:fileDAO-ref="fileDAO"
 	/> 
 
 </beans>

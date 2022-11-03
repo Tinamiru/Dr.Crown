@@ -25,11 +25,6 @@
                         </div>
                         <br>
                         <h4><i class="fa fa-exclamation-triangle text-warning"></i> 페이지를 찾을 수 없습니다</h4>
-                    
-						<div>
-							<br>
-                            <a class="btn btn-primary" href="<%=request.getContextPath()%>/index">이전 페이지</a>
-                        </div>
                     </div>
                 </div>
             </div>

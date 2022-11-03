@@ -24,6 +24,15 @@
 		<typeAlias type="kr.co.drcrown.dto.PatientVO"  alias="patient"/>
 		<typeAlias type="kr.co.drcrown.dto.ApprovalVO"  alias="approval"/>
 		<typeAlias type="kr.co.drcrown.dto.StockVO"  alias="stock"/>
+		<typeAlias type="kr.co.drcrown.dto.CureDetailVO"  alias="curedetail"/>
+		<typeAlias type="kr.co.drcrown.dto.MpriceVO"  alias="mprice"/>
+		<typeAlias type="kr.co.drcrown.dto.CureVO"  alias="cure"/>
+		<typeAlias type="kr.co.drcrown.dto.SymptomVO"  alias="symptom"/>
+		<typeAlias type="kr.co.drcrown.dto.PtPayVO"  alias="ptpay"/>
+		<typeAlias type="kr.co.drcrown.dto.CureDlistVO"  alias="curedlist"/>
+		<typeAlias type="kr.co.drcrown.dto.FileVO"  alias="file"/>
+		
+		
   	</typeAliases>
     
 	

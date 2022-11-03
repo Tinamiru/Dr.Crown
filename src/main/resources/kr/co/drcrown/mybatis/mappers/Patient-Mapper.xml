@@ -3,40 +3,14 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Patient-Mapper">
-<!-- 	 <sql id="search"> -->
-<!-- 		<if test="searchType == 't'.toString()"> -->
-<!-- 			and notice_title like '%'||#{keyword}||'%'			 -->
-<!-- 		</if> -->
-<!-- 		<if test="searchType == 'w'.toString()"> -->
-<!-- 			and notice_writer like '%'||#{keyword}||'%'			 -->
-<!-- 		</if> -->
-<!-- 		<if test="searchType == 'c'.toString()"> -->
-<!-- 			and notice_content like '%'||#{keyword}||'%'			 -->
-<!-- 		</if> -->
-<!-- 		<if test="searchType == 'tc'.toString()"> -->
-<!-- 			and ( -->
-<!-- 			notice_title like '%'||#{keyword}||'%' -->
-<!-- 			or -->
-<!-- 			notice_content like '%'||#{keyword}||'%'						 -->
-<!-- 			)			 -->
-<!-- 		</if> -->
-<!-- 		<if test="searchType == 'cw'.toString()"> -->
-<!-- 			and ( -->
-<!-- 			notice_writer like '%'||#{keyword}||'%' -->
-<!-- 			or -->
-<!-- 			notice_content like '%'||#{keyword}||'%'						 -->
-<!-- 			)			 -->
-<!-- 		</if> -->
-<!-- 		<if test="searchType == 'tcw'.toString()"> -->
-<!-- 			and ( -->
-<!-- 			notice_title like '%'||#{keyword}||'%' -->
-<!-- 			or -->
-<!-- 			notice_writer like '%'||#{keyword}||'%' -->
-<!-- 			or -->
-<!-- 			notice_content like '%'||#{keyword}||'%'						 -->
-<!-- 			)			 -->
-<!-- 		</if> -->
-<!-- 	</sql> -->
+	 <sql id="search">
+		<if test="searchType == 'n'.toString()">
+			AND p.P_NAME LIKE '%'||#{keyword}||'%' OR p.p_no LIKE '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'y'.toString()">
+			AND fn_choSearch(p.P_NAME) LIKE '%'||#{keyword}||'%' OR p.P_NO LIKE '%'||#{keyword}||'%'
+		</if>
+	</sql>
 	
 	<select id="selectSearchPatientList" resultType="patient">		
 <!-- 		select * -->
@@ -67,13 +41,22 @@
 		order by p_name
 		
 	</select>
-	<select id="selectPatientByPatientNo" parameterType="int" resultType="patient">
+	<select id="selectPatientByPatientNo" parameterType="str" resultType="patient">
 		select 
 		* 
 		from patient
 		where p_no=#{pNo}
 	</select>
-	
+
+	<select id="selectPatientBySerchKeyword" parameterType="str" resultType="patient">
+		select *
+		from patient p
+		WHERE 1=1
+		<include refid="search" />
+		order by p_name
+	</select>
+
+
 	<update id="insertPatient" parameterType="patient">
 		insert into 
 		patient(P_NO,P_NAME,P_SFX,P_BIR,P_RNUM,P_TEL,P_ZIPCODE,P_ADDR1,P_ADDR2,P_FDATE,P_LASTDATE,P_INSURANCE)

@@ -3,7 +3,129 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Stock-Mapper">
-	 <sql id="search">
+
+ 
+ <!-- 비품관리 매핑 -->
+	<select id="selectEquipByNo" parameterType="string" resultType="stock">
+		select 
+		* 
+		from equipment
+		where equ_code=#{equCode}
+	</select>
+	
+	<select id="selectEquipList" parameterType="string" resultType="stock">
+		select 
+		* 
+		from equipment
+		order by equ_code
+	</select>
+	
+	<update id="insertEquip" parameterType="stock">
+		insert into 
+		equipment(equ_code,equ_name,equ_unit,equ_maker,equ_distr,equ_price)
+		values('equ' || LPAD(EQUIPMENT_SEQ.nextval,3,0),#{equName},#{equUnit},#{equMaker},#{equDistr},#{equPrice})
+	</update>	
+	
+	
+	<update id="insertEpuipPreOrder" parameterType="stock">
+		insert into
+		pre_order (reo_code, equ_code, reo_amount, reo_date, reo_price, reo_totalpay)
+		VALUES ('reo'||LPAD(EQUIPMENT_PREODER_SEQ.nextval,5,0),#{equCode},to_number(#{equStock}),TO_CHAR(SYSDATE, 'YYYYMMDD'),#{equPrice},to_number(#{equStock})*#{equPrice})		
+	</update>
+
+
+
+
+<!-- 소모품 매핑 -->
+	
+	<select id="selectConsumByNo" parameterType="string" resultType="stock">
+		select 
+		* 
+		from consumable
+		where con_code=#{conCode}
+	</select>
+	
+	<select id="selectConsumList" parameterType="string" resultType="stock">
+		select 
+		* 
+		from consumable
+		order by con_code
+	</select>
+	
+	<update id="insertConsum" parameterType="stock">
+		insert into 
+		consumable(con_code,con_name,con_unit,con_maker,con_distr,con_price)
+		values('con' || LPAD(CONSUMABLE_SEQ.nextval,3,0),#{conName},#{conUnit},#{conMaker},#{conDistr},#{conPrice})
+	</update>	
+	
+	<update id="insertConsumPreOrder" parameterType="stock">
+		insert into
+		pre_order (reo_code, equ_code, reo_amount, reo_date, reo_price, reo_totalpay)
+		VALUES ('reo'||LPAD(EQUIPMENT_PREODER_SEQ.nextval,5,0),#{equCode},to_number(#{equStock}),TO_CHAR(SYSDATE, 'YYYYMMDD'),#{equPrice},to_number(#{equStock})*#{equPrice})		
+	</update>
+
+
+
+
+<!-- 의료기기 정보 매핑 -->
+	
+	<select id="selectMedideviceByNo" parameterType="string" resultType="stock">
+		select 
+		* 
+		from medidevice
+		where medi_code=#{mediCode}
+	</select>
+	
+	<select id="selectMedideviceList" parameterType="string" resultType="stock">
+		select 
+		* 
+		from medidevice
+		order by medi_code
+	</select>
+	
+	<update id="insertMedidevice" parameterType="stock">
+		insert into 
+		medidevice(medi_code,medi_name,medi_maker,medi_distr,medi_price)
+		values('medi' || LPAD(MEDIDEVICE_SEQ.nextval,3,0),#{mediName},#{mediMaker},#{mediDistr},#{mediPrice})
+	</update>	
+	
+	<update id="insertMedidevicePreOrder" parameterType="stock">
+		insert into
+		pre_order (reo_code, equ_code, reo_amount, reo_date, reo_price, reo_totalpay)
+		VALUES ('reo'||LPAD(EQUIPMENT_PREODER_SEQ.nextval,5,0),#{equCode},to_number(#{equStock}),TO_CHAR(SYSDATE, 'YYYYMMDD'),#{equPrice},to_number(#{equStock})*#{equPrice})		
+	</update>
+
+<!-- 의약품 재고 매핑 -->
+
+	<select id="selectDrugStockByNo" parameterType="string" resultType="stock">
+		select 
+		* 
+		from drug_stock
+		where dst_code=#{dstCode}
+	</select>
+	
+	<select id="selectDrugStockList" parameterType="string" resultType="stock">
+		select 
+		* 
+		from drug_stock
+		order by dst_code
+	</select>
+	
+	<update id="insertDrugStock" parameterType="stock">
+		insert into 
+		drug_stock(dst_code,drug_no,dst_element,dst_no,dst_name,dst_unit,dst_maker,dst_price)
+		values('dst' || LPAD(drugStock_seq.nextval,3,0),#{drugNo},#{dstElement},#{dstNo},#{dstName},#{dstUnit},#{dstMaker},#{dstPrice})
+	</update>	
+	
+	<update id="insertDrugStockPreOrder" parameterType="stock">
+		insert into
+		pre_order (reo_code, equ_code, reo_amount, reo_date, reo_price, reo_totalpay)
+		VALUES ('reo'||LPAD(equipment_preoder_seq.nextval,5,0),#{equCode},to_number(#{equStock}),TO_CHAR(SYSDATE, 'YYYYMMDD'),#{equPrice},to_number(#{equStock})*#{equPrice})		
+	</update>
+
+
+
+	<!--  <sql id="search">
 		<if test="searchType == 'n'.toString()">
 			and equ_name like '%'||#{keyword}||'%'			
 		</if>
@@ -13,7 +135,7 @@
 		<if test="searchType == 'm'.toString()">
 			and equ_maker like '%'||#{keyword}||'%'			
 		</if>
-		<!-- <if test="searchType == 'tc'.toString()">
+		<if test="searchType == 'tc'.toString()">
 			and (
 			notice_title like '%'||#{keyword}||'%'
 			or
@@ -35,10 +157,10 @@
 			or
 			notice_content like '%'||#{keyword}||'%'						
 			)			
-		</if> -->
+		</if>
 	</sql>
-	
-	<select id="selectSearchEquipList" resultType="stock">		
+	 -->
+	<!-- <select id="selectSearchEquipList" resultType="stock">		
 		select *
 		from(
 		    select rownum as rnum,SearchEquipResult.*
@@ -56,7 +178,7 @@
 		 <![CDATA[
 		where rnum >= #{startRow}		
 		 ]]>
-	</select>
+	</select> -->
 	
 	<!-- <select id="selectEquipCount" resultType="int">
 		select 
@@ -68,33 +190,8 @@
 		
 	</select>
  -->
-	<select id="selectEquipByNo" parameterType="string" resultType="stock">
-		select 
-		* 
-		from equipment
-		where equ_code=#{equCode}
-	</select>
-	
-	<select id="selectEquipList" parameterType="string" resultType="stock">
-		select 
-		* 
-		from equipment
-		order by equ_code
-	</select>
-	
-	
-	
-	<update id="insertEquip" parameterType="stock">
-		insert into 
-		equipment(equ_code,equ_name,equ_unit,equ_maker,equ_distr,equ_price)
-		values('equ' || LPAD(EQUIPMENT_SEQ.nextval,3,0),#{equName},#{equUnit},#{equMaker},#{equDistr},#{equPrice})
-	</update>	
-	
-	<update id="insertEpuipPreOrder" parameterType="stock">
-		insert into
-		pre_order (reo_code, equ_code, reo_amount, reo_date, reo_price, reo_totalpay)
-		VALUES ('reo'||LPAD(EQUIPMENT_PREODER_SEQ.nextval,5,0),#{equCode},to_number(#{equStock}),TO_CHAR(SYSDATE, 'YYYYMMDD'),#{equPrice},to_number(#{equStock})*#{equPrice})		
-	</update>
+
+
 <!--	<select id="selectNoticeByImage" resultType="notice">
 		select 
 		* 

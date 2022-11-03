@@ -170,7 +170,21 @@
 
 <c:if test="${from eq 'remove'}" >
 	<script>
-		alert("사원아이디가 삭제되었습니다.");
-		window.location.reload();
+	window.onload = function(){
+	swal({
+		  title: "성공",
+		  text: "사원아이디가 삭제되었습니다.",
+		  icon: "success",
+		  button: "확인",
+	})
+	.then((willDelete) => {
+	  if (willDelete) {
+		  window.location.reload();
+	 
+	  }
+	});
+	
+}
+	
 	</script>
 </c:if>

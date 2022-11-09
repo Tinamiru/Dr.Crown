@@ -60,7 +60,7 @@
 	<update id="insertPatient" parameterType="patient">
 		insert into 
 		patient(P_NO,P_NAME,P_SFX,P_BIR,P_RNUM,P_TEL,P_ZIPCODE,P_ADDR1,P_ADDR2,P_FDATE,P_LASTDATE,P_INSURANCE)
-		values(#{pNo},#{pName},#{pSfx},#{pBir},#{pRnum},#{pTel},#{pZipcode},#{pAddr1},#{pAddr2},#{pFdate},#{pLastdate},#{pInsurance})
+		values(GET_PCODE('now'),#{pName},#{pSfx},#{pBir},#{pRnum},#{pTel},#{pZipcode},#{pAddr1},#{pAddr2},#{pFdate},#{pLastdate},#{pInsurance})
 	</update>	
 <!--
 	<select id="selectNoticeByImage" resultType="notice">
@@ -83,19 +83,19 @@
 	</update>
 	
 	
-		
-	<update id="updateNotice" parameterType="notice">
-		update notice 
+	 -->		
+	<update id="updatePatient" parameterType="patient">
+		update patient 
 		set 
-		title=#{title},content=#{content}		
-		where nno=#{nno}
+		P_NAME=#{pName},P_SFX=#{pSfx},P_BIR=#{pBir},P_TEL=#{pTel},P_ZIPCODE=#{pZipcode},P_ADDR1=#{pAddr1},P_ADDR2=#{pAddr2},P_MEMO=#{pMemo}		
+		where P_NO=#{pNo}
 	</update>
-	
-	<update id="deleteNotice" parameterType="int" >
+
+	<update id="deletePatient" parameterType="str" >
 		delete 
-		from notice 
-		where nno=#{nno}		
+		from patient 
+		where p_no=#{pNo}		
 	</update>
- -->
+
 	
 </mapper>

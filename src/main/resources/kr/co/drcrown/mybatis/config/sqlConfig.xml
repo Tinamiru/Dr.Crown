@@ -31,6 +31,7 @@
 		<typeAlias type="kr.co.drcrown.dto.PtPayVO"  alias="ptpay"/>
 		<typeAlias type="kr.co.drcrown.dto.CureDlistVO"  alias="curedlist"/>
 		<typeAlias type="kr.co.drcrown.dto.FileVO"  alias="file"/>
+		<typeAlias type="kr.co.drcrown.dto.DrugInfoVO"  alias="drugInfo"/>
 		
 		
   	</typeAliases>

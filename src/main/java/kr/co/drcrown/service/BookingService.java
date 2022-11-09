@@ -31,4 +31,9 @@ public interface BookingService {
 	
 	BookingVO getPatientbybookingCode(String bookingCode) throws SQLException;
 	
+	Map<String,Object> selectBookingpNoList(String pNo)throws SQLException;
+	
+	public void registvisitBooking(BookingVO booking) throws Exception;
+	
+	
 }

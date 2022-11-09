@@ -26,35 +26,44 @@
             overflow: auto;
         }
 
-        #userListTable {
+        #userListTable,
+        #userListTable1
+         {
             width: 700px;
             border: 0px;
             border-collapse: collapse;
         }
 
         #userListTable th,
+        #userListTable1 th,
+        #userListTable1 td,
         #userListTable td{
             width: 10%;
             border-right: 1px solid lightgray;
         }
 
         #userListTable th:last-child,
+        #userListTable1 th:last-child,
+        #userListTable1 td:last-child,
         #userListTable td:last-child{
             border-right: 0px !important;
         }
 
-        #userListTable tr:first-child{
+        #userListTable tr:first-child,
+        #userListTable1 tr:first-child{
             background-color: gray !important;
             color: white !important;
             font-weight: bold !important;
         }
 
-        #userListTable tr:nth-child(odd){
+        #userListTable tr:nth-child(odd),
+        #userListTable1 tr:nth-child(odd){
             background-color: blanchedalmond;
 
         }
 
-        #userListTable th {
+        #userListTable th, 
+        #userListTable1 th {
             position: sticky;
             top: 0px;
             background-color: gray !important;
@@ -69,17 +78,37 @@
 	<div class="contaner-fluid" style="margin: 1.5em; ">
 		<div class="row">
 			<div class="col-sm-6 justify-content-center" style="border-right: solid 1px;">
+			<div style="float:right; margin-top: -10px">
+
+											<ul class="nav nav-pills justify-content-end mb-3">
+			                                    <li class=" nav-item">
+			                                        <a href="#navpills2-1" class="nav-link active" data-toggle="tab" aria-expanded="false">데스크홈</a>
+			                                    </li>
+			                                    <li class=" nav-item">
+			                                        <a href="#navpills2-1" class="nav-link" data-toggle="tab" aria-expanded="false">진료내역</a>
+			                                    </li>
+			                                    <li class="nav-item">
+			                                        <a href="#navpills2-2" class="nav-link" data-toggle="tab" aria-expanded="false">수납/출력</a>
+			                                    </li>
+			                                    <li class="nav-item" onclick="goInsidePage('/desk/booking/list','M030100')">
+			                                        <a  class="nav-link"  data-toggle="tab" aria-expanded="true">환자예약</a>
+			                                    </li>
+			                                </ul>
+				</div>	
 				<section class="content" style="hight 80%; wigth:100%">
+		
 					<section class="content-header" >
 						<div class="container-fluid" >
 								<div class="row">
 						<div class="col-sm-12">
 							<div style="float: left;">
 								<div id="keyword" class="card-tools"
-								style="width: 450px; height: 60px; font-size: 13px; float: right;">
-									<div class="input-group row">
-				<li class="dropdown" style="font-size:23px;">
-				<input class="dropdown-toggle"  href="#" id="inputkeyword" onkeyup='selectList()'  data-toggle="dropdown"><i class="fa fa-fw">&#xF002;</i></a>
+								style="width: 450px; height: 60px; font-size: 13px; float: left;">
+									<div class="input-group search-area d-lg-inline-flex d-none" style="margin-left: -30px">
+			<input class="form-control"  href="#" id="inputkeyword" onkeyup='selectList()' placeholder="환자검색" data-toggle="dropdown">
+				<div class="input-group-append">
+										<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+									</div>
                 <ul class="dropdown-menu">
                   <li class="dropdown" id="aaa">
                   <div style="width:550px;height:400px;  overflow:auto" class="bg-light">
@@ -99,7 +128,7 @@
                   </div>
                   </li>
                 </ul>
-              </li>
+            
 										
 										<!-- end : search bar -->
 									</div>
@@ -112,8 +141,7 @@
 					</section>
 					
 				
-					
-					<div class="card" style="height: 60vh; overflow: hidden;" >
+					<div class="card" style="height: 32vh; overflow: hidden;" >
 						
 
 						<div class="card-body" style="text-align: left; font-size: 13px;">
@@ -125,23 +153,23 @@
                       
                                     <form id="frm" method="post">
 
-                                        <div class="form-row">
+                                        <div class="form-row" id="input2">
                                             <div class="form-group col-md-2">
                                                 <label>이름</label>
-                                                <input type="text" class="form-control" id="pName" name="pName" placeholder="1234 Main St">
+                                                <input type="text" class="form-control" id="pName" name="pName" placeholder="">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label>주민등록번호</label>
-                                                <input type="email" class="form-control" id="pRnum" name="pRnum" placeholder="Email">
+                                                <input type="email" class="form-control" id="pRnum" name="pRnum" placeholder="">
                                             </div>
                                             
                                             <div class="form-group col-md-3">
                                                 <label>휴대전화</label>
-                                                <input type="text" class="form-control" id="pTel" name="pTel"  placeholder="Password">
+                                                <input type="text" class="form-control" id="pTel" name="pTel"  placeholder="">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label>차트번호</label>
-                                                <input type="text" class="form-control" id="pNo" name="pNo"  placeholder="Password">
+                                                <input type="text" class="form-control" id="pNo" name="pNo"  placeholder="환자저장시 공란">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label>생년월일</label>
@@ -151,10 +179,26 @@
                                                 <label>환자메모</label>
                                                 <input type="text" class="form-control">
                                             </div>
-                                            <button type="button" class="btn btn-primary" id="add" style="float: left; border-radius: 10px; margin-right: 5px; height: 70px ">환자<br /><br /><br />저장</button>
-                                            <button type="button" class="btn btn-primary" onclick="detail()" style="float: left; border-radius: 10px; margin-right: 5px; height: 70px">접수</button>
+                                           <button type="button" class="btn btn-dark mb-2  mr-2" id="toastr-success-bottom-full-width">Bottom Full Width</button>
                                         </div>
-                                       
+                                         <div class="form-group col-md-2" style="float: right;">
+                                        	<label>보험정보</label>
+                                            <select class="my-select" >
+
+											  <option>일반(비급여)</option>
+											
+											  <option>건강 보험</option>
+											
+											  <option>의료급여 1종</option>
+											  
+											  <option>의료급여 2종</option>
+											  
+											  <option>급여2종장애</option>
+											  
+											  <option>전액본인부담</option>
+											
+											</select>
+                                       </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-2">
                                                 <label>우편번호</label>
@@ -167,16 +211,15 @@
                                                 <input type="text" id="address_kakao" name="address" class="form-control" />
                                             </div>
                                            			
-                                           			<button type="button" class="btn btn-primary" style="float: left; border-radius: 10px; margin-right: 5px;height: 70px">수납<br /><br /><br />저장</button>
+                                           			<button type="button" class="btn btn-primary" onclick="kwak();" style="float: left; border-radius: 10px; margin-right: 5px;height: 70px">수납<br /><br /><br />저장</button>
                                            			
                                         </div>
                                      
                                         
-                                    </form>
-                                    
+                                    </form>	
 								
 										
-										<table class="ui celled table" border='1'>
+								<!-- 		<table class="ui celled table" border='1'>
 										  <thead>
 										    <tr>
 										    <th>할인금액</th>
@@ -214,7 +257,7 @@
 										      <td data-label="Job">0</td>
 										    </tr>
 										  </tbody>
-										</table>
+										</table> -->
 
                                 </div>
 				
@@ -229,44 +272,10 @@
 						
 					</div>
 					
+				<button type="button" class="btn btn-primary" id="add" style="float: right; border-radius: 10px; margin-right: 5px; height: 70px ">환자<br /><br /><br />저장</button>
+                                            <button type="button" class="btn btn-primary" name="deskbooking" style="float: right; border-radius: 10px; margin-right: 5px; height: 70px">접수</button>
 				</section>
-				
-				
-									
-<div class="row justify-content-center" >
-					<section class="content" style="height: 30vh; width: 95%;" >
-						<div class="card" style="overflow-y: scroll;">
-							<div class="card-body" style="text-align: center; font-size: 13px;;">
-								<div class="row">
-									<div class="col-sm-12">
-									<div id="ajaxCureList"><table class="table table-bordered" id="userListTable">
-											<tr bgcolor="#333258" style="color: white; cursor: default;">
-												<th>진료일자</th>
-												<th>진료의사</th>
-												<th>치식</th>
-												<th>진료내역</th>
-											</tr>
-											<tr>
-												<td colspan="4">환자를선택해주세요</td>
-												
-											</tr>
-										
-											
-										</table>
-										</div>
-										
-									</div>
-									<!-- col-sm-12 -->
-								</div>
-								<!-- row -->
-							</div>
-							<!-- card-body -->
-						</div>
-					</section>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="row justify-content-center" style="padding-bottom: 3vh;">
+			<div class="row justify-content-center" style="padding-bottom: 3vh;">
 					<section class="content" style="height: 50vh; width: 95%;">
 						<section class="content-header">
 							<h4 style="text-align: left; margin-top: 1px;">접수조회</h4>
@@ -298,9 +307,19 @@
 					</section>
 					
 				</div>
+									
+
+
+
+			</div>
+			<div class="col-sm-6">
+			 <div id="Context">
+
+
+		
 				
 				<div class="row justify-content-center" style="padding-bottom: 8vh;">
-					<section class="content" style="height: 43vh; width: 95%;" >
+					<section class="content" style="height: 47vh; width: 95%;" >
 						<section class="content-header">
 							<div class="container-fluid">
 								<h4 style="text-align: left; margin-top: 1px; ">예약목록</h4>
@@ -343,14 +362,51 @@
                  
                             
             
-                    	<div id="calendar" style="height: 370px; margin-top: -43px"></div>
+                    	<div id="calendar" style="height: 400px; margin-top: -43px"></div>
 								<!-- row -->
 							</div>
 							<!-- card-body -->
 						</div>
 					</section>
 				</div>
+				
+				<div class="row justify-content-center" >
+					<section class="content" style="height: 45vh; width: 95%;" >
+					<section class="content-header">
+							<div class="container-fluid">
+								<h4 style="text-align: left; margin-top: 1px; ">진료히스토리</h4>   
+							</div>
+						</section>
+						<div class="card" style="overflow-y: scroll;">
+							<div class="card-body" style="text-align: center; font-size: 13px;;">
+								<div class="row">
+									<div class="col-sm-12">
+									<div id="ajaxCureList"><table class="table table-bordered" id="userListTable">
+											<tr bgcolor="#333258" style="color: white; cursor: default;">
+												<th>진료일자</th>
+												<th>진료의사</th>
+												<th>치식</th>
+												<th>진료내역</th>
+											</tr>
+											<tr>
+												<td colspan="4">환자를선택해주세요</td>
+												
+											</tr>
+										
+											
+										</table>
+										</div>
+										
+									</div>
+									<!-- col-sm-12 -->
+								</div>
+								<!-- row -->
+							</div>
+							<!-- card-body -->
+						</div>
+					</section>
 			</div>
+			  </div>
 		</div>
 
 
@@ -363,9 +419,10 @@
 		</div>
 	</div>
 </div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 
 <script>
 		$(document).ready(function(){
@@ -387,8 +444,7 @@
 </script>
 	
 <script>
-$(function () {
-
+$( window.bcal = function () {
 	  $("#datePicker").datepicker({ 
 		  	format: 'yyyy-mm-dd',
 	        autoclose: true, 
@@ -398,24 +454,24 @@ $(function () {
 	  }).on('changeDate', function (e) {
 		  console.log(document.getElementById('datePicker').value)
 
-		  var data1 = moment(document.getElementById('datePicker').value).format("YYYYMMDD");
+		  var data = moment(document.getElementById('datePicker').value).format("YYYYMMDD");
 
-		   console.log(data1);
+		   console.log(data);
 
-		   list(data1);
-		 
+		   list(data);
 	    }).datepicker('update', new Date());
 		var date = moment(document.getElementById('datePicker').value).format("YYYYMMDD");
 		list(date);
+		todayList(date);
 	
 });
 
 
 function list(b){  
-	if (b=="Invalid date"){
+	if (isNaN(b)){
 		alert("이미 선택한 날짜입니다")
-		location.reload();
-		return list()
+		return bcal()
+
 	}
 
 	$.ajax({
@@ -424,37 +480,79 @@ function list(b){
 		data: {bookingRegdate: b},
 		dataType:"json",
 		success: ajaxHtml,
+
 		error:function(){alert("error");
-		console.log(data)}
+		console.log(data)
+		}
 	});
+
 }
 
+
 	function ajaxHtml(data){
-		var html="<table class='table table-bordered' id='userListTable'>";
+		
+		var html="<table class='table table-bordered' id='userListTable1'>";
 		html+="<tr>";
 		html+="<th>순번</th>";
-		html+="<th>진료|예약내역</th>";
 		html+="<th>차트번호</th>";
 		html+="<th>이름</th>";
 		html+="<th>연령|성별</th>";
+		html+="<th>접수내역</th>";
 		html+="<th>접수시간</th>";  		
 		html+="<th>상태</th>";  		
 		html+="</tr>";
-		
+	
+
 		$.each(data.bookingDateList, (index, obj)=>{
 			
-			html+="<tr onClick=patient("+obj.pno+");curelist("+obj.pno+")>";
-	  		html+="<td>"+obj.bookingCode+"</td>";
+			html+="<tr onclick='patient("+obj.pno+");curelist("+obj.pno+");' id='abc'>";
+	  		html+="<td>"+(data.bookingDateList.length-index)+"</td>";
 	  		html+="<td>"+obj.pno+"</td>";
-	  		html+="<td>"+obj.bookingCc+"</td>";
+	  		html+="<td style='height:5px;table-layout:fixed'>"+obj.bookingCc+"</td>";
 	  		html+="<td>"+obj.bookingDoc+"</td>";
-	  		html+="<td>"+obj.bookingWriter+"</td>";
+	  		html+="<td name='username'>"+"</td>";
 	  		html+="<td>"+moment(obj.bookingRegdate).format("HH:mm")+"</td>";
+	  		html+="<td>"+obj.bookingWriter+"</td>";
 	  		html+="</tr>";
+	  	
 		})
+	  		
+	
 		html+="</table>";
 		
 		$("#ajaxBookList").html(html);
+		
+		$.each(data.bookingDateList, (index, obj)=>{
+		var kim = obj.pno
+		$.ajax({
+			url:"getPatient.do",
+			type:"get",
+			data: {pNo: kim},
+			dataType:"json",
+			success:ajaxHtml3,
+			error:function(){alert("error");
+			console.log(data)}
+		});
+		
+		function ajaxHtml3(data){
+			$.each(data.voList, (index, obj)=>{
+
+			}); 
+// 			console.log(index +data.voList.pname);
+			
+			var usertable1 = $('#userListTable1').find("tbody tr td").eq(5);
+
+	/* 		table#userListTable1.table.table-bordered */
+/* 	$('#userListTable1').find("tbody tr td").eq(5).html(data.voList.pname); */
+//  			$('table.table-bordered tr td[name=username]').attr('value',data.voList.pname); 
+/* 				$('#userListTable1').find("tbody tr td").eq(5).attr('value',data.voList.pname); */ 
+				/* document.getElementById("userListTable1").getElementsByTagName("tr")[0].getElementsByTagName("td")[index].innerHTML = data.voList.pname */
+			 	document.getElementById("userListTable1").getElementsByTagName("tr")[index+1].getElementsByTagName("td")[4].innerHTML = data.voList.pname 
+/* 				$('#userListTable1').find("tbody tr td").eq(5).innerHTML = 'data.voList.pname';  */
+
+		}
+		
+		});
 	}
 
 </script>
@@ -475,7 +573,7 @@ function curelist(c){
 }
 
 	function ajaxHtmlCure(data){
-		console.log(data)
+
 		var html="<table class='table table-bordered' id='userListTable'>";
 		html+="<tr>";
 		html+="<th>진료일자</th>";
@@ -488,7 +586,7 @@ function curelist(c){
 		
 		
 		$.each(data, (index, obj)=>{
-			console.log(data)
+
 			html+="<tr onClick=patient("+obj.P_NO+")>";
 	  		html+="<td>"+moment(obj.CD_REGDATE).format("MM-DD")+"</td>";
 	  		html+="<td>"+ ""+"</td>";
@@ -509,7 +607,8 @@ function curelist(c){
 
 <script>
 
-	function patient(a){  
+window.patient = function (a){  
+
 		$.ajax({
 			url:"getPatient.do",
 			type:"get",
@@ -523,7 +622,7 @@ function curelist(c){
 
 	function ajaxHtml2(data){
 		$.each(data.voList, ( obj)=>{
-		console.log(obj.pbir);
+
 		});
 		$('input[name=pName]').attr('value',data.voList.pname);
 		$('input[name=pRnum]').attr('value',data.voList.prnum);
@@ -531,45 +630,58 @@ function curelist(c){
 		$('input[name=pNo]').attr('value',data.voList.pno);
 		$('input[name=zonecode]').attr('value',data.voList.pzipcode);
 		$('input[name=address]').attr('value',data.voList.paddr1 + " " + data.voList.paddr2);
-		console.log(data);
+
 	}
 
 
 </script>
-
-<script>
-
-
-window.onload = function(){
-    document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
-        //카카오 지도 발생
-        new daum.Postcode({
-            oncomplete: function(data) { //선택시 입력값 세팅
-                document.getElementById("zip_kakao").value = data.zonecode; // 주소 넣기
-                document.getElementById("address_kakao").value = data.address; // 주소 넣기
-                document.getElementById("address_kakao").focus(); //상세입력 포커싱
-            }
-        }).open();
-    });
-}
-</script>
-
 <script >
 
-function detail() {
+$(document).ready(function () {
+	  $("button[name='deskbooking']").click( window.bcal2=function () {
+	var a = $('#pNo').val();
 	
+	if (a<1){
+		alert("환자를선택해주세요")
+	}else{
+		
 	var popupWidth = 800;
 	var popupHeight = 800;
 
 	var popupX = (document.body.offsetWidth / 2) - (800 / 2);
 	var popupY= (window.screen.height / 2) - (800 / 2);
 	
-	window.open('detail','detail2','height=800, width=1200, left='+ popupX + ', top='+ popupY);
-}
+	window.open('detail?pNo='+a,'detail2','height=800, width=1200, left='+ popupX + ', top='+ popupY);
+	}
+})
+	  })
+
 
 </script>
 
+
 <script>
+function kwak(){
+	$('#input2').load(location.href + " #input2");
+
+    function ajaxTest(){
+        $.ajax({
+          type : "GET",
+          url : "<%=request.getContextPath()%>/mainfrm.jsp",
+          dataType : "text",
+          error : function() {
+            alert('통신실패!!');
+          },
+          success : function(data) {
+            $('#Context').html(data);
+          }
+   
+        });
+      }
+   
+      ajaxTest();
+
+}
 function selectList(){
 	  var keyword = document.getElementById('inputkeyword').value;
 	  const name = choHangul(document.getElementById('inputkeyword').value); 
@@ -637,11 +749,7 @@ function selectList(){
 		   console.log(e.currentTarget.dataset.eventId);
 		   window.open('detail?bookingCode='+e.currentTarget.dataset.eventId,'예약상세','height=850, width=600');
 		});	
-	 
-	 
-	 /// 캘린더 상단 윌
-	 document.getElementById('getToDate').innerText = getNavbarRange(calendar.getDateRangeStart(), calendar.getDateRangeEnd(), calendar.getViewName());
-	 
+
 	 
 	 $(".checkB222tn").click(function(){ 
 			
@@ -677,6 +785,76 @@ function selectList(){
 	 
 	 console.log(document.getElementById('BOOKING_DATE').innerHTML)
  };
+</script>
+
+
+<script>
+    var DELAY = 200, timer = null, clickCnt = 0;
+    
+    var funcClick = function() {
+        console.log('click');
+        clickCnt = 0;
+        var theDiv = document.getElementById('abc');
+       /*  theDiv.innerHTML = 'single click'; */
+    };
+    
+    var funcDblClick = function() {
+        clearTimeout(timer);
+        console.log('dbl click');
+        clickCnt = 0;
+        var theDiv = document.getElementById('abc');
+       /*  theDiv.innerHTML = 'double click'; */
+    };
+
+ $("#abc").on('click', (e) => {
+        clickCnt++;
+        if (clickCnt === 1) {
+            // click
+            timer = setTimeout(funcClick, DELAY);
+        } else {
+            // double click
+            funcDblClick();
+        }
+    }).on('dblclick', (e) => {
+        e.preventDefault();
+    });
+    
+   </script>
+   
+   <script>
+   
+   </script>
+
+<script>
+	
+function todayList(b){  
+	$.ajax({
+		url:"getBoardDateList.do",
+		type:"get",
+		data: {bookingRegdate: b},
+		dataType:"json",
+		success: ajaxHtml3,
+
+		error:function(){alert("error");
+		console.log(data)
+		}
+	});
+
+}
+	function ajaxHtml3(data){
+ 		var lang = [];
+		var lang2 = JSON.stringify(lang);
+		localStorage.setItem('language', lang2);
+		localStorage.getItem('language');
+		var newlang = JSON.parse(localStorage.getItem('language')); 
+		
+		$.each(data.bookingDateList, (index, obj)=>{
+	  	  		newlang.push(obj.pno);
+		})
+		localStorage.setItem('language', newlang);
+		console.log(newlang) 
+		
+	}
 </script>
 
 <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
@@ -836,4 +1014,24 @@ function getNavbarRange(tzStart, tzEnd, viewType) {
 
 
 </script>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+
+
+window.onload = function(){
+    document.getElementById("address_kakao").addEventListener("click", function(){ //주소입력칸을 클릭하면
+        //카카오 지도 발생
+        new daum.Postcode({
+            oncomplete: function(data) { //선택시 입력값 세팅
+                document.getElementById("zip_kakao").value = data.zonecode; // 주소 넣기
+                document.getElementById("address_kakao").value = data.address; // 주소 넣기
+                document.getElementById("address_kakao").focus(); //상세입력 포커싱
+            }
+        }).open();
+    });
+}
+</script>
+
+<%@ include file="../common/ifram_js.jsp"%>
 

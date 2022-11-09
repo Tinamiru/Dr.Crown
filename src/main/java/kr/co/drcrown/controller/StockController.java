@@ -4,26 +4,15 @@ package kr.co.drcrown.controller;
 import java.sql.SQLException;
 import java.util.Map;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.josephoconnell.html.HTMLInputFilter;
-
-import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.dto.StockVO;
 import kr.co.drcrown.service.StockService;
 
@@ -39,7 +28,7 @@ public class StockController
 	public ModelAndView mainList(ModelAndView mnv)throws Exception{
         String url = "stock/main";
         
-        Map<String,Object> dataMap = stockService.getALLList();
+        Map<String,Object> dataMap = stockService.getDrugInfoList();
         mnv.addObject("dataMap",dataMap);
         mnv.setViewName(url);
         
@@ -52,11 +41,11 @@ public class StockController
 	public ModelAndView equipList(ModelAndView mnv)throws Exception{
 		String url = "stock/equip/list";
 		
-		Map<String,Object> dataMap = stockService.getEquipmentList();	
-		mnv.addObject("dataMap",dataMap);
+		Map<String,Object> dataMap = stockService.getDrugInfoList();
+        mnv.addObject("dataMap",dataMap);
         mnv.setViewName(url);
-		
-		return mnv;
+        
+        return mnv;
 	}
 	
 	
@@ -82,15 +71,15 @@ public class StockController
         return url;
     }
 	
-	@GetMapping("/equip/detail")
+	@GetMapping("/equip/equipDetail")
 	public ModelAndView equipDetail(String equCode,String from, ModelAndView mnv )throws SQLException{
 	    
-	    String url="stock/equip/detail";      
+	    String url="stock/equip/equipDetail";      
 	    System.out.println("equCode"+equCode);
 	    StockVO stock =null;
 	    if(from!=null && from.equals("equipList")) {
 	        stock=stockService.getEquipDetail(equCode);
-	        url="redirect:/equip/detail?equCode="+equCode;
+	        url="redirect:/equip/equipDetail?equCode="+equCode;
 	    }else {
 	        stock=stockService.getEquipDetailForModify(equCode);
 	    }
@@ -101,6 +90,43 @@ public class StockController
 	    return mnv;	
 	}
 	
+	@GetMapping("/equip/mediDetail")
+    public ModelAndView mediDetail(String mediCode,String from, ModelAndView mnv )throws SQLException{
+        
+        String url="stock/equip/mediDetail";      
+        System.out.println("mediCode"+mediCode);
+        StockVO stock =null;
+        if(from!=null && from.equals("mediList")) {
+            stock=stockService.getMediDetail(mediCode);
+            url="redirect:/equip/equipDetail?equCode="+mediCode;
+        }else {
+            stock=stockService.getMediDetailForModify(mediCode);
+        }
+                    
+        mnv.addObject("stock",stock);       
+        mnv.setViewName(url);
+        
+        return mnv; 
+    }
+	
+	@GetMapping("/equip/consumDetail")
+    public ModelAndView consumeDetail(String conCode,String from, ModelAndView mnv )throws SQLException{
+        
+        String url="stock/equip/consumDetail";      
+        System.out.println("conCode"+conCode);
+        StockVO stock =null;
+        if(from!=null && from.equals("equipList")) {
+            stock=stockService.getConsumeDetail(conCode);
+            url="redirect:/equip/consumDetail?equCode="+conCode;
+        }else {
+            stock=stockService.getConsumeDetailForModify(conCode);
+        }
+                    
+        mnv.addObject("stock",stock);       
+        mnv.setViewName(url);
+        
+        return mnv; 
+    }
 	
 	@RequestMapping("/equip/orderdetail")
 	public String equipOrderDetail() {
@@ -159,26 +185,27 @@ public class StockController
          
          return url;
      }
-     
-     @GetMapping("/consum/detail")
-     public ModelAndView consumeDetail(String conCode,String from, ModelAndView mnv )throws SQLException{
-         
-         String url="stock/consum/detail";      
-         System.out.println("conCode"+conCode);
-         StockVO stock =null;
-         if(from!=null && from.equals("consumeList")) {
-             stock=stockService.getConsumeDetail(conCode);
-             url="redirect:/consum/detail?equCode="+conCode;
-         }else {
-             stock=stockService.getConsumeDetailForModify(conCode);
-         }
-                     
-         mnv.addObject("stock",stock);       
-         mnv.setViewName(url);
-         
-         return mnv; 
-     }
-     
+     /*
+      * @GetMapping("/consum/detail")
+      * public ModelAndView consumeDetail(String conCode,String from, ModelAndView
+      * mnv )throws SQLException{
+      * 
+      * String url="stock/consum/detail";
+      * System.out.println("conCode"+conCode);
+      * StockVO stock =null;
+      * if(from!=null && from.equals("consumeList")) {
+      * stock=stockService.getConsumeDetail(conCode);
+      * url="redirect:/consum/detail?equCode="+conCode;
+      * }else {
+      * stock=stockService.getConsumeDetailForModify(conCode);
+      * }
+      * 
+      * mnv.addObject("stock",stock);
+      * mnv.setViewName(url);
+      * 
+      * return mnv;
+      * }
+      */
      
      @RequestMapping("/consum/orderdetail")
      public String consumeOrderDetail() {
@@ -235,26 +262,27 @@ public class StockController
           
           return url;
       }
-      
-      @GetMapping("/medivice/detail")
-      public ModelAndView mediDetail(String mediCode,String from, ModelAndView mnv )throws SQLException{
-          
-          String url="stock/medivice/detail";      
-          System.out.println("mediCode"+mediCode);
-          StockVO stock =null;
-          if(from!=null && from.equals("mediList")) {
-              stock=stockService.getEquipDetail(mediCode);
-              url="redirect:/equip/detail?mediCode="+mediCode;
-          }else {
-              stock=stockService.getMediDetailForModify(mediCode);
-          }
-                      
-          mnv.addObject("stock",stock);       
-          mnv.setViewName(url);
-          
-          return mnv; 
-      }
-      
+      /*
+       * @GetMapping("/medivice/detail")
+       * public ModelAndView mediDetail(String mediCode,String from, ModelAndView mnv
+       * )throws SQLException{
+       * 
+       * String url="stock/medivice/detail";
+       * System.out.println("mediCode"+mediCode);
+       * StockVO stock =null;
+       * if(from!=null && from.equals("mediList")) {
+       * stock=stockService.getEquipDetail(mediCode);
+       * url="redirect:/equip/detail?mediCode="+mediCode;
+       * }else {
+       * stock=stockService.getMediDetailForModify(mediCode);
+       * }
+       * 
+       * mnv.addObject("stock",stock);
+       * mnv.setViewName(url);
+       * 
+       * return mnv;
+       * }
+       */
       
       @RequestMapping("/medivice/orderdetail")
       public String mediOrderDetail() {

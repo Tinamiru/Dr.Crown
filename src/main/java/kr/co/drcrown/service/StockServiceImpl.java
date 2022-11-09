@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 
-import kr.co.drcrown.command.Criteria;
-import kr.co.drcrown.command.PageMaker;
 import kr.co.drcrown.dto.StockVO;
 import kr.co.drcrown.dao.StockDAO;
 
@@ -163,7 +161,7 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public Map<String, Object> getALLList() throws SQLException {
+    public Map<String, Object> getDrugInfoList() throws SQLException {
         Map<String, Object> dataMap = null;
         
         List<StockVO> equipList = stockDAO.selectEquipList();

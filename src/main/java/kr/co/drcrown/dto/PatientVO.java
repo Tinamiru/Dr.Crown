@@ -24,6 +24,7 @@ public class PatientVO {
 	private Date pFdate = new Date();
 	private Date pLastdate = new Date();
 	private String pInsurance;
+	private String pMemo;
 	
 }
 	

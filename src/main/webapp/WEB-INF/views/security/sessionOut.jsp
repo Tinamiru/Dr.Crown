@@ -8,6 +8,8 @@
 	alert("${message}");
 	if(window.opener) {
 		window.opener.parent.location.reload();
+	}else if(window.parent){
+		window.parent.location.href="<%=request.getContextPath()%>/index";
 	}else{
 		window.location.href="<%=request.getContextPath()%>/index";
 	}

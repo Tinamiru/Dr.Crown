@@ -10,8 +10,6 @@
  <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css"/>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <c:set var="dstList" value="${dataMap.dstList }" />
-<c:set var="pageMaker" value="${dataMap.pageMaker }" />
-<c:set var="cri" value="${dataMap.pageMaker.cri }" />
 
 <style>
 .ag-theme-alpine{
@@ -458,12 +456,12 @@ var rowData = [
 	<c:forEach items="${dstList}" var="stock">
 		{ 
 		  code: "${stock.dstCode}",
-		  code: "${stock.drugNo}",
-		  code: "${stock.dstNo}",
-		  code: "${stock.dstName}",
-		  code: "${stock.dstElement}",
-		  name: "${stock.dstStock}", 
-		  stock: "${stock.dstUnit}", 
+		  drugNo: "${stock.drugNo}",
+		  dstNo: "${stock.dstNo}",
+		  name: "${stock.dstName}",
+		  element: "${stock.dstElement}",
+		  stock: "${stock.dstStock}", 
+		  unit: "${stock.dstUnit}", 
 		  maker: "${stock.dstMaker}", 
 		  date: "<fmt:formatDate value='${stock.dstDate }' pattern='yyyy-MM-dd'/>",
 		},
@@ -539,7 +537,7 @@ function onBtnClick1(clickData)
 		var popupX = (document.body.offsetWidth / 2) + (200 / 2);
 		var popupY= (window.screen.height / 2) - (600 / 2);
 		
-		window.open('newAdd','newAdd','height=600, width=800, left='+ popupX + ', top='+ popupY);
+		window.open('newAdd','newAdd','height=600, width=1200, left='+ popupX + ', top='+ popupY);
 	}
 	
 	function orderdetail() {

@@ -22,5 +22,9 @@ public interface PatientService {
 	public void regist(PatientVO patient) throws Exception;
 
 	Map<String, Object> getsearchPatientList(Criteria cri) throws SQLException;
+	
+	public void updatePatient(PatientVO patient) throws SQLException;
+	
+	public void deletePatient(String pNo) throws SQLException;
     
 }

@@ -62,6 +62,12 @@ public class DeskController {
 		return null;
 	}
 	
+	@RequestMapping(value="/registvisitBooking", produces="application/text; charset=UTF-8", method=RequestMethod.POST)
+	@ResponseBody
+	public void insertvisitBooking(BookingVO booking) throws Exception {
+	    bookingService.registvisitBooking(booking);
+	}
+	
 	//환자리스트
 	@RequestMapping(value = "/getBoardList", method = RequestMethod.GET)
 
@@ -105,6 +111,16 @@ public class DeskController {
 		
 		return new ResponseEntity<>(map,HttpStatus.OK);
 	}
+	@RequestMapping(value = "/getBookingpno", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getBookingpNo(String pNo) throws Exception {
+	    
+        ResponseEntity<Map<String, Object>> entity = null;
+	    
+        Map<String, Object> dataMap = bookingService.selectBookingpNoList(pNo);	
+	    
+        entity = new ResponseEntity<Map<String, Object>>(dataMap, HttpStatus.OK);
+        return entity;
+	}
 	
 	@RequestMapping(value = "/getSearchPatient", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> patientSearchajax(Criteria cri) throws Exception {
@@ -117,6 +133,24 @@ public class DeskController {
 	    return new ResponseEntity<>(map,HttpStatus.OK);
 	}
 	
+	   @RequestMapping(value = "/deskbookingDelete", produces="application/text; charset=UTF-8")
+	    public String bookingDelete(String bookingCode) throws Exception {
+	        String url = "redirect:detail";
+	        
+	        bookingService.remove(bookingCode);
+	        
+	        return url;
+	    }
+	    
+	    @PostMapping("/deskbookingModify")
+	    public String bookingModify(BookingVO booking) throws Exception {
+	           String url = "redirect:detail";
+	           
+
+	           bookingService.modify(booking);
+	           
+	           return url;
+	      }
 	
 	@RequestMapping(value="/myjob", method=RequestMethod.POST)
     @ResponseBody
@@ -256,4 +290,19 @@ public class DeskController {
 		String url = "/desk/document/list";
 		return url;
 	}
+	
+	
+	@RequestMapping(value="/patientModify", method=RequestMethod.POST)
+	@ResponseBody
+    public void patientModify(PatientVO patient) throws Exception {             
+       patientService.updatePatient(patient);
+      
+    }
+	@RequestMapping(value="/patient/detail/patientDelete", method=RequestMethod.POST)
+	@ResponseBody
+	public void patientDelete(String pNo) throws Exception {             
+	    patientService.deletePatient(pNo);
+	    
+	}
+
 }

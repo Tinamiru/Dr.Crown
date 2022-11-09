@@ -3,9 +3,32 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Stock-Mapper">
-
- 
- <!-- 비품관리 매핑 -->
+	
+	<select id="selectEquList" resultType="stock">		
+		select *
+		from(
+		    select SearchEquListResult.*
+		    from ( 
+		    	select * 
+				from equipment
+				where equ_code is not null
+				<include refid="searchEqu" />				
+				order by equ_name
+		    )  SearchEquListResult
+		)
+		
+	</select>
+	
+	<sql id="searchEqu">
+		<if test="searchType == 'n'.toString()">
+			and equ_name like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'm'.toString()">
+			and equ_maker like '%'||#{keyword}||'%'			
+		</if>
+	</sql>
+<!--  
+ 비품관리 매핑
 	<select id="selectEquipByNo" parameterType="string" resultType="stock">
 		select 
 		* 
@@ -17,7 +40,7 @@
 		select 
 		* 
 		from equipment
-		order by equ_code
+		order by equ_name
 	</select>
 	
 	<update id="insertEquip" parameterType="stock">
@@ -36,7 +59,7 @@
 
 
 
-<!-- 소모품 매핑 -->
+소모품 매핑
 	
 	<select id="selectConsumByNo" parameterType="string" resultType="stock">
 		select 
@@ -49,7 +72,7 @@
 		select 
 		* 
 		from consumable
-		order by con_code
+		order by con_name
 	</select>
 	
 	<update id="insertConsum" parameterType="stock">
@@ -67,7 +90,7 @@
 
 
 
-<!-- 의료기기 정보 매핑 -->
+의료기기 정보 매핑
 	
 	<select id="selectMedideviceByNo" parameterType="string" resultType="stock">
 		select 
@@ -80,7 +103,7 @@
 		select 
 		* 
 		from medidevice
-		order by medi_code
+		order by medi_name
 	</select>
 	
 	<update id="insertMedidevice" parameterType="stock">
@@ -95,8 +118,9 @@
 		VALUES ('reo'||LPAD(EQUIPMENT_PREODER_SEQ.nextval,5,0),#{equCode},to_number(#{equStock}),TO_CHAR(SYSDATE, 'YYYYMMDD'),#{equPrice},to_number(#{equStock})*#{equPrice})		
 	</update>
 
-<!-- 의약품 재고 매핑 -->
-
+의약품 재고 매핑
+	
+		
 	<select id="selectDrugStockByNo" parameterType="string" resultType="stock">
 		select 
 		* 
@@ -108,7 +132,7 @@
 		select 
 		* 
 		from drug_stock
-		order by dst_code
+		order by dst_name
 	</select>
 	
 	<update id="insertDrugStock" parameterType="stock">
@@ -125,7 +149,7 @@
 
 
 
-	<!--  <sql id="search">
+	 <sql id="search">
 		<if test="searchType == 'n'.toString()">
 			and equ_name like '%'||#{keyword}||'%'			
 		</if>
@@ -159,8 +183,8 @@
 			)			
 		</if>
 	</sql>
-	 -->
-	<!-- <select id="selectSearchEquipList" resultType="stock">		
+	
+	<select id="selectSearchEquipList" resultType="stock">		
 		select *
 		from(
 		    select rownum as rnum,SearchEquipResult.*
@@ -178,9 +202,9 @@
 		 <![CDATA[
 		where rnum >= #{startRow}		
 		 ]]>
-	</select> -->
+	</select>
 	
-	<!-- <select id="selectEquipCount" resultType="int">
+	<select id="selectEquipCount" resultType="int">
 		select 
 		count(*) 
 		from equipment
@@ -189,10 +213,10 @@
 		order by equ_date desc
 		
 	</select>
- -->
 
 
-<!--	<select id="selectNoticeByImage" resultType="notice">
+
+	<select id="selectNoticeByImage" resultType="notice">
 		select 
 		* 
 		from notice_bo
@@ -223,6 +247,6 @@
 		from notice_bo 
 		where nno=#{nno}		
 	</update>
- -->
-	
+
+	 -->
 </mapper>

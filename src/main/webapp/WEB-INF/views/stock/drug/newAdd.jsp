@@ -4,8 +4,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+	
+<script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+ <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css"/>
+ <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css"/>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<c:set var="drugInfoList" value="${dataMap.drugInfoList}" />
+
 <style>
+
+.ag-theme-alpine{
+	--ag-header-background-color: #333258;
+	--ag-header-foreground-color: white;
+	--ag-font-size: 11px;
+}
+
+.ag-theme-alpine .ag-icon-menu {
+	color : white;
+}
+
 #mainFrame {
 	overflow: hidden; 
 	height:100vh; 
@@ -43,12 +60,12 @@
 #detailFrameLeft{
 	float: left; 
 	height: 62vh; 
-	width: 35vw; 
+	width: 50vw; 
 }
 
 #detailFrameLeftImg{
 	height: 55vh; 
-	width: 35vw; 
+	width: 50vw; 
 	align-items:center; 
 	display: flex; 
 	justify-content:center; 
@@ -66,14 +83,13 @@
 #detailFrameRight{
 	float: right; 
 	height: 55vh; 
-	width: 61vw; 
+	width: 45vw; 
 	right: 50%
 }
 
 #detailFrameRightUp {
 	border: solid black 1px; 
 	height: 100%; 
-	width: 61vw; 
 	text-align: center; 
 	padding-top: 10px;
 	
@@ -108,10 +124,11 @@
 	font-weight: bolder;
 	background-color : #333258;
 	color: white; 
+	font-size: 13px;
 }
 
 #detailListRow > input {
-	width: 38vw; 
+	width: 30vw; 
 	margin-left: 10px;
 	border : 0px;
 	border-bottom: 2px solid #333258;
@@ -172,7 +189,7 @@ textarea::placeholder {
 <div id="mainFrame">
 	<div id="mainFrame_top">
 		<img src="<%=request.getContextPath()%>/resources/images/logo-full.png" 
-			 style="width: 30vw; height: 10vh;">
+			 style="width: 25vw; height: 9vh;">
 	</div>
 	
 	<div id="bigTitle">
@@ -183,13 +200,13 @@ textarea::placeholder {
 	
 	<div id="detailFrame" class = "content" >
 		<div id="detailFrameLeft" >
-			<div id="detailFrameLeftImg">
 			
-			</div>	
-			<div style="text-align: center; padding: 13px;">
+			<div id="myGrid" class="ag-theme-alpine" style="width: 48vw; height: 60vh;">
+			<!-- <div style="text-align: center; padding: 13px;">
 				<a id="detailFrameLeftButton">
 				이미지 업로드
 				</a>
+			</div> -->
 			</div>
 		</div>
 	
@@ -209,7 +226,7 @@ textarea::placeholder {
 							
 								<div class="row" id="detailListRow">
 									<div>
-										약번호
+										의약품목기준코드
 									</div>
 									<input type="text" placeholder="필수입력" class="input-text"
 										    name="drugNo" value="">
@@ -256,7 +273,7 @@ textarea::placeholder {
 							</div>
 							</div>
 						</form>
-						<div class="row" style="padding-top: 15px;">
+						<div class="row" style="padding-top: 32px;">
      						<div class="col-4"></div>
      						<div class="col-4" style="text-align: center;">
      							<div id="newEqAddButton" onclick="orderRQ()">
@@ -289,6 +306,49 @@ textarea::placeholder {
 
 
 <script type="text/javascript">
+
+var columnDefs = [
+	{ headerName:"의약제품명", field: "name", sortable : true, filter : true, width : 120},
+	{ headerName:"의약품목기준코드", field: "drugInfoNo", sortable : true, filter : true, width : 120},
+	{ headerName:"의약품허가번호", field: "drugInfoPnum", sortable : true, filter : true, width : 120},
+	{ headerName:"주성분", field: "ingredient" , sortable : true, filter : true, width : 182},
+	{ headerName:"의약품업체명", field: "maker" , sortable : true, filter : true, width : 120}
+];
+
+//데이타 정의
+var rowData = [
+	<c:forEach items="${drugInfoList}" var="drugInfo">
+		{ 
+			
+	  		name: "${drugInfo.drug_name}",
+	 	 	drugInfoNo: "${drugInfo.drug_no}",
+	  		drugInfoPnum: "${drugInfo.drug_pnum}",
+	 		ingredient: "${drugInfo.drug_ingredient}",
+	  		maker: "${drugInfo.drug_maker}",
+	  		
+		},
+	</c:forEach>
+
+];
+
+
+//그리드 옵션 지정
+var gridOptions = {
+columnDefs: columnDefs,
+rowData: rowData,
+rowSelection: 'single',
+getSelectedRows: 'getSelectedRows'
+}
+
+var eGridDiv = document.querySelector('#myGrid');
+
+new agGrid.Grid(eGridDiv, gridOptions);
+
+
+</script>
+
+<script type="text/javascript">
+
 
 function clearInput()
 {
@@ -339,7 +399,5 @@ function orderRQ(){
 	
 	form.submit();
 }
-
-
 
 </script>

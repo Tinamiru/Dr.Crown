@@ -88,5 +88,20 @@ public class BookingServiceImpl implements BookingService {
            return booking;
 
        }
+
+    @Override
+    public Map<String, Object> selectBookingpNoList(String pNo) throws SQLException {
+        Map<String, Object> dataMap = null;
+        List<BookingVO> bookingpNolist =  bookingDAO.selectBookingpNoList(pNo);
+        dataMap = new HashMap<String, Object>();
+        dataMap.put("bookingDateList", bookingpNolist);
+        return dataMap;
+    }
+
+    @Override
+    public void registvisitBooking(BookingVO booking) throws Exception {
+        bookingDAO.insertvisitBooking(booking);
+        
+    }
 	
 }

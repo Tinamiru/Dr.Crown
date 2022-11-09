@@ -3,9 +3,6 @@ package kr.co.drcrown.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-
-import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.dto.StockVO;
 
 public interface StockDAO

@@ -44,15 +44,21 @@
 	<bean id="patientDAO" class="kr.co.drcrown.dao.PatientDAOImpl"
 		p:session-ref="sqlSession"
 	/> 
-	<bean id="stockDAO" class="kr.co.drcrown.dao.StockDAOImpl"
+ 	<bean id="stockDAO" class="kr.co.drcrown.dao.StockDAOImpl"
 		p:session-ref="sqlSession"
-	/> 
+	/>
 	<bean id="cureDetailDAO" class="kr.co.drcrown.dao.CureDetailDAOImpl"
 		p:session-ref="sqlSession"
 	/> 
 	<bean id="fileDAO" class="kr.co.drcrown.dao.FileDAOImpl"
 		p:session-ref="sqlSession"
 	/> 
+ 	<bean id="drugInfoDAO" class="kr.co.drcrown.dao.DrugInfoDAOImpl"
+		p:session-ref="sqlSession"
+	/> 
+ 	<bean id="symptomDAO" class="kr.co.drcrown.dao.SymptomDAOImpl"
+		p:session-ref="sqlSession"
+	/>  
 	
 	
 	
@@ -77,14 +83,20 @@
   	<bean id="patientService" class="kr.co.drcrown.service.PatientServiceImpl" 
 		p:patientDAO-ref="patientDAO"
 	/> 
-	<bean id="stockService" class="kr.co.drcrown.service.StockServiceImpl" 
+    <bean id="stockService" class="kr.co.drcrown.service.StockServiceImpl" 
 		p:stockDAO-ref="stockDAO"
-	/> 
+	/>
 	<bean id="cureDetailService" class="kr.co.drcrown.service.CureDetailServiceImpl" 
 		p:cureDetailDAO-ref="cureDetailDAO"
 	/> 
 	<bean id="fileService" class="kr.co.drcrown.service.FileServiceImpl" 
 		p:fileDAO-ref="fileDAO"
 	/> 
+ 	<bean id="drugInfoService" class="kr.co.drcrown.service.DrugInfoServiceImpl" 
+		p:drugInfoDAO-ref="drugInfoDAO"
+	/>
+ 	<bean id="symptomService" class="kr.co.drcrown.service.SymptomServiceImpl" 
+		p:symptomDAO-ref="symptomDAO"
+	/>  
 
 </beans>

@@ -87,4 +87,19 @@ public class BookingDAOImpl implements BookingDAO {
 	        return booking;
 	    }
 
+    @Override
+    public List<BookingVO> selectBookingpNoList(String pNo) throws SQLException {
+        List<BookingVO> bookingpNoList 
+        = session.selectList("Booking-Mapper.selectBookingBypno", pNo);
+
+        return bookingpNoList;
+    }
+
+    @Override
+    public void insertvisitBooking(BookingVO booking) throws SQLException {
+        session.update("Booking-Mapper.insertvisitBooking", booking);
+        
+        
+    }
+
 }

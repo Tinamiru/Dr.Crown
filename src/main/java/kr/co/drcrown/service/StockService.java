@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.Map;
 
 
-import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.dto.StockVO;
 
 public interface StockService {
@@ -47,6 +46,6 @@ public interface StockService {
     void insertDst(StockVO dst)throws SQLException;
     void insertDstPreOrder(StockVO dst)throws SQLException;
 	
-    Map<String, Object> getALLList() throws SQLException;
+    Map<String, Object> getDrugInfoList() throws SQLException;
     
 }

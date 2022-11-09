@@ -72,6 +72,18 @@ public class PatientDAOImpl implements PatientDAO {
         return searchpatientList;
     }
 
+    @Override
+    public void deletePatient(String pNo) throws SQLException {
+        session.update("Patient-Mapper.deletePatient",pNo);
+        
+    }
+
+    @Override
+    public void updatePatient(PatientVO patient) throws SQLException {
+        session.update("Patient-Mapper.updatePatient",patient);
+        
+    }
+
 }
 
 

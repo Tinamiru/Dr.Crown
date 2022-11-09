@@ -82,12 +82,12 @@
 							
                         <div class="card">
                       
-                                    <form>
+                                    <form id="frm" method="post">
 
                                         <div class="form-row">
                                             <div class="form-group col-md-2">
                                                 <label>이름</label>
-                                                <input type="text" class="form-control" placeholder="${patient.PName}">
+                                                <input type="text" class="form-control" name="pName" placeholder="${patient.PName}">
                                             </div>
                                             <div class="form-group col-md-2">
                                                 <label>구분자</label>
@@ -95,7 +95,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label>주민등록번호</label>
-                                                <input type="email" class="form-control" placeholder="${patient.PRnum}">
+                                                <input type="email" class="form-control" name="pRnum" placeholder="${patient.PRnum}">
                                             </div>
                                             
                                             <div class="form-group col-md-3">
@@ -104,7 +104,7 @@
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label>차트번호</label>
-                                                <input type="text" class="form-control" placeholder="${patient.PNo}">
+                                                <input type="text" class="form-control" name="pNo" value="${patient.PNo}">
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label>생년월일</label>
@@ -127,7 +127,8 @@
                                                 <label>나머지주소</label>
                                                 <input type="text" name="address" placeholder="${patient.PAddr1} ${patient.PAddr2}" class="form-control" />
                                             </div>
-                                           			
+                                           		<button type="button" class="btn btn-primary" name="" onclick="patDelete(${patient.PNo})" style="float: right; border-radius: 10px; margin-right: 5px; width: 55px;height: 70px">관리자<br/>삭제</button>	
+                                           		<button type="button" class="btn btn-primary" name="" onclick="patUpdate()" style="float: right; border-radius: 10px; margin-right: 5px; height: 70px">수정</button>	
                                         </div>
                                     </form>
                                     
@@ -477,6 +478,40 @@
 	</div>
 </div>
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js" ></script>
+<script>
+
+function patDelete(a){
+	$.ajax({
+		url:"detail/patientDelete",
+		type:"post",
+		data: {pNo: a},
+		dataType:"json",
+		success:alert("삭제완료") ,
+
+		error: function(){	}
+		
+	});
+	 opener.location.reload();
+		  window.close() 
+
+}
+
+function patUpdate(a){
+	$.ajax({
+		url:"<%=request.getContextPath()%>/desk/patientModify",
+		type:"post",
+		data: $('#frm').serialize(),
+		success:alert("수정완료") ,
+
+		error: function(){ alert("신규등록 error"); }
+		
+	});
+	 opener.location.reload();
+/* 		  window.close() 
+ */
+}
+	
+</script>
 
 <script>
 	$.ajax({
@@ -497,3 +532,5 @@
 	    }
 	})
 </script>
+
+

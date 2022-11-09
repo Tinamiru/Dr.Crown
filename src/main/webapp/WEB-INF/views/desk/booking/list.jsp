@@ -121,22 +121,22 @@
 			                                         </div>
 		                                         </div>   
 		                                         
-		                                           
+		                                           <div class="form-row">
+			                                        <div class="col-sm-7">
 		                                             <label class="text-white"><strong>전화 번호</strong></label>
 		                                         <div class="input-group mb-3">
 		                                            <input type="text" class="form-control form-control-input" id="P_TEL"  placeholder="${patient.PTel}" value=" " disabled  >
-		                                            <div class="input-group-append ">
-		                                                <button class="loginBtn btn btn-block"  type="button">문자전송</button>
-		                                            </div> 
 		                                        </div>
+		                                         </div>
+			                                       
 		                                        
-		                                        
+		                                         <div class="col-sm-5">
 		                                         <label class="text-white"><strong>보험 정보</strong></label>
 		                                         <div class="input-group mb-3">
 		                                            <input type="text" class="form-control form-control-input" id="P_INSURANCE" value=" " disabled  >
-		                                     
 		                                        </div>
-		                                        
+		                                        </div>
+		                                          </div> 
 		                                        
 		               
 		                            
@@ -336,7 +336,6 @@
                                    
 		                                    
 		 
-          
           
 <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
 <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>

@@ -17,6 +17,8 @@ public interface BookingDAO {
 	
 	public void insertBooking(BookingVO booking) throws SQLException;
 	
+	public void insertvisitBooking(BookingVO booking) throws SQLException;
+	
 	public void updateBooking(BookingVO booking) throws SQLException;
 	
 	void deleteBooking(String bookingCode) throws SQLException;
@@ -26,4 +28,6 @@ public interface BookingDAO {
 	List<BookingVO> selectBookingByList(Criteria cri)throws SQLException;
 	
 	BookingVO selectPatientBybookingCode(String bookingCode) throws SQLException;
+	
+	List<BookingVO> selectBookingpNoList(String pNo)throws SQLException;
 }

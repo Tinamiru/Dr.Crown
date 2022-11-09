@@ -16,33 +16,39 @@ public class StockVO {
 	private String equName;
 	private Date equDate;
 	private int equStock;
-	private String equUnit;
+    /* private String equUnit; */
 	private String equMaker;
 	private String equDistr;
 	private String equSpec;
 	private String equPicture;
+	private int equSuggest;
+	private int equMin;
 	private int equPrice;
 	
-	private String durgCode;
-	private String durgName;
-	private Date durgDate;
-	private int durgStock;
-	private String durgMaker;
-	private String durgDistr;
-	private String durgSpec;
-	private String durgPicture;
-	private int durgPrice;
+    /*
+     * private String durgCode;
+     * private String durgName;
+     * private Date durgDate;
+     * private int durgStock;
+     * private String durgMaker;
+     * private String durgDistr;
+     * private String durgSpec;
+     * private String durgPicture;
+     * private int durgPrice;
+     */
 	
 	private String conCode;
 	private String conName;
 	private Date conDate;
 	private int conStock;
-	private String conUnit;
+    /* private String conUnit; */
 	private String conMaker;
 	private String conDistr;
 	private String conSpec;
 	private String conPicture;
 	private int conPrice;
+	private int conSuggest;
+    private int conMin;
 	
 	private String mediCode;
 	private String mediName;
@@ -53,17 +59,21 @@ public class StockVO {
 	private String mediSpec;
 	private String mediPicture;
 	private int mediPrice;
+	private int mediSuggest;
+    private int mediMin;
 	
 	private String dstCode;
 	private String drugNo;
 	private String dstName;
 	private String dstElement;
 	private int dstStock;
-	private String dstUnit;
+    /* private String dstUnit; */
 	private String dstMaker;
 	private String dstNO;
 	private Date dstDate;
 	private int dstPrice;
+	private int dstSuggest;
+    private int dstiMin;
 	
 	
 	

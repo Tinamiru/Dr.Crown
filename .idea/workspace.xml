@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="709a3c43-7712-4209-b0d0-c5c252dd4d20" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +44,7 @@
       <workItem from="1666870328954" duration="790000" />
       <workItem from="1666958203947" duration="43000" />
       <workItem from="1667377132379" duration="1000" />
+      <workItem from="1667478154751" duration="230000" />
     </task>
     <task id="LOCAL-00001" summary="2022-10-27 backup commit">
       <created>1666870596914</created>
@@ -60,7 +60,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666958239861</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="2022-11-03 backup commit">
+      <created>1667478349027</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1667478349027</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -69,6 +76,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="2022-10-27 backup commit" />
     <MESSAGE value="2022-10-28 backup commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="2022-10-28 backup commit" />
+    <MESSAGE value="2022-11-03 backup commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="2022-11-03 backup commit" />
   </component>
 </project>

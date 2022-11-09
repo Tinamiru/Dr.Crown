@@ -19,7 +19,7 @@ import kr.co.drcrown.exception.InvalidPasswordException;
 import kr.co.drcrown.exception.NotFoundIdException;
 
 public class MemberServiceImpl implements MemberService {
-
+    
     private MemberDAO memberDAO;
     private BookingDAO bookingDAO;
     private PatientDAO patientDAO;

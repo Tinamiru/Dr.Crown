@@ -21,6 +21,10 @@ public interface PatientDAO {
 	
 	public void insertPatient(PatientVO patient) throws SQLException;
 	
+	public void deletePatient(String pNo) throws SQLException;
+	
+	public void updatePatient(PatientVO patient) throws SQLException;
+	
 	List<PatientVO> searchPatientList(Criteria cri) throws SQLException;
 
  

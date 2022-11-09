@@ -1,0 +1,64 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Symptom-Mapper">
+	 <sql id="search">	
+		<if test="searchType == 'code'.toString()">
+			and sym_code like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'ncode'.toString()">
+			and sym_ncode like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'ko'.toString()">
+			and sym_ko like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'en'.toString()">
+			and sym_en like '%'||#{keyword}||'%'
+		</if>			
+		<if test="searchType == 'umls'.toString()">
+			and sym_umls like '%'||#{keyword}||'%'
+		</if>			
+		<if test="searchType == 'kcd'.toString()">
+			and sym_kcd like '%'||#{keyword}||'%'
+		</if>			
+	</sql>	
+	
+	<select id="selectSymptomList" resultType="symptom">
+		select
+		* 
+		from symptom
+		where sym_code is not null
+	</select>
+	<select id="selectSymptomListCount" resultType="int">
+		select
+		count(*) 
+		from symptom
+		where sym_code is not null
+		<include refid="search" />
+	</select>
+	<select id="selectSymptomCode" parameterType="str" resultType="symptom">
+		select
+		*
+		from symptom
+		where sym_code=#{symCode}
+	</select>
+	
+	<select id="selectSymptomListByKeyword" resultType="symptom">
+		select *
+		from symptom
+		where 1=1
+		<include refid="search"/>
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

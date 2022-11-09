@@ -340,11 +340,16 @@ background: #EAEAEA;
 			<h3 class="pb-2" style="font-weight: bolder; padding-top: 10px">ㅣ 처방 내역</h3>
 		</div>
 		<div class="row pb-0 pt-5" >	
-			<button type="button" onclick="getShowDrug()" class="" style="float: right; border-radius: 5px; margin: 5px; margin-top:24px; background-color:green;
-				border-color:darkgray; color:white; width:150px; height:45px; ">
-			의약품 검색/추가
+			<button type="button" onclick="" class="" style="float: right; border-radius: 5px; margin: 5px; margin-top:24px; background-color:green;
+				border-color:darkgray; color:white; width:150px; height:45px; ">의약품 검색/추가
+				
+				<!-- 모달 -->
+				
+			
 			</button>
 		</div>
+		<button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modalGrid">Grid Inside Modal</button>
+                                    <!-- Modal -->
 	</div>
 	<div class="col-12 " style="padding:5px 30px;" >
 		<table class="table table-bordered col-12">

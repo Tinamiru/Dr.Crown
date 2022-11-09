@@ -46,6 +46,7 @@
 		FROM BOOKING
 		WHERE BOOKING_REGDATE LIKE TO_DATE(#{bookingRegdate} , 'YYYY-MM-DD')
 		AND BOOKING_YN like 'n'
+		order by BOOKING_REGDATE desc
 	</select>
 	
 	
@@ -72,6 +73,12 @@
 		insert into 
 		BOOKING(BOOKING_CODE,MEM_ID,P_NO,BOOKING_REGDATE,BOOKING_RDATE,BOOKING_CC,BOOKING_DOC,BOOKING_WRITER,BOOKING_YN)
 		values(GET_BOOKINGCODE('now'),#{memNo},#{pNo},SYSDATE,#{bookingRdate},#{bookingCc},#{bookingDoc},#{bookingWriter},'y')
+	</update>
+		
+	<update id="insertvisitBooking" parameterType="booking">
+		insert into 
+		BOOKING(BOOKING_CODE,MEM_ID,P_NO,BOOKING_REGDATE,BOOKING_RDATE,BOOKING_CC,BOOKING_DOC,BOOKING_WRITER)
+		values(GET_BOOKINGCODE('now'),#{memNo},#{pNo},SYSDATE,#{bookingRdate},#{bookingCc},#{bookingDoc},#{bookingWriter})
 	</update>	
 	
 	<update id="updateBooking" parameterType="booking">
@@ -87,6 +94,13 @@
 		from BOOKING 
 		where BOOKING_CODE=#{bookingCode}		
 	</update>
+	
+	<select id="selectBookingBypno" parameterType="str" resultType="booking">
+		select
+		*
+		from BOOKING
+		where P_NO=#{pNo}
+	</select>
 	
 <!-- 	<select id="selectMemberByPicture" parameterType="str" resultType="member">
 		select

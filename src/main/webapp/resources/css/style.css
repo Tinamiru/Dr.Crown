@@ -8569,10 +8569,31 @@ button.bg-dark:focus {
 
 .font-italic {
   font-style: italic !important; }
+  
+.nav-header-hover{
+  cursor: pointer;
+  max-width: 11%;}
+  
+.nav-header-hover:hover{
+  box-shadow: 0px 0px 2px 4px #6d6d6d;}
+  
 
-.text-white {
-  color: #333258 !important; }
+/* .text-white { */
+/*   color: #333258 !important; } */
 
+/* .text-white:hover { */
+/*   color: #898989 !important; } */
+  
+.text-white > * {
+  color: #333258 !important;
+  user-select: none;
+   }
+
+.text-white:hover > * {
+  color: #898989 !important;
+  user-select: none;
+   }
+  
 .text-primary {
   color: #333258 !important; }
 
@@ -9574,7 +9595,6 @@ a {
     -webkit-transform: scale(1);
     transform: scale(1); } }
 .footer {
-  padding-left: 16.563rem;
   background-color: #FFF; }
   @media only screen and (max-width: 1400px) {
     .footer {
@@ -9614,7 +9634,7 @@ a {
   transition: all .2s ease;
   z-index: 5; }
   .nav-header .logo-abbr {
-    max-width: 52px; }
+    max-width: 2.7rem; }
     @media only screen and (max-width: 575px) {
       .nav-header .logo-abbr {
         max-width: 40px; } }
@@ -9650,7 +9670,7 @@ a {
         justify-content: center; } }
   .nav-header .brand-title {
 	margin-left: -7px;
-    max-width: 11.5rem;
+    max-width: 10rem;
     margin-top: 5px; }
     [data-theme-version="dark"] .nav-header .brand-title {
       background-position: 0 120%; }
@@ -9664,7 +9684,7 @@ a {
 .nav-control {
   cursor: pointer;
   position: absolute;
-  right: -4.0625rem;
+  right: 0rem;
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
@@ -9773,7 +9793,7 @@ a {
     display: none; }
 
 .header {
-  height: 4.5rem;
+  height: 6rem;
   position: relative;
   padding: 0rem;
   background-color: #333258;
@@ -9916,7 +9936,7 @@ svg.pulse-svg {
   top: 0;
   width: 100%; }
 [data-header-position="fixed"] .content-body {
-  padding-top: 4.5rem; }
+  padding-top: 6rem; }
   @media only screen and (max-width: 1199px) {
     [data-header-position="fixed"] .content-body {
       padding-top: 5rem; } }
@@ -10066,7 +10086,7 @@ svg.pulse-svg {
       align-items: center;
       border-left: 1px solid #F4F5F9; }
   .header-right > li:not(:first-child) {
-    padding-left: 4rem; }
+    padding-left: 0rem; }
     @media only screen and (max-width: 1400px) {
       .header-right > li:not(:first-child) {
         padding-left: 2rem; } }
@@ -12081,7 +12101,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   top: 0.625rem; }
 
 .content-body {
-  margin-left: 16.563rem;
+  margin: 1rem;
   z-index: 0;
   transition: all .2s ease; }
   @media only screen and (min-width: 1200px) and (max-width: 1400px) {
@@ -12243,7 +12263,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   100% {
     transform: rotate(0); } }
 .deznav {
-  width: 16.563rem;
+  width: 13.563rem;
   padding-bottom: 0;
   height: 100%;
   position: absolute;
@@ -12271,7 +12291,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   .deznav .metismenu {
     display: flex;
     flex-direction: column;
-    padding-top: 15px; }
+    padding-top: 40px; }
     @media only screen and (max-width: 767px) {
       .deznav .metismenu {
         padding-top: 0; } }
@@ -12335,7 +12355,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
         padding-bottom: .5rem;
         position: relative;
         font-size: 16px;
-        padding-left: 5.6rem; }
+        padding-left: 3rem; }
         @media only screen and (max-width: 1400px) {
           .deznav .metismenu ul a {
             padding-left: 3.75rem;
@@ -12593,7 +12613,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   padding: 0 0 0 0; }
   [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li > a {
     font-size: 16px;
-    padding: 15px 20px 15px 50px;
+    padding: 15px 20px 15px 30px;
     -webkit-transition: all 0.5s;
     -ms-transition: all 0.5s;
     transition: all 0.5s;
@@ -12620,7 +12640,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li.mm-active > a i {
       color: #333258; }
   [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li .has-arrow:after {
-    right: 2.5rem; }
+    right: 1.8rem; }
     @media only screen and (max-width: 1400px) {
       [data-sidebar-style="full"][data-layout="vertical"] .deznav .metismenu > li .has-arrow:after {
         right: 1.5rem; } }

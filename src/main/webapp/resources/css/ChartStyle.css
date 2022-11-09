@@ -1,0 +1,634 @@
+/**table*/
+	.normalTable{
+		text-align:center;
+	}
+	
+	.normalTr .normalTrSel{
+		border: 1px lightgray solid;
+		padding: 5px;
+		border-color:
+	}
+	
+	.normalTh{
+		background-color: #333258;
+		border: 1px lightgray solid;
+		color:white;
+	}
+	
+	.normalTd{
+		padding: 5px;
+		border: 1px lightgray solid;
+	}
+
+
+/** tr hover */
+
+
+	.normalTrSel1:hover{
+	    background: #EAEAEA;
+	    
+	}
+	.normalTrSelChange1{
+	    background: #FFD8D8;
+	    font-weight: 600;
+	}
+	.normalTrSelChange1:hover{
+	    background: #FFA7A7;
+	    font-weight: 600;
+	    color: black;
+	}
+  
+
+
+
+
+
+/** placeholder */
+
+	input::placeholder{
+	
+		text-align: center;
+		color: darkgray;
+		font-style: italic;
+		font-size: 14px;
+	}
+
+/** 자주하는 진료 클릭 이벤트*/
+	.strong {font-weight:700;color:blue}
+
+
+	
+/** 자주하는 진료 표 CSS */
+	.tdFrequentDiagnosis20{
+	
+		width:20%;
+		background-color:#333258;
+		color:white;
+		border: 1px lightgray solid;
+		padding: 5px;
+	}
+
+	.tdFrequentDiagnosis80{
+	
+		width:80%;
+		color:black;
+		border: 1px lightgray solid;
+		text-align:left;
+		padding-left:2px;
+	}
+	
+ 	.trFrequentDiagnosis{
+	
+		font-size:14px ;
+		border: 1px lightgray solid;
+	} 
+	
+	.frequentDiagnosisButton{
+		
+		font-size:13px ;
+		border: 1pxsolid;
+		border-color: darkgray;
+		border-radius: 5px;
+		padding:2px;
+		margin:1px;
+	}
+	
+		
+	.frequentDiagnosisInput{
+		font-size:14px ;
+		border: 1px lightgray solid;
+		width:98%;
+		height:100px;
+		margin:5px;
+		textAlignVertical:top;
+	}
+	
+	
+	
+	#frequentDiagnosisTable{
+		
+		border: 1px lightgray solid;
+	}
+
+
+ 
+/** 처방전 등록 CSS */
+	
+	
+	#wrap{
+		padding:10px;
+	}
+	
+	.btnOpen{
+		font-weight:bold; 
+		margin:5px; 
+		padding:4px 6px; 
+		color:#fff;
+	}
+	
+	
+ 	.popWarp{
+		position:fixed; 
+		top:45%; 
+		left:30%; 
+		width:20%;
+		height::450px;
+		background:#F9F9F9; 
+		font-size:20px; 
+		text-align:center;
+		color:black;
+		border-radius:10px;
+		border:1px #333258 solid;
+        
+        z-index:8;
+		
+		
+	} 
+	
+	.popWrap:after{
+		display:inline-block; 
+		height:100%; 
+		vertical-align:middle; 
+		content:'';
+	}
+	
+	.popWrap .popInner{
+		display:inline-block; 
+		padding:20px 30px; 
+		background:#fff; 
+		width:200px; 
+		vertical-align:middle; 
+		font-size:15px;
+	}
+
+	
+/** tab */
+
+#tabs .tab {
+    display: inline-block;
+   	float;
+    padding: 5px 10px;
+    cursor: pointer;
+    position: relative;
+    z-index:3;
+    
+}
+#tabs .whiteborder {
+    border: 1px solid lightgray;
+    border-bottom: 1px solid #fff;
+    border-radius: 3px 3px 0  0;
+}
+#tabs .tabContent {
+    width: 100%;
+    height: 65vh;
+    border: 1px solid lightgray;
+    position: relative;
+    top: -1px;
+    z-index:2;
+    padding: 10px;
+    border-radius: 0 0 3px 3px
+}
+#tabs .hide {
+    display: none;
+}
+#tabs .show {
+    display: block;
+}
+
+
+
+/** placeholder */
+	input:placeholder{
+	
+		text-align: center;
+		color: darkgray;
+		font-style: italic;
+		font-size: 14px;
+	}
+	
+	input{
+		color: #000000;
+		font-size: 14px;
+	}
+	
+	input:hover{
+	    background: #EAEAEA;
+	}
+	
+	input:focus{
+	    outline: none;
+	}
+
+	input:disabled{
+		background-color: #ECEBFF;
+	}
+
+	
+	/**모달 1*/
+	#modal1.modal-overlay{
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          background: rgba(255, 255, 255, 0.70);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          backdrop-filter: blur(1.5px);
+          -webkit-backdrop-filter: blur(50.5px);
+          border-radius: 5px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          
+          z-index:8;
+      }
+
+      #modal1 .modal-window {
+
+          background: rgba( 246, 246, 246);
+          box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+          backdrop-filter: blur( 13.5px );
+          -webkit-backdrop-filter: blur( 50.5px );
+          border-radius: 5px;
+          border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+          width: 1000px;
+          height: 520px;
+          position: fixed;
+		  top: 40%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+          padding: 10px;
+          
+          z-index:8;
+      }
+
+      #modal1 .title {
+          padding-left: 10px;
+          display: inline;
+          text-shadow: 1px 1px 2px gray;
+          color: darkgray;
+          z-index:8;
+          
+      }
+
+      #modal1 .title h2 {
+          display: inline;
+      	  z-index:8;
+      }
+
+      #modal1 .close-area {
+          display: inline;
+          float: right;
+          padding-right: 10px;
+          cursor: pointer;
+          text-shadow: 1px 1px 2px gray;
+          color: darkgray;
+          z-index:8;
+      }
+      
+      #modal1 .content {
+          margin-top: 20px;
+          padding: 0px 10px;
+          z-index:8;
+      }	
+	
+	
+	/**모달 2*/
+	  #modal2.modal-overlay{
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          background: rgba(255, 255, 255, 0.70);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          backdrop-filter: blur(1.5px);
+          -webkit-backdrop-filter: blur(50.5px);
+          border-radius: 5px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          
+          z-index:8;
+      }
+
+      #modal2 .modal-window {
+
+          background: rgba( 246, 246, 246);
+          box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+          backdrop-filter: blur( 13.5px );
+          -webkit-backdrop-filter: blur( 50.5px );
+          border-radius: 5px;
+          border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+          width: 1000px;
+          height: 530px;
+          position: fixed;
+		  top: 40%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+          padding: 10px;
+          
+          z-index:8;
+      }
+
+      #modal2 .title {
+          padding-left: 10px;
+          display: inline;
+          text-shadow: 1px 1px 2px gray;
+          color: darkgray;
+          z-index:8;
+          
+      }
+
+      #modal2 .title h2 {
+          display: inline;
+      	  z-index:8;
+      }
+
+      #modal2 .close-area {
+          display: inline;
+          float: right;
+          padding-right: 10px;
+          cursor: pointer;
+          text-shadow: 1px 1px 2px gray;
+          color: darkgray;
+          z-index:8;
+      }
+      
+      #modal2 .content {
+          margin-top: 20px;
+          padding: 0px 10px;
+          z-index:8;
+      }	
+	
+	
+	/**모달 3*/
+	  #modal3.modal-overlay{
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          background: rgba(255, 255, 255, 0.70);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          backdrop-filter: blur(1.5px);
+          -webkit-backdrop-filter: blur(50.5px);
+          border-radius: 5px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          
+          z-index:8;
+      }
+
+      #modal3 .modal-window {
+
+          background: rgba( 246, 246, 246);
+          box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+          backdrop-filter: blur( 13.5px );
+          -webkit-backdrop-filter: blur( 50.5px );
+          border-radius: 5px;
+          border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+          width: 1000px;
+          height: 430px;
+          position: fixed;
+		  top: 40%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+          padding: 10px;
+          
+          z-index:8;
+      }
+
+      #modal3 .title {
+          padding-left: 10px;
+          display: inline;
+          text-shadow: 1px 1px 2px gray;
+          color: darkgray;
+          z-index:8;
+          
+      }
+
+      #modal3 .title h2 {
+          display: inline;
+      	  z-index:8;
+      }
+
+      #modal3 .close-area {
+          display: inline;
+          float: right;
+          padding-right: 10px;
+          cursor: pointer;
+          text-shadow: 1px 1px 2px gray;
+          color: darkgray;
+          z-index:8;
+      }
+      
+      #modal3 .content {
+          margin-top: 20px;
+          padding: 0px 10px;
+          z-index:8;
+      }	
+	
+	
+	/**모달 4*/
+	  #registWindow.popWarp{
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          background: rgba(255, 255, 255, 0.70);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          backdrop-filter: blur(1.5px);
+          -webkit-backdrop-filter: blur(50.5px);
+          border-radius: 5px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          
+          z-index:8;
+      }
+
+      #registWindow .modal-window {
+
+          background: rgba( 246, 246, 246);
+          box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+          backdrop-filter: blur( 13.5px );
+          -webkit-backdrop-filter: blur( 50.5px );
+          border-radius: 5px;
+          border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+          width: 350px;
+          height: 165px;
+          position: fixed;
+		  top: 40%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+          padding: 10px;
+          
+          z-index:8;
+      }
+
+
+		/**모달 5*/
+	  #saveLoadWindow.modal-overlay{
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          background: rgba(255, 255, 255, 0.70);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          backdrop-filter: blur(1.5px);
+          -webkit-backdrop-filter: blur(50.5px);
+          border-radius: 5px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          
+          z-index:8;
+      }
+
+      #saveLoadWindow .modal-window {
+
+          background: rgba( 246, 246, 246);
+          box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+          backdrop-filter: blur( 13.5px );
+          -webkit-backdrop-filter: blur( 50.5px );
+          border-radius: 5px;
+          border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+          width: 1000px;
+          height: 430px;
+          position: fixed;
+		  top: 40%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+          padding: 10px;
+          
+          z-index:8;
+      }
+
+       #saveLoadWindow .title {
+          padding-left: 10px;
+          display: inline;
+          text-shadow: 1px 1px 2px gray;
+          color: darkgray;
+          z-index:8;
+          
+      }
+
+      #saveLoadWindow .title h2 {
+          display: inline;
+      	  z-index:8;
+      }
+
+      #saveLoadWindow .close-area {
+          display: inline;
+          float: right;
+          padding-right: 10px;
+          cursor: pointer;
+          text-shadow: 1px 1px 2px gray;
+          color: darkgray;
+          z-index:8;
+      }
+      
+      #saveLoadWindow .content {
+          margin-top: 20px;
+          padding: 0px 10px;
+          z-index:8;
+      }
+
+
+
+		/**모달 6 선택된 진료 보기*/
+	  #selectDiagnosisWindow.modal-overlay{
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          background: rgba(255, 255, 255, 0.70);
+          box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+          backdrop-filter: blur(1.5px);
+          -webkit-backdrop-filter: blur(50.5px);
+          border-radius: 5px;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          
+          z-index:8;
+      }
+
+      #selectDiagnosisWindow .modal-window {
+
+          background: rgba( 246, 246, 246);
+          box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+          backdrop-filter: blur( 13.5px );
+          -webkit-backdrop-filter: blur( 50.5px );
+          border-radius: 5px;
+          border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+          width: 1500px;
+          height: 530px;
+          position: fixed;
+		  top: 40%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+          padding: 10px;
+          
+          z-index:8;
+      }
+
+       #selectDiagnosisWindow .title {
+          padding-left: 10px;
+          display: inline;
+          text-shadow: 1px 1px 2px gray;
+          color: darkgray;
+          z-index:8;
+          
+      }
+
+      #selectDiagnosisWindow .title h2 {
+          display: inline;
+      	  z-index:8;
+      }
+
+      #selectDiagnosisWindow .close-area {
+          display: inline;
+          float: right;
+          padding-right: 10px;
+          cursor: pointer;
+          text-shadow: 1px 1px 2px gray;
+          color: darkgray;
+          z-index:8;
+      }
+      
+      #selectDiagnosisWindow .content {
+          margin-top: 20px;
+          padding: 0px 10px;
+          z-index:8;
+      }
+

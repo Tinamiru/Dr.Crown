@@ -3,6 +3,7 @@
 
     
 <script>
+	alert("이곳은 인덱스")
 	if('${loginUser.memId}'){
 		location.href="<%=request.getContextPath()%>/index";
 	}else{

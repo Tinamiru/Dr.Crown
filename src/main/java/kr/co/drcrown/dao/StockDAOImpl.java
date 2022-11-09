@@ -1,16 +1,9 @@
 package kr.co.drcrown.dao;
 
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
-import kr.co.drcrown.command.Criteria;
-import kr.co.drcrown.dto.NoticeVO;
-import kr.co.drcrown.dto.PatientVO;
 import kr.co.drcrown.dto.StockVO;
 
 public class StockDAOImpl implements StockDAO {

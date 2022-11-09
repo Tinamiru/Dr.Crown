@@ -79,4 +79,16 @@ public class PatientServiceImpl implements PatientService {
         return dataMap;
 
     }
+
+    @Override
+    public void updatePatient(PatientVO patient) throws SQLException {
+        patientDAO.updatePatient(patient);
+        
+    }
+
+    @Override
+    public void deletePatient(String pNo) throws SQLException {
+       patientDAO.deletePatient(pNo);
+        
+    }
 }

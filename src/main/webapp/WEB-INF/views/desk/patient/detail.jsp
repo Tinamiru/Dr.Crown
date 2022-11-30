@@ -58,7 +58,7 @@
 <div style="position: fixed; width: 100%; height: 100%; ">
 	<div class="contaner-fluid" style="margin: 1.5em; ">
 		<div class="row">
-			<div class="col-sm-6 justify-content-center" style="border-right: solid 1px;">
+			<div class="col-sm-12 justify-content-center" style="border-right: solid 1px;">
 				<section class="content" style="hight 80%; wigth:100%">
 					<section class="content-header" >
 						<div class="container-fluid" >
@@ -123,12 +123,14 @@
                                                 <input type="text" name="zonecode" class="form-control" placeholder="${patient.PZipcode}" readonly/>
                                                 </div>
                                             </div>
-                                            <div class="form-group col-md-7">
+                                            <div class="form-group col-md-6">
                                                 <label>나머지주소</label>
                                                 <input type="text" name="address" placeholder="${patient.PAddr1} ${patient.PAddr2}" class="form-control" />
                                             </div>
-                                           		<button type="button" class="btn btn-primary" name="" onclick="patDelete(${patient.PNo})" style="float: right; border-radius: 10px; margin-right: 5px; width: 55px;height: 70px">관리자<br/>삭제</button>	
-                                           		<button type="button" class="btn btn-primary" name="" onclick="patUpdate()" style="float: right; border-radius: 10px; margin-right: 5px; height: 70px">수정</button>	
+                                            <div class="form-group text-center col-md-4">
+                                           		<button type="button" class="btn btn-primary" name="" onclick="patDelete(${patient.PNo})" style="border-radius: 10px; margin-right: 5px;height: 70px">삭제</button>	
+                                           		<button type="button" class="btn btn-primary" name="" onclick="patUpdate()" style="border-radius: 10px; margin-right: 5px; height: 70px">수정</button>	
+                                        	</div>
                                         </div>
                                     </form>
                                     
@@ -229,7 +231,7 @@
 					</section>
 				</div>
 			</div>
-			<div class="col-sm-6">
+			<%-- <div class="col-sm-6">
 				<div class="row justify-content-center" style="padding-bottom: 3vh;">
 					<section class="content" style="height: 50vh; width: 95%;">
 						<section class="content-header">
@@ -464,7 +466,7 @@
 						</div>
 					</section>
 				</div>
-			</div>
+			</div> --%>
 		</div>
 
 
@@ -516,7 +518,8 @@ function patUpdate(a){
 <script>
 	$.ajax({
 	    method: "GET",
-	    url: "http://127.0.0.1:5000/recommend?PNo="+${patient.PNo},
+	    url: "http://192.168.141.26:5012/recommend?PNo="+${patient.PNo},
+// 	    url: "http://localhost:5012/recommend?PNo="+${patient.PNo},
 	    dataType: "json",
 	    success: function (p_result) {
 	        document.getElementById('brushing').innerText = p_result[0];

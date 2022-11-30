@@ -19,6 +19,7 @@ public interface NoticeDAO {
 	NoticeVO selectNoticeByNoticeNo(int noticeNo) throws SQLException;
 	NoticeVO selectNoticeByImage(String imageFile) throws SQLException;
 	
+	
 	// 조회수 증가
 	void increaseViewCount(int noticeCount) throws SQLException;
 
@@ -30,6 +31,9 @@ public interface NoticeDAO {
 	void updateNotice(NoticeVO notice) throws SQLException;
 
 	void deleteNotice(int noticeNo) throws SQLException;
+
+	
+    List<NoticeVO> selectCategoryList() throws SQLException;
 
 
 

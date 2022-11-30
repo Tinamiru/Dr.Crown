@@ -42,10 +42,21 @@
 	
 	
 	<select id="selectBookingByDate" parameterType="str" resultType="booking">
-		SELECT BOOKING_CODE, MEM_ID, P_NO, BOOKING_REGDATE, BOOKING_RDATE, BOOKING_CC, BOOKING_DOC, BOOKING_WRITER, BOOKING_YN
-		FROM BOOKING
+		SELECT b.BOOKING_CODE, b.MEM_ID, b.P_NO, b.BOOKING_REGDATE, b.BOOKING_RDATE, b.BOOKING_CC, b.BOOKING_DOC, b.BOOKING_WRITER, b.BOOKING_STATE_CODE,
+		(SELECT P_RNUM
+				FROM PATIENT p
+				WHERE p.P_NO  = b.P_NO)AS P_RNUM 
+		FROM BOOKING b
 		WHERE BOOKING_REGDATE LIKE TO_DATE(#{bookingRegdate} , 'YYYY-MM-DD')
-		AND BOOKING_YN like 'n'
+		AND BOOKING_STATE_CODE NOT IN('1')
+		order by BOOKING_REGDATE desc
+	</select>
+	
+	<select id="selectcallBookingByDate" parameterType="str" resultType="booking">
+		SELECT BOOKING_CODE, MEM_ID, P_NO, BOOKING_REGDATE, BOOKING_RDATE, BOOKING_CC, BOOKING_DOC, BOOKING_WRITER, BOOKING_STATE_CODE
+		FROM BOOKING
+		WHERE BOOKING_RDATE LIKE TO_DATE(#{bookingRdate} , 'YYYY-MM-DD')
+		AND BOOKING_STATE_CODE like '1'
 		order by BOOKING_REGDATE desc
 	</select>
 	
@@ -64,21 +75,23 @@
 	
 	<select id="selectBookingByList" resultType="booking">
 		select
-		* 
-		from BOOKING
-		where BOOKING_YN like 'y'
+			b.*, p.P_NAME
+		from BOOKING b
+        inner join patient p
+        on b.P_NO = P.P_NO
+        where BOOKING_STATE_CODE like '1'
 	</select>
 	
 	<update id="insertBooking" parameterType="booking">
 		insert into 
-		BOOKING(BOOKING_CODE,MEM_ID,P_NO,BOOKING_REGDATE,BOOKING_RDATE,BOOKING_CC,BOOKING_DOC,BOOKING_WRITER,BOOKING_YN)
-		values(GET_BOOKINGCODE('now'),#{memNo},#{pNo},SYSDATE,#{bookingRdate},#{bookingCc},#{bookingDoc},#{bookingWriter},'y')
+		BOOKING(BOOKING_CODE,MEM_ID,P_NO,BOOKING_REGDATE,BOOKING_RDATE,BOOKING_CC,BOOKING_DOC,BOOKING_WRITER,BOOKING_STATE_CODE)
+		values(GET_BOOKINGCODE('now'),#{memNo},#{pNo},SYSDATE,#{bookingRdate},#{bookingCc},#{bookingDoc},#{bookingWriter},'1')
 	</update>
 		
 	<update id="insertvisitBooking" parameterType="booking">
 		insert into 
-		BOOKING(BOOKING_CODE,MEM_ID,P_NO,BOOKING_REGDATE,BOOKING_RDATE,BOOKING_CC,BOOKING_DOC,BOOKING_WRITER)
-		values(GET_BOOKINGCODE('now'),#{memNo},#{pNo},SYSDATE,#{bookingRdate},#{bookingCc},#{bookingDoc},#{bookingWriter})
+		BOOKING(BOOKING_CODE,MEM_ID,P_NO,BOOKING_REGDATE,BOOKING_RDATE,BOOKING_CC,BOOKING_DOC,BOOKING_WRITER,BOOKING_STATE_CODE)
+		values(GET_BOOKINGCODE('now'),#{memNo},#{pNo},SYSDATE,SYSDATE,#{bookingCc},#{bookingDoc},#{bookingWriter},'2')
 	</update>	
 	
 	<update id="updateBooking" parameterType="booking">
@@ -100,6 +113,22 @@
 		*
 		from BOOKING
 		where P_NO=#{pNo}
+		order by BOOKING_REGDATE desc
+	</select>
+	
+	<select id="selectBookingListByState" resultType="bookingStateList">
+	  SELECT p.p_no p_no,
+	         p.p_name p_name,
+	         bs.bs_name bs_name,
+	         p.p_rnum p_rnum
+	    FROM booking b
+	   inner join booking_statecode bs
+	      on b.booking_state_code = bs.bs_code
+	   inner join patient p
+	      on p.p_no = b.p_no
+	   where booking_rdate like TO_DATE(sysdate)
+	   	 and BOOKING_STATE_CODE = 2
+	   order by b.booking_rdate desc, bs.bs_code desc
 	</select>
 	
 <!-- 	<select id="selectMemberByPicture" parameterType="str" resultType="member">

@@ -27,12 +27,42 @@
 		<typeAlias type="kr.co.drcrown.dto.CureDetailVO"  alias="curedetail"/>
 		<typeAlias type="kr.co.drcrown.dto.MpriceVO"  alias="mprice"/>
 		<typeAlias type="kr.co.drcrown.dto.CureVO"  alias="cure"/>
-		<typeAlias type="kr.co.drcrown.dto.SymptomVO"  alias="symptom"/>
+		<typeAlias type="kr.co.drcrown.dto.DiseasesVO"  alias="Diseases"/>
 		<typeAlias type="kr.co.drcrown.dto.PtPayVO"  alias="ptpay"/>
 		<typeAlias type="kr.co.drcrown.dto.CureDlistVO"  alias="curedlist"/>
 		<typeAlias type="kr.co.drcrown.dto.FileVO"  alias="file"/>
 		<typeAlias type="kr.co.drcrown.dto.DrugInfoVO"  alias="drugInfo"/>
+		<typeAlias type="kr.co.drcrown.dto.PreOrderVO"  alias="preOrder"/>
+		<typeAlias type="kr.co.drcrown.dto.DocumentVO"  alias="document"/>
+		<typeAlias type="kr.co.drcrown.dto.AttachVO"  alias="attach"/>
+		<typeAlias type="kr.co.drcrown.dto.PrescriptionVO"  alias="prescription"/>
 		
+		<!-- command -->
+		<typeAlias type="kr.co.drcrown.command.BookingStateListCommand"  alias="bookingStateList"/>
+		<typeAlias type="kr.co.drcrown.command.ChartCureDetailCommand"  alias="chartCureDetail"/>
+		<typeAlias type="kr.co.drcrown.command.ChartCureCommand"  alias="chartCure"/>
+		<typeAlias type="kr.co.drcrown.command.NoticeModifyCommand"  alias="NoticeModify"/>
+		<typeAlias type="kr.co.drcrown.command.NoticeRegistCommand"  alias="NoticeRegist"/>
+		
+		<!-- TreatmentListCommands -->
+		<typeAlias type="kr.co.drcrown.command.TLCCommand"  alias="tlc"/>
+		<typeAlias type="kr.co.drcrown.command.TSCCommand"  alias="tsc"/>
+		<typeAlias type="kr.co.drcrown.command.TLListCommand"  alias="tlList"/>
+		<typeAlias type="kr.co.drcrown.command.TLDetailSelectCommand"  alias="tlSelectDetail"/>
+		<typeAlias type="kr.co.drcrown.command.TLDetailCommand"  alias="tlDetail"/>
+		
+		<typeAlias type="kr.co.drcrown.command.CureDetailRegistCommand"  alias="cdrc"/>
+		<typeAlias type="kr.co.drcrown.command.PatienTreatmentRegistCommand"  alias="ptrc"/>
+		<typeAlias type="kr.co.drcrown.command.PatienDiseaseRegistCommand"  alias="pdrc"/>
+		<typeAlias type="kr.co.drcrown.command.PatientPrescribedRegistCommand"  alias="pprc"/>
+		<typeAlias type="kr.co.drcrown.command.PatientPrescribedRegistListCommand"  alias="pprcl"/>
+		
+		<typeAlias type="kr.co.drcrown.command.PatientTreatmentSelectCommand"  alias="ptsc"/>
+		<typeAlias type="kr.co.drcrown.command.PatientDzSelectCommand"  alias="pdsc"/>
+		<typeAlias type="kr.co.drcrown.command.TLSearchCommand"  alias="tlsc"/>
+		<typeAlias type="kr.co.drcrown.command.ChartSearchCommand"  alias="csc"/>
+		<typeAlias type="kr.co.drcrown.command.PatientPrescribedSelectCommand"  alias="prsc"/>
+		<typeAlias type="kr.co.drcrown.command.PatientPrescribedSelectListCommand"  alias="prslc"/>
 		
   	</typeAliases>
     

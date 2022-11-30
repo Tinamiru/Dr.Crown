@@ -5,19 +5,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
+import kr.co.drcrown.command.NoticeRegistCommand;
+import kr.co.drcrown.command.NoticeModifyCommand;
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.command.PageMaker;
-import kr.co.drcrown.dto.NoticeVO;
 
+import kr.co.drcrown.dto.AttachVO;
+import kr.co.drcrown.dao.AttachDAO;
+import kr.co.drcrown.dto.NoticeVO;
 import kr.co.drcrown.dao.NoticeDAO;
 
-
+@Service
 public class NoticeServiceImpl implements NoticeService {
 
 	private NoticeDAO noticeDAO;
 
 	public void setNoticeDAO(NoticeDAO noticeDAO) {
 		this.noticeDAO = noticeDAO;
+	}
+
+	private AttachDAO attachDAO;
+	
+	public void setAttachDAO(AttachDAO attachDAO) {
+	    this.attachDAO = attachDAO;
 	}
 
 	@Override
@@ -61,8 +73,21 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public void regist(NoticeVO notice) throws SQLException {
-
+	    int attachNo = attachDAO.selectAttachSequenceNextValue();
+	    
 		int noticeNo = noticeDAO.selectNoticeSequenceNextValue();
+		List<AttachVO> attachList = notice.getAttachList();
+		for (AttachVO eachVO : attachList) {
+		    eachVO.setAttachNo(attachNo);
+            //더 필요한거 있으면 set 해주시고
+		    attachDAO.insertAttach(eachVO);
+		   //eachVO는 리스트안에있는거
+        }
+		
+		//불러올때 글 번호로 꺼내오면 attachNo를 알수있겠죠? 그러면 attachNo로 attach테이블에서 가져옵니다
+		//그리고 noticeVO에 set
+		notice.setAttachNo(attachNo+"");
+		
 		notice.setNoticeNo(noticeNo);
 		noticeDAO.insertNotice(notice);
 
@@ -81,4 +106,39 @@ public class NoticeServiceImpl implements NoticeService {
 		noticeDAO.deleteNotice(noticeNo);
 
 	}
+
+    @Override
+    public List<NoticeVO> getNoticeCategoryList() throws SQLException {
+        List<NoticeVO> categoryList = noticeDAO.selectCategoryList();
+        return categoryList;
+    }
+    
+    
+    @Override
+    public AttachVO getAttachByAttachNo(int attachNo) throws SQLException {
+
+        AttachVO attach = attachDAO.selectAttachByAttachNo(attachNo);
+
+        return attach;
+    }
+
+    @Override
+    public void removeAttachByAttachNo(int attachNo) throws SQLException {
+
+        attachDAO.deleteAttach(attachNo);
+
+    }
+
+    public void addAttachList(NoticeVO notice) throws SQLException {
+
+        if (notice == null)
+            return;
+
+        int noticeNo = notice.getNoticeNo();
+        List<AttachVO> attachList = attachDAO.selectAttachesByNoticeNo(noticeNo);
+
+        notice.setAttachList(attachList);
+    }
+    
+    
 }

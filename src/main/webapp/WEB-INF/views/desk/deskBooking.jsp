@@ -18,7 +18,7 @@
         }
 
         #userListTable {
-            width: 530px;
+            width: 650px;
             border: 0px;
             border-collapse: collapse;
         }
@@ -59,7 +59,7 @@
 					<section class="content-header" >
 						<div class="container-fluid" >
 								<div class="row">
-							<h4 style="text-align: left; " class="patName"></h4><h4 style="text-align: left;">님의 님의 오늘의 진료</h4>
+							<h4 style="text-align: left; " class="patName"></h4><h4 style="text-align: left;">님의 님의 오늘의 진료입력</h4>
 						<div class="col-sm-12">
 						
 						</div>
@@ -84,41 +84,37 @@
 
                                         <div class="form-row">
                                             <div class="form-group col-md-2">
-                                                <label>치아번호</label>
-                                                <input type="text" class="form-control" placeholder="" value="#">
-                                
+                                                <label></label>
                                             </div>
                                             <input type="hidden" class="form-control" id="memNo" name="memNo" placeholder="Email" value=${loginUser.memId}>
-                                             <input type="hidden" class="form-control" id="pNo" name="pNo"  placeholder="차트번호">
+                                            <input type="hidden" class="form-control" id="pNo" name="pNo"  placeholder="차트번호">
                                          </div>
+                                <h4 style="text-align: left; margin-top: 1px; ">주요증상(CC)입력</h4>
                                     <textarea name="bookingCc" id="contents">
 						</textarea>
-                                    
-                                    
-                                    
+				
 								
-												<div class="row">
+						<div class="row" style="margin-top: 20px">
 							<h4 style="text-align: left;" class="patName"></h4><h4 style="text-align: left;">님의 담당의사 / 담당직원</h4>
-									  <div>
+							   <div>
 								담당의사&nbsp;
 						
-								<c:set var="nowYear" value="2022"></c:set>
-								<select name="bookingDoc">
-								  <c:forEach var="i" begin="1950" end="${nowYear}" step="1">
-								    <option value="${nowYear - i + 1950}">${nowYear - i + 1950}년생</option>
-								  </c:forEach>
+								
+								<select name="bookingDoc" id="bookingDoc">					
+								    <option value="신의사">&nbsp;신의사&nbsp;&nbsp;</option>
+								    <option value="김의사">김의사</option>
+								    <option value="곽의사">곽의사</option>
 								</select>
 									 
 									  
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;담당직원&nbsp;
-								<c:set var="nowYear" value="2022"></c:set>
-								<select name="bookingWriter">
-								  <c:forEach var="i" begin="1950" end="${nowYear}" step="1">
-								    <option value="${nowYear - i + 1950}">${nowYear - i + 1950}년생</option>
-								  </c:forEach>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;담당직원&nbsp;						
+								<select name="bookingWriter" id="bookingWriter">							 
+								    <option value="직원1">&nbsp;직원1&nbsp;&nbsp;</option>
+								    <option value="직원2">직원2</option>
+								    <option value="직원삼">직원3</option>
 								</select>
 							
-									  </div>
+							 </div>
 			
 							</div>
 										
@@ -154,7 +150,7 @@
 					<div class="container-fluid" style="">
 							<h4 style="text-align: left;" class="patName"></h4><h4 style="text-align: left;">님의 전신병력 및 체크사항</h4>
 							</div>
-					<section class="content" style="height: 10vh; width: 95%;" >
+					<section class="content" style="height: 20vh; width: 95%;" >
 						<div class="card">
 							<div class="card-body" style="text-align: center; font-size: 13px; margin-top: -30px; margin-right: -30px; margin-left: -28px;">
 								<div class="row">
@@ -165,31 +161,31 @@
 						<div class = "row pt-2">
 							<div class="col-md-2 ">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox1" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox1" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox1">치석</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3" style="margin-left:-5px;">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox2" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox2" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox2">교정&nbsp;&nbsp;</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox3" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox3" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox3">보철물</label>
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="custom-control custom-checkbox mb-3" style="margin-left:-30px;">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox4" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox4" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox4">구강질환</label>
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="custom-control custom-checkbox mb-3" style="margin-left:-80px;">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox5" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox5" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox5">치주질환</label>
 								</div>
 							</div>
@@ -197,31 +193,31 @@
 						<div class = "row">
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox6" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox6" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox6">간염</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox7" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox7" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox7">임신중</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox8" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox8" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox8">고혈압</label>
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="custom-control custom-checkbox mb-3" style="margin-left:-30px;">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox9" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox9" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox9">신부전증</label>
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="custom-control custom-checkbox mb-3" style="margin-left:-80px;">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox10" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox10" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox10">항우울증</label>
 								</div>
 							</div>
@@ -230,31 +226,31 @@
 						<div class = "row ">
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox14" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox14" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox14">기타</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox15" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox15" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox15">이갈이</label>
 								</div>
 							</div>
 									<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox11" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox11" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox11">뇌경색</label>
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="custom-control custom-checkbox mb-3" style="margin-left:-30px;">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox12" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox12" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox12">아스피린</label>
 								</div>
 							</div>
 							<div class="col-md-3">
 								<div class="custom-control custom-checkbox mb-3" style="margin-left:-80px;">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox16" >
+									<input type="checkbox" class="custom-control-input"   id="customCheckBox16" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox16">신장투석</label>
 								</div>
 							</div>
@@ -272,7 +268,7 @@
 					</section>
 				</div>
 			</div>
-	<%-- 		<div class="col-sm-6">
+	 		<div class="col-sm-6">
 				<div class="row justify-content-center" style="padding-bottom: 3vh;">
 					<section class="content" style="height: 50vh; width: 95%;">
 						<section class="content-header">
@@ -317,7 +313,7 @@
 				</div>
 				
 				<div class="row justify-content-center" style="padding-bottom: 8vh;">
-					<section class="content" style="height: 43vh; width: 95%;" >
+					<section class="content" style="height: 42vh; width: 95%;" >
 						<section class="content-header">
 							<div class="container-fluid">
 								<h4 style="text-align: left; margin-top: 1px; ">최근예약목록</h4>
@@ -350,7 +346,7 @@
 						</div>
 					</section>
 				</div>
-			</div> --%>
+			</div> 
 		</div>
 
 
@@ -364,6 +360,7 @@
 	</div>
 </div>
 <script src="<%=request.getContextPath()%>/resources/vendor/jquery/jquery.min.js" ></script>
+<script src="https://cdn.ckeditor.com/4.20.0/basic/ckeditor.js"></script>
 
 <script>
 const url = new URL(window.location.href)
@@ -408,40 +405,40 @@ list(a)
 function list(b){  
 		
 
-		$.ajax({
-			url:"getBookingpno.do",
-			type:"get",
-			data: {pNo: b},
-			dataType:"json",
-			success: ajaxHtml,
-			error:function(){alert("error");
-			console.log(data)}
-		});
-	}
+	$.ajax({
+		url:"getBookingpno",
+		type:"get",
+		data: {pNo: b},
+		dataType:"json",
+		success:function(data){
+			ajaxbookingpNo(data);
+		},
+		error:function(){alert("error");
+		console.log(data)}
+	});
+}
 
-		function ajaxHtml(data){
-			console.log(data)
-			var html="<table class='table table-bordered' id='userListTable'>";
-			html+="<tr>";
-			html+="<th>순번</th>";
-			html+="<th>진료|접수내역</th>";
-			html+="<th>차트번호</th>";
-			html+="<th>이름</th>";
-			html+="<th>접수시간</th>";  		
-			html+="<th>상태</th>";  		
-			html+="</tr>";
-			
-			$.each(data.bookingDateList, (index, obj)=>{
-				
-				html+="<tr onClick=patient("+obj.pno+");curelist("+obj.pno+")>";
-		  		html+="<td>"+obj.bookingCode+"</td>";
-		  		html+="<td>"+obj.bookingCc+"</td>";
-		  		html+="<td>"+obj.bookingDoc+"</td>";
-		  		html+="<td>"+obj.bookingWriter+"</td>";
-		  		html+="<td>"+moment(obj.bookingRegdate).format("MM-DD")+"</td>";
-		  		html+="</tr>";
-			})
-			html+="</table>";
+
+	function ajaxbookingpNo(data){
+		var html="<table class='table table-bordered' id='userListTable'>";
+		html+='<tr bgcolor="#333258" style="color: white; cursor: default;">';
+		html+="<th>예약날짜/시간</th>";
+		html+="<th>예약증상(CC)</th>";
+		
+		html+="</tr>";
+		
+		
+		$.each(data.bookingDateList, (index, obj)=>{
+
+		if(obj.bookingStateCode==1){
+	  		html+="<td>"+moment(obj.bookingRegdate).format("YYYY-MM-DD HH:mm")+"</td>";
+	  		html+="<td>"+obj.bookingCc.replace(/<p[^>]*>/g, '').replace(/<\/p>/g, '<br />');+"</td>";
+	  
+	  		html+="</tr>";
+		}
+		})
+		html+="</table>";
+		
 			
 			$("#ajaxBookList").html(html);
 		}
@@ -457,7 +454,6 @@ function list(b){
 
 curelist(a)	
 
-
 function curelist(c){  
 
 	$.ajax({
@@ -472,28 +468,55 @@ function curelist(c){
 }
 
 	function ajaxHtmlCure(data){
-
+	console.log(data)
 		var html="<table class='table table-bordered' id='userListTable'>";
 		html+="<tr>";
-		html+="<th>진료일자</th>";
-		html+="<th>진료의사</th>";
-		html+="<th>진료내역</th>";
-		html+="<th>이름</th>";
-		html+="<th>연령|성별</th>";
+		html+="<th style='width:13%;'>진료일자</th>";
+		html+="<th style='width:15%;'>진료의사</th>";
+		html+="<th style='width:20%;'>치식</th>";
+		html+="<th style='width:62%;'>진료내역</th>";
 	 		
 		html+="</tr>";
 		
 		
 		$.each(data, (index, obj)=>{
-
-			html+="<tr onClick=patient("+obj.P_NO+")>";
-	  		html+="<td>"+moment(obj.CD_REGDATE).format("MM-DD")+"</td>";
-	  		html+="<td>"+ ""+"</td>";
-	  		html+="<td>"+obj.SYM_KO+"</td>";
-	  		html+="<td>"+""+"</td>";
-	  		html+="<td>"+""+"</td>";
-	  		html+="<td>"+""+"</td>";
+			
+	  		html+="<td>"+moment(obj.CD_REGDATE).format("YYYY-MM-DD")+"</td>";
+			html+="<td>"+obj.MEM_NAME+"</td>";
+	  		html+="<td>"
+	  			html+='<div class="card" style="padding:0; margin:0; position: static;">'
+	  			html+='<table class="chart-dental-formula">'
+	  			html+="<tr>"
+		  		html+='	<td class="innerTableChisikLT pt-0 pb-0" style="border-right:1px solid; border-bottom:1px solid; border-left:0; border-top:0; width:60px; height: 16px; text-align: right;">'
+		  		html+=`\${obj.CD_UL_JAW}`
+		  		html+='	</td>'
+		  		html+='	<td class="innerTableChisikRT pt-0 pb-0" style="border-right:0; border-bottom:1px solid; border-top:0; width:60px; height: 16px;">'
+					
+		  		html+=`\${obj.CD_UR_JAW}`
+					
+		  		html+='	</td>'
+		  		html+='</tr>' 
+		  		html+='<tr>' 
+		  		html+='	<td class="innerTableChisikLB pt-0 pb-0" style="border-left:0; border-bottom:0; border-right:1px solid; width:60px; height: 16px; text-align: right;">'
+		  		
+		  		html+=`\${obj.CD_BL_JAW}`
+					
+		  		html+='	</td>'
+		  		html+='	<td class="innerTableChisikRB pt-0 pb-0" style="border-right:0; border-bottom:0 ; width:60px; height: 16px;">'
+				
+		  		html+=`\${obj.CD_BR_JAW}`
+		  							
+		  		html+='	</td>'
+		  		html+='	</tr>'
+		  			html+='</div>'
+		  				html+='</table>'
+	  		
+	  		html+="</td>";
+	  		html+="<td style='text-align: left;'>"+obj.TL_NAME+"</td>";
 	  		html+="</tr>";
+
+	  		
+	  											
 		})
 		html+="</table>";
 		
@@ -501,9 +524,13 @@ function curelist(c){
 	}
 
 
+
 </script>
 
-<script src="https://cdn.ckeditor.com/4.20.0/basic/ckeditor.js"></script>
+
+
+
+
 <script>
 
 CKEDITOR.replace( 'contents', {
@@ -522,9 +549,16 @@ CKEDITOR.replace( 'contents', {
 		            type: "POST",
 		            data: $('#frm').serialize(),
 		            success: function(data){
-
-		            	console.log(data)
-		            	goAction(a);
+		            	swal({
+		    				  title: "성공",
+		    				  text: "접수가 완료되었습니다.",
+		    				  icon: "success",
+		    				  button: "확인",
+		    			}).then((willDelete) => {
+		    				console.log(data)
+			            	goAction(a);
+		    			});
+		            	
 		            },
 		            error: function(){  alert("접수 error");  }
 		        });
@@ -558,6 +592,8 @@ var a=urlParams.get('pNo')
 	 console.log(getData.pNo)
 	 console.log(getData.con)
 	 document.getElementById("contents").innerHTML = getData.con
+	 document.getElementById("bookingDoc").value = getData.doc
+	 document.getElementById("bookingWriter").value = getData.nul
 	 }
 }else{
 	
@@ -566,12 +602,23 @@ var a=urlParams.get('pNo')
 function goStg() {
 	CKupdate();	
 	const todayBtn = document.getElementById('contents').value;	
+	const doc = document.getElementById('bookingDoc').value;	
+	const nul = document.getElementById('bookingWriter').value;	
 	const data ={
 			pNo: a,
-			con: todayBtn
+			con: todayBtn,
+			doc: doc,
+			nul: nul
 		}
 	localStorage.setItem(a, JSON.stringify(data));
 	console.log(JSON.parse(localStorage.getItem(a)))
+
+        		swal({
+  				  title: "성공",
+  				  text: "임시저장이 완료되었습니다.",
+  				  icon: "success",
+  				  button: "확인",
+  			})
 }
 </script>
 

@@ -23,7 +23,16 @@
             <div class="container-fluid">
               
                 <!-- row -->
-
+		<div class="row justify-content-center">
+			<hr class="m-0" style="  width: 35%; ">
+		</div>
+		<div class="row justify-content-center">
+			<div class="subMenuList">
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<hr class="m-0" style="  width: 35%; ">
+		</div>
 
                 <div class="row">
                 	
@@ -51,11 +60,14 @@
 			                         	▶
 			                     </button>
 			               </div>      
-			               <div class="col-sm-4" align="center">       
+			               <div class="col-sm-4" align="center" >       
 			                    <h3 class="m-2" id="getToDate"></h3>  
 			               </div>
 			                    
 		                   <div class="col-sm-4" align="right">
+		                   	
+		                   	
+		                   	
 		                   	
 			                  
 		                   </div>
@@ -76,29 +88,69 @@
 	                          
 	                            <div class="col-xl-12">
 	                            
+	                      						<div class="col-sm-12">
+							<div style="float: left;">
+								<div id="keyword" class="card-tools"
+								style="width: 500px; height: 60px; font-size: 13px; float: left;">
+									<div class="input-group search-area d-lg-inline-flex d-none" style="margin-left: 30px">
+			<input class="form-control"  href="#" id="inputkeyword" onkeyup='selectList()' placeholder="환자검색" data-toggle="dropdown">
+				<div class="input-group-append">
+										<span class="input-group-text"><a href="javascript:void(0)"><i class="flaticon-381-search-2"></i></a></span>
+									</div>
+                <ul class="dropdown-menu">
+                  <li class="dropdown" id="aaa">
+                  <div style="width:350px;height:400px;  overflow:auto" class="bg-light">
+                  
+                  <div>
+                  </div>
+                  <div id="selectView" class="bg-light">
+                   <table class="table table-hover bg-light">
+                    <tbody id="seachKeywordModal">
+							<tr> 
+								<td colspan="2" style="font-size:20px">&nbsp;&nbsp;검색어를 입력해주세요 </td> 
+							</tr>
+                    </tbody>
+                  </table>
+       
+                  </div>
+                  </div>
+                  </li>
+                </ul>
+            
+										
+										<!-- end : search bar -->
+									</div>
+								</div>
+						
+							</div>
+	                            
+	                            
 	                                <div class="auth-form loginBoxBackground">
 										<div style="border-bottom: 2px solid;">
 										<h2 style="font-weight: bold;">예약등록</h2>
 	                                    </div>
+	                                    
+	                                    
 	                                   <form role="form" class="form-horizontal" action="regist" method="post">
 	                                    
 	                                    	 	<div class="form-row">
 			                                        <div class="col-sm-5">
 			                                    		  <label class="text-white" ><strong>환자 성함</strong></label>
-					                                         <div class="input-group mb-1"  data-toggle="modal" data-target=".bd-exampl2e-modal-lg" >
-					                                            <input type="text" id="P_NAME" class="form-control form-control-input  " value=" "placeholder="${patient.PName}"  disabled>
+					                                         <div class="input-group mb-1"  >
+					                                            <input type="text" id="P_NAME" class="form-control form-control-input  " placeholder=""  value=" "  disabled>
 			                                    		 </div>
 			                                         </div>
 			                                        <div class="col-sm-5">
 			                                    		  <label class="text-white"><strong>차트 번호</strong></label>
 					                                         <div class="input-group mb-1">
-					                                            <input type="text"  id="pNo" name="pNo" class="form-control form-control-input" value=" " readonly>
+					                                            <input type="text"  id="pNo" name="pNo" class="form-control form-control-input"  placeholder=""  value=" " readonly>
 	
 			                                    		 </div>
 			                                         </div>
 			                                         <div class="col-sm-2">
 			                                    		  <label class="text-white"><strong>성별</strong></label>
 					                                         <div class="input-group mb-1">
+					                                         
 					                                            <input type="text" id="P_gender" class="form-control form-control-input" value=" " disabled >
 			                                    		 </div>
 			                                           </div>
@@ -125,7 +177,7 @@
 			                                        <div class="col-sm-7">
 		                                             <label class="text-white"><strong>전화 번호</strong></label>
 		                                         <div class="input-group mb-3">
-		                                            <input type="text" class="form-control form-control-input" id="P_TEL"  placeholder="${patient.PTel}" value=" " disabled  >
+		                                            <input type="text" class="form-control form-control-input" id="P_TEL"   placeholder=""  value=" "disabled  >
 		                                        </div>
 		                                         </div>
 			                                       
@@ -133,7 +185,7 @@
 		                                         <div class="col-sm-5">
 		                                         <label class="text-white"><strong>보험 정보</strong></label>
 		                                         <div class="input-group mb-3">
-		                                            <input type="text" class="form-control form-control-input" id="P_INSURANCE" value=" " disabled  >
+		                                            <input type="text" class="form-control form-control-input" id="P_INSURANCE"   placeholder=""   value=" " disabled  >
 		                                        </div>
 		                                        </div>
 		                                          </div> 
@@ -228,111 +280,6 @@
           
           
           
-          			 <div class="modal fade bd-exampl2e-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h3 class="modal-title">환자 검색</h3>
-                                                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-												<div class="row">
-													<div class="col-md-12">
-														<div class="row justify-content-end pl-5 pr-3">
-															<div class="col-8" style="height: 50px;">
-																<div class="row justify-content-end" >
-																	<div class="col-3 p-0">
-																		<select class="form-control" name="searchType" id="searchType">
-																			<option value="tcw"  ${cri.searchType eq 'tcw' ? 'selected':'' }>전 체</option>
-																			<option value="t" ${cri.searchType eq 't' ? 'selected':'' }>이름</option>
-																			<option value="w" ${cri.searchType eq 'w' ? 'selected':'' }>작성자</option>
-																			<option value="c" ${cri.searchType eq 'c' ? 'selected':'' }>내 용</option>
-																			<option value="tc" ${cri.searchType eq 'tc' ? 'selected':'' }>제목+내용</option>
-																			<option value="cw" ${cri.searchType eq 'cw' ? 'selected':'' }>작성자+내용</option>							
-																			<option value="tcw" ${cri.searchType eq 'tcw' ? 'selected':'' }>작성자+제목+내용</option>
-																		</select>
-																	</div>
-																	<div class="col-6 p-0">
-																		<input  class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value="${param.keyword }"/>
-																	</div>
-																	<div class="pr-3">
-																		<span class="input-group-append">
-																			<button class="btn btn-primary" type="button">검색</button>
-																		</span>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<hr>
-														<!-- 테이블 -->
-														<div class="card-body" style="height: 68vh; overflow-y:scroll;">
-															<div class="table-responsive">
-																<table class="table table-bordered" id="example-table-2"
-																	style="margin: auto; text-align: center; font-size: 13px;">
-																	<thead class="thead">
-																		<tr bgcolor="#333258" style="color: white">
-																			<th scope="col">차트번호</th>
-																			<th scope="col">이름</th>
-																			<th scope="col">생년월일</th>
-																			<th scope="col">성별</th>
-																			<th scope="col">보험정보</th>
-																			<th scope="col">휴대전화</th>
-																			<th scope="col">최종내원일</th>
-																			<th scope="col">선택</th>
-																		</tr>
-																	</thead>
-																	<c:if test="${empty patientList }" >
-																		<tr>
-																			<td colspan="8">
-																				<strong>해당 내용이 없습니다.</strong>
-																			</td>
-																		</tr>
-																	</c:if>	
-																	<c:forEach items="${patientList}" var="patient">
-																		<tbody>
-																			<tr class="tr-select"  style="cursor:pointer;">
-																				<td>${patient.PNo}</td>
-																				<td>${patient.PName}</td>
-																				<td><fmt:formatDate value="${patient.PBir}"
-																						pattern="yyMMdd" /></td>
-																				<c:set var="gender" value="${fn:substring(patient.PRnum,6,7)}"/>
-																				<c:choose>
-																					<c:when test="${(gender eq '1') or (gender eq '3') }">
-																						<td>남</td>
-																					</c:when >
-																					<c:when test="${(gender eq '2') or (gender eq '4') }">
-																						<td>여</td>
-																					</c:when >
-																					<c:otherwise>
-																						<td></td>
-																					</c:otherwise>
-																				</c:choose>
-																				<td>${patient.PInsurance}</td>
-																				<td>${patient.PTel}</td>
-																				<td><fmt:formatDate value="${patient.PLastdate }"
-																						pattern="yyyy-MM-dd" /></td>
-																				<td><input type="button" class="checkB222tn" value="선택"  data-dismiss="modal"/></td>		
-																			</tr>
-																		</tbody>
-																	</c:forEach>
-																</table>
-															</div>
-														</div>
-														<hr>
-													</div>
-		
-											</div>
-												</div>
-                                                <div class="modal-footer">
-                                                   
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-							
-<!-- Large modal -->
-                                  
                                    
 		                                    
 		 
@@ -377,6 +324,9 @@ const options = {
 		<c:when test="${Doc.memId eq 'manager'}">
 		   backgroundColor: '#ADD8E6',
 		</c:when >
+		<c:when test="${Doc.memId eq 'd000017'}">
+		   backgroundColor: '#b4a7d6',
+		</c:when >
 		<c:otherwise>
 		   backgroundColor: '#FFA07A',
 		</c:otherwise>
@@ -418,7 +368,7 @@ calendar.createEvents([
 	 	{
 		    id: '${boo.bookingCode}',
 		    calendarId: '${boo.bookingDoc}',
-		    title: '${boo.PNo}',
+		    title: '${boo.PName}(${boo.PNo})',
 		    start: '<fmt:formatDate value="${boo.bookingRdate}" pattern="yyyy-MM-dd"/>T<fmt:formatDate value="${boo.bookingRdate}" pattern="HH:mm:ss"/>',
 		    end: '<fmt:formatDate value="${boo.bookingRdate}" pattern="yyyy-MM-dd"/>T<fmt:formatDate value="${boo.bookingRdate}" pattern="HH"/>:59',
 		  },
@@ -507,8 +457,10 @@ function getNavbarRange(tzStart, tzEnd, viewType) {
 	 /// 캘린더 상단 윌
 	 document.getElementById('getToDate').innerText = getNavbarRange(calendar.getDateRangeStart(), calendar.getDateRangeEnd(), calendar.getViewName());
 	 
-	 
-	 $(".checkB222tn").click(function(){ 
+    subMenu_go('M030000')
+	preloaderCustom.style.display = "none";
+	  
+	/*  $(".checkB222tn").click(function(){ 
 			
 			var str = ""
 			var tdArr = new Array();	// 배열 선언
@@ -538,9 +490,9 @@ function getNavbarRange(tzStart, tzEnd, viewType) {
 			
 			
 			
-		});
+		}); */
 	 
-	 console.log(document.getElementById('BOOKING_DATE').innerHTML)
+	 
  };
 </script>
 <script>
@@ -599,6 +551,7 @@ function getNavbarRange(tzStart, tzEnd, viewType) {
 			  text: "예약이 완료되었습니다.",
 			  icon: "success",
 			  button: "확인",
+			  
 		})
 		.then((willDelete) => {
 		  if (willDelete) {
@@ -612,4 +565,107 @@ function getNavbarRange(tzStart, tzEnd, viewType) {
 </c:if>
 
 
-  
+<script> 
+function selectList(){
+	  var keyword = document.getElementById('inputkeyword').value;
+	  const name = choHangul(document.getElementById('inputkeyword').value); 
+ 	  var choKeyword = (name); 
+	  console.log(keyword)
+			//초성검색 구분 
+		 	if (keyword!="" && choKeyword==""){ 
+			    choDiv = 'y'; 
+			}else{ 
+			    choDiv = 'n'; 
+			} 
+
+			
+			function choHangul(str) { 
+				  cho = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"]; 
+				  result = ""; 
+				  for(i=0;i<str.length;i++) { 
+				    code = str.charCodeAt(i)-44032; 
+				    if(code>-1 && code<11172){
+				        result += cho[Math.floor(code/588)]; 
+				    } 
+				    return result; 
+				}
+			}; 
+
+	  $.ajax({
+		  url : "<%=request.getContextPath()%>/desk/getSearchPatient",
+		  type : "get",
+		  dataType : "json",
+		  data : {keyword: keyword,
+			  	  searchType  : choDiv
+			   },
+		  success : function(data){
+			  console.log(data)
+			  var s = '';
+			  if(data.patList.patientsearchList < 1 || keyword==""){
+				  s += '<div style="text-align:center"><h3>검색결과가 없습니다</h3></div>' ;
+				
+			  }else{
+				$.each(data.patList.patientsearchList, function(index,value){
+
+					s += '<tr style="cursor:pointer; width:100%; font-size:18px;" onClick="patient('+value.pno+')">';
+					s +=	'<td style="width:50%; vertical-align : middle;">'+value.pno+'</td>';
+	                s += 	'<td style="width:50%; vertical-align : middle;";>'+value.pname+'</td>';
+          			s +=	'</td>';
+	                s += '</tr>';
+					
+
+				})
+			  }
+				$("#seachKeywordModal").html(s);
+		  }
+			   
+			   
+			   
+			   
+})};
+
+</script>
+
+<script>
+
+window.patient = function (a){  
+
+		$.ajax({
+			url:"<%=request.getContextPath()%>/desk/getPatient.do",
+			type:"get",
+			data: {pNo: a},
+			dataType:"json",
+			success:ajaxHtml2,
+			error:function(){alert("error");
+			console.log(data)}
+		});
+	};
+
+	function ajaxHtml2(data){
+		$.each(data.voList, ( obj)=>{
+			console.log(data)
+
+		});
+		$('input[id=P_NAME]').attr('value',data.voList.pname);
+		$('input[id=pNo]').attr('value',data.voList.pno);
+		$('input[id=P_TEL]').attr('value',data.voList.ptel);
+		$('input[id=P_BIR]').attr('value',moment(data.voList.pbir).format("YYYY-MM-DD"));
+		$('input[id=P_LASTDATE]').attr('value',moment(data.voList.plastdate).format("YYYY-MM-DD"));
+		$('input[id=P_INSURANCE]').attr('value',data.voList.pinsurance);
+		$("#pInsurance").val(data.voList.pinsurance);
+		$("#pVisitPath").val(data.voList.pvisitpath);
+	
+		
+	if(data.voList.prnum.substr(7, 1) == "1" && "3"){
+		 document.getElementById('P_gender').value = "남"
+		}else if(data.voList.prnum.substr(7, 1) == "2" && "4"){
+			 document.getElementById('P_gender').value  = "여"
+		}
+ 
+	}
+
+</script>
+
+<%@ include file="/WEB-INF/views/common/preloader_js.jsp"%>
+<%@ include file="/WEB-INF/views/common/index_js.jsp"%>
+<%@ include file="/WEB-INF/views/common/ifram_js.jsp"%>

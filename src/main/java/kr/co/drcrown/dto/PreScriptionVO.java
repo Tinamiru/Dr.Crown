@@ -2,51 +2,36 @@ package kr.co.drcrown.dto;
 
 import java.util.Date;
 
-public class PreScriptionVO {
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+
+@Getter
+@Setter
+@ToString
+public class PrescriptionVO {
 	
-	private String prsCode;             // 처방코드
-	private Date prsDate = new Date();  // 처방일
-	private String prsDoctor;			// 처방의
-	private String prsName;			    // 환자
-	private String tdCode;			    // 진료내역코드
-	private String pNo;			        // 환자차트번호
+	// Don't Fucking Touch This
+	
+	private String ppNumber;          		  // 예약번호
+	private String drugNo;          		  // 약품번호
+	private String cdCode;
+	private Date ppRegDate = new Date();     // 작성날짜
+	private String ppPertime;
+	private String ppPerDate;
+	private String ppTotalCount;
+	private String ppMediCation;  // 용법(식후 30분 )
 	
 	
-	public String getPrsCode() {
-		return prsCode;
-	}
-	public void setPrsCode(String prsCode) {
-		this.prsCode = prsCode;
-	}
-	public Date getPrsDate() {
-		return prsDate;
-	}
-	public void setPrsDate(Date prsDate) {
-		this.prsDate = prsDate;
-	}
-	public String getPrsDoctor() {
-		return prsDoctor;
-	}
-	public void setPrsDoctor(String prsDoctor) {
-		this.prsDoctor = prsDoctor;
-	}
-	public String getPrsName() {
-		return prsName;
-	}
-	public void setPrsName(String prsName) {
-		this.prsName = prsName;
-	}
-	public String getTdCode() {
-		return tdCode;
-	}
-	public void setTdCode(String tdCode) {
-		this.tdCode = tdCode;
-	}
-	public String getpNo() {
-		return pNo;
-	}
-	public void setpNo(String pNo) {
-		this.pNo = pNo;
-	}
+	
+	private String drugName;  // 약품이름
+	private String cdIsPrinted;  // 발급여부
+	private String memName;  // 발급의사
+	
+	
+	
+	
+	
 }
 	

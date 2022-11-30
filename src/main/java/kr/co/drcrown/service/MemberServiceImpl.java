@@ -5,6 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.command.PageMaker;
 import kr.co.drcrown.dao.BookingDAO;
@@ -17,9 +24,12 @@ import kr.co.drcrown.dto.MemberVO;
 import kr.co.drcrown.dto.PatientVO;
 import kr.co.drcrown.exception.InvalidPasswordException;
 import kr.co.drcrown.exception.NotFoundIdException;
+import kr.co.drcrown.security.PasswordEncoding;
+import kr.co.drcrown.security.SHAPasswordEncoder;
 
+@Service
 public class MemberServiceImpl implements MemberService {
-    
+
     private MemberDAO memberDAO;
     private BookingDAO bookingDAO;
     private PatientDAO patientDAO;
@@ -68,6 +78,16 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void regist(MemberVO member, String typeAuthority) throws Exception {
+        SHAPasswordEncoder shaPasswordEncoder = new SHAPasswordEncoder(512);
+        shaPasswordEncoder.setEncodeHashAsBase64(true);
+        PasswordEncoding passwordEncoding = new PasswordEncoding(shaPasswordEncoder);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        passwordEncoding = new PasswordEncoding(passwordEncoder);
+
+        String encodedPwd = passwordEncoding.encode("1234");
+
+        member.setMemPwd(encodedPwd);
+
         String newMemId = memberDAO.insertMember(member, typeAuthority);
         MemberVO memberForFile = memberDAO.selectMemberById(newMemId);
         fileDAO.insertFileByMember(memberForFile);
@@ -109,6 +129,49 @@ public class MemberServiceImpl implements MemberService {
         dataMap.put("patientList", patientList);
 
         return dataMap;
+    }
+
+    @Override
+    public void activation(String memId) throws Exception {
+        memberDAO.activationMember(memId);
+    }
+
+    @Override
+    public int getMemberForVerification(MemberVO member) throws Exception {
+        MemberVO memberById = memberDAO.selectMemberById(member.getMemId());
+        String pwdFromDAO = memberById.getMemPwd();
+        String pwdFromUser = member.getMemPwd();
+        int result = 0;
+        if (pwdFromDAO.equals(pwdFromUser)) {
+            result = 1;
+        }
+        return result;
+    }
+
+    @Override
+    public boolean isMemberPwd(HttpServletRequest request, String password, String newPassword) throws Exception {
+        boolean isMemberPwd = false;
+        SHAPasswordEncoder shaPasswordEncoder = new SHAPasswordEncoder(512);
+        shaPasswordEncoder.setEncodeHashAsBase64(true);
+        PasswordEncoding passwordEncoding = new PasswordEncoding(shaPasswordEncoder);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        passwordEncoding = new PasswordEncoding(passwordEncoder);
+        
+        HttpSession session = request.getSession();
+        MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+        
+//        String encryptionPwd = passwordEncoder.encode(password);
+        String encryptionNewPwd = passwordEncoder.encode(newPassword);
+        MemberVO member = memberDAO.selectMemberById(loginUser.getMemId());
+        
+        if(passwordEncoding.matches(password,member.getMemPwd())) {
+            member.setMemPwd(encryptionNewPwd);
+            memberDAO.modifyMemPwd(member);
+            session.invalidate();
+            isMemberPwd = true;
+        }
+        
+        return isMemberPwd;
     }
 
 }

@@ -3,34 +3,38 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Attach-Mapper">
-<!-- 	<select id="selectAttachByPno" resultType="attach">
+	<select id="selectAttachByNoticeNo" resultType="attach">
 		select * 
 		from attach 
-		where pno = #{pno}
+		where noticeNo = #{noticeNo}
 	</select>	
 	
-	<select id="selectAttachByAno" resultType="attach">
+	<select id="selectAttachByAttachNo" resultType="attach">
 		select *
 		from attach
-		where ano=#{ano}
+		where attachNo=#{attachNo}
+	</select>
+	
+	<select id="selectAttachSequenceNextValue" resultType="int">
+		select attach_seq.nextVal
+		from dual
 	</select>
 	
 	<update id="insertAttach">
 		insert into 
-		attach (ano, uploadpath, filename, filetype, pno, attacher)
+		attach (attach_no, upload_path, file_name, file_type, notice_no, attacher)
 		values (attach_seq.nextval, #{uploadPath}, #{fileName},#{fileType}, 
-				#{pno},#{attacher} )
+				#{noticeNo},#{attacher} )
 	</update>
-	
 	<update id="deleteAttach">
-		delete from attach where ano = #{ano}
+		delete from attach where attachNo = #{attachNo}
 	</update>
 	
 	<update id="deleteAllAttach">
 		delete 
 		from attach 
-		where pno = #{pno}
-	</update> -->
+		where noticeNo = #{noticeNo}
+	</update>
 </mapper>  
 
 

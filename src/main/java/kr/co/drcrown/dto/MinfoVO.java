@@ -11,17 +11,18 @@ public class MinfoVO {
 	
 	// Don't Fucking Touch This
 	
-	private String mInfoNo;  //의학게시글 코드
-	private String mInfoClass; //게시글 분류
-	private String mInfoTitle; //제목
-	private String mInfoWriter;  //작성자
-	private String mInfoContent; //내용
-	private Date mInfoRegdate; //작성날짜
-	private Date mInfoUpdate;//수정날짜
-	private String mInfoCount;//수정날짜
-	private String mInfoFile; // 파일
+	private int minfoNo;  //의학게시글 코드
+//	private String minfoClass; //게시글 분류
+	private String minfoTitle; //제목
+	private String minfoWriter;  //작성자
+	private String minfoContent; //내용
+	private Date minfoRegdate; //작성날짜
+	private Date minfoUpdate;//수정날짜
+	private String minfoCount;//수정날짜
+	private String minfoFile; // 파일
 	private String memId; // 아이디
 	
-	
+	private String pccNumber;
+	private String pccName;
 	
 }

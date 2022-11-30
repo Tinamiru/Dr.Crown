@@ -1,6 +1,6 @@
 package kr.co.drcrown.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,4 +17,5 @@ public class FileVO {
     private String fileSize;
     private String fileLocation;
     private String fileAtthcher;
+    private String pNo;
 }

@@ -50,11 +50,11 @@
 		  				<th colspan="5"> 주간 식당 식단 </th>
 		  			</tr>
 		  			<tr style="font-size:12px;">
-		  				<th style="height:35px; vertical-align:center;"><div>월</div><div>8/1</div></th>
-		  				<th><div>화</div><div>8/2</div></th>
-		  				<th><div>수</div><div>8/3</div></th>
-		  				<th><div>목</div><div>8/4</div></th>
-		  				<th><div>금</div><div>8/5</div></th>
+		  				<th style="height:35px; vertical-align:center;"><div style="color:blue;">월</div><div style="color:blue;">11/28</div></th>
+		  				<th><div>화</div><div>11/29</div></th>
+		  				<th><div>수</div><div>11/30</div></th>
+		  				<th><div>목</div><div>12/1</div></th>
+		  				<th><div>금</div><div>12/2</div></th>
 		  			</tr>
 		  			<tr>
 		  				<td style="height:180px;">
@@ -69,7 +69,7 @@
 		  				</td>
 		  				<td>
 		  					<p style="font-size:12px;">
-		  						*두루치기
+		  						*김치찌개
 		  						<br>무말랭이
 		  						<br>김치
 		  						<br>양반김
@@ -79,7 +79,7 @@
 		  				</td>
 		  				<td>
 		  					<p style="font-size:12px;">
-		  						*두루치기
+		  						*김치찌개
 		  						<br>무말랭이
 		  						<br>김치
 		  						<br>양반김
@@ -89,7 +89,7 @@
 		  				</td>
 		  				<td>
 		  					<p style="font-size:12px;">
-		  						*두루치기
+		  						*김치찌개
 		  						<br>무말랭이
 		  						<br>김치
 		  						<br>양반김
@@ -99,7 +99,7 @@
 		  				</td>
 		  				<td>
 		  					<p style="font-size:12px;">
-		  						*두루치기
+		  						*김치찌개
 		  						<br>무말랭이
 		  						<br>김치
 		  						<br>양반김
@@ -407,11 +407,11 @@
 	  	</div>
  	</div>
  	<div class="row justify-content-center">
-	  	<div class="row col-7 justify-content-center table table-bordered border-primary border-2 rounded" style="margin:10px;">
+	  	<div class="row col-7 justify-content-center table table-bordered border-primary border-2" style="margin:10px; overflow-y:scroll; height:150px; ">
 	  		<table class="text-center" style="width:90%; height: 30vh;">
 	  			<tr>
 	  				<th colspan="11">
-	  					<span>월간 식단 </span><br>
+	  					<span>월간 식단 </span>&nbsp;&nbsp;
 	  					<span style="display:none;">오늘날짜 = </span>&nbsp;&nbsp;
 	  					<span id="todate"></span>
   					</th>
@@ -451,20 +451,20 @@
 	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput28" style="font-size:12px;">8/28</div><div style="font-size:12px;">김치찌개</div></td>
 	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput29" style="font-size:12px;">8/29</div><div style="font-size:12px;">김치찌개</div></td>
 	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput30" style="font-size:12px;">8/30</div><div style="font-size:12px;">김치찌개</div></td>
-	  				<td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput31" style="font-size:12px;">8/31</div><div style="font-size:12px;">김치찌개</div></td>
+	  				<!-- <td style="height:35px; width:120px; vertical-align:center;"><div id="squeceDateInput31" style="font-size:12px;">8/31</div><div style="font-size:12px;">김치찌개</div></td> -->
 	  			</tr>
 	  		</table>
  		</div>
-	  	<div class="row p-1 col-4 justify-content-center table table-bordered border-primary border-2 rounded" style="margin:10px;">
-	  		<table class="text-center" style="width:90%; height: 30vh;">
+	  	<div class="row p-1 col-4 justify-content-center table table-bordered border-primary border-2"  style="margin:10px; overflow-y:scroll; height:150px; ">
+	  		<table class="text-center" style="width:90%; height: 15vh;">
 	  			<tr>
-	  				<th colspan="5"> AI 선정 오늘의 추천메뉴 </th>
+	  				<th colspan="5" style="height:10px;"> AI 선정 오늘의 추천메뉴 </th>
 	  			</tr>
 	  			<tr>
-	  				<td><span id="todayMenu">피자, 떡볶이, 탕수육</span></td>
+	  				<td><h4><span id="todayMenu"></span></h4></td>
 	  			</tr>
 	  		</table>
-	  		<div><h4><span id="todayMenu"></span></h4></div>
+	  		<!-- <div><h4><span id="todayMenu"></span></h4></div> -->
 	  	</div>
  	</div>
  
@@ -478,11 +478,11 @@
 var data1 = {"id":"${loginUser.memId}"};
 
 $.ajax({
-   url: "http://192.168.141.24:5002/getMenu", 
+//    url: "http://localhost:5012/getMenu", 
+   url: "http://192.168.141.26:5012/getMenu", 
    type: 'POST',
-   data : JSON.stringify(data1),
+   data : data1,
    dataType: 'JSON',
-   contentType: "application/json",
    success:function(menu){
       /* alert(data1); */
       document.getElementById('todayMenu').innerText = menu;
@@ -751,6 +751,8 @@ thisMonth();
 	}
 	hilightToday()
 </script>
+
+<%@ include file="/WEB-INF/views/common/preloader_js.jsp"%>
 
 
 

@@ -62,6 +62,8 @@
 						
 							<div class="card-body">
 				<h4>▶이이름(23232)님의 문서 발급 내역</h4>
+				
+				
 					<div class="table-responsive" style=" border: solid 1px; height: 60vh;" >
 						<table class="table table-bordered"
 							style="margin: auto;  text-align: center;">

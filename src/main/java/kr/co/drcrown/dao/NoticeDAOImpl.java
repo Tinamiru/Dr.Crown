@@ -86,7 +86,12 @@ public class NoticeDAOImpl implements NoticeDAO {
 		NoticeVO notice = session.selectOne("Notice-Mapper.selectNoticeByImage",imageFile);
 		return notice;
 	}
-	
+    @Override
+    public List<NoticeVO> selectCategoryList() throws SQLException {
+        List<NoticeVO> categoryList = session.selectList("Notice-Mapper.selectCategoryList");
+        return categoryList;
+    }
+
 
 }
 

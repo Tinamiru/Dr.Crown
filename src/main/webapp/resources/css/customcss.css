@@ -62,3 +62,20 @@ li[class="login-form-li"]:last-child::after {
 .white-text{
 	color: white;
 }
+
+.chart-dental-formula{
+	font-size: 8px;
+}
+
+.charListTableInnerWidth{
+	width: 14vw;
+}
+
+#preloader-custom{
+	z-index: 1000;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+}

@@ -37,6 +37,38 @@
 		values(#{memFinger})
 	</update>
 	
+	<select id="selectXrayPicture" parameterType="str" resultType="file">
+		select
+		*
+		from "FILE"
+		where p_no = #{pNo}
+	    ORDER BY FILE_REGDATE ASC
+	</select>
+	
+	<insert id="registXrayPicture" parameterType="file">
+		insert into 
+		"FILE"(
+			FILE_NO,
+		    FILE_CLASS,
+		    FILE_NAME,  
+		    FILE_REGDATE,
+			FILE_SIZE,
+		    FILE_LOCATION,
+			FILE_ATTHCHER,
+			P_NO
+		)
+		values(
+			file_seq.nextval,
+			#{fileClass},
+			#{fileName},
+			sysdate,
+			#{fileSize},
+			#{fileLocation},
+			#{fileAtthcher},
+			#{pNo}
+		)
+	</insert>
+	
 </mapper>
 
 

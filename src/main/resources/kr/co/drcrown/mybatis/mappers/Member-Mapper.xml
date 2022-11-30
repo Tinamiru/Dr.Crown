@@ -84,10 +84,9 @@
 	
 	<update id="insertMember" parameterType="hashMap">
 		insert into 
-		member(mem_id, mem_pwd, mem_mail, mem_phone,mem_name,mem_authority,MEM_OFCPS,MEM_RSPOFC,MEM_PIC,MEM_FACE,MEM_FINGER)
+		member(mem_id, mem_pwd, mem_mail, mem_phone,mem_name,mem_regdate,mem_authority,MEM_OFCPS,MEM_RSPOFC,MEM_PIC,MEM_FACE,MEM_FINGER)
 		values(
-		#{member.memId}
-		,'1234',#{member.memMail},#{member.memPhone},#{member.memName},
+		#{member.memId},'${member.memPwd}',#{member.memMail},#{member.memPhone},#{member.memName},#{member.memRegdate},
 		<include refid="authority" />
 		,#{member.memOfcps},#{member.memRspofc},
 		#{member.memId} || 'PP',
@@ -105,9 +104,25 @@
 	</update>
 	
 	<update id="deleteMember" parameterType="str" >
-		delete 
-		from member 
+		update member 
+		set 
+		MEM_ENABLED = 0
 		where mem_id=#{mem_id}		
+	</update>
+	
+	<update id="activationMember" parameterType="str" >
+		update member 
+		set 
+		MEM_ENABLED = 1
+		where mem_id=#{mem_id}		
+	</update>
+	
+	<update id="modifyMemPwd" parameterType="member" >
+		update member 
+		set 
+		MEM_PWD = #{memPwd},
+		mem_isfirst = 0
+		where mem_id = #{memId}		
 	</update>
 	
 </mapper>

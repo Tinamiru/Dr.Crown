@@ -19,8 +19,16 @@ public class CureDetailVO {
     private String cdOrt;
     private String cdPrs;
     private String cdOral;
-    private String memNo;
+    private String memId;
     private int cdTotalpay;
     private Date cdUpdateday;
     private String cdUpdatemem;   
+    
+    private String cdUrJaw;
+    private String cdUlJaw;
+    private String cdBrJaw;
+    private String cdBlJaw;
+    
+    private String cdPi;
+    
 }

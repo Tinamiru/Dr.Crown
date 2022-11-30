@@ -11,10 +11,14 @@
 
 <body>
 <div class="container-fluid">
-	<div class="row justify-content-start">
+	<div class="row justify-content-between">
 		<div class="col-3 pl-4">
 			<div class="card-header p-0 pt-4">
 				<h1>직원관리</h1>
+			</div>
+		</div>
+		<div class="col-8">
+			<div class="subMenuList">
 			</div>
 		</div>
 	</div>
@@ -132,9 +136,14 @@
 								<td>직원</td>
 							</c:otherwise>
 						</c:choose>
-						<c:if test="${member.memId ne 'admin' }" >
+						<c:if test="${member.memId ne 'admin' and member.memEnabled eq 1}" >
 							<td class="justify-content-center">
-								<button type="button" onclick="location.href='remove?memId=${member.memId}';" class="btn btn-danger btn-xl" style="border-radius: 10px;">삭제</button>
+								<button type="button" onclick="location.href='remove?memId=${member.memId}';" class="btn btn-danger btn-xl" style="border-radius: 10px;">비활성화</button>
+							</td>
+						</c:if>
+						<c:if test="${member.memEnabled eq 0}" >
+							<td class="justify-content-center">
+								<button type="button" onclick="location.href='activation?memId=${member.memId}';" class="btn btn-danger btn-xl" style="border-radius: 10px;">활성화</button>
 							</td>
 						</c:if>
 					</tr>
@@ -168,23 +177,18 @@
 
 </script>
 
-<c:if test="${from eq 'remove'}" >
-	<script>
+
+<script>
 	window.onload = function(){
-	swal({
-		  title: "성공",
-		  text: "사원아이디가 삭제되었습니다.",
-		  icon: "success",
-		  button: "확인",
-	})
-	.then((willDelete) => {
-	  if (willDelete) {
-		  window.location.reload();
-	 
-	  }
-	});
-	
-}
-	
-	</script>
-</c:if>
+		subMenu_go('M080000');
+		<c:if test="${from eq 'remove'}" >
+			swal( "성공" ,  "사원아이디가 비활성화 되었습니다." ,  "success" );
+		</c:if>
+		<c:if test="${from eq 'activation'}" >
+			swal( "성공" ,  "사원아이디가 활성화 되었습니다." ,  "success" );
+		</c:if>
+		preloaderCustom.style.display = "none";
+		}
+</script>
+<%@ include file="/WEB-INF/views/common/preloader_js.jsp"%>
+<%@ include file="../../common/index_js.jsp"%>

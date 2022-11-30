@@ -4,71 +4,124 @@
 
 <mapper namespace="Minfo-Mapper">
 
-<!-- 	<resultMap type="minfo" id="mediboard">
-		<result property="code" column="MINFO_CODE"/>
-		<result property="mclass" column="MINFO_CLASS"/>
-		<result property="title" column="MINFO_TITLE"/>
-		<result property="content" column="MINFO_CONTENT"/>
-		<result property="writer" column="MINFO_WRITER"/>
-		<result property="regdate" column="MINFO_REGDATE"/>
-	</resultMap> -->
-	<sql id="search">	
-		<if test="searchType == 'i'.toString()">
-			and id like '%'||#{keyword}||'%'			
+	 <sql id="search">
+		<if test="searchType == 't'.toString()">
+			and minfo_title like '%'||#{keyword}||'%'			
 		</if>
-		<if test="searchType == 'p'.toString()">
-			and phone like '%'||#{keyword}||'%'			
+		<if test="searchType == 'w'.toString()">
+			and minfo_writer like '%'||#{keyword}||'%'			
 		</if>
-		<if test="searchType == 'e'.toString()">
-			and email like '%'||#{keyword}||'%'			
+		<if test="searchType == 'c'.toString()">
+			and minfo_content like '%'||#{keyword}||'%'			
 		</if>
-		<if test="searchType == 'n'.toString()">
-			and name like '%'||#{keyword}||'%'			
-		</if>			
+		<if test="searchType == 'tc'.toString()">
+			and (
+			minfo_title like '%'||#{keyword}||'%'
+			or
+			minfo_content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+		<if test="searchType == 'cw'.toString()">
+			and (
+			minfo_writer like '%'||#{keyword}||'%'
+			or
+			minfo_content like '%'||#{keyword}||'%'						
+			)			
+		</if>
+		<if test="searchType == 'tcw'.toString()">
+			and (
+			minfo_title like '%'||#{keyword}||'%'
+			or
+			minfo_writer like '%'||#{keyword}||'%'
+			or
+			minfo_content like '%'||#{keyword}||'%'						
+			)			
+		</if>
 	</sql>	
 	
-	<select id="selectMinfoList" resultType="minfo">
-		select
-			*
-		from MEDI_INFO
-		<include refid="search" />
-		order by MINFO_REGDATE  desc
+	<select id="selectSearchMinfoList" resultType="minfo">
+		select *
+		from(
+		    select rownum as rnum,SearchMedi_InfoResult.*
+		    from ( 
+			 select MINFO_NO,
+                      MINFO_TITLE, 
+                      MINFO_WRITER, 
+                      MINFO_CONTENT, 
+                      MINFO_REGDATE, 
+                      MINFO_UPDATE,
+                      MINFO_COUNT, 
+                      PCC_NUMBER
+				 from medi_info n
+                where n.minfo_no is not null
+				<include refid="search" />				
+				order by minfo_regDate desc
+		    )  SearchMedi_InfoResult
+		    <![CDATA[
+		    where rownum <= #{endRow}
+		    ]]>
+		)
+		 <![CDATA[
+		where rnum >= #{startRow}		
+		 ]]>
 	</select>
-	<select id="selectMinfoListCount" resultType="int">
-		select
+	<select id="selectSearchMinfoListCount" resultType="int">
+		select 
 		count(*) 
-		from MEDI_INFO
+		from medi_info
+		where minfo_no is not null
 		<include refid="search" />
+		order by minfo_regDate desc
 	</select>
-	<select id="selectMemberById" parameterType="str" resultType="minfo">
-		select
-		*
-		from member
-		where id=#{id}
+	<select id="selectMinfoByMinfoNo" parameterType="int" resultType="minfo">
+		select 
+		* 
+		from medi_info
+		where minfo_no=#{minfoNo}
+	</select>
+
+<!-- 	<select id="selectMinfoByImage" resultType="minfo">
+		select 
+		* 
+		from medi_info
+		where content like '%'||#{imageFile}||'%'	
+	</select>	 -->
+	
+	
+	<select id="selectMinfoSequenceNextValue" resultType="int">
+		select MEDI_INFO_SEQ.nextVal
+		from dual
 	</select>
 	
-	<update id="insertMember" parameterType="minfo">
+	<select id="selectCategoryList" resultType="minfo">
+		select *
+		from pc_code
+	</select>
+	
+ 	<update id="increaseViewCount" parameterType="int">
+		update medi_info
+		set MINFO_COUNT=MINFO_COUNT+1
+		where minfo_no=#{minfoNo}
+	</update>
+	
+<!-- 	<update id="insertMinfo" parameterType="minfo">
 		insert into 
-		member(id, pwd, email, phone,picture,name,authority)
-		values(#{id},#{pwd},#{email},#{phone},#{picture},#{name},#{authority})
-	</update>
+				medi_info(minfo_no, minfo_title, minfo_writer, minfo_content, mem_id, pcc_number)
+		values(#{minfoNo}, #{minfoTitle}, #{minfoWriter}, #{minfoContent}, #{memId}, #{pccNumber})
+	</update>	 -->
 	
-	<update id="updateMember" parameterType="minfo">
-		update member 
+		
+<!--  	<update id="updateMinfo" parameterType="minfo">
+		update medi_info 
 		set 
-		pwd=#{pwd},email=#{email},phone=#{phone},name=#{name},
-		picture=#{picture},enabled=1
-		
-		<if test="authority != null">
-			,authority=#{authority}
-		</if>
-		
-		where id=#{id}
-	</update>
-	
-	<update id="deleteMember" parameterType="str" >
+		minfo_title=#{minfoTitle},minfo_writer=#{minfoWriter},minfo_content=#{minfoContent},pcc_number=#{pccNumber},minfo_update=sysdate
+		where minfo_no=#{minfoNo}
+	</update> -->
+	 
+<!-- 	<update id="deleteMinfo" parameterType="int" >
 		delete 
-		from member 
-		where id=#{id}		
-	</update>
+		from medi_info 
+		where minfo_no=#{minfoNo}		
+	</update> -->
+
 </mapper>

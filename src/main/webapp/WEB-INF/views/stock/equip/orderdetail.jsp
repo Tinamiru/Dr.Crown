@@ -138,34 +138,19 @@
 									<th>결제승인일</th>
 								</tr>
 								<tr style="font-weight:bolder; font-size: 11px;">
-									<td>나간호</td>
-									<td>2022/09/28</td>
+									<td>admin</td>
+									<td>2022-11-28</td>
 									<td>대기중</td>
 									<td></td>
 									<td></td>
 								</tr>
 							
-								<%-- <c:if test="${!empty minfoList }">
-											<c:forEach items="${minfoList}" var="minfo">
-												<tr onclick="detail()" style="font-weight:bolder; font-size: 11px;">
-													<td>${minfo.minfoClass }</td>
-													<td>${minfo.minfoCode }</td>
-													<td>${minfo.minfoContent }
-													<td>${minfo.minfoWriter }</td>
-													<td>${minfo.minfoWriter }</td>
-													<td>${minfo.minfoWriter }</td>
-													<td>${minfo.minfoWriter }</td>
-													<td><fmt:formatDate value="${minfo.minfoRegdate }"
-															pattern="yyyy-MM-dd" /></td>
-												</tr>
-											</c:forEach>
-								</c:if> --%>
 										
 							</table>
 							<table  class="table table-bordered">
 								<tr>
 									<th  id="tableTr" width="15%">반려사유</th>
-									<td style="font-size: 11px;">배고파서그랬습니다</td>
+									<td style="font-size: 11px;"></td>
 								</tr>
 							</table>
 						</div>
@@ -185,45 +170,49 @@
 					<div class="col-sm-12" >
 						<table class="table table-bordered" >
 							<tr class="tr-select"  id="tableTr">
-								<th>일련코드</th>
+								<th>요청날짜</th>
 								<th>품목명</th>
-								<th>수량</th>
-								<th>단위</th>
-								<th>제조사</th>
-								<th>금액(만)</th>
-							</tr>
-							<tr style="font-weight:bolder; font-size: 11px;">
-								<td>EQ001</td>
-								<td>치과용 치약</td>
-								<td>10</td>
-								<td>개</td>
-								<td>(주)동크제약</td>
-								<td>10</td>
-							</tr>
-							<tr style="font-weight:bolder; font-size: 11px;">
-								<td>EQ001</td>
-								<td>치과용 치약</td>
-								<td>10</td>
-								<td>개</td>
-								<td>(주)동크제약</td>
-								<td>10</td>
-							</tr><tr style="font-weight:bolder; font-size: 11px;">
-								<td>EQ001</td>
-								<td>치과용 치약</td>
-								<td>10</td>
-								<td>개</td>
-								<td>(주)동크제약</td>
-								<td>10</td>
-							</tr><tr style="font-weight:bolder; font-size: 11px;">
-								<td>EQ001</td>
-								<td>치과용 치약</td>
-								<td>10</td>
-								<td>개</td>
-								<td>(주)동크제약</td>
-								<td>10</td>
+								<th>주문수량</th>
+								<th>현재수량</th>
+								<th>주문총액</th>
 							</tr>
 							
-							<c:if test="${!empty minfoList }">
+							<tr>
+								<td>
+									2022-11-28
+								</td>
+								<td>
+									CETRACTOR(씨트렉터)
+								</td>
+								<td>
+									11
+								</td>
+								<td>
+									9
+								</td>
+								<td>
+									267400
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									2022-11-28
+								</td>
+								<td>
+									BONE RONGER (본론저)
+								</td>
+								<td>
+									5
+								</td>
+								<td>
+									15
+								</td>
+								<td>
+									315000
+								</td>
+							</tr>
+							<%-- <c:if test="${!empty minfoList }">
 								<c:forEach items="${minfoList}" var="minfo">
 									<tr style="font-weight:bolder; font-size: 11px;">
 
@@ -236,12 +225,12 @@
 									</tr>
 
 								</c:forEach>
-							</c:if>
-							<c:if test="${empty minfoList }">
+							</c:if> --%>
+							<%-- <c:if test="${empty minfoList }">
 								<tr>
 									<td colspan="7" class="text-center">해당내용이 없습니다.</td>
 								</tr>
-							</c:if>
+							</c:if> --%>
 						</table>
 						</div>
 				</div>

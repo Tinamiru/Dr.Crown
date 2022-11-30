@@ -1,6 +1,7 @@
 package kr.co.drcrown.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -32,6 +33,16 @@ public class FileDAOImpl implements FileDAO{
         session.update("File-Mapper.insertFileByMemberFace", member);
         session.update("File-Mapper.insertFileByMemberFinger", member);
         
+    }
+
+    @Override
+    public List<FileVO> selectXrayPicture(String pNo) throws SQLException {
+        return session.selectList("File-Mapper.selectXrayPicture",pNo);
+    }
+
+    @Override
+    public void insert(FileVO file) throws SQLException {
+        session.insert("File-Mapper.registXrayPicture", file);
     }
 
     

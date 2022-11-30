@@ -1,9 +1,11 @@
 package kr.co.drcrown.service;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import kr.co.drcrown.command.Criteria;
+import kr.co.drcrown.dto.AttachVO;
 import kr.co.drcrown.dto.NoticeVO;
 
 public interface NoticeService {
@@ -26,4 +28,15 @@ public interface NoticeService {
 
 	// 삭제
 	void remove(int noticeNo) throws SQLException;
+
+    List<NoticeVO> getNoticeCategoryList() throws SQLException;
+    
+    
+    AttachVO getAttachByAttachNo(int attachNo) throws SQLException;
+
+    void removeAttachByAttachNo(int attachNo) throws SQLException;
+
+    void addAttachList(NoticeVO notice) throws SQLException;
+    
+    
 }

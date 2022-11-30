@@ -4,6 +4,26 @@
 
 <mapper namespace="Notice-Mapper">
 	 <sql id="search">
+		<if test="searchType == 'hij'.toString()">
+			and (
+			NCC_NUMBER like '%'||0||'%'			
+			or 
+			NCC_NUMBER like '%'||1||'%'			
+			or 
+			NCC_NUMBER like '%'||2||'%'			
+			or 
+			NCC_NUMBER like '%'||3||'%'			
+			)
+		</if>
+		<if test="searchType == 'h'.toString()">
+			and NCC_NUMBER like '%'||1||'%'			
+		</if>
+		<if test="searchType == 'i'.toString()">
+			and NCC_NUMBER like '%'||2||'%'			
+		</if>
+		<if test="searchType == 'j'.toString()">
+			and NCC_NUMBER like '%'||3||'%'			
+		</if>
 		<if test="searchType == 't'.toString()">
 			and notice_title like '%'||#{keyword}||'%'			
 		</if>
@@ -12,20 +32,6 @@
 		</if>
 		<if test="searchType == 'c'.toString()">
 			and notice_content like '%'||#{keyword}||'%'			
-		</if>
-		<if test="searchType == 'tc'.toString()">
-			and (
-			notice_title like '%'||#{keyword}||'%'
-			or
-			notice_content like '%'||#{keyword}||'%'						
-			)			
-		</if>
-		<if test="searchType == 'cw'.toString()">
-			and (
-			notice_writer like '%'||#{keyword}||'%'
-			or
-			notice_content like '%'||#{keyword}||'%'						
-			)			
 		</if>
 		<if test="searchType == 'tcw'.toString()">
 			and (
@@ -37,15 +43,22 @@
 			)			
 		</if>
 	</sql>
-	
+	 
 	<select id="selectSearchNoticeList" resultType="notice">		
 		select *
 		from(
 		    select rownum as rnum,SearchNoticeResult.*
 		    from ( 
-		    	select NOTICE_NO, NOTICE_TITLE, NOTICE_WRITER, NOTICE_CONTENT, NOTICE_REGDATE, NOTICE_COUNT, NOTICE_CATEGORY, NOTICE_UPDATE
-				from notice
-				where notice_no is not null
+			 select NOTICE_NO,
+                      NOTICE_TITLE, 
+                      NOTICE_WRITER, 
+                      NOTICE_CONTENT, 
+                      NOTICE_REGDATE, 
+                      NOTICE_COUNT, 
+                      NOTICE_UPDATE,
+                      NCC_NUMBER
+				 from notice n
+                where n.notice_no is not null
 				<include refid="search" />				
 				order by notice_regDate desc
 		    )  SearchNoticeResult
@@ -67,19 +80,20 @@
 		order by notice_regDate desc
 		
 	</select>
-<!--
-	<select id="selectNoticeByNno" parameterType="int" resultType="notice">
+
+	<select id="selectNoticeByNoticeNo" parameterType="int" resultType="notice">
 		select 
 		* 
 		from notice
-		where nno=#{nno}
+		where notice_no=#{noticeNo}
 	</select>
-	<select id="selectNoticeByImage" resultType="notice">
+
+<!-- 	<select id="selectNoticeByImage" resultType="notice">
 		select 
 		* 
 		from notice
 		where content like '%'||#{imageFile}||'%'	
-	</select>	
+	</select>	 -->
 	
 	
 	<select id="selectNoticeSequenceNextValue" resultType="int">
@@ -87,31 +101,36 @@
 		from dual
 	</select>
 	
-	<update id="increaseViewCount" parameterType="int">
+	<select id="selectCategoryList" resultType="notice">
+		select *
+		from nc_code
+	</select>
+	
+ 	<update id="increaseViewCount" parameterType="int">
 		update notice
-		set viewcnt=viewcnt+1
-		where nno=#{nno}
+		set NOTICE_COUNT=NOTICE_COUNT+1
+		where notice_no=#{noticeNo}
 	</update>
 	
 	<update id="insertNotice" parameterType="notice">
 		insert into 
-		notice(nno,title,writer,content)
-		values(#{nno},#{title},#{writer},#{content})
+				notice(notice_no, notice_title, notice_writer, notice_content, mem_id, ncc_number)
+		values(#{noticeNo}, #{noticeTitle}, #{noticeWriter}, #{noticeContent}, #{memId}, #{nccNumber})
 	</update>	
 	
 		
-	<update id="updateNotice" parameterType="notice">
+ 	<update id="updateNotice" parameterType="notice">
 		update notice 
 		set 
-		title=#{title},content=#{content}		
-		where nno=#{nno}
+		notice_title=#{noticeTitle},notice_writer=#{noticeWriter},notice_content=#{noticeContent},ncc_number=#{nccNumber},notice_update=sysdate
+		where notice_no=#{noticeNo}
 	</update>
-	
+	 
 	<update id="deleteNotice" parameterType="int" >
 		delete 
 		from notice 
-		where nno=#{nno}		
+		where notice_no=#{noticeNo}		
 	</update>
- -->
+
 	
 </mapper>

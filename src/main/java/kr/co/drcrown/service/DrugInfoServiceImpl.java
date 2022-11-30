@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
 
 import kr.co.drcrown.dto.DrugInfoVO;
 import kr.co.drcrown.command.ChartSearchCommand;
@@ -12,7 +13,7 @@ import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.command.PageMaker;
 import kr.co.drcrown.dao.DrugInfoDAO;
 
-
+@Service
 public class DrugInfoServiceImpl implements DrugInfoService {
 
 	private DrugInfoDAO drugInfoDAO;
@@ -27,13 +28,10 @@ public class DrugInfoServiceImpl implements DrugInfoService {
         
         List<DrugInfoVO> drugInfoList = drugInfoDAO.selectDrugInfoList(cri);
         
-        System.out.println("druginfolist = " + drugInfoList.toString());
         
         PageMaker pageMaker = new PageMaker();
         pageMaker.setCri(cri);
         pageMaker.setTotalCount(drugInfoDAO.selectDrugInfoListCount(cri));
-        
-        System.out.println("pageMaker totalCount = " + pageMaker.getTotalCount());
         
         dataMap = new HashMap<String, Object>();
         dataMap.put("drugInfoList", drugInfoList);
@@ -50,7 +48,6 @@ public class DrugInfoServiceImpl implements DrugInfoService {
 
     @Override
     public List<DrugInfoVO> getDrugListByKeyword(ChartSearchCommand csc) throws SQLException {
-        System.out.println("드러그인포 서비스 들어옴?");
         List<DrugInfoVO> drugList = drugInfoDAO.getDrugListByKeyword(csc);
         return drugList;
     }

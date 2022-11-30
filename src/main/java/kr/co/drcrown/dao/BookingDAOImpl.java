@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
+import kr.co.drcrown.command.BookingStateListCommand;
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.dto.BookingVO;
 import kr.co.drcrown.dto.MemberVO;
@@ -100,6 +101,20 @@ public class BookingDAOImpl implements BookingDAO {
         session.update("Booking-Mapper.insertvisitBooking", booking);
         
         
+    }
+
+    @Override
+    public List<BookingStateListCommand> selectBookingListByState() throws SQLException {
+        List<BookingStateListCommand> bookingList = session.selectList("Booking-Mapper.selectBookingListByState");
+        return bookingList;
+    }
+
+    @Override
+    public List<BookingVO> selectcallBookingByDate(String bookingRegdate) throws SQLException {
+        List<BookingVO> callbookingDateList 
+        = session.selectList("Booking-Mapper.selectcallBookingByDate", bookingRegdate);
+
+        return callbookingDateList;
     }
 
 }

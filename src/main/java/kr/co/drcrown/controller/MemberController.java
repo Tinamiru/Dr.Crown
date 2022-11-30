@@ -11,6 +11,8 @@ import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,8 @@ import kr.co.drcrown.command.FileModifyCommand;
 import kr.co.drcrown.dto.FileVO;
 import kr.co.drcrown.dto.MemberVO;
 import kr.co.drcrown.file.MakeFileName;
+import kr.co.drcrown.security.PasswordEncoding;
+import kr.co.drcrown.security.SHAPasswordEncoder;
 import kr.co.drcrown.service.FileService;
 import kr.co.drcrown.service.MemberService;
 
@@ -35,7 +39,7 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
-    
+
     @Autowired
     private FileService fileService;
 
@@ -45,9 +49,67 @@ public class MemberController {
         return url;
     }
 
-    @GetMapping("/mypage")
-    public String mypage() {
-        String url = "member/mypage";
+    @GetMapping("/changePwd")
+    public String changePwd(HttpServletRequest request) {
+        String url = "/member/changePwd";
+
+        HttpSession session = request.getSession();
+        MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+        
+        if (loginUser != null) {
+            if (loginUser.getMemIsfirst().equals("1") || loginUser.getMemIsfirst() == "1") {
+                request.setAttribute("from", "freshman");
+            }
+        }
+
+        return url;
+
+    }
+
+    @PostMapping("/modifyPwd")
+    public String modifyPwd(HttpServletRequest request, String password, String newPassword, RedirectAttributes rttr)
+            throws Exception {
+        String url = "redirect:changePwd";
+
+        boolean isMemberPwd = memberService.isMemberPwd(request, password, newPassword);
+
+        if (isMemberPwd) {
+            rttr.addFlashAttribute("from", "pwdModify");
+        } else {
+            rttr.addFlashAttribute("from", "denied");
+        }
+
+        return url;
+    }
+
+    @PostMapping("/mypage")
+    public String mypage(HttpServletRequest request, String pwd, Model model, RedirectAttributes rttr)
+            throws Exception {
+        String url = "/member/mypage";
+        SHAPasswordEncoder shaPasswordEncoder = new SHAPasswordEncoder(512);
+        shaPasswordEncoder.setEncodeHashAsBase64(true);
+        PasswordEncoding passwordEncoding = new PasswordEncoding(shaPasswordEncoder);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        passwordEncoding = new PasswordEncoding(passwordEncoder);
+
+        HttpSession session = request.getSession();
+        MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+
+        MemberVO member = memberService.getMember(loginUser.getMemId());
+
+        if (passwordEncoding.matches(pwd, member.getMemPwd())) {
+            url = "/member/mypage";
+        } else {
+            url = "redirect:/common/reloadPage";
+            rttr.addFlashAttribute("from", "denied");
+        }
+
+        member.setMemId(loginUser.getMemId());
+
+        int result = memberService.getMemberForVerification(member);
+
+        model.addAttribute("result", result);
+
         return url;
     }
 
@@ -64,13 +126,13 @@ public class MemberController {
         HttpSession session = request.getSession();
         MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
         MemberVO member = null;
-        if(loginUser != null){
+        if (loginUser != null) {
             member = memberService.getMember(loginUser.getMemId());
-        }else {
+        } else {
             url = "redirect:/common/loginTimeOut";
         }
         model.addAttribute("member", member);
-        
+
         return url;
     }
 
@@ -89,7 +151,7 @@ public class MemberController {
 
         return entity;
     }
-    
+
     // 비밀번호를 제외한 회원 기본정보 수정
     @RequestMapping(value = "/modify", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
     public String modify(MemberVO member, HttpServletRequest request,
@@ -97,23 +159,23 @@ public class MemberController {
         String url = "redirect:detail";
         HttpSession session = request.getSession();
         MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
-        
+
         member.setMemId(loginUser.getMemId());
-        
+
         memberService.modify(member);
         MemberVO newMember = memberService.getMember(loginUser.getMemId());
-
+        
         rttr.addFlashAttribute("from", "modify");
         session.setAttribute("loginUser", newMember);
-        
+
         return url;
     }
-    
+
     @RequestMapping(value = "/modifyMemPic", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
     public String modifyMemPic(FileModifyCommand fmc, HttpServletRequest request,
             RedirectAttributes rttr) throws Exception {
         String url = "redirect:detail";
-        
+
         HttpSession session = request.getSession();
         MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
         String oldPicture = null;
@@ -122,29 +184,28 @@ public class MemberController {
         } catch (Exception e) {
             oldPicture = null;
         }
-        
-        //fileVO에 담기
+
+        // fileVO에 담기
         FileVO file = fmc.toFile();
         file.setFileAtthcher(loginUser.getMemId());
         file.setFileNo(loginUser.getMemPic());
-        
-        //파일 로컬에 저장 및 기존파일 삭제
-        if(oldPicture != null) {
-            ResponseEntity<String> entity = picture(fmc.getPicture(),oldPicture);
+
+        // 파일 로컬에 저장 및 기존파일 삭제
+        if (oldPicture != null) {
+            ResponseEntity<String> entity = picture(fmc.getPicture(), oldPicture);
             String fileName = entity.getBody();
-            System.out.println(fileName);
             file.setFileName(fileName);
         }
-        
-        //파일 테이블 수정
+
+        // 파일 테이블 수정
         fileService.modify(file);
-        
+
         // 로그인 세션 재설정
         MemberVO newMember = memberService.getMember(loginUser.getMemId());
-        
+
         rttr.addFlashAttribute("from", "modifyPic");
         session.setAttribute("loginUser", newMember);
-        
+
         return url;
     }
 
@@ -169,7 +230,7 @@ public class MemberController {
 
         // local HDD 에 저장.
         multi.transferTo(storeFile);
-        
+
         // 기존파일 삭제
         if (oldPicture != null && !oldPicture.isEmpty() && !oldPicture.equals("기본프로필.jpg")) {
             File oldFile = new File(uploadPath, oldPicture);
@@ -187,7 +248,7 @@ public class MemberController {
     @ResponseBody
     public ResponseEntity<byte[]> getPicture(HttpServletRequest request) throws Exception {
         ResponseEntity<byte[]> entity = null;
-        
+
         HttpSession session = request.getSession();
         MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
         String picture = fileService.getMemPicture(loginUser.getMemPic()).getFileName();

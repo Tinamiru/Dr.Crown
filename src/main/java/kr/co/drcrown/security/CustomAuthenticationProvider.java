@@ -10,7 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import kr.co.drcrown.dto.MemberVO;
 import kr.co.drcrown.exception.InvalidPasswordException;
@@ -24,17 +25,27 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		this.memberService = memberService;
 	}
 	
-	
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 		String login_id = (String) auth.getPrincipal(); // 로그인 시도한 ID를 가져온다
 		String login_pwd = (String) auth.getCredentials(); // 로그인 시도한 Password 를 가져온다.
-		
-		
+        
+        SHAPasswordEncoder shaPasswordEncoder = new SHAPasswordEncoder(512);
+        shaPasswordEncoder.setEncodeHashAsBase64(true);
+        PasswordEncoding passwordEncoding = new PasswordEncoding(shaPasswordEncoder);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        passwordEncoding = new PasswordEncoding(passwordEncoder);
+        
 		try {
-			memberService.login(login_id, login_pwd);
+		    MemberVO member = memberService.getMember(login_id);
+		    
+		    if(passwordEncoding.matches(login_pwd,member.getMemPwd())) {
+		        memberService.login(login_id, member.getMemPwd());
+		    }else {
+		        throw new BadCredentialsException("패스워드가 일치하지 않습니다");
+		    }
+		    
 			
-			MemberVO member = memberService.getMember(login_id);
 
 			UserDetails authUser = new User(member);
 			boolean invalidCheck = authUser.isAccountNonExpired() 
@@ -68,6 +79,19 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		
 		return null;
 	}
+	
+   public String dbPassword(String loginPassword){
+        
+        SHAPasswordEncoder shaPasswordEncoder = new SHAPasswordEncoder(512);  
+        shaPasswordEncoder.setEncodeHashAsBase64(true);
+        PasswordEncoding passwordEncoding = new PasswordEncoding(shaPasswordEncoder);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        passwordEncoding = new PasswordEncoding(passwordEncoder);
+
+        //세번째 암호화
+        String passwod =passwordEncoding.encode(loginPassword);
+        return passwod;
+    }
 
 	@Override
 	public boolean supports(Class<?> auth) {

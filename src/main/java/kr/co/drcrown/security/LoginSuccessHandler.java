@@ -18,6 +18,8 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 										Authentication authentication) throws ServletException, IOException {
+	    String url = "/";
+	    
 		
 		User user = (User)authentication.getDetails();	
 		
@@ -27,7 +29,18 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
 		session.setAttribute("loginUser", loginUser);
 		session.setMaxInactiveInterval(60*60);
 		
-		super.onAuthenticationSuccess(request, response, authentication);
+//		super.onAuthenticationSuccess(request, response, authentication);
+
+		// url 분기 수정 구간
+		String myField = request.getParameter("myfield");
+		if( myField != null) {
+		    url = "/common/aiready";
+		    response.sendRedirect(url);
+		    
+		}else {
+		    
+		    response.sendRedirect(url);
+		}
 	}
 	
 	

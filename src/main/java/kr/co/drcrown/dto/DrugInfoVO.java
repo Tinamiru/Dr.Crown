@@ -18,7 +18,7 @@ public class DrugInfoVO {
     private String drugIngredient;
     private String drugAdditive;
     private String drugClassify;
-    private String drugETC;
+    private String drugEtc;
     private String drugFinmaterial;
     private String drugPereport;
     private String drugIncome;

@@ -14,6 +14,7 @@ public class FileModifyCommand {
     private String fileClass;
     private String fileName;
     private String fileSize;
+    private String pNo;
 
     public FileVO toFile() {
         FileVO file = new FileVO();

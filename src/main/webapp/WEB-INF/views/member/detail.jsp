@@ -15,7 +15,7 @@ pageEncoding="UTF-8"%>
 						<div class="row no-gutters">
 							<div class="col-xl-12">
 								<form class="form-horizontal" role="memberPicture" action="modifyMemPic" method="post" enctype="multipart/form-data">
-									<input type="file" id="inputFile" onchange="changePicture_go();" name="picture" style="display:none" />
+									<input type="file" accept="image/*" id="inputFile" onchange="changePicture_go();" name="picture" style="display:none" />
 									<input id="picture" class="form-control" type="hidden" name="fileName" />
 									<input id="pictureType" class="form-control" type="hidden" name="fileClass" />
 									<input id="pictureSize" class="form-control" type="hidden" name="fileSize" />
@@ -213,16 +213,28 @@ function update_go(){
 <c:if test="${from eq 'modify'}" >
 	<script>
 		window.onload = function(){
-			opener.parent.location.reload();
-			swal ( "성공" ,  "회원정보가 수정되었습니다." ,  "success" );	
-		}
+				swal({
+				  title: "성공",
+	  			  text: "회원정보가 수정되었습니다.",
+	  			  icon: "success",
+				}).then((willDelete) => {
+						opener.parent.location.reload();
+	  					window.close();
+    			});
+			};
 	</script>
 </c:if>
 <c:if test="${from eq 'modifyPic'}" >
 	<script>
 		window.onload = function(){
-			opener.parent.location.reload();
-			swal ( "성공" ,  "회원의 프로필 사진이 수정되었습니다." ,  "success" );
+			swal({
+				  title: "성공",
+	  			  text: "회원의 프로필 사진이 수정되었습니다.",
+	  			  icon: "success",
+				}).then((willDelete) => {
+						opener.parent.location.reload();
+	  					window.close();
+  			});
 		}
 	</script>
 </c:if>

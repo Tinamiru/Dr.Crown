@@ -12,19 +12,27 @@
 <c:set var="patientList" value="${dataMap.patientList }" />
 
 <body>
-<div class="container-fluid mt-4">
-	<div class="row justify-content-start">
+<div class="container-fluid">
+		<div class="row justify-content-center">
+			<hr class="m-0" style="  width: 35%; ">
+		</div>
+		<div class="row justify-content-center">
+			<div class="subMenuList">
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<hr class="m-0" style="  width: 35%; ">
+		</div>
 		<div class="col-4">
 			<h2>환자목록</h2>
 		</div>
-	</div>
 	<hr>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<div class="row justify-content-end pl-5 pr-3">
 				<div class="col-8" style="height: 50px;">
 					<div class="row justify-content-end" >
-						<div class="col-3 p-0">
+						<div class="col-1 p-0">
 							<select class="form-control" name="searchType" id="searchType">
 								<option value="tcw"  ${cri.searchType eq 'tcw' ? 'selected':'' }>전 체</option>
 								<option value="t" ${cri.searchType eq 't' ? 'selected':'' }>이름</option>
@@ -35,7 +43,7 @@
 								<option value="tcw" ${cri.searchType eq 'tcw' ? 'selected':'' }>작성자+제목+내용</option>
 							</select>
 						</div>
-						<div class="col-6 p-0">
+						<div class="col-3 p-0">
 							<input  class="form-control" type="text" name="keyword" placeholder="검색어를 입력하세요." value="${param.keyword }"/>
 						</div>
 						<div class="pr-3">
@@ -77,7 +85,7 @@
 									<td>${patient.PName}</td>
 									<td><fmt:formatDate value="${patient.PBir}"
 											pattern="yyMMdd" /></td>
-									<c:set var="gender" value="${fn:substring(patient.PRnum,6,7)}"/>
+									<c:set var="gender" value="${fn:substring(patient.PRnum,7,8)}"/>
 									
 									<c:choose>
 										<c:when test="${(gender eq '1') or (gender eq '3') }">
@@ -103,139 +111,6 @@
 			</div>
 			<hr>
 		</div>
-		<div class="col-md-6">
-			<div class="row justify-content-center pb-1">
-				<section class="content" style="height: 40vh; width: 95%;">
-					<section class="content-header">
-						<h3 style="text-align: left; ">예약 내역</h3>
-					</section>
-					<div class="card" style="overflow-y: scroll;">
-						<div class="card-body" style="text-align: center; font-size: 13px; ">
-							<div class="row">
-								<div class="col-sm-12">
-									<table class="table table-bordered">
-										<tr bgcolor="#333258" style="color: white">
-											<th>예약일</th>
-											<th>예약내용</th>
-										</tr>
-										<tr>
-											<td>10</td>
-											<td><button type="button" style="background: none; color: gray; border: none; " >X
-											</button></td>
-										</tr>
-										<tr>
-											<td>10</td>
-											<td><button type="button" style="background: none; color: gray; border: none; " >X
-											</button></td>
-										</tr>
-										<tr>
-											<td>1000</td>
-											<td><button type="button" style="background: none; color: gray; border: none; " >X
-											</button></td>
-										</tr>
-										<tr>
-											<td>1500</td>
-											<td><button type="button" style="background: none; color: gray; border: none; " >X
-											</button></td>
-										</tr>
-										<tr>
-											<td>1</td>
-											<td><button type="button" style="background: none; color: gray; border: none; " >X
-											</button></td>
-										</tr>
-										<c:if test="${!empty minfoList }">
-											<c:forEach items="${minfoList}" var="minfo">
-												<tr>
-													<td>${minfo.minfoWriter }</td>
-													<td><fmt:formatDate value="${minfo.minfoRegdate }" pattern="yyyy-MM-dd" /></td>
-												</tr>
-											</c:forEach>
-										</c:if>
-										<c:if test="${empty minfoList }">
-											<tr>
-												<td colspan="7" class="text-center">해당내용이 없습니다.</td>
-											</tr>
-										</c:if>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-			</div>
-			<hr>
-			<div class="row justify-content-center">
-				<section class="content" style="height: 40vh; width: 95%;">
-					<section class="content-header">
-						<h3 style="text-align: left; ">진료내역</h3>
-					</section>
-					<div class="card" style="overflow-y: scroll;">
-						<div class="card-body" style="text-align: center; font-size: 13px; ">
-							<div class="row">
-								<div class="col-sm-12">
-									<table class="table table-bordered">
-										<tr bgcolor="#333258" style="color: white">
-										<th>진료일</th>
-										<th>치아번호</th>
-										<th>진료 내역</th>
-										<!-- yyyy-MM-dd  -->
-									</tr>
-									<tr>
-										<td>(주)동크제약</td>
-										<td>10</td>
-										<td><button type="button" style="background: none; color: gray; border: none; " >X
-										</button></td>
-									</tr>
-									<tr>
-										<td>(주)콜록제약</td>
-										<td>10</td>
-										<td><button type="button" style="background: none; color: gray; border: none; " >X
-										</button></td>
-									</tr>
-									<tr>
-										<td>(주)갈아제약</td>
-										<td>1000</td>
-										<td><button type="button" style="background: none; color: gray; border: none; " >X
-										</button></td>
-									</tr>
-									<tr>
-										<td>EBS</td>
-										<td>1500</td>
-										<td><button type="button" style="background: none; color: gray; border: none; " >X
-										</button></td>
-									</tr>
-									<tr>
-										<td>다뽑아제약</td>
-										<td>1</td>
-										<td><button type="button" style="background: none; color: gray; border: none; " >X
-										</button></td>
-									</tr>
-									<c:if test="${!empty minfoList }">
-										<c:forEach items="${minfoList}" var="minfo">
-											<tr>
-												<td>${minfo.minfoClass }</td>
-												<td>${minfo.minfoCode }</td>
-												<td>${minfo.minfoContent }
-												<td>${minfo.minfoWriter }</td>
-												<td>${minfo.minfoWriter }</td>
-												<td>${minfo.minfoWriter }</td>
-												<td><fmt:formatDate value="${minfo.minfoRegdate }" pattern="yyyy-MM-dd" /></td>
-											</tr>
-										</c:forEach>
-									</c:if>
-									<c:if test="${empty minfoList }">
-										<tr>
-											<td colspan="7" class="text-center">해당내용이 없습니다.</td>
-										</tr>
-									</c:if>
-								</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-			</div>
-		</div>
 	</div>
 </div>
 					
@@ -248,8 +123,14 @@ function detail(p_no) {
 	var popupX = (document.body.offsetWidth / 2) - (800 / 2);
 	var popupY= (window.screen.height / 2) - (800 / 2);
 	
-	window.open('detail?pNo='+p_no,'detail2','height=800, width=1200, left='+ popupX + ', top='+ popupY);
+	window.open('detail?pNo='+p_no,'detail2','height=800, width=800, left='+ popupX + ', top='+ popupY);
+}
+window.onload=function() {
+    subMenu_go('M030000')
+	preloaderCustom.style.display = "none";
 }
 
 </script>
-					
+<%@ include file="/WEB-INF/views/common/preloader_js.jsp"%>
+<%@ include file="/WEB-INF/views/common/index_js.jsp"%>
+<%@ include file="/WEB-INF/views/common/ifram_js.jsp"%>

@@ -26,5 +26,9 @@ public interface MemberDAO{
 	
 	// 회원정보 삭제
 	void deleteMember(String memId) throws SQLException;
+
+    void activationMember(String memId) throws SQLException;
+
+    void modifyMemPwd(MemberVO member);
 	
 }

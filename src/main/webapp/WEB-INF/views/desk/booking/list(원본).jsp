@@ -6,8 +6,6 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-
-
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cri" value="${dataMap.pageMaker.cri }" />
 <c:set var="memberDoctorList" value="${dataMap.memberDoctorList }" />
@@ -19,6 +17,9 @@
 <link rel="stylesheet" href="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.css" />
 <link rel="stylesheet" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css">
 <link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
+            
+           
+            
             <div class="container-fluid">
               
                 <!-- row -->
@@ -56,24 +57,23 @@
 			                    
 		                   <div class="col-sm-4" align="right">
 		                   	
-			                   <button id="nextBtn" type="button" class="btn btn-primary btn-rounded mt-2 mb-2"  onclick="OpenWindow('/desk/booking/regist','예약등록',1000,600);">
-				               예약등록
-				               </button>
+			                  
 		                   </div>
 	                    </div>
                  
                             
+            
                     	<div id="calendar" style="height: 750px;"></div>
                             
                             
-                          
-                       
+                        
                     </div>
                     
                     <div class="col-sm-3">
 
-	                    
+	                
 	                        <div class="row no-gutters">
+	                          
 	                            <div class="col-xl-12">
 	                            
 	                                <div class="auth-form loginBoxBackground">
@@ -121,22 +121,22 @@
 			                                         </div>
 		                                         </div>   
 		                                         
-		                                           
+		                                           <div class="form-row">
+			                                        <div class="col-sm-7">
 		                                             <label class="text-white"><strong>전화 번호</strong></label>
 		                                         <div class="input-group mb-3">
 		                                            <input type="text" class="form-control form-control-input" id="P_TEL"  placeholder="${patient.PTel}" value=" " disabled  >
-		                                            <div class="input-group-append ">
-		                                                <button class="loginBtn btn btn-block"  type="button">문자전송</button>
-		                                            </div> 
 		                                        </div>
+		                                         </div>
+			                                       
 		                                        
-		                                        
+		                                         <div class="col-sm-5">
 		                                         <label class="text-white"><strong>보험 정보</strong></label>
 		                                         <div class="input-group mb-3">
 		                                            <input type="text" class="form-control form-control-input" id="P_INSURANCE" value=" " disabled  >
-		                                     
 		                                        </div>
-		                                        
+		                                        </div>
+		                                          </div> 
 		                                        
 		               
 		                            
@@ -331,170 +331,11 @@
                                         </div>
                                     </div>
 							
-<!-- detail modal -->
-                                  	 <div class="modal fade bd-detail-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h3 class="modal-title">환자 검색</h3>
-                                                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-												<div class="row no-gutters">
-	                            <div class="col-xl-12">
-	                            
-	                                <div class="auth-form loginBoxBackground">
-										<div style="border-bottom: 2px solid;">
-										<h2 style="font-weight: bold;">예약등록</h2>
-	                                    </div>
-	                                   <form role="form" class="form-horizontal" action="regist" method="post">
-	                                    
-	                                    	 	<div class="form-row">
-			                                        <div class="col-sm-5">
-			                                    		  <label class="text-white" ><strong>환자 성함</strong></label>
-					                                         <div class="input-group mb-1"  data-toggle="modal" data-target=".bd-exampl2e-modal-lg" >
-					                                            <input type="text" id="P_NAME" class="form-control form-control-input  " value=" "placeholder="${patient.PName}"  disabled>
-			                                    		 </div>
-			                                         </div>
-			                                        <div class="col-sm-5">
-			                                    		  <label class="text-white"><strong>차트 번호</strong></label>
-					                                         <div class="input-group mb-1">
-					                                            <input type="text"  id="pNo" name="pNo" class="form-control form-control-input" value=" " readonly>
-	
-			                                    		 </div>
-			                                         </div>
-			                                         <div class="col-sm-2">
-			                                    		  <label class="text-white"><strong>성별</strong></label>
-					                                         <div class="input-group mb-1">
-					                                            <input type="text" id="P_gender" class="form-control form-control-input" value=" " disabled >
-			                                    		 </div>
-			                                           </div>
-		                                         </div>   
-		                                         
-		                                         
-		                                         <div class="form-row">
-			                                        <div class="col-sm-6">
-			                                    		  <label class="text-white"><strong>생년 월일</strong></label>
-					                                         <div class="input-group mb-1">
-					                                            <input type="text" id="P_BIR" class="form-control form-control-input"  placeholder=""  value=" " disabled  >
-			                                    		 </div>
-			                                         </div>
-			                                        <div class="col-sm-6">
-			                                    		  <label class="text-white"><strong>최종내원일</strong></label>
-					                                         <div class="input-group mb-1">
-					                                            <input type="text" id="P_LASTDATE" class="form-control form-control-input"  value=" " placeholder="${patient.PLastdate}" disabled  >
-					                                            
-			                                    		 </div>
-			                                         </div>
-		                                         </div>   
-		                                         
-		                                           
-		                                             <label class="text-white"><strong>전화 번호</strong></label>
-		                                         <div class="input-group mb-3">
-		                                            <input type="text" class="form-control form-control-input" id="P_TEL"  placeholder="${patient.PTel}" value=" " disabled  >
-		                                            <div class="input-group-append ">
-		                                                <button class="loginBtn btn btn-block"  type="button">문자전송</button>
-		                                            </div> 
-		                                        </div>
-		                                        
-		                                        
-		                                         <label class="text-white"><strong>보험 정보</strong></label>
-		                                         <div class="input-group mb-3">
-		                                            <input type="text" class="form-control form-control-input" id="P_INSURANCE" value=" " disabled  >
-		                                     
-		                                        </div>
-		                                        
-		                                        
-		               
-		                            
-		                                 
-			                                       <label class="text-white"><strong>예약담당의사/직원</strong></label>
-		                                        <div class="form-row">
-		                                        	<div class="col-sm-6">
-		                                                <select id="bookingDoc" name="bookingDoc" class=" form-control-input form-control default-select">
-		                                                    <option selected value="n">== 담당의 ==</option>
-		                                                    <c:forEach items="${memberDoctorList}" var="Doc">
-		                                                    <option class="text-white" value="${Doc.memId}">${Doc.memName}</option>
-		                                                   
-		                                                    </c:forEach>
-		                                                </select>
-	                                                 </div>
-	                                                
-	                                                 <div class="col-sm-6">
-		                                                <input type="text"  id="MEMname" name="bookingWriter" class="form-control form-control-input"  value=" ${loginUser.memName}" readonly>
-		                                                <input type="hidden"  id="hiddenmemid" name="memNo" class="form-control form-control-input"  value="${loginUser.memId}">
-		                                                
-		                                                   
-	                                                 </div>
-		                                        </div> 
-		                                        
-		                               
-		                                      
-	                               				<label class="text-white mt-3"><strong>예약일시</strong></label>	
-	                            					 <div class="form-row">
-		                                        	<div class="col-sm-6">
-		                                                <input type="date"  id="BOOKING_DATE" class="form-control form-control-input"  pattern="yyyy-mm-dd" value=" ">
-		                                                
-	                                                 </div>
-	                                                
-	                                                 <div class="col-sm-6">
-		                                                <select id="BOOKING_TIME" class=" form-control-input form-control default-select">
-		                                                    <option selected value="n">예약시간</option>
-		                                                    <option class="text-white" value="09:00">09:00</option>
-		                                                    <option class="text-white" value="10:00">10:00</option>
-		                                                    <option class="text-white" value="11:00">11:00</option>
-		                                                    <option class="text-white" value="13:00">13:00</option>
-		                                                    <option class="text-white" value="14:00">14:00</option>
-		                                                    <option class="text-white" value="15:00">15:00</option>
-		                                                    <option class="text-white" value="16:00">16:00</option>
-		                                                    <option class="text-white" value="17:00">17:00</option>
-		                                                    <option class="text-white" value="18:00">18:00</option>
-		                                                    <option class="text-white" value="19:00">19:00</option>
-		                                
-		       
-		                                                </select>
-	                                                 </div>
-		                                        </div> 
-	                            			  <input type="hidden"  id="hiddenTime" name="bookingRdate" class="form-control form-control-input"  value=" ">
-	                                    	
-	                                    	
-	                                    	 
-		                                        <div class="form-group mt-1">
-		                                            <label class="text-white"><strong>증상 내용</strong></label>
-		                                             <textarea style="resize: none;"  id="BOOKING_CC"  name="bookingCc" class="textarea_editor form-control bg-transparent" rows="6" placeholder="증상 입력."></textarea>
-		                                        </div>
-		                                        
-		      
-		                                        
-		                                        
-	                                      
-	                                    </form>
-	                                        
-		                                        <div class="row no-gutters justify-content-right" style="float: right;">
-							                        <div class="text-center">
-							                            <button type="button" id="registBtn" onclick="regist_go();" class="loginBtn btn btn-block">예약 등록</button>
-							                        </div>
-						                        
-						                         	<div class="text-center mr-1">
-							                             <button type="button" onclick="javascript:window.close()" class="loginBtn btn bg-white text-primary btn-block">&nbsp;취&nbsp;&nbsp;&nbsp;&nbsp;소&nbsp;</button>
-							                        </div>
-				                        		</div>
-		                                         </div>
-	                                    </div>
-		                                        
-	                                </div>
-												</div>
-                                                <div class="modal-footer">
-                                                   
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+<!-- Large modal -->
+                                  
                                    
 		                                    
 		 
-          
           
 <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
 <script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>
@@ -506,6 +347,8 @@
 
 
 <script>
+
+
 
 const Calendar = tui.Calendar;
 const DatePicker = tui.DatePicker;
@@ -527,7 +370,17 @@ const options = {
 	  {
 	  id: '${Doc.memId}',
 	  name: '${Doc.memName}',
-	  backgroundColor: '#03bd9e',
+	  <c:choose>
+		<c:when test="${Doc.memId eq 'd000004'}">
+		   backgroundColor: '#FFB6C1',
+		</c:when >
+		<c:when test="${Doc.memId eq 'manager'}">
+		   backgroundColor: '#ADD8E6',
+		</c:when >
+		<c:otherwise>
+		   backgroundColor: '#FFA07A',
+		</c:otherwise>
+	</c:choose>
 	  },
 	  </c:forEach>
 	  
@@ -565,11 +418,7 @@ calendar.createEvents([
 	 	{
 		    id: '${boo.bookingCode}',
 		    calendarId: '${boo.bookingDoc}',
-		    body: '${boo.bookingCc}',
-		    location: '${boo.bookingCode}',
-		    attendees: ['${boo.bookingWriter}'],
-		    state:'',
-		    title: '${boo.PName}(${boo.PNo})',
+		    title: '${boo.PNo}',
 		    start: '<fmt:formatDate value="${boo.bookingRdate}" pattern="yyyy-MM-dd"/>T<fmt:formatDate value="${boo.bookingRdate}" pattern="HH:mm:ss"/>',
 		    end: '<fmt:formatDate value="${boo.bookingRdate}" pattern="yyyy-MM-dd"/>T<fmt:formatDate value="${boo.bookingRdate}" pattern="HH"/>:59',
 		  },
@@ -592,16 +441,20 @@ const monthViewBtn = document.getElementById('monthViewBtn');
 todayBtn.addEventListener('click', () => {
 	  calendar.today();     
 	  document.getElementById('getToDate').innerText = getNavbarRange(calendar.getDateRangeStart(), calendar.getDateRangeEnd(), calendar.getViewName());
+	  	
 	});
 
 nextBtn.addEventListener('click', () => {
   calendar.next();     
   document.getElementById('getToDate').innerText =getNavbarRange(calendar.getDateRangeStart(), calendar.getDateRangeEnd(), calendar.getViewName())
+  
+  
 });
 
 prevBtn.addEventListener('click', () => {
   calendar.prev();                          // 현재 뷰 기준으로 이전 뷰로 이동
   document.getElementById('getToDate').innerText = getNavbarRange(calendar.getDateRangeStart(), calendar.getDateRangeEnd(), calendar.getViewName())
+  
 });
 
 dayViewBtn.addEventListener('click', () => {
@@ -617,7 +470,6 @@ weekViewBtn.addEventListener('click', () => {
 monthViewBtn.addEventListener('click', () => {
   calendar.changeView('month', true);       // 월간 뷰 보기
   document.getElementById('getToDate').innerText = getNavbarRange(calendar.getDateRangeStart(), calendar.getDateRangeEnd(), calendar.getViewName())
- 
 });
 
 
@@ -634,7 +486,7 @@ function getNavbarRange(tzStart, tzEnd, viewType) {
 	    return moment(start).format('YYYY-MM-DD');
 	  }
 	  if (viewType === 'week') {
-	    return moment(start).format('YYYY-MM-DD') + ' ~ ' + moment(end).format('YYYY-MM-DD');
+	    return moment(start).format('YYYY-MM-DD') + ' ~ ' + moment(end).format('MM-DD');
 	  }
 	  throw new Error('no view type');
 	}
@@ -648,14 +500,13 @@ function getNavbarRange(tzStart, tzEnd, viewType) {
 	 
 	 $('.toastui-calendar-event-time').on('click',function(e){
 		   console.log(e.currentTarget.dataset.eventId);
-		   window.open('detail?bookingCode='+e.currentTarget.dataset.eventId,'예약상세','height=800, width=850');
+		   window.open('detail?bookingCode='+e.currentTarget.dataset.eventId,'예약상세','height=850, width=600');
 		});	
 	 
 	 
 	 /// 캘린더 상단 윌
 	 document.getElementById('getToDate').innerText = getNavbarRange(calendar.getDateRangeStart(), calendar.getDateRangeEnd(), calendar.getViewName());
 	 
-	
 	 
 	 $(".checkB222tn").click(function(){ 
 			
@@ -688,13 +539,10 @@ function getNavbarRange(tzStart, tzEnd, viewType) {
 			
 			
 		});
-	
-			
+	 
+	 console.log(document.getElementById('BOOKING_DATE').innerHTML)
  };
 </script>
-
-
-
 <script>
 	function regist_go(){
 		if(!$('input[id="P_NAME"]').val()){
@@ -716,6 +564,7 @@ function getNavbarRange(tzStart, tzEnd, viewType) {
 	    	swal ( "실패" ,  "예약날짜 선택은 필수입니다." ,  "error" );  
 			  return;
 		}
+		
 	    if($("#BOOKING_TIME option:selected").val() == 'n'){
 	    	swal ( "실패" ,  "예약시간 선택은 필수입니다." ,  "error" );  
 			  return;
@@ -728,24 +577,40 @@ function getNavbarRange(tzStart, tzEnd, viewType) {
 	    
 	   var parse_date = new Date(document.getElementById('BOOKING_DATE').value +" "+ document.getElementById('BOOKING_TIME').value);
 	   document.getElementById('hiddenTime').value = parse_date;
-	
+	 
 	    
-	    var form = $('form[role="form"]');
-		form.attr({"method":"post",
-		     	   "action":"bookingRegist"
-		   		  });
-		form.submit();
+
+
+	   var form = $('form[role="form"]');
+	   		form.attr({"method":"post",
+	   		     	   "action":"bookingRegist"
+	   		   		  });
+	   		form.submit();
+	   		
 		
 	}
 </script> 
 
-
-
-
 <c:if test="${from eq 'regist'}" >
 	<script>
-		window.onload = function(){
-			swal ( "성공" ,  "예약이 완료되었습니다." ,  "success" );}
+	window.onload = function(){
+		swal({
+			  title: "성공",
+			  text: "예약이 완료되었습니다.",
+			  icon: "success",
+			  button: "확인",
+			  
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+			  location.reload();
+		 
+		  }
+		});
+		
+	}
 	</script>
 </c:if>
+
+
   

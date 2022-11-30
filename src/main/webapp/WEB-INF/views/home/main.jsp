@@ -142,22 +142,22 @@
 		       			 	</ol>
 		  				 	<div class="carousel-inner">
 					            <div class="carousel-item active">
-					                <img class="d-block w-100" width="600px" height="200px" src="https://pbs.twimg.com/media/D2Ay-biUcAE36H9.jpg" alt="First slide">
+					                <img class="d-block w-100" width="600px" height="225px" src="https://pbs.twimg.com/media/D2Ay-biUcAE36H9.jpg" alt="First slide">
 					            </div>
 					            <div class="carousel-item">
-					                <img class="d-block w-100" width="600px" height="200px" src="http://drive.google.com/uc?export=view&id=1suj5_VqH-izp-sjVARk5fto-nn18S6-t" alt="Second slide">
+					                <img class="d-block w-100" width="600px" height="225px" src="http://drive.google.com/uc?export=view&id=1suj5_VqH-izp-sjVARk5fto-nn18S6-t" alt="Second slide">
 					            </div>
 					            <div class="carousel-item">
-					                <img class="d-block w-100"  width="600px" height="200px" src="http://www.dentistnews.kr/news/photo/202209/6583_10506_3434.jpg" alt="Third slide">
+					                <img class="d-block w-100"  width="600px" height="225px" src="http://www.dentistnews.kr/news/photo/202209/6583_10506_3434.jpg" alt="Third slide">
 					            </div>
 					             <div class="carousel-item">
-					                <img class="d-block w-100" width="600px" height="200px" src="https://dental.or.kr/data/file/board1/763670174_HNldhZyV_B1A4B0EDBDC3BEC8.jpg" alt="Fourth slide">
+					                <img class="d-block w-100" width="600px" height="225px" src="https://dental.or.kr/data/file/board1/763670174_HNldhZyV_B1A4B0EDBDC3BEC8.jpg" alt="Fourth slide">
 					            </div>
 					             <div class="carousel-item">
-					                <img class="d-block w-100" width="600px" height="200px" src="https://dental.or.kr/data/file/board1/2156266019_O9ahyUcN_C4A1C4ABC0CFB1E228B9E8B3CA29_2.png" alt="Fifth slide">
+					                <img class="d-block w-100" width="600px" height="225px" src="https://dental.or.kr/data/file/board1/2156266019_O9ahyUcN_C4A1C4ABC0CFB1E228B9E8B3CA29_2.png" alt="Fifth slide">
 					            </div>
 					             <div class="carousel-item">
-					                <img class="d-block w-100" width="600px" height="200px" src="http://drive.google.com/uc?export=view&id=1hwA93BfhiMrlmzDshNV-mz5LcHxrHoea" alt="Sixth slide">
+					                <img class="d-block w-100" width="600px" height="225px" src="http://drive.google.com/uc?export=view&id=1hwA93BfhiMrlmzDshNV-mz5LcHxrHoea" alt="Sixth slide">
 					            </div>
 		        			</div>
 		        			<a class="carousel-control-prev" href="#carouselExampleIndicators2" data-slide="prev">
@@ -182,7 +182,7 @@
 			<div class="row justify-content-between">
 				<!--  공지사항  -->
 				<div class="col-sm-6 justify-content-center "  > 
-					<div class="card card-body" style=" height: 400px;">
+					<div class="card card-body" style=" height: 40vh;">
 					<h4>공지사항</h4> 	
 						<div class="table-responsive">
 							<table class="table table-bordered"
@@ -218,7 +218,7 @@
 			  	<!--  공지사항 end  -->
 			  	<!--  금일 근무 현황  -->
 			    <div class="col-sm-6 justify-content-center"> 
-						<div class="card card-body" style=" height: 48vh;">
+						<div class="card card-body" style=" height: 40vh;">
 					<h4>금일 근무 현황</h4> 	
 						<div class="table-responsive">
 							<table class="table table-bordered"
@@ -262,7 +262,7 @@
 	
 		
 			<!--  치과협회 및 세미나 정보 -->
-			<div class=" col-sm-12 mb-3"" style=" height: 24vh; background-color:#FFFFFF;">
+			<div class=" col-sm-12 mb-3"" style=" height: 29vh; background-color:#FFFFFF;">
 			
                <iframe width="100%" height="100%" src="https://forecast.io/embed/#lat=36.325029&lon=127.408951&name=대전 중구 오류동 &color=#333048&font=arial&units=si" frameborder="0"></iframe>
         
@@ -273,7 +273,7 @@
 		  	<!--  치과협회 및 세미나 정보 end  -->
 		  	
 		  	<!--  금일 주요 예약 현황  -->
-			<div class="card card-body" style="  height: 48vh;">
+			<div class="card card-body" style="  height: 40vh;">
 			<h4>금일 주요 예약 현황</h4> 	
 				<div class="table-responsive">
 					<table class="table table-bordered"
@@ -312,7 +312,7 @@
 		</div>
 </div>
 	
-		<div class=" card  col-sm-2 mt-3 " style="height: 790px; ">
+		<div class=" card  col-sm-2 mt-3 " style="height: 720px; ">
 			<h6 align="center " id="getToDate">2022-11</h6>
 			<div id="calendar" style="height: 330px; "></div>
             
@@ -424,25 +424,5 @@ calendar.setTheme({
 	
 
 </script>
-<script>
-var apiURI = "http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+"내APIKEY";
-$.ajax({
-    url: apiURI,
-    dataType: "json",
-    type: "GET",
-    async: "false",
-    success: function(resp) {
-        console.log(resp);
-        console.log("현재온도 : "+ (resp.main.temp- 273.15) );
-        console.log("현재습도 : "+ resp.main.humidity);
-        console.log("날씨 : "+ resp.weather[0].main );
-        console.log("상세날씨설명 : "+ resp.weather[0].description );
-        console.log("날씨 이미지 : "+ resp.weather[0].icon );
-        console.log("바람   : "+ resp.wind.speed );
-        console.log("나라   : "+ resp.sys.country );
-        console.log("도시이름  : "+ resp.name );
-        console.log("구름  : "+ (resp.clouds.all) +"%" );                 
-    }
-})
-}
-</script>
+
+<%@ include file="/WEB-INF/views/common/preloader_js.jsp"%>

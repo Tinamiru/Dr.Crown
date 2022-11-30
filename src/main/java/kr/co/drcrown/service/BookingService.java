@@ -1,8 +1,10 @@
 package kr.co.drcrown.service;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
+import kr.co.drcrown.command.BookingStateListCommand;
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.dto.BookingVO;
 import kr.co.drcrown.dto.PatientVO;
@@ -26,6 +28,8 @@ public interface BookingService {
 	
 	Map<String,Object> getBookingDateList(String bookingRegdate)throws SQLException;
 	
+	Map<String,Object> getcallBookingDateList(String bookingRegdate)throws SQLException;
+	
 	
 	BookingVO selectBookingById(String bookingCode) throws SQLException;
 	
@@ -34,6 +38,8 @@ public interface BookingService {
 	Map<String,Object> selectBookingpNoList(String pNo)throws SQLException;
 	
 	public void registvisitBooking(BookingVO booking) throws Exception;
+
+    List<BookingStateListCommand> getBookingListByState()throws Exception;
 	
 	
 }

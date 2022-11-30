@@ -25,6 +25,7 @@ public class PatientVO {
 	private Date pLastdate = new Date();
 	private String pInsurance;
 	private String pMemo;
+	private String pVisitPath;
 	
 }
 	

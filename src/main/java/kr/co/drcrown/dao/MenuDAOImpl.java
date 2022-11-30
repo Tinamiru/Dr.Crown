@@ -25,8 +25,6 @@ public class MenuDAOImpl implements MenuDAO {
 	@Override
 	public List<MenuVO> selectSubMenu(String mCode) throws SQLException {
 		List<MenuVO> menuList = session.selectList("Menu-Mapper.selectSubMenu",mCode);
-		System.out.println("dao: "+ mCode);
-		System.out.println("list: "+ menuList.toString());
 		return menuList;
 	}
 

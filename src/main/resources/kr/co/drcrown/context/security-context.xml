@@ -6,6 +6,19 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<beans:bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	
+	<beans:bean id="shaPasswordEncoder" class="kr.co.drcrown.security.SHAPasswordEncoder">
+		<beans:constructor-arg value="#{mei['security.password.sha']}" />
+		<beans:property name="encodeHashAsBase64" value="#{mei['security.password.encodeHashAsBase64']}" />
+	</beans:bean>
+	
+	<beans:bean id="standardPasswordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder"/>
+	
+	<beans:bean id="passwordEncoder" class="kr.co.drcrown.security.PasswordEncoding">
+		<beans:constructor-arg ref="#{mei['security.password.encoder']}"/>
+	</beans:bean>
+
 	<beans:bean id="customAuthenticationProvider" 
 	            class="kr.co.drcrown.security.CustomAuthenticationProvider"
 	            p:memberService-ref="memberService"

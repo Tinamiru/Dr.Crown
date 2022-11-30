@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.drcrown.dto.MemberVO;
@@ -40,6 +43,9 @@ public class CommonController {
 
     @RequestMapping("/main")
     public void main() throws Exception {
+    }
+    @RequestMapping("/common/reloadPage")
+    public void reloadPage() throws Exception {
     }
 
     @RequestMapping("/indexPage")
@@ -116,7 +122,9 @@ public class CommonController {
     @GetMapping("/common/loginForm")
     public String loginForm(@RequestParam(defaultValue = "") String error,
             @ModelAttribute("retUrl") String retUrl,
-            HttpServletResponse response) {
+            HttpServletResponse response, HttpServletRequest request) {
+        HttpSession session = request.getSession();    
+        session.invalidate();
         String url = "common/loginForm";
 
         if (error != null && error.equals("-1")) {
@@ -149,14 +157,31 @@ public class CommonController {
     }
 
     @GetMapping("/common/aiLoginForm")
-    public String aiLoginForm() {
+    public String aiLoginForm(CorsRegistry registry) {
         String url = "/common/aiLoginForm";
+        registry.addMapping("/**")
+        .allowedOrigins("*");
         return url;
     }
+    @GetMapping("/api/proxy")
+    @ResponseBody
+    public String proxyView() {
+        String url = "http://192.168.141.29:5005/b";
+//        String url = "http://localhost:5012/b";
+
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, String.class);
+    }
+
 
     @GetMapping("/common/findPwdForm")
     public String findPwdForm() {
         String url = "/common/findPwdForm";
+        return url;
+    }
+    @GetMapping("/common/aiready")
+    public String aiForm() {
+        String url = "/common/aiready";
         return url;
     }
 

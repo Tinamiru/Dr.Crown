@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
+import kr.co.drcrown.command.BookingStateListCommand;
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.command.PageMaker;
 import kr.co.drcrown.dao.BookingDAO;
@@ -12,7 +15,7 @@ import kr.co.drcrown.dto.BookingVO;
 import kr.co.drcrown.dto.PatientVO;
 
 
-
+@Service
 public class BookingServiceImpl implements BookingService {
 	
 	private BookingDAO bookingDAO;
@@ -102,6 +105,21 @@ public class BookingServiceImpl implements BookingService {
     public void registvisitBooking(BookingVO booking) throws Exception {
         bookingDAO.insertvisitBooking(booking);
         
+    }
+
+    @Override
+    public List<BookingStateListCommand> getBookingListByState() throws Exception {
+        List<BookingStateListCommand> bookingList = bookingDAO.selectBookingListByState(); 
+        return bookingList;
+    }
+
+    @Override
+    public Map<String, Object> getcallBookingDateList(String bookingRegdate) throws SQLException {
+        Map<String, Object> dataMap = null;
+        List<BookingVO> callbookingDateList = bookingDAO.selectcallBookingByDate(bookingRegdate);
+        dataMap = new HashMap<String, Object>();
+        dataMap.put("callbookingDateList", callbookingDateList);
+        return dataMap;
     }
 	
 }

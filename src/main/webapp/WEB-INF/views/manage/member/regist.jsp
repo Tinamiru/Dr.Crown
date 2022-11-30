@@ -22,7 +22,8 @@
 										</div>
 										<div class="form-group ">
 											<label class="text-white"><strong>등록일자</strong></label>
-											<input type="date" class="form-control form-control-input" name="memRegdate" value="" placeholder="">
+											<input type="date" class="form-control form-control-input" id="regDateOrigin" placeholder="">
+											<input type="hidden" name="memRegdate" value="" id="regDateParse"/>
 										</div>
 										<div class="input-group mb-2">
 											<label class="text-white"><strong>전화번호</strong></label>
@@ -53,9 +54,9 @@
 												<select class="form-control" name="memOfcps" id="typeOfcps">
 													<!-- 데이터베이스에서 공통코드 불러오는것 필수 -->
 													<option value="c" selected>선택</option>
-													<option value="추후수정필요1">일반</option>
-													<option value="추후수정필요2">전문의</option>
-													<option value="추후수정필요3">관리자</option>						
+													<option value="일반">일반</option>
+													<option value="전문의">전문의</option>
+													<option value="관리자">관리자</option>						
 												</select>
 											</div>
 										</div>	
@@ -65,9 +66,9 @@
 												<select class="form-control" name="memRspofc" id="typeRspofc">
 													<!-- 데이터베이스에서 공통코드 불러오는것 필수 -->
 													<option value="c" selected>선택</option>
-													<option value="추후수정필요1">일반</option>
-													<option value="추후수정필요2">전문의</option>
-													<option value="추후수정필요3">관리자</option>						
+													<option value="일반">일반</option>
+													<option value="전문의">전문의</option>
+													<option value="관리자">관리자</option>						
 												</select>
 											</div>
 										</div>	
@@ -100,7 +101,7 @@ function regist_go(){
 		swal ( "실패" ,  "전화번호 입력은 필수입니다." ,  "error" );	
 	  return;
 	}
-    if(!$('input[name="memRegdate"]').val()){
+    if(!$('#regDateOrigin').val()){
     	swal ( "실패" ,  "등록일자를 기입하여 주십시오." ,  "error" );	
 	  return;
 	}
@@ -116,6 +117,16 @@ function regist_go(){
     	swal ( "실패" ,  "직책을 선택하여 주십시오." ,  "error" );	
 	  return;
 	}
+	var birOrigin = document.querySelector('#regDateOrigin');
+	var birParse = document.querySelector('#regDateParse');
+	
+//     alert("등록날짜"+birOrigin.value)
+//     alert("등록날짜의 타입"+typeof(birOrigin.value))
+//     // 받은 날짜 date 타입으로 변환하여 히든에 입력해야함
+    
+    birParse.value = new Date(birOrigin.value)
+//     return;
+	
     
 	
     var form = $('form[role="form"]');

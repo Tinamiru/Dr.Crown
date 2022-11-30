@@ -1,128 +1,180 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%> 
-   
-   
+	uri="http://www.springframework.org/security/tags"%>
+
+<style>
+#mainFrame {
+	overflow: hidden; 
+	height:100vh; 
+	width:100vw; 
+	align-items: center;
+}
+
+#mainFrame_top{
+	background-color: #333258; 
+	height: 12vh; 
+	align-items:center; 
+	display: flex; 
+	justify-content:center;
+
+}
+#bar{
+	margin: 5px 20px; 
+	background: #CCCCCC;
+}
+
+#bigTitle{ 
+	margin-top: 12px; 
+	margin-bottom: 12px;
+}
+
+#bigTitle > h1{
+	font-weight:bold; ; 
+	text-align: center;
+	font-size: 35px;
+	margin: 0px;
+	
+}
+
+#detailFrame{
+	height: 64vh; 
+	width: 97vw; 
+	margin: 10px;
+}
+
+#detailFrameLeft{
+	float: left; 
+	height: 64vh; 
+	width: 35vw; 
+}
+
+#detailFrameLeftImg{
+	height: 64vh; 
+	width: 35vw; 
+	align-items:center; 
+	display: flex; 
+	justify-content:center; 
+	border:1px black solid;
+}
+
+#detailFrameLeftImg > img{
+	height: 64vh; 
+	width: 35vw;
+}
+
+#detailFrameRight{
+	float: right; 
+	height: 64vh; 
+	width: 61vw; 
+	right: 50%
+}
+
+#detailFrameRightUp {
+	border: solid black 1px; 
+	height: 100%; 
+	width: 61vw; 
+	text-align: center; 
+	padding-top: 10px;
+	
+}
+
+#detailFrameRightUp > h2{
+	padding: 5px; 
+	font-weight: 600; 
+	color: #333258;
+	font-size: 30px
+}
+
+#detailFrameRightUpContent{
+	height: 90%; 
+	width: 90%; 
+	text-align: center;
+	margin: 5% 7%;
+	float: left; 
+	font-size: 15px;
+
+}
+
+#detailListRow{
+	margin-bottom: 1px;
+}
+
+#detailListRow > div{
+	float: left; 
+	width: 120px; 
+	text-align: center; 
+	padding: 5px;
+	font-weight: bolder;
+	background-color : #333258;
+	color: white; 
+}
+
+#detailListRow > input {
+	width: 38vw; 
+	margin-left: 10px;
+	border : 0px;
+	border-bottom: 2px solid #333258;
+	background: none;
+	
+}
+
+
+#underBar{
+	background-color: #333258; 
+	height: 9vh; 
+	text-align: center ;
+}
+
+#underBar > div {
+	text-align: center; 
+	padding-top: 15px;
+}
+
+#underBar > div > a{
+	padding: 5px; 
+	border-radius : 5px; 
+	color : black;
+	background-color: white; 
+	font-weight: bolder;
+
+}
+iframe img{
+	width: 100%;
+}
+
+textarea::placeholder {
+	color: #ccc;
+}
+
+</style>
+
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cri" value="${dataMap.pageMaker.cri }" />
-<c:set var="noticeList" value="${dataMap.noticeList }" />
+<c:set var="equipList" value="${dataMap.equipList }" />
 
 
 
-<link href="<%=request.getContextPath()%>/resources/vendor/lightgallery/css/lightgallery.min.css" rel="stylesheet">
-    
-<div class="row" style="margin-top: 10px;">
-	<div class="col-sm-5 justify-content-center" style="border-right: solid 1px;">  
-		 
-		<!--   <video id="video" width="640" height="480" autoplay></video>  -->
-		  
-		  <iframe src="http://192.168.141.6:5000" width="650" height="500"></iframe>
-		  <button id="snap" class="loginBtn btn btn-block">사진촬영</button>
-		
-	
-	<!-- col-sm-8 -->	
+<div id="mainFrame">
+	<div id="mainFrame_top">
+		<img src="<%=request.getContextPath()%>/resources/images/logo-full.png" 
+			 style="width: 240px; height: 60px;">
 	</div>
 	
-	<div class="col-sm-7 justify-content-center" style="border-right: solid 1px;"> 
-	
-		<canvas id="canvas" width="640" height="480"></canvas>
 
 
-	<div class="card-body pb-1">
-				<div id="lightgallery" class="row">
-					<a href="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-exthumbimage="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" class="col-lg-3 col-md-6 mb-4">
-						<img src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" style="width:100%;"/>
-					</a>
-					<a href="<%=request.getContextPath()%>/resources/images/big/img2.jpg" data-exthumbimage="<%=request.getContextPath()%>/resources/images/big/img2.jpg" data-src="<%=request.getContextPath()%>/resources/images/big/img2.jpg" class="col-lg-3 col-md-6 mb-4">
-						<img src="<%=request.getContextPath()%>/resources/images/big/img2.jpg" style="width:100%;"/>
-					</a>
-					<a href="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-exthumbimage="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" class="col-lg-3 col-md-6 mb-4">
-						<img src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" style="width:100%;"/>
-					</a>
-					<a href="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-exthumbimage="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" class="col-lg-3 col-md-6 mb-4">
-						<img src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" style="width:100%;"/>
-					</a>
-					<a href="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-exthumbimage="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" class="col-lg-3 col-md-6 mb-4">
-						<img src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" style="width:100%;"/>
-					</a>
-					<a href="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-exthumbimage="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" class="col-lg-3 col-md-6 mb-4">
-						<img src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" style="width:100%;"/>
-					</a>
-					<a href="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-exthumbimage="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" class="col-lg-3 col-md-6 mb-4">
-						<img src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" style="width:100%;"/>
-					</a>
-					<a href="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-exthumbimage="<%=request.getContextPath()%>/resources/images/big/img1.jpg" data-src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" class="col-lg-3 col-md-6 mb-4">
-						<img src="<%=request.getContextPath()%>/resources/images/big/img1.jpg" style="width:100%;"/>
-					</a>
-					
-				</div>
-			</div>
-		
-		
-	<!-- col-sm-4 -->	
+<!-- 	<iframe src="http://localhost:5012/video_feed_mask" title="내용"  width="662px" height="500px"></iframe> -->
+	<iframe src="http://192.168.141.26:5012/video_feed_mask" title="내용"  width="662px" height="500px"></iframe>
+	<div id = "underBar">
+		<div onclick="window.close()">
+				<a>
+				  돌아가기
+				</a>
+		</div>
 	</div>
-<!-- main row -->	
+
 </div>
 
 
-
-
-
-
-<script src="<%=request.getContextPath()%>/resources/vendor/lightgallery/js/lightgallery-all.min.js"></script>	
-
-<script>
-		$('#lightgallery').lightGallery({
-			loop:true,
-			thumbnail:true,
-			exThumbImage: 'data-exthumbimage'
-		});
-</script>
-	
-<script>
-	// Grab elements, create settings, etc.
-var video = document.getElementById('video');
-
-// Get access to the camera!
-if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    // Not adding `{ audio: true }` since we only want video now
-    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-        //video.src = window.URL.createObjectURL(stream);
-        video.srcObject = stream;
-        video.play();
-    });
-}
-
-/* Legacy code below: getUserMedia 
-else if(navigator.getUserMedia) { // Standard
-    navigator.getUserMedia({ video: true }, function(stream) {
-        video.src = stream;
-        video.play();
-    }, errBack);
-} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-    navigator.webkitGetUserMedia({ video: true }, function(stream){
-        video.src = window.webkitURL.createObjectURL(stream);
-        video.play();
-    }, errBack);
-} else if(navigator.mozGetUserMedia) { // Mozilla-prefixed
-    navigator.mozGetUserMedia({ video: true }, function(stream){
-        video.srcObject = stream;
-        video.play();
-    }, errBack);
-}
-*/
-	</script>
-	<script>
-	// Elements for taking the snapshot
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-var video = document.getElementById('video');
-
-// Trigger photo take
-document.getElementById("snap").addEventListener("click", function() {
-	context.drawImage(video, 0, 0, 640, 480);
-});
-	</script>

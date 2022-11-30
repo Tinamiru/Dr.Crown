@@ -85,6 +85,16 @@ public class MemberDAOImpl implements MemberDAO {
 
 	}
 
+    @Override
+    public void activationMember(String memId) throws SQLException {
+        session.update("Member-Mapper.activationMember", memId);
+    }
+
+    @Override
+    public void modifyMemPwd(MemberVO member) {
+        session.update("Member-Mapper.modifyMemPwd", member);
+    }
+
 }
 
 

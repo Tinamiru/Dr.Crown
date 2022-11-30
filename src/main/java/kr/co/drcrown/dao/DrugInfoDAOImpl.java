@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import kr.co.drcrown.command.ChartSearchCommand;
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.dto.DrugInfoVO;
-import kr.co.drcrown.dto.SymptomVO;
+import kr.co.drcrown.dto.DiseasesVO;
 
 public class DrugInfoDAOImpl implements DrugInfoDAO {
 	
@@ -50,7 +50,6 @@ public class DrugInfoDAOImpl implements DrugInfoDAO {
     }
     @Override
     public List<DrugInfoVO> getDrugListByKeyword(ChartSearchCommand csc) throws SQLException {
-        System.out.println("의악품 키워드임: "+csc.getKeyword());
         List<DrugInfoVO> drugList = session.selectList("DrugInfo-Mapper.selectDrugListByKeyword", csc);
         return drugList;
     }

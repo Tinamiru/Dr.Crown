@@ -4,60 +4,64 @@
 
 <mapper namespace="Stock-Mapper">
 	
-	<select id="selectEquList" resultType="stock">		
-		select *
-		from(
-		    select SearchEquListResult.*
-		    from ( 
-		    	select * 
-				from equipment
-				where equ_code is not null
-				<include refid="searchEqu" />				
-				order by equ_name
-		    )  SearchEquListResult
-		)
-		
-	</select>
-	
-	<sql id="searchEqu">
+	<sql id="search">
 		<if test="searchType == 'n'.toString()">
-			and equ_name like '%'||#{keyword}||'%'			
+			and equip_name like '%'||#{keyword}||'%'			
 		</if>
 		<if test="searchType == 'm'.toString()">
-			and equ_maker like '%'||#{keyword}||'%'			
+			and equip_maker like '%'||#{keyword}||'%'			
 		</if>
 	</sql>
-<!--  
- 비품관리 매핑
-	<select id="selectEquipByNo" parameterType="string" resultType="stock">
+	
+	<select id="searchEquList" resultType="stock">		
 		select 
 		* 
-		from equipment
-		where equ_code=#{equCode}
+		from equiplist
+		where equip_Code is not null
+		<include refid="search"/>
+		order by equip_category
 	</select>
 	
-	<select id="selectEquipList" parameterType="string" resultType="stock">
+	
+  
+ <!-- 비품관리 매핑 -->
+	<select id="selectEquipListByNo" parameterType="str" resultType="stock">
 		select 
 		* 
-		from equipment
-		order by equ_name
+		from equiplist
+		where equip_code=#{equipCode}
 	</select>
 	
-	<update id="insertEquip" parameterType="stock">
+	<select id="selectEquipList" parameterType="str" resultType="stock">
+		select 
+		* 
+		from equiplist
+		order by equip_category
+	</select>
+	
+	<update id="insertEquipList" parameterType="stock">
 		insert into 
-		equipment(equ_code,equ_name,equ_unit,equ_maker,equ_distr,equ_price)
+		equiplist (equip_code,equip_name,equip_date,equip_stock,equip_suggest,equip_min,equip_maker,equip_distr,equip_price,equip_category)
 		values('equ' || LPAD(EQUIPMENT_SEQ.nextval,3,0),#{equName},#{equUnit},#{equMaker},#{equDistr},#{equPrice})
-	</update>	
+	</update>
 	
 	
-	<update id="insertEpuipPreOrder" parameterType="stock">
+	<update id="insertEpuipListPreOrder" parameterType="stock">
 		insert into
-		pre_order (reo_code, equ_code, reo_amount, reo_date, reo_price, reo_totalpay)
-		VALUES ('reo'||LPAD(EQUIPMENT_PREODER_SEQ.nextval,5,0),#{equCode},to_number(#{equStock}),TO_CHAR(SYSDATE, 'YYYYMMDD'),#{equPrice},to_number(#{equStock})*#{equPrice})		
+		pre_order (reo_code, equip_code,reo_maker ,reo_amount, reo_date, reo_price, reo_totalpay)
+		VALUES 
+		<foreach collection="orederList2" item="item" separator=" , ">
+		('reo'||LPAD(EQUIPMENT_PREODER_SEQ.nextval,5,0),#{item.equipCode},#{item.equipMaker},to_number(#{item.equipStock}),TO_CHAR(SYSDATE, 'YYYYMMDD'),#{item.equipPrice},to_number(#{item.equipStock})*#{item.equipPrice})		
+		 </foreach>
 	</update>
 
-
-
+	<select id="selectDrugStockList" parameterType="str" resultType="stock">
+		select 
+		* 
+		from drug_stock
+		order by dst_name
+	</select>
+<!--
 
 소모품 매핑
 	

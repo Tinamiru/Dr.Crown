@@ -30,20 +30,20 @@
 		</if>			
 	</sql>	
 	
-	<select id="selectCureDetailList" parameterType="str" resultType="curedlist">
-		SELECT 	p_no,
+	<select id="selectCureDetailList" parameterType="map" resultType="map">
+			SELECT 	p_no,
 				cd.cd_code as CD_CODE, 
 				c.cure_code as CURE_CODE, 
 				cd.CD_REGDATE as CD_REGDATE, 
-				(SELECT sym_ko
-				FROM SYMPTOM s
-				WHERE s.sym_code = c.SYM_CODE)AS sym_ko, 
+				(SELECT DZ_KO_NAME
+				FROM DISEASES s
+				WHERE s.DZ_NUM = c.DZ_NUM)AS DZ_KO_NAME, 
 				(SELECT mpr_ko
 				FROM MPRICE m
 				WHERE  m.MPR_CODE = c.MPR_CODE ) AS mpr_ko
-		FROM cure c, CURE_DETAIL cd, SYMPTOM s, MPRICE m 
+		FROM cure c, CURE_DETAIL cd, DISEASES s, MPRICE m 
 		WHERE c.CD_CODE = cd.CD_CODE
-		AND s.SYM_CODE =c.SYM_CODE
+		AND s.DZ_NUM =c.DZ_NUM
 		AND m.MPR_CODE = c.MPR_CODE 
 		and cd.P_NO = #{pNo}
 	</select> 
@@ -59,35 +59,125 @@
 				cd.cd_code as CD_CODE, 
 				c.cure_code as CURE_CODE, 
 				cd.CD_REGDATE as CD_REGDATE, 
-				(SELECT sym_ko
-				FROM SYMPTOM s
-				WHERE s.sym_code = c.SYM_CODE)AS sym_ko, 
+				(SELECT DZ_KO_NAME
+				FROM DISEASES s
+				WHERE s.DZ_NUM = c.DZ_NUM)AS DZ_KO_NAME, 
 				(SELECT mpr_ko
 				FROM MPRICE m
 				WHERE  m.MPR_CODE = c.MPR_CODE ) AS mpr_ko
-		FROM cure c, CURE_DETAIL cd, SYMPTOM s, MPRICE m 
+		FROM cure c, CURE_DETAIL cd, DISEASES s, MPRICE m 
 		WHERE c.CD_CODE = cd.CD_CODE
-		AND s.SYM_CODE =c.SYM_CODE
+		AND s.DZ_NUM =c.DZ_NUM
 		AND m.MPR_CODE = c.MPR_CODE 
 		and cd.P_NO = #{pNo}
 	</select>
+	
 	<select id="selectCureD" parameterType="map" resultType="map">
-		SELECT 	p_no,
-				cd.cd_code as CD_CODE, 
-				c.cure_code as CURE_CODE, 
-				cd.CD_REGDATE as CD_REGDATE, 
-				(SELECT sym_ko
-				FROM SYMPTOM s
-				WHERE s.sym_code = c.SYM_CODE)AS sym_ko, 
-				(SELECT mpr_ko
-				FROM MPRICE m
-				WHERE  m.MPR_CODE = c.MPR_CODE ) AS mpr_ko
-		FROM cure c, CURE_DETAIL cd, SYMPTOM s, MPRICE m 
-		WHERE c.CD_CODE = cd.CD_CODE
-		AND s.SYM_CODE =c.SYM_CODE
-		AND m.MPR_CODE = c.MPR_CODE 
-		and cd.P_NO = #{pNo}
+	  	  SELECT CD_REGDATE, cd.CD_UR_JAW,cd.CD_UL_JAW,cd.CD_BR_JAW,cd.CD_BL_JAW, m.MEM_NAME, tl.TL_NAME
+	   FROM CURE_DETAIL cd
+	   		INNER JOIN PATIENT_TREATMENT pt ON cd.CD_CODE = pt.CD_CODE
+	   		INNER JOIN PATIENT_DISEASE pd ON pd.CD_CODE = cd.CD_CODE
+	   		INNER JOIN "MEMBER" m ON m.MEM_ID = cd.MEM_ID
+	   		INNER JOIN TREATMENT_LIST tl ON tl.TL_NUMBER = pt.TL_NUMBER
+	   WHERE cd.P_NO = #{pNo}
+	   GROUP BY cd.CD_REGDATE, cd.CD_UR_JAW,cd.CD_UL_JAW,cd.CD_BR_JAW,cd.CD_BL_JAW, m.MEM_NAME, tl.TL_NAME
+	  ORDER BY 1 DESC
 	</select>
+	
+	<select id="selectCureDetailListByPNoForChart" parameterType="str" resultType="chartCureDetail">
+	  select cd.cd_code cd_code,
+	         cd.cd_regdate cd_regdate,
+	         ccc.ccc_number ccc_number,
+	         ccc.ccc_name ccc_name,
+	         m.mem_name mem_name,
+	         c.cure_code cure_code,
+	         NVL(cd.cd_note,'없음') AS cd_note,
+	         COUNT(*)OVER(PARTITION BY to_char(cd.cd_regdate,'yyyy-mm-dd')) AS datecount,
+	         cd.cd_ur_jaw cd_ur_jaw,
+	         cd.cd_ul_jaw cd_ul_jaw,
+	         cd.cd_br_jaw cd_br_jaw,
+	         cd.cd_bl_jaw cd_bl_jaw,
+	         cd.cd_pi
+	    from cure_detail cd
+	   inner join member m
+	      on m.mem_id = cd.mem_id
+	   LEFT OUTER join cure c
+	      on cd.cd_code = c.cd_code
+	   inner join cd_cat_code ccc
+	      on cd.ccc_number = ccc.ccc_number
+	   where cd.p_no = ${pNo}
+	   order by cd_regdate
+	</select>
+	
+	<update id="piInsert" parameterType="curedetail">
+insert into 
+CURE_DETAIL(
+CD_CODE,
+P_NO,
+MEM_ID,
+CD_UR_JAW,
+CD_UL_JAW,
+CD_BR_JAW,
+CD_BL_JAW,
+CD_PI,
+CCC_NUMBER
+)
+values(
+CURE_DETAIL_CD_CODE_SEQ.NEXTVAL,
+'${pNo}',
+'${memId}',
+'${cdUrJaw}',
+'${cdUlJaw}',
+'${cdBrJaw}',
+'${cdBlJaw}',
+'${cdPi}',
+1
+)
+	</update>
+	
+	<insert id="insertCureDetail" parameterType="cdrc" useGeneratedKeys="true" keyProperty="cdCode" keyColumn="CD_CODE">
+insert into 
+CURE_DETAIL(
+CD_CODE,
+P_NO,
+MEM_ID,
+CD_NOTE,
+CD_UR_JAW,
+CD_UL_JAW,
+CD_BR_JAW,
+CD_BL_JAW,
+CD_TOTALPAY,
+CCC_NUMBER
+)
+values(
+CURE_DETAIL_CD_CODE_SEQ.NEXTVAL,
+#{pNo},
+#{memId},
+#{cdNote},
+#{cdUrJaw},
+#{cdUlJaw},
+#{cdBrJaw},
+#{cdBlJaw},
+#{cdTotalpay},
+0
+)
+	</insert>
+	
+	<insert id="insertCureDetailForPrescribed" parameterType="pprcl" useGeneratedKeys="true" keyProperty="cdCode" keyColumn="CD_CODE">
+insert into 
+CURE_DETAIL(
+CD_CODE,
+P_NO,
+MEM_ID,
+CCC_NUMBER
+)
+values(
+CURE_DETAIL_CD_CODE_SEQ.NEXTVAL,
+#{pNo},
+#{memId},
+2
+)
+	</insert>
 <!-- 	<select id="selectMemberByPicture" parameterType="str" resultType="curedetail">
 		select
 		*

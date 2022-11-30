@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<c:set var="equipList" value="${dataMap.equipList }" />
 
 <style>
 #mainFrame {
@@ -148,9 +149,6 @@ textarea::placeholder {
 
 </style>
 
-<c:set var="pageMaker" value="${dataMap.pageMaker }" />
-<c:set var="cri" value="${dataMap.pageMaker.cri }" />
-<c:set var="equipList" value="${dataMap.equipList }" />
 
 
 
@@ -182,46 +180,46 @@ textarea::placeholder {
 								<div>
 									일련코드
 								</div>
-								<input type="text"  readonly="readonly" value="${stock.equCode}">
+								<input type="text"  readonly="readonly" value="${stock.equipCode}">
 							</div>
 							
 							<div class="row" id="detailListRow" >
 								<div>
 									품목명
 								</div>
-								<input type="text"  readonly="readonly" value="${stock.equName}">
+								<input type="text"  readonly="readonly" value="${stock.equipName}">
 							</div>
 							<div class="row" id="detailListRow" >
 								<div>
 									단가
 								</div>
-								<input type="text"  readonly="readonly" value="${stock.equPrice}원">
+								<input type="text"  readonly="readonly" value="${stock.equipPrice}원">
 							</div>
 							<div class="row" id="detailListRow" >
 								<div>
 									재고
 								</div>
-								<input type="text"  readonly="readonly" value="${stock.equStock}">
+								<input type="text"  readonly="readonly" value="${stock.equipStock}">
 							</div>
 							
 							<div class="row" id="detailListRow" >
 								<div>
 									업체명
 								</div>
-								<input type="text"  readonly="readonly" value="${stock.equMaker}">
+								<input type="text"  readonly="readonly" value="${stock.equipMaker}">
 							</div>
 							<div class="row" id="detailListRow" >
 								<div>
 									유통사
 								</div>
-								<input type="text"  readonly="readonly" value="${stock.equDistr}">
+								<input type="text"  readonly="readonly" value="${stock.equipDistr}">
 							</div>
 							<div class="row" id="detailListRow" >
 								<div>
 									입고일
 								</div>
 								<input type="text"  readonly="readonly" 
-										value="<fmt:formatDate value="${stock.equDate }" pattern="yyyy-MM-dd" />" />
+										value="<fmt:formatDate value="${stock.equipDate }" pattern="yyyy-MM-dd" />" />
 							</div>
 					</div>
 						

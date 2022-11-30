@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    
+    <%@ include file="/WEB-INF/views/common/preloader_js.jsp"%>
 </body>
 <!--**********************************
 	Scripts

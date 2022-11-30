@@ -3,6 +3,8 @@ package kr.co.drcrown.service;
 import java.sql.SQLException;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.dto.FileVO;
 import kr.co.drcrown.dto.MemberVO;
@@ -32,5 +34,12 @@ public interface MemberService {
 	public void remove(String memId)throws Exception; 
 	
 	Map<String,Object> getMemberDoctorList(Criteria cri)throws SQLException;
+
+    public void activation(String memId)throws Exception;
+
+    int getMemberForVerification(MemberVO member) throws Exception;
+
+    boolean isMemberPwd(HttpServletRequest request, String password, String newPassword) throws Exception;
+
 
 }

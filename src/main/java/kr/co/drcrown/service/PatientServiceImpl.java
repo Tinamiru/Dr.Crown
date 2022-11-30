@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
 
 import kr.co.drcrown.command.Criteria;
 import kr.co.drcrown.command.PageMaker;
@@ -19,6 +20,7 @@ import kr.co.drcrown.dto.NoticeVO;
 import kr.co.drcrown.dto.PatientVO;
 import kr.co.drcrown.dao.PatientDAO;
 
+@Service
 public class PatientServiceImpl implements PatientService {
 
 	private PatientDAO patientDAO;

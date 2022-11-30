@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -29,7 +29,10 @@ import kr.co.drcrown.dto.PatientVO;
 import kr.co.drcrown.service.BookingService;
 import kr.co.drcrown.service.CureDetailService;
 import kr.co.drcrown.service.PatientService;
+import kr.co.drcrown.service.PtpayService;
+import kr.co.drcrown.service.PtpayServiceImpl;
 import kr.co.drcrown.service.MemberService;
+import kr.co.drcrown.service.DocumentService;
 
 @Controller
 @RequestMapping("/desk")
@@ -47,9 +50,11 @@ public class DeskController {
 	@Autowired
 	private CureDetailService curedetailService;
 	
+   @Autowired
+    private DocumentService documentService;
 	
-	
-	
+	@Autowired
+	private PtpayService ptpayservice;
 	
 	@RequestMapping("/main")
 	public void main()throws Exception{}
@@ -83,12 +88,22 @@ public class DeskController {
 	//날짜별 환자리스트
 	@RequestMapping(value = "/getBoardDateList", method = RequestMethod.GET)
 
-	public ResponseEntity<Map<String, Object>>  testListDoo(String bookingRegdate) throws Exception {
+	public ResponseEntity<Map<String, Object>>  boardDateList(String bookingRegdate) throws Exception {
 		ResponseEntity<Map<String, Object>> entity = null;
 		
 		Map<String, Object> dataMap =  bookingService.getBookingDateList(bookingRegdate);
 		entity = new ResponseEntity<Map<String, Object>>(dataMap, HttpStatus.OK);
 		return entity;
+	}
+	
+	@RequestMapping(value = "/getcallBoardDateList", method = RequestMethod.GET)
+	
+	public ResponseEntity<Map<String, Object>>  callboardDateList(String bookingRegdate) throws Exception {
+	    ResponseEntity<Map<String, Object>> entity = null;
+	    
+	    Map<String, Object> dataMap =  bookingService.getcallBookingDateList(bookingRegdate);
+	    entity = new ResponseEntity<Map<String, Object>>(dataMap, HttpStatus.OK);
+	    return entity;
 	}
 	
 	// 환자별 진료 히스토리
@@ -111,6 +126,8 @@ public class DeskController {
 		
 		return new ResponseEntity<>(map,HttpStatus.OK);
 	}
+	
+	//데스크에서 사용중
 	@RequestMapping(value = "/getBookingpno", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> getBookingpNo(String pNo) throws Exception {
 	    
@@ -122,13 +139,18 @@ public class DeskController {
         return entity;
 	}
 	
+	   @GetMapping("/ptPayment/list")
+	    public String payList() {
+	        String url = "/desk/ptpay/list";
+	        return url;
+	    } 
+	
 	@RequestMapping(value = "/getSearchPatient", method = RequestMethod.GET)
 	public ResponseEntity<Map<String, Object>> patientSearchajax(Criteria cri) throws Exception {
 	    
 	    Map<String, Object> map = new HashMap<>();
 	    
 	    map.put("patList", patientService.getsearchPatientList(cri));	
-	    System.out.println(cri); 
 	    
 	    return new ResponseEntity<>(map,HttpStatus.OK);
 	}
@@ -152,23 +174,54 @@ public class DeskController {
 	           return url;
 	      }
 	
-	@RequestMapping(value="/myjob", method=RequestMethod.POST)
+	    @RequestMapping(value="/ptpayReg", method=RequestMethod.POST)
+	    @ResponseBody
+	    public String ptpayreg(@RequestParam Map<String, Object> vo) throws Exception{
+	        ptpayservice.insertPtpay(vo);
+	        return null;
+	        
+	    }
+	@RequestMapping(value="/ptpaylist", method=RequestMethod.POST)
     @ResponseBody
-	 public List<Map<String,Object>> cureDetaile(String pNo) throws SQLException{
+	 public List<Map<String,Object>> ptpaylist(@RequestParam Map<String, Object> vo) throws SQLException{
 	        JSONArray jsonArr= new JSONArray();
 	    
-	        
-	        System.out.println(pNo);
-	        List<Map<String,Object>> vo=curedetailService.cureDetail(pNo);
-	       	        
-	        for(Map<String,Object>map: vo){
+	   
+	        List<Map<String,Object>> vo2 =ptpayservice.ptPaylist(vo);
+	        for(Map<String,Object>map: vo2){
 	            jsonArr.add(convertMapToJson(map));
 	        }
 	      	        
 	        return jsonArr;
 	    }
+	@RequestMapping(value="/ptpaylistpno", method=RequestMethod.POST)
+	@ResponseBody
+	public List<Map<String,Object>> ptpaylistpno(@RequestParam Map<String, Object> vo) throws SQLException{
+	    JSONArray jsonArr= new JSONArray();
 	    
-	    public static JSONObject convertMapToJson(Map<String,Object> map){
+	    
+	    List<Map<String,Object>> vo2 =ptpayservice.ptPaylistpNo(vo);
+	    for(Map<String,Object>map: vo2){
+	        jsonArr.add(convertMapToJson(map));
+	    }
+	    
+	    return jsonArr;
+	}
+	@RequestMapping(value="/myjob", method=RequestMethod.POST)
+	@ResponseBody
+	public List<Map<String,Object>> cureDetaile(String pNo) throws SQLException{
+	    JSONArray jsonArr= new JSONArray();
+	    
+	    
+	    List<Map<String,Object>> vo=curedetailService.cureDetail(pNo);
+	    for(Map<String,Object>map: vo){
+	        jsonArr.add(convertMapToJson(map));
+	    }
+	    
+	    return jsonArr;
+	}
+	    
+	 public static JSONObject convertMapToJson(Map<String,Object> map){
 	        
 	        JSONObject json = new JSONObject();
 	        for(Map.Entry<String, Object>entry:map.entrySet()){
@@ -200,7 +253,6 @@ public class DeskController {
     public String bookingRegist(BookingVO booking, RedirectAttributes rttr) throws Exception {
         String url = "redirect:list";
         
-       System.out.println(booking.toString());
         bookingService.regist(booking);
         rttr.addFlashAttribute("from","regist");
         
@@ -227,15 +279,12 @@ public class DeskController {
    public String bookingModify(BookingVO booking, RedirectAttributes rttr) throws Exception {
        String url = "redirect:detail";
        
-      System.out.println(booking.toString());
        bookingService.modify(booking);
        rttr.addFlashAttribute("from","modify");
        
        return url;
   }
   
-   
-	
 	   
     @GetMapping("/booking/patientList")
     public String bokingPatientList(Criteria cri, Model model) throws Exception {
@@ -266,8 +315,6 @@ public class DeskController {
 		
 		Map<String,Object> dataMap = patientService.getPatientList(cri);		
 		model.addAttribute("dataMap",dataMap);
-		
-		System.out.println("환자데이터맵"+dataMap.get("patientList").toString());
 		
 		return url;
 	}

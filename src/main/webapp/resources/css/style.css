@@ -5283,6 +5283,9 @@ button.bg-light:focus {
 
 .bg-dark {
   background-color: #B1B1B1 !important; }
+  
+.bg-drcrown {
+  background-color: #3d4465 !important; }
 
 a.bg-dark:hover, a.bg-dark:focus,
 button.bg-dark:hover,

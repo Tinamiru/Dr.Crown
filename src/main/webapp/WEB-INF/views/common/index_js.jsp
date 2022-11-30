@@ -5,16 +5,17 @@
 
 <script type="text/x-handlebars-template"  id="subMenu-list-template">
 	{{#each .}}
-		<li>
-			<a style="float:left;" href="javascript:goPage('<%=request.getContextPath()%>{{murl}}','{{mcode}}');" class="ai-icon nav-link nav-item subMenu">
-				<p><i class="{{micon}}"></i>ㅤ{{mname}}</p>
+		<div style="float:left">
+			<a style="float:left;" href="javascript:goInsidePage('<%=request.getContextPath()%>{{murl}}','{{mcode}}');" class="ai-icon nav-link nav-item subMenu">
+				<p class="m-0"><i class="{{micon}}"></i>ㅤ{{mname}}</p>
 			</a>
-		</li>
+		</div>
 	{{/each}}
 </script>
 
 <script>
 function subMenu_go(mCode){
+	preloaderCustomRun()
 // 	alert(mCode);	
 	if(mCode!="M000000"){
 		$.ajax({
@@ -42,6 +43,7 @@ function printData(dataArr,target,templateObject){
 }
 
 function goPage(url,mCode){
+	preloaderCustomRun()	
 	//alert(url);
 	$('iframe[name="ifr"]').attr("src",url);
 	
@@ -64,7 +66,7 @@ function goPage(url,mCode){
 }
 
 function goInsidePage(url,mCode){
-	
+	preloaderCustomRun()
 	parent.document.querySelector('iframe[name="ifr"]').setAttribute('src', url);
 	
 	// HTML5 지원브라우저에서 사용 가능

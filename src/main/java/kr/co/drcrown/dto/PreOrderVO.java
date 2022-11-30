@@ -2,59 +2,83 @@ package kr.co.drcrown.dto;
 
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class PreOrderVO {
-	
-	private String reoCode;    		      // 재고현황
-	private String reoAmount;    		  // 업체명
-	private String reoOrderer;    		  // 허가번호
-	private Date reoDate = new Date();    // 입고일
-	private String drugNo;			      // 약번호
-	private String mediCode;			  // 발주코드
-	private String ordCode;			      // 발주코드
-	
-	
-	public String getReoCode() {
-		return reoCode;
-	}
-	public void setReoCode(String reoCode) {
-		this.reoCode = reoCode;
-	}
-	public String getReoAmount() {
-		return reoAmount;
-	}
-	public void setReoAmount(String reoAmount) {
-		this.reoAmount = reoAmount;
-	}
-	public String getReoOrderer() {
-		return reoOrderer;
-	}
-	public void setReoOrderer(String reoOrderer) {
-		this.reoOrderer = reoOrderer;
-	}
-	public Date getReoDate() {
-		return reoDate;
-	}
-	public void setReoDate(Date reoDate) {
-		this.reoDate = reoDate;
-	}
-	public String getDrugNo() {
-		return drugNo;
-	}
-	public void setDrugNo(String drugNo) {
-		this.drugNo = drugNo;
-	}
-	public String getMediCode() {
-		return mediCode;
-	}
-	public void setMediCode(String mediCode) {
-		this.mediCode = mediCode;
-	}
-	public String getOrdCode() {
-		return ordCode;
-	}
-	public void setOrdCode(String ordCode) {
-		this.ordCode = ordCode;
-	}
-	  					
+
+    // Don't Fucking Touch This
+
+    private String reoCode;
+    private String ordCode;
+    private String drugNo;
+    private String mediCode;
+    private String conCode;
+    private String equCode;
+    private String reoAmount;
+    private Date reoDate;
+    private int reoPrice;
+    private int reoTotalpay;
+    private String equipCode;
+    private String reoMaker;
+    private String equipName;
+    
+    
+    
+    /*
+     * private String durgCode;
+     * private String durgName;
+     * private Date durgDate;
+     * private int durgStock;
+     * private String durgMaker;
+     * private String durgDistr;
+     * private String durgSpec;
+     * private String durgPicture;
+     * private int durgPrice;
+     */
+
+    /*
+     * private String conCode;
+     * private String conName;
+     * private Date conDate;
+     * private int conStock;
+     * private String conUnit;
+     * private String conMaker;
+     * private String conDistr;
+     * private String conSpec;
+     * private String conPicture;
+     * private int conPrice;
+     * private int conSuggest;
+     * private int conMin;
+     * 
+     * private String mediCode;
+     * private String mediName;
+     * private Date mediDate;
+     * private int mediStock;
+     * private String mediMaker;
+     * private String mediDistr;
+     * private String mediSpec;
+     * private String mediPicture;
+     * private int mediPrice;
+     * private int mediSuggest;
+     * private int mediMin;
+     */
+
+    /*
+     * private String dstCode;
+     * private String drugNo;
+     * private String dstName;
+     * private String dstElement;
+     * private int dstStock;
+     * private String dstUnit;
+     * private String dstMaker;
+     * private String dstNO;
+     * private Date dstDate;
+     * private int dstPrice;
+     * private int dstSuggest;
+     * private int dstiMin;
+     */
+
 }
-	

@@ -21,11 +21,11 @@
 	                            
 	                                <div class="auth-form loginBoxBackground">
 	                                <div class="form-row">
-										<div style="border-bottom: 2px solid;" class="col-sm-8">
+										<div style="border-bottom: 2px solid;" class="col-sm-7">
 										<h2 style="font-weight: bold;">예약상세</h2>
 	                                    </div>
 	                                
-	                                    <div style="border-bottom: 2px solid;" class="col-sm-4">
+	                                    <div style="border-bottom: 2px solid;" class="col-sm-5">
 										<h6 style="font-weight: bold; margin-top:10px;">예약번호:${booking.bookingCode}</h6>
 	                                    </div>
 	                                   </div> 
@@ -50,7 +50,7 @@
 			                                    		  <label class="text-white"><strong>성별</strong></label>
 					                                         <div class="input-group mb-1">
 					       
-					                                         <c:set var="gender" value="${fn:substring(booking.PRnum,6,7)}"/>
+					                                         <c:set var="gender" value="${fn:substring(booking.PRnum,7,8)}"/>
 					                                         <c:choose>
 					                                          <c:when test="${(gender eq '1') or (gender eq '3') }">
 					                                            <input type="text" id="P_gender" class="form-control form-control-input" value="남" disabled >

@@ -6,6 +6,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
 <style>
 #table10 {
 	overflow: auto !important;
@@ -19,6 +20,9 @@
 #table10::-webkit-scrollbar-track {
 	background-color: grey !important;
 }
+  label{margin-left: 20px;}
+		#calldatePicker{width:100px; margin: 0 20px 20px 20px;}
+		#calldatePicker > span:hover{cursor: pointer;}
 </style>
 
 
@@ -34,9 +38,18 @@
 
 
 <div id="chartWrap"></div>
-
 	
 	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<hr class="m-0" style="  width: 35%; ">
+		</div>
+		<div class="row justify-content-center">
+			<div class="subMenuList">
+			</div>
+		</div>
+		<div class="row justify-content-center">
+			<hr class="m-0" style="  width: 35%; ">
+		</div>
 		<div class="row pt-3">
 			<div class="row w-100 justify-content-around ">
 				<div class = "row col-6 bg-white">
@@ -50,12 +63,12 @@
 					   		</div>
 							<div class = "col-5 p-0 d-flex justify-content-start">
 								    <div><label>시작날짜&nbsp;</label></div>
-								    <div><input type="date"></div>
+								    <div><input type="text" class="input" name="strDate" id="calldatePicker" ></div>
 								    <div>&nbsp;부터</div>
 					   		</div>
 					   		<div class = "col-5 p-0 d-flex justify-content-start">
 								    <div><label>종료날짜&nbsp;</label></div>
-								    <div><input type="date"></div>
+								    <div><input type="text" class="input" name="endDate" id="calldatePicker2" ></div>
 								    <div>&nbsp;까지</div>
 					   		</div>
 				   		</div>
@@ -86,11 +99,13 @@
 			   			
 			   			<div class = "row pt-3">
 			                    <div class= "col-2 d-flex justify-content-start">
-			                    	<label> 성별 선택 : </label>
+			                    	<label> 방문 유형 : </label>
 		                    	</div>
-			                    <div class="radio col-md-2 p-0">모두&nbsp;<input type="radio" name="optradio"></div>
-			                    <div class="radio col-md-2 p-0">남성&nbsp;<input type="radio" name="optradio"></div>
-			                    <div class="radio col-md-2 p-0">여성&nbsp;<input type="radio" name="optradio"></div>
+		                    	<select name="searchType"  onchange="search(this.value)" >
+		                    		<option value="0" >전체</option>
+		                    		<option value="1" >방문</option>
+		                    		<option value="2" >예약</option>
+		                    	</select>
 			   			</div>
 					</div>	
 				</div>
@@ -103,37 +118,37 @@
 						<div class = "row pt-3">
 							<div class="col-md-2 ">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox1" >
+									<input type="checkbox" class="custom-control-input"  checked id="customCheckBox1" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox1">기본진료</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox2" >
+									<input type="checkbox" class="custom-control-input" checked  id="customCheckBox2" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox2">X-ray</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox3" >
+									<input type="checkbox" class="custom-control-input"  checked id="customCheckBox3" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox3">마취</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox4" >
+									<input type="checkbox" class="custom-control-input"  checked id="customCheckBox4" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox4">보존</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox5" >
+									<input type="checkbox" class="custom-control-input" checked  id="customCheckBox5" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox5">GI즉처</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox6" >
+									<input type="checkbox" class="custom-control-input" checked  id="customCheckBox6" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox6">GI충전</label>
 								</div>
 							</div>
@@ -141,31 +156,31 @@
 						<div class = "row">
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox7" >
+									<input type="checkbox" class="custom-control-input"  checked id="customCheckBox7" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox7">근관치료</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox8" >
+									<input type="checkbox" class="custom-control-input" checked  id="customCheckBox8" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox8">발치/외과</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox9" >
+									<input type="checkbox" class="custom-control-input"  checked id="customCheckBox9" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox9">교정</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox10" >
+									<input type="checkbox" class="custom-control-input"  checked id="customCheckBox10" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox10">치주치료</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox11" >
+									<input type="checkbox" class="custom-control-input"  checked id="customCheckBox11" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox11">치관확장</label>
 								</div>
 							</div>
@@ -179,19 +194,19 @@
 						<div class = "row ">
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox14" >
+									<input type="checkbox" class="custom-control-input"  checked id="customCheckBox14" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox14">급여</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox15" >
+									<input type="checkbox" class="custom-control-input"  checked id="customCheckBox15" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox15">비급여</label>
 								</div>
 							</div>
 							<div class="col-md-2">
 								<div class="custom-control custom-checkbox mb-3">
-									<input type="checkbox" class="custom-control-input" checked id="customCheckBox16" >
+									<input type="checkbox" class="custom-control-input" checked  id="customCheckBox16" >
 									<label class="custom-control-label col-form-label-sm" for="customCheckBox16">기타</label>
 								</div>
 							</div>
@@ -241,7 +256,7 @@
                                    <div id="example_wrapper" class="dataTables_wrapper">
 						       		<div class="row justify-content-center" >
 						               <section class="content" style="height: 60vh; width: 95%;" >
-                                			<table class="table table-bordered border-white display min-w850" role="grid" 
+                                	<div id="chart_div"><table class="table table-bordered border-white display min-w850" role="grid" 
                                 					style="margin: auto; text-align: center; height: 18vh; overflow-y:scroll;">
 	                                        <thead>
 	                                            <tr role="row" bgcolor="#333258" style="color: white">
@@ -360,7 +375,7 @@
 		                                            <th rowspan="1" colspan="1">Salary</th>
 	                                            </tr>
 	                                        </tfoot>
-                                  	 	</table>
+                                  	 	</table></div>
                                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
                  				 </section>
                                </div>
@@ -369,6 +384,7 @@
                        <%@ include file="/WEB-INF/views/include/pagination.jsp" %>
              		  </div>
 					</div>
+					
 				</div>
                    <div class="col-xl-6 col-lg-6">
                        <div class="card">
@@ -542,18 +558,140 @@
   
   
   
-  
-  
-  
 <%-- <div class="row">  
 	<div class="col-6 bg-white">
 	  <canvas id="myChart"></canvas>
 	</div>
 </div>   --%>
+
+<script>
+$( cbcal = function () {
+	  $("#calldatePicker, #calldatePicker2").datepicker({ 
+		  	format: 'yyyy-mm-dd',
+	        autoclose: true, 
+	        todayHighlight: true,
+	      
+	  }).on('changeDate', function (e) {
+		  
+		  window.myChart2.destroy();
+		  window.myChart.destroy();
+		  strDate = moment(document.getElementById('calldatePicker').value).format("YYYYMMDD");
+		   endDate = moment(document.getElementById('calldatePicker2').value).format("YYYYMMDD");
+		   curelist(strDate,endDate)
+		   curelist2(strDate,endDate)
+	    })
+	    $("#calldatePicker2").datepicker('update', new Date());
+	    $("#calldatePicker").datepicker('update', new Date(new Date().setDate(new Date().getDate() - 7)));
+	  strDate = moment(document.getElementById('calldatePicker').value).format("YYYYMMDD");
+	   endDate = moment(document.getElementById('calldatePicker2').value).format("YYYYMMDD");
+		curelist(strDate,endDate)
+		curelist2(strDate,endDate)
+});
+
+function search(c){
+	window.myChart2.destroy();
+	  window.myChart.destroy();
+	curelist(strDate,endDate,c)
+	curelist2(strDate,endDate,c)
+} 
+
+</script>
+
+<script>
+
+function curelist(c,d,e){  
+	$.ajax({
+		url:"<%=request.getContextPath()%>/manage/patStats",
+		type:"post",
+		data: {
+			   strDate: c,
+			   endDate: d,
+		 	   searchType: e
+		
+		}, 
+		dataType:"json",
+		success: ajaxHtmlCure,
+		error:function(){alert("관리자에게 문의해주시요");
+		console.log(data)}
+	});
+var arr3 = ["전체", "방문자", "예약자"];
+result2 = arr3[e]
+}
+
+function ajaxHtmlCure(data){
+ 	var arr = [];
+ 	var arr2 = [];
+ $.each(data, (index, obj)=>{
+	 arr.push(obj.VITDATE)
+	 arr2.push(obj.CNT)
+				  
+	})
+				console.log(arr)
+ 	 var labels = arr;
+				 if (result2==undefined) {
+						result2 ="전체"
+					}
+				  var data = {
+				    labels: labels,
+				    datasets: [
+					   	{
+					      label: result2,
+					      backgroundColor: 'rgb(255, 99, 132)',
+					      borderColor: 'rgb(255, 99, 132)',
+					      data: arr2,
+					    }
+		
+				    
+				    
+				    ]
+				  };
+				var config = {
+					type: 'bar',
+					data: data,
+					options: {
+				    	plugins: {
+				        	title: {
+				            	display: true,
+				                text: 'Custom Chart Title',
+				                padding: {
+				                	top: 10,
+				                	bottom: 30,
+				                }
+				            }
+				        },
+				        scales: {
+				        	x: {
+				        		title: {
+				        			display: true,
+				        			text: 'date'
+				        		}
+				        	},
+				        	y: {
+				        		title: {
+				        			display: true,
+				        			text: 'value'
+				        		}
+				        	}
+				        }
+				    }
+				};
+				  
+				  window.myChart = new Chart(
+			
+				    document.getElementById('myChart'),
+				    config
+				  );
+			
+	}
+
+
+
+</script>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   
   
- <script>
+<!--  <script>
 				  var labels = [
 				    '2018년 11월',
 				    '2018년 12월',
@@ -625,9 +763,98 @@
 				    document.getElementById('myChart'),
 				    config
 				  );
-</script>
+</script> -->
 
- <script>
+<script>
+
+function curelist2(c,d,e){  
+	$.ajax({
+		url:"<%=request.getContextPath()%>/manage/patStatsmon",
+		type:"post",
+		data: {
+			   strDate: c,
+			   endDate: d,
+		 	   searchType: e
+		
+		}, 
+		dataType:"json",
+		success: ajaxHtmlCure2,
+		error:function(){alert("관리자에게 문의해주시요");
+		console.log(data)}
+	});
+	var arr3 = ["전체", "방문자", "예약자"];
+	result = arr3[e]
+}
+
+function ajaxHtmlCure2(data){
+ 	var arr = [];
+ 	var arr2 = [];
+ $.each(data, (index, obj)=>{
+	 arr.push(obj.VITDATE)
+	 arr2.push(obj.CNT)
+				  
+	})
+				console.log(arr)
+ 	 var labels = arr;
+				if (result==undefined) {
+					result="전체"
+				}
+				  var data = {
+				    labels: labels,
+				    datasets: [
+					   	{
+					      label: result,
+					      backgroundColor: 'rgb(132, 99, 132)',
+					      borderColor: 'rgb(132, 99, 132)',
+					      data: arr2,
+					    }
+		
+				    
+				    
+				    ]
+				  };
+				var config = {
+					type: 'bar',
+					data: data,
+					options: {
+				    	plugins: {
+				        	title: {
+				            	display: true,
+				                text: 'Custom Chart Title',
+				                padding: {
+				                	top: 10,
+				                	bottom: 30,
+				                }
+				            }
+				        },
+				        scales: {
+				        	x: {
+				        		title: {
+				        			display: true,
+				        			text: 'date'
+				        		}
+				        	},
+				        	y: {
+				        		title: {
+				        			display: true,
+				        			text: 'value'
+				        		}
+				        	}
+				        }
+				    }
+				};
+				  
+				window.myChart2 = new Chart(
+						    document.getElementById('myChart2'),
+						    config
+						  );
+			
+	}
+
+
+
+</script>
+ <!-- <script>
 				 var labels = [
 					    '2018년 11월',
 					    '2018년 12월',
@@ -693,11 +920,17 @@
 				    document.getElementById('myChart2'),
 				    config
 				  );
-</script>
+</script> -->
 				  
 				  
-  
-  
-</body>
+<script>
+	window.onload = function(){ subMenu_go('M080000')
+		preloaderCustom.style.display = "none";
+	}
+</script>		  
+<%@ include file="/WEB-INF/views/common/preloader_js.jsp"%>
+<%@ include file="../../common/index_js.jsp"%>
+
+
 
 

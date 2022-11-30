@@ -2,16 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-	
-<script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
- <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-grid.css"/>
- <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/styles/ag-theme-alpine.css"/>
+<%@ include file="/WEB-INF/views/common/preloader_js.jsp"%>
+
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <c:set var="equipList" value="${dataMap.equipList }" />
-<c:set var="mediList" value="${dataMap.mediList }" />
-<c:set var="consumeList" value="${dataMap.consumeList }" />
+<c:set var="preOrderList" value="${dataMap2.preOrderList }" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <%-- <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cri" value="${dataMap.pageMaker.cri }" /> --%>
 
@@ -72,8 +71,15 @@
 	font-weight: bolder; 
 	border-radius: 4px
 }
+#Detail_main_add_1{
+	background-color: #ced4da; 
+	color: black;
+	border: 1px solid black; 
+	font-weight: bolder; 
+	border-radius: 4px
+}
 
-#Detail_main_equip{
+.Detail_main_equip{
 	padding:10%; 
 	background-color: #C6D9FF; 
 	color: black;
@@ -150,12 +156,12 @@
 									비품
 								</div>
 								<div style="padding: 0.7% 2%;">
-									<input id="checklist_medi" type="checkbox" checked="checked">
-									기자재
-								</div>
-								<div style="padding: 0.7% 2%;">
 									<input id="checklist_consume" type="checkbox" checked="checked">
 									소모품
+								</div>
+								<div style="padding: 0.7% 2%;">
+									<input id="checklist_medi" type="checkbox" checked="checked">
+									기자재
 								</div>
 							</div>
 						</div>
@@ -173,20 +179,16 @@
 
 
 									<!-- search bar -->
-										 <select class="form-control " name="searchType"
-											id="searchType">
-											<option value="">검색구분</option>
-	
-											<option value="n" ${param.searchType=='n' ? "selected":"" }>품목명</option>
-											<option value="m" ${param.searchType=='m' ? "selected":"" }>업체명</option>
-	
+										 <select class="form-control " id="equipSearchType" name="equipSearchType">
+											<option value="m"  ${cri.searchType eq 'm' ? 'selected':'' }>업체명</option>
+											<option value="n"  ${cri.searchType eq 'n' ? 'selected':'' }>품목명</option>
 										</select>
 										<!-- keyword -->
-										<input class="form-control" type="text" name="keyword"
-											placeholder="검색어를 입력하세요." value="${cri.keyword }" /> 
+										<input class="form-control" type="text" name="keyword" id="searchKeyword"
+											placeholder="검색어를 입력하세요." value="" /> 
 										<span class="input-group-append">
-											<button class="btn btn-primary" type="button" id="searchBtn"
-												data-card-widget="search" onclick="list_go(1);" style="padding: 3% 5%;width: 3vw;">
+											<button class="btn btn-primary" type="button" id="searchBtn" data-card-widget="search" 
+													onclick="setSearchList()" style="padding: 3% 5%;width: 3vw;">
 												<i class="fa fa-fw fa-search"></i>
 											</button>
 										</span>
@@ -216,62 +218,55 @@
 											<th class="sortTh" width="12%">입고일</th>
 											<th width="7%">추가</th>
 											<!-- yyyy-MM-dd  -->
-										</tr>	
+										</tr>
+										<tbody id="eqlistTbody">	
 										 <c:if test="${!empty equipList }">
 											<c:forEach items="${equipList}" var="stock">
 												<tr class="equip_tr" >
 													<td >
-														<div id="Detail_main_equip">
-															비품
+														<div >
+															<a id="category" class="Detail_main_equip">
+															${stock.equipCategory }
+															</a>
 														</div>	
 													</td>
-													
-													<%-- <td>
-														<a href="javascript:OpenWindow('detail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
-															${stock.equCode }
-														</a>
-														<input style="display: none;" name="equCode" value="${stock.equCode }"/>
-													</td> --%>
 													<td class="td_content">
-														<a href="javascript:OpenWindow('equipDetail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
-															${stock.equName }
+														<input style="display: none;" name = "equipCode" value="${stock.equipCode}">
+														<input style="display: none;" name = "equipName" value="${stock.equipName}">
+														<input style="display: none;" name = "equipMaker" value="${stock.equipMaker}">
+														
+														<a href="javascript:OpenWindow('equipDetail?from=list&equipCode=${stock.equipCode }','상세보기',800,600);">
+															${stock.equipName }
 														</a>
 													</td>
 													<td class="td_content_stock">
-														<a href="javascript:OpenWindow('equipDetail?from=list&equCode=${stock.equCode }','상세보기',800,600);"
-														   class="equipStcok">
-															${stock.equStock }
-														</a>
+															${stock.equipStock }
 													<td class="td_content_suggest">
-														<a href="javascript:OpenWindow('equipDetail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
-															${stock.equSuggest }
-														</a>
+															${stock.equipSuggest }
 													</td>
 													<td class="td_content_min">
-														<a href="javascript:OpenWindow('equipDetail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
-															${stock.equMin }
-														</a>
+															${stock.equipMin }
 													</td>
 													<td class="td_content">
-														<a href="javascript:OpenWindow('equipDetail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
-															${stock.equMaker }
+														<a href="javascript:OpenWindow('equipDetail?from=list&equipCode=${stock.equipCode }','상세보기',800,600);"
+														   class="makerNameRequest">
+															${stock.equipMaker }
 														</a>
 													</td>
 													<td >
-														<a href="javascript:OpenWindow('equipDetail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
-															<fmt:formatDate value="${stock.equDate }" pattern="yyyy-MM-dd"/>
+														<a href="javascript:OpenWindow('equipDetail?from=list&equipCode=${stock.equipCode }','상세보기',800,600);">
+															<fmt:formatDate value="${stock.equipDate }" pattern="yyyy-MM-dd"/>
 														</a>
 														</td>
 													<td style="display: none;">
-														<a href="javascript:OpenWindow('equipDetail?from=list&equCode=${stock.equCode }','상세보기',800,600);">
-															${stock.equPrice }
+														<a href="javascript:OpenWindow('equipDetail?from=list&equipCode=${stock.equipCode }','상세보기',800,600);">
+															${stock.equipPrice }
 														
 														</a>
-														<input style="display: none;" name="equPrice" value="${stock.equPrice }"/>
+														<input style="display: none;" name="equipPrice" value="${stock.equipPrice }"/>
 													</td>
-													<td style="display: none;">
-														<input type="text" style="width: 2vw;" name="equStock"
-															   placeholder="" value="" >
+													<td class="makerName" style="display: none;">
+														${stock.equipMaker }
 													</td>
 													
 													<td onclick="addRow()">
@@ -282,132 +277,11 @@
 												</tr>
 											</c:forEach>
 											
-											<c:forEach items="${mediList}" var="stock">
-												<tr class="medi_tr" >
- 													<td >
-														<div id="Detail_main_medi">
-															기자재
-														</div>	
-													</td>
- 													<td class="td_content">
-														<a href="javascript:OpenWindow('mediDetail?from=list&mediCode=${stock.mediCode }','상세보기',800,600);">
-															${stock.mediName }
-														</a>
-													</td>
-													<td class="td_content">
-														<a href="javascript:OpenWindow('mediDetail?from=list&mediCode=${stock.mediCode }','상세보기',800,600);">
-															${stock.mediStock }
-														</a>
-													<td class="td_content">
-														<a href="javascript:OpenWindow('mediDetail?from=list&mediCode=${stock.mediCode }','상세보기',800,600);">
-															${stock.mediSuggest }
-														</a>
-													</td>
-													<td class="td_content">
-														<a href="javascript:OpenWindow('mediDetail?from=list&mediCode=${stock.mediCode }','상세보기',800,600);">
-															${stock.mediMin }
-														</a>
-													</td>
-													<td class="td_content">
-														<a href="javascript:OpenWindow('mediDetail?from=list&mediCode=${stock.mediCode }','상세보기',800,600);">
-															${stock.mediMaker }
-														</a>
-													</td>
-													<td >
-														<a href="javascript:OpenWindow('mediDetail?from=list&mediCode=${stock.mediCode }','상세보기',800,600);">
-															<fmt:formatDate value="${stock.mediDate }" pattern="yyyy-MM-dd"/>
-														</a>
-														</td>
-													<td style="display: none;">
-														<a href="javascript:OpenWindow('mediDetail?from=list&mediCode=${stock.mediCode }','상세보기',800,600);">
-															${stock.mediPrice }
-														
-														</a>
-														<input style="display: none;" name="mediPrice" value="${stock.mediPrice }"/>
-													</td>
-													<td style="display: none;">
-														<input type="text" style="width: 2vw;" name="mediStock"
-															   placeholder="" value="" >
-													</td>
-													
-													<td onclick="addRow()">
-														<div id="Detail_main_add">
-															추가
-														</div>	
-													</td>
-												</tr>
-											</c:forEach>
-											
-											<c:forEach items="${consumeList}" var="stock">
-												<tr class="consume_tr">
- 													<td >
-														<div id="Detail_main_consume">
-															소모품
-														</div>	
-													</td>
- 													
- 													<td class="td_content">
-														<a href="javascript:OpenWindow('consumDetail?from=list&conCode=${stock.conCode }','상세보기',800,600);">
-															${stock.conName }                            
-														</a>                                             
-													</td>                                                
-													<td class="td_content">                                                 
-														<a href="javascript:OpenWindow('consumDetail?from=list&conCode=${stock.conCode }','상세보기',800,600);">
-															${stock.conStock }                           
-														</a>                                             
-													<td class="td_content">                              
-														<a href="javascript:OpenWindow('consumDetail?from=list&conCode=${stock.conCode }','상세보기',800,600);">
-															${stock.conSuggest }                         
-														</a>                                             
-													</td>                                                
-													<td class="td_content">                              
-														<a href="javascript:OpenWindow('consumDetail?from=list&conCode=${stock.conCode }','상세보기',800,600);">
-															${stock.conMin }                             
-														</a>                                             
-													</td>                                                
-													<td class="td_content">                              
-														<a href="javascript:OpenWindow('consumDetail?from=list&conCode=${stock.conCode }','상세보기',800,600);">
-															${stock.conMaker }                           
-														</a>                                             
-													</td>                                                
-													<td >                                                
-														<a href="javascript:OpenWindow('consumDetail?from=list&conCode=${stock.conCode }','상세보기',800,600);">
-															<fmt:formatDate value="${stock.conDate }" pattern="yyyy-MM-dd"/>
-														</a>
-														</td>
-													<td style="display: none;">
-														<a href="javascript:OpenWindow('consumDetail?from=list&conCode=${stock.conCode }','상세보기',800,600);">
-															${stock.conPrice }
-														
-														</a>
-														<input style="display: " name="conPrice" value="${stock.conPrice }"/>
-													</td>
-													<td style="display: none;">
-														<input type="text" style="width: 2vw;" name="conStock"
-															   placeholder="" value="" >
-													</td>
-													
-													<td onclick="addRow()">
-														<div id="Detail_main_add">
-															추가
-														</div>	
-													</td>
-												</tr>
-											</c:forEach>
 										 </c:if>
+										 </tbody>
 										 <c:if test="${empty equipList }">
 											<tr>
 												<td colspan="7" class="text-center">비품목록이 없습니다.</td>
-											</tr>
-										</c:if>
-										<c:if test="${empty mediList }">
-											<tr>
-												<td colspan="7" class="text-center">기자재목록이 없습니다.</td>
-											</tr>
-										</c:if>
-										<c:if test="${empty consumeList }">
-											<tr>
-												<td colspan="7" class="text-center">소모품목록이 없습니다.</td>
 											</tr>
 										</c:if>
 									</table>
@@ -426,7 +300,7 @@
 			</div>
 			<div class="col-sm-5">
 				<div class="row justify-content-center" style="padding-bottom: 8vh;">
-					<section class="content" style="height: 40vh; width: 95%;">
+					<section class="content" style="height: 44vh; width: 95%;">
 						<section class="content-header">
 							<!-- <div style="float: left; border-radius: 5px; background: #ced4da; 
 							            color: black; font-weight: bolder; border: solid 1px black;
@@ -435,7 +309,7 @@
 								추가
 							</div> -->
 							<div class="container-fluid" >
-								<h2 style="text-align: center; font-weight: bolder; font-size: 27px;">비품 주문 신청</h2>
+								<h2 style="text-align : center; font-weight: bolder; font-size: 27px;">비품 주문 신청</h2>
 							</div>
 							
 						</section>
@@ -443,18 +317,20 @@
 							 
 							<div class="card-body" style="text-align: center; font-size: 11px; ">
 								<div class="row" >
-									<a style="font-size: 15px;">
+									<!-- <a style="font-size: 15px;">
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;업체명 :
-									</a>
+									</a> -->
 									<div class="col-sm-12">
 										
-										<form name="" role="form" class="form-horizontal" action="/equip/listSuccess" method="post">
+										<form id="form" role="form" class="form-horizontal" >
+											<!--action="/equip/listSuccess" method="post"  -->
 											<table  id="requestList" class="table table-bordered">
 												<tr bgcolor="#333258" style="color: white">
-													<th width="12%">구분</th>
+													<th width="20%">업체명</th>
 													<th>품목명</th>
-													<th width="15%">재고(개)</th>
-													<th width="15%">신청수량</th>
+													<th width="13%">권장수량</th>
+													<th width="13%">재고(개)</th>
+													<th width="13%">신청수량</th>
 													<th width="10%">취소</th>
 													<!-- yyyy-MM-dd  -->
 												</tr>
@@ -499,42 +375,28 @@
 										<table  class="table table-bordered">
 											<tr  bgcolor="#333258" style="color: white">
 											
-												<th>주문코드</th>											
-												<th>제목</th>
-												<th>작성자</th>
-												<th>요청일자</th>
-												<th>정보</th>
+												<th>요청날짜</th>											
+												<th>기업명</th>
+												<th width="15%">정보</th>
 												<!-- yyyy-MM-dd  -->
 											</tr>
-											<tr class="tr-select">
-												<td>ORD04</td>
-												<td>2022.09.27 발주요청서</td>
-												<td>이금박</td>
-												<td>2022/09/27</td>
-												<td>
-													<div id="Detail_main_add" onclick="orderdetail()">
-														상세
-													</div>
-												</td>
-											</tr>
-											<c:if test="${!empty minfoList }">
-												<c:forEach items="${minfoList}" var="minfo">
+										
+											<c:if test="${!empty preOrderList }">
+												<c:forEach items="${preOrderList}" var="preOrder">
 													<tr class="tr-select">
-
-														<td>${minfo.minfoClass }</td>
-														<td>${minfo.minfoCode }</td>
-														<td>${minfo.minfoContent }
-														<td>${minfo.minfoWriter }</td>
+		
+														<td><fmt:formatDate value="${preOrder.reoDate }" pattern="yyyy-MM-dd"/></td>
+														<td>${preOrder.reoMaker}</td>
 														<td>
-														<div id="Detail_main_add" onclick="orderdetail()">
-															상세
+														<div id="Detail_main_add_1" onclick="orderdetail()">
+															상세정보
 														</div>
-												</td>
+														</td>
 													</tr>
 
 												</c:forEach>
 											</c:if>
-											<c:if test="${empty minfoList }">
+											<c:if test="${empty preOrderList }">
 												<tr>
 													<td colspan="7" class="text-center">해당내용이 없습니다.</td>
 												</tr>
@@ -562,177 +424,168 @@
 		</div>
 	</div>
 </div>
-<!-- <script>
-class BtnCellRenderer {
-  init(params) {
-    this.params = params;
-	
-    //----------------
-    console.log("params", params);
-	
-    this.eGui = document.createElement('button');
-    this.eGui.innerHTML = '추가';
 
-    this.btnClickedHandler = this.btnClickedHandler.bind(this);
-    this.eGui.addEventListener('click', this.btnClickedHandler);
-  }
 
-  getGui() {
-    return this.eGui;
-  }
 
-  btnClickedHandler(event) {
-    //this.params.onClick(this.params.value);
-    //console.log("test", this.params);
-    onBtnClick1( this.params) 
-  }
 
-  destroy() {
-    this.eGui.removeEventListener('click', this.btnClickedHandler);
-  }
-  
-}
-</script> -->
-<!-- <script>
-class BtnCellRenderer2 {
-  init(params) {
-    this.params = params;
-	
-    //----------------
-    console.log("params", params);
-	
-    this.eGui = document.createElement('button');
-    this.eGui.innerHTML = '정보';
 
-    this.btnClickedHandler = this.btnClickedHandler.bind(this);
-    this.eGui.addEventListener('click', this.btnClickedHandler);
-  }
-
-  getGui() {
-    return this.eGui;
-  }
-
-  btnClickedHandler(event) {
-    //this.params.onClick(this.params.value);
-    //console.log("test", this.params);
-    detail( this.params) 
-  }
-
-  destroy() {
-    this.eGui.removeEventListener('click', this.btnClickedHandler);
-  }
-  
-}
-</script> -->
 <script type="text/javascript">
 
-//컬럼 정의
-
-// var columnDefs = [
-// 		{ headerName:"일련코드", field: "code", sortable : true, filter : true, width : 120},
-// 		{ headerName:"품목명", field: "name" , sortable : true, filter : true, width : 182},
-// 		{ headerName:"수량", field: "stock" , sortable : true, /* filter : true ,*/ width : 80, type: 'rightAligned'},
-// 		{ headerName:"단위", field: "unit" , /* sortable : true,  */filter : true, width : 80},
-// 		{ headerName:"업체명", field: "maker" , sortable : true, filter : true, width : 150},
-// 		{ headerName:"입고일", field: "date" , sortable : true, filter : true,  width : 120},
-// 		{ headerName:"추가",
-// 		      cellRenderer: BtnCellRenderer, width : 80, 
-// // 		      cellRendererParams: {
-// // 		    	  onClick: this.onBtnClick1.bind(this ),
-// // 		    	  label: 'Click me2!'
-// // 		        },
-// 		      },
-// 		{ headerName:"상세정보", cellRenderer: BtnCellRenderer2,width : 80}
-// ];
-
-// // 데이타 정의
-// var rowData = [
-// 	<c:forEach items="${equipList}" var="stock">
-// 		{ 
-// 		  code: "${stock.equCode}",
-// 		  name: "${stock.equName}", 
-// 		  stock: ${stock.equStock}, 
-// 		  maker: "${stock.equMaker}", 
-// 		  date: "<fmt:formatDate value='${stock.equDate }' pattern='yyyy-MM-dd'/>",
-// 		},
-// 	</c:forEach>
-
-// ];
-
-// // 그리드 옵션 지정
-// var gridOptions = {
-// 	columnDefs: columnDefs,
-//     rowData: rowData,
-//     rowSelection: 'single',
-//     getSelectedRows: 'getSelectedRows'
-// }
-
-// var eGridDiv = document.querySelector('#myGrid');
-
-// new agGrid.Grid(eGridDiv, gridOptions); 
- 
-
-// function onBtnClick1(clickData) 
-// {
-// // 	console.log("obj", this);
-// // 	var rowDataClicked1 = this.rowData		
-// // 	console.log(rowDataClicked1[3].code);
-// 	increseNum++;
-// 	console.log(clickData.data.code);
-// 	$.ajax({
-// 		url: "/stock/equip/listJson",
-// 		method : "GET",
-// 		data : {"equCode" : clickData.data.code},
-		
-// 		success:function(data)
-// 		{
-// 			var userList = data;
-// 			var tr = ""
-// 			//console.log(data)
-// 				tr += 
-// 				  "<tr><td>"+increseNum+
-// 				  "</td><td>"+data.equCode + 
-// 				  "</td><td>"+data.equName +
-// 				  "</td><td>"+'<input type="text" style="width: 2vw;" name="equStock" placeholder="'+data.equUnit+'" value="" >'+
-// 				  "</td><td>"+data.equMaker +
-// 				  "</td><td>"+'<div id="number_textalign">'+data.equPrice +'</div>'+
-// 				  "</td><td>"+'<div id="Detail_main_add" onclick="deleteRow(-1)">X</div>'+
-// 				  "</td></tr>";
-			
-// 			$("#requestList").append(tr);
-// 		},
-// 	});
-//   } 
-
-
-	/* function detail(data) {
-		var hi = data.data.code
-		
-		var popupWidth = 600;
-		var popupHeight = 800;
-
-		var popupX = (document.body.offsetWidth / 2) - (600 / 2);
-		// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
-
-		var popupY= (window.screen.height / 2) - (600 / 2);
-		// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
-		window.open('detail?from=list&equCode='+data.data.code,'detail','height=600, width=800, left='+ popupX + ', top='+ popupY);
-	} */
+$(document).ready(function () {
+	var table =document.getElementById("eqlist");
+	var rowList = table.rows;
 	
-	function newAdd() {
-		
-		var popupWidth = 600;
-		var popupHeight = 800;
+	for(i=0; i<rowList.length; i++)
+	{
+		if( document.getElementsByClassName('Detail_main_equip')[i].innerText == "1")
+		{
+			document.getElementsByClassName('Detail_main_equip')[i].innerHTML = "비품";
+			document.getElementsByClassName('Detail_main_equip')[i].style.background='#C6D9FF';
+		}
+		if (document.getElementsByClassName('Detail_main_equip')[i].innerText == "2")
+		{
+			document.getElementsByClassName('Detail_main_equip')[i].innerHTML = "소모품";
+			document.getElementsByClassName('Detail_main_equip')[i].style.background='#D1FFDC';
+		}
+		if (document.getElementsByClassName('Detail_main_equip')[i].innerText == "3")
+		{									
+			document.getElementsByClassName('Detail_main_equip')[i].innerHTML = "기자재";
+			document.getElementsByClassName('Detail_main_equip')[i].style.background='#E6BDA3';
+		}
+	}	
+});
 
-		var popupX = (document.body.offsetWidth / 2) + (200 / 2);
-		// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
 
-		var popupY= (window.screen.height / 2) - (600 / 2);
-		// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+	
+
+
+</script>
+
+<script>
+
+	function setSearchList(){
+		var keyword = document.getElementById('searchKeyword').value;
+		var searchType = document.getElementById('equipSearchType').value;
+		
+		if(keyword == ''){
+	  		swal ( "실패" ,  "검색어를 입력하세요." ,  "error" );
+	  		return;
+	  	}
+		
+		$(".equip_tr").css("display","none")
+		
+		$.ajax
+		({
+			url : "getSearchEquListByKeyword",
+			type : "post",
+			data : {"keyword" : keyword,"searchType":searchType},
+			success : function(data) 
+			{
+				var s = '';
+				$("#eqlistTbody").html(s);
+				 if(data < 1){
+						s = `<tr><td colspan="8">검색된내용이없습니다.</td></tr>`;
+						$("#eqlistTbody").html(s);
+						return;
+					}
+				else
+					{ 
+						$.each(data, function(index,item) 
+							{
+								s += '<tr>';
+								s += '<td><div><a id="category" class="Detail_main_equip">'+item.equipCategory+'</a></div></td>';
+								s += '<td class="td_content" onclick="detail()" value="'+item.equipCode+'"><a class="chk_id" >'+item.equipName+'</a></td>';
+								s += '<td class="td_content">'+item.equipStock
+								s += '<input style="display: none;" name = "equipName" value="'+item.equipName+'">'
+								s += '<input style="display: none;" name = "equipMaker" value="'+item.equipMaker+'"> </a></td>';
+								s += '<td class="td_content">'+item.equipSuggest+'</a></td>';
+								s += '<td class="td_content">'+item.equipMin+'</a></td>';
+								s += '<td class="td_content"><a class="chk_id" value="'+item.equipCode+'">'+item.equipMaker+'</a></td>';
+								s += '<td class="td_content"><a class="dateview1">'+item.equipDate+'</a></td>';
+								s += '<td onclick="addRow()"><div id="Detail_main_add">추가</div></td>'
+								s += '</tr>';
+							})
+							$("#eqlistTbody").html(s);
+					}
+				// 날짜 포맷
+				var date = ${stock.equipDate}
+			    $('.dateview1').html(moment(date).format('YYYY-MM-DD'));
+				
+			    
+			    // 구분 분류
+				var table =document.getElementById("eqlist");
+				var rowList = table.rows;
+				
+				for(i=0; i<rowList.length; i++)
+				{
+					var onelist = rowList[i]
+					var stockNum = parseInt(onelist.cells[2].innerText);
+				    var suggestNum = parseInt(onelist.cells[3].innerText);
+				    var minNum = parseInt(onelist.cells[4].innerText);
+				    /* var date = parseDate(onlist.cells[6].innerText);
+				    
+				    $('.dateview1').html(moment(date).format('YYYY-MM-DD')); */
+				    
+				    if(stockNum >= suggestNum){
+				    	  /* console.log(onelist.cells[2].style); */
+				    	  onelist.cells[2].style.fontWeight = "700"
+				    	  onelist.cells[2].style.color = "blue";
+				      } 
+					if(stockNum < suggestNum && stockNum >= minNum){
+				    	  onelist.cells[2].style.fontWeight = "700"
+				          onelist.cells[2].style.color = "orange";
+				      }
+				    if(stockNum < minNum){
+				    	  onelist.cells[2].style.fontWeight = "700"
+				          onelist.cells[2].style.color = "red";
+				      }    
+				    
+					if( document.getElementsByClassName('Detail_main_equip')[i].innerText == "1")
+					{
+						document.getElementsByClassName('Detail_main_equip')[i].innerHTML = '비품';
+						document.getElementsByClassName('Detail_main_equip')[i].style.background='#C6D9FF';
+					}
+					if (document.getElementsByClassName('Detail_main_equip')[i].innerText == "2")
+					{
+						document.getElementsByClassName('Detail_main_equip')[i].innerHTML = '소모품';
+						document.getElementsByClassName('Detail_main_equip')[i].style.background='#D1FFDC';
+					}
+					if (document.getElementsByClassName('Detail_main_equip')[i].innerText == "3")
+					{									
+						document.getElementsByClassName('Detail_main_equip')[i].innerHTML = '기자재';
+						document.getElementsByClassName('Detail_main_equip')[i].style.background='#E6BDA3';
+					}
+				}	
+				
+			},
+			error : function (jqXHR, textStatus, errorThrown){
+			alert("에러코드 : "+textStatus); 
+			
+			}
+		})
 		
 		
-		window.open('newAdd','newAdd','height=600, width=800, left='+ popupX + ', top='+ popupY);
+		
+	};
+
+
+
+</script>
+
+<script type="text/javascript">
+
+function detail() 
+ 	{
+	
+	var popupWidth = 600;
+	var popupHeight = 800;
+
+	var popupX = (document.body.offsetWidth / 2) - (600 / 2);
+	var popupY= (window.screen.height / 2) - (600 / 2);
+	
+	window.open('detail?from=list&equipCode='+hi,'detail','height=600, width=800, left='+ popupX + ', top='+ popupY);
 	}
+	
 	
 	function orderdetail() {
 		
@@ -754,43 +607,53 @@ class BtnCellRenderer2 {
 	function addRow(){	
 		
 		var table =document.getElementById("eqlist");
-		var table_requestList =document.getElementById("requestList");
 		var rowList = table.rows;
+		var requestList = document.getElementById("requestList");
+		var rowLisReq = requestList.rows;
+		
 		
 	  for (i=1; i<rowList.length; i++) 
 	  {
 	      var addlist = rowList[i]
-	      addlist.onclick = function (){ 
-	    	  
-	    	  const newRow = table_requestList.insertRow();
-	          /* newRow.insertCell(0).innerText = increseNum++; */
-	          newRow.insertCell(0).innerHTML =this.cells[0].innerHTML; 
-	          newRow.insertCell(1).innerHTML =this.cells[1].innerHTML; 
-	          newRow.insertCell(2).innerHTML =this.cells[2].innerHTML; 
-	          newRow.insertCell(3).innerHTML =this.cells[8].innerHTML;
-	          newRow.insertCell(4).innerHTML = '<div id="Detail_main_add" onclick="deleteRow(-1)">X</div>';
-	    	  
-	    	  if (this.cells[5]==table.cells[5]){
-	    		  alert("다른 업체입니다")
-	    		  table_requestList.deleteRow();
-	    	  }
-	    	  
-	          
+	      var newlist = rowLisReq[i]
+	      
+	      addlist.onclick = function ()
+	      { 
+				const newRow = requestList.insertRow();
+				newRow.insertCell(0).innerHTML =this.cells[5].innerHTML; 
+				newRow.insertCell(1).innerHTML =this.cells[1].innerHTML; 
+				newRow.insertCell(2).innerHTML =this.cells[3].innerHTML; 
+				newRow.insertCell(3).innerHTML =this.cells[2].innerHTML; 
+				newRow.insertCell(4).innerHTML = '<input style="width: 2vw;"name="equipStock">'
+				newRow.insertCell(5).innerHTML = '<div id="Detail_main_add" onclick="deleteRow(this)">X</div>';
 	      };
+	      
+	      /* var check = newlist.cells[i].innerText
+	      	for(j=0; j<rowLisReq.length; j++)
+				if(check == addlist.cells[j].innerText)
+				{
+					alert("중복된 제품입니다.")
+					requestList.deleteRow(requestList.rows.length-1);
+				} */
 	  };
+	  
+	  
 	 }; 
 	    
 	 
 	
 	
-	function deleteRow(rownum) {
-		  // table element 찾기
-		  const requestList = document.getElementById('requestList');
+	function deleteRow(This) {
+		  /* const requestList = document.getElementById('requestList');
+		  const newRow = requestList.deleteRow(rownum); */
+		    //closet:현재 엘리멘트에서 가장 가까운 조상을 반환
+		  if(This.closest('tbody').childElementCount == 1)
+		    {
+		        alert("삭제할 수 없습니다.");
+		    }else{
+		        This.closest('tr').remove();//삭제
+		    }
 		  
-		  // 행(Row) 삭제
-		  const newRow = requestList.deleteRow(rownum);
-		   
-		  /* increseNum -= 1; */
 		} 
 	
 	function deleteAll() {
@@ -803,48 +666,11 @@ class BtnCellRenderer2 {
 		}
 	}
 	
-	function orderRQ(){
-		if(!$('input[name="equCode"]').val()){
-			swal ( "실패" ,  "신청비품은 1개 이상이어야합니다." ,  "error" );  	
-		  return;
-		}
-		
-	    
-		//if($('input[name="id"]').val()!=checkedID){
-	    //  alert("사번 생성 여부 확인이 필요합니다.");
-	    //  return;
-	    //}
-	    
-	    var form = $('form[role="form"]');
-		form.attr({"method":"post",
-		     	   "action":"listSucces"
-		   		  });	
-		
-		form.submit();
-		alert('신청이 완료되었습니다.')
-		
-		
-	}
 	
 </script>
 
 <script type="text/javascript">
-/* $('.sortTh').click(function(){
-    var table = $(this).parents('table').eq(0)
-    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()))
-    this.asc = !this.asc
-    if (!this.asc){rows = rows.reverse()}
-    for (var i = 0; i < rows.length; i++){table.append(rows[i])}
-})
-function comparer(index) {
-    return function(a, b) {
-        var valA = getCellValue(a, index), valB = getCellValue(b, index)
-        return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
-    }
-}
-function getCellValue(row, index){ return $(row).children('td').eq(index).text() }
- */
- 
+
 
  function table_sort() {
    const styleSheet = document.createElement('style')
@@ -905,55 +731,149 @@ function getCellValue(row, index){ return $(row).children('td').eq(index).text()
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $("#checklist_equip").change(function(){
-        if($("#checklist_equip").is(":checked")){
-        	$(".equip_tr").css("display","")
-        }else{
-            $(".equip_tr").css("display","none")
-        }
-    });
-});
-
-$(document).ready(function(){
-    $("#checklist_medi").change(function(){
-        if($("#checklist_medi").is(":checked")){
-        	$(".medi_tr").css("display","")
-        }else{
-            $(".medi_tr").css("display","none")
-        }
-    });
-});
-
-$(document).ready(function(){
-    $("#checklist_consume").change(function(){
-        if($("#checklist_consume").is(":checked")){
-        	$(".consume_tr").css("display","")
-        }else{
-            $(".consume_tr").css("display","none")
-        }
-    });
-});
-
-
-$(document).ready(function(){
 	var table =document.getElementById("eqlist");
 	var rowList = table.rows;
-	var hi = document.querySelector(".equipStcok");
 	
-	console.log(hi[2])
-	
-  for (i=1; i<rowList.length; i++) 
+  for (i=0; i<rowList.length; i++) 
   {
       var onelist = rowList[i]
 	  var stockNum = parseInt(onelist.cells[2].innerText);
-    
-      if(stockNum > 10){
-    	  
+      var suggestNum = parseInt(onelist.cells[3].innerText);
+      var minNum = parseInt(onelist.cells[4].innerText);
+      
+      if(stockNum >= suggestNum){
+    	  /* console.log(onelist.cells[2].style); */
+    	  onelist.cells[2].style.fontWeight = "700"
+    	  onelist.cells[2].style.color = "blue";
+      } 
+	  if(stockNum < suggestNum && stockNum >= minNum){
+    	  onelist.cells[2].style.fontWeight = "700"
+          onelist.cells[2].style.color = "orange";
       }
-          
+      if(stockNum < minNum){
+    	  onelist.cells[2].style.fontWeight = "700"
+              onelist.cells[2].style.color = "red";
+      }    
+	  
+	 
   };
 });
 
 
 
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#checklist_equip").on('change',function()
+	{
+		var table =document.getElementById("eqlist");
+		var rowList = table.rows;
+				
+		if(!$("#checklist_equip").is(":checked"))
+		{
+			for (i=1; i<rowList.length; i++) 
+			{
+				var onelist = rowList[i]
+				var categoryNum = onelist.cells[0].innerText;
+				if(categoryNum == "비품")
+				{
+					onelist.style.display = "none";
+				} 
+			}
+		} 
+		else 
+		{
+			for (i=1; i<rowList.length; i++) 
+			{
+				var onelist = rowList[i]
+				var categoryNum = onelist.cells[0].innerText;
+				console.log(categoryNum)
+				if(!(categoryNum == "소모품" && categoryNum == "기자재"))
+				{
+					onelist.style.display = "";
+		    	}
+			}
+		} 
+	});
+});
+ 
+$(document).ready(function(){
+	$("#checklist_consume").on('change',function()
+	{
+		var table =document.getElementById("eqlist");
+		var rowList = table.rows;
+				
+		if(!$("#checklist_consume").is(":checked"))
+		{
+			for (i=1; i<rowList.length; i++) 
+			{
+				var onelist = rowList[i]
+				var categoryNum = onelist.cells[0].innerText;
+				if(categoryNum == "소모품")
+				{
+					onelist.style.display = "none";
+				} 
+			}
+		} 
+		else 
+		{
+			for (i=1; i<rowList.length; i++) 
+			{
+				var onelist = rowList[i]
+				var categoryNum = onelist.cells[0].innerText;
+				console.log(categoryNum)
+				if(!(categoryNum == "비품" && categoryNum == "기자재"))
+				{
+					onelist.style.display = "";
+		    	}
+			}
+		} 
+	});
+});
+
+$(document).ready(function(){
+	$("#checklist_medi").on('change',function()
+	{
+		var table =document.getElementById("eqlist");
+		var rowList = table.rows;
+				
+		if(!$("#checklist_medi").is(":checked"))
+		{
+			for (i=1; i<rowList.length; i++) 
+			{
+				var onelist = rowList[i]
+				var categoryNum = onelist.cells[0].innerText;
+				if(categoryNum == "기자재")
+				{
+					onelist.style.display = "none";
+				} 
+			}
+		} 
+		else 
+		{
+			for (i=1; i<rowList.length; i++) 
+			{
+				var onelist = rowList[i]
+				var categoryNum = onelist.cells[0].innerText;
+				console.log(categoryNum)
+				if(!(categoryNum == "비품" && categoryNum == "소모품"))
+				{
+					onelist.style.display = "";
+		    	}
+			}
+		} 
+	});
+});
+</script>
+
+<script type="text/javascript">
+
+function orderRQ() {
+	
+	swal({title: "신청되었습니다.", type: "success"}).then(function(){ 
+	   location.reload();
+	   }
+	);
+};
 </script>

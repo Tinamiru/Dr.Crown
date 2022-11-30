@@ -1,13 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
-    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-	alert("이곳은 인덱스")
+if('${loginUser.memId}'){
+	var data1 = {'id': '${loginUser.memId}'};
+	
+	$.ajax({
+// 		   url: "http://localhost:5012/makeh5", 
+		    url: "http://192.168.141.26:5012/makeh5", 
+		   type: 'POST',
+		   data : data1,
+		   dataType: 'JSON',
+		   success:function(menu){
+		   }
+		});
+}
+</script>
+<script>
 	if('${loginUser.memId}'){
-		location.href="<%=request.getContextPath()%>/index";
+		parent.location.href="<%=request.getContextPath()%>/index";
 	}else{
-		location.href="<%=request.getContextPath()%>/common/loginForm";
+		parent.location.href="<%=request.getContextPath()%>/common/loginForm";
 	}
-		
-</script>    
+</script>

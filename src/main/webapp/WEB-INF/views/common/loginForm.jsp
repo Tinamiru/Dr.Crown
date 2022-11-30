@@ -30,12 +30,14 @@
                                         <div class="text-center">
                                             <button type="submit" class="loginBtn btn btn-block">로그인</button>
                                         </div>
-                                        
+                                   
+   										<input type="hidden" id="myfield" name="myfield" disabled value="ai"/>
+                        
                                         <div class="loginOR">
                                         <h4>――――― 또는 ―――――</h4>
                                         </div>
                                         <div class="text-center">
-                                             <button type="button" class="loginBtn btn btn-block" onclick="OpenWindow('aiLoginForm','회원등록',600,700);">Ai인증 로그인</button>
+                                             <button type="submit" id="ailogin"class="loginBtn btn btn-block" onclick="btnActive();OpenWindow('aiLoginForm','회원등록',600,700);">Ai인증 로그인</button>
                                         </div>
                                     </form>
                                     <div class="container-fluid">
@@ -61,4 +63,11 @@
 		alert("등록되었습니다.");
 	</script>
 </c:if>
+<script>
+function btnActive()  {
+	  const target = document.getElementById('myfield');
+	  target.disabled = false;
+	}
+</script>
+<%@ include file="/WEB-INF/views/common/preloader_js.jsp"%>
 </body>

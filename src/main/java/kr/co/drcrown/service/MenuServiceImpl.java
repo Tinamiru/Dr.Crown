@@ -3,10 +3,12 @@ package kr.co.drcrown.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import kr.co.drcrown.dao.MenuDAO;
 import kr.co.drcrown.dto.MenuVO;
 
-
+@Service
 public class MenuServiceImpl implements MenuService {
 	
 	private MenuDAO menuDAO;// = new MenuDAOImpl();
@@ -38,7 +40,6 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public List<MenuVO> getSubMenuList(String mCode) throws SQLException {
 		List<MenuVO> menuList = null;
-		System.out.println("service: "+mCode);
 		menuList = menuDAO.selectSubMenu(mCode);
 		return menuList;
 	}

@@ -1,0 +1,34 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PatientDisease-Mapper">
+
+<select id="selectPatientDzListByCdCode" parameterType="str" resultType="pdsc">
+	SELECT pd.dz_num, d.DZ_CODE, d.DZ_KO_NAME
+	FROM PATIENT_DISEASE pd
+	INNER JOIN DISEASES d ON pd.DZ_NUM = d.DZ_NUM
+	WHERE pd.CD_CODE = #{cd_code}
+</select>
+<insert id="insertPatienDisease" parameterType="pdrc">
+	insert into 
+		PATIENT_DISEASE(
+			PD_NUMBER,
+			P_NO,
+			CD_CODE,
+			DZ_NUM
+		)
+		values(
+			PATIENT_DISEASE_SEQ.NEXTVAL,
+			#{pNo},
+			#{cdCode},
+			#{dzNum}
+	)
+	</insert>
+</mapper>
+
+
+
+
+
+

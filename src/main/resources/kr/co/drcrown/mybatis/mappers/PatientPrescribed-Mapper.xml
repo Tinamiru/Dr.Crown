@@ -1,0 +1,53 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PatientPrescribed-Mapper">
+	<insert id="insertPatientPrescribed" parameterType="pprc">
+	insert into 
+		PATIENT_PRESCRIBED(
+			PP_NUMBER,
+			DRUG_NO,
+			CD_CODE,
+			PP_REGDATE,
+			PP_PERTIME,
+			PP_PERDATE,
+			PP_TOTALCOUNT,
+			PP_MEDICATION
+		)
+		values(
+			PP_SEQ.NEXTVAL,
+			#{drugNo},
+			#{cdCode},
+			sysdate,
+			#{ppPertime},
+			#{ppPerDate},
+			#{ppTotalcount},
+			#{ppMedication}
+	)
+	</insert>
+	
+	<select id="selectDrugNameList" resultType="prsc">
+		SELECT drug_name
+		  FROM PATIENT_PRESCRIBED pp
+			   INNER JOIN DRUG_INFO di ON pp.DRUG_NO = di.DRUG_NO
+		 WHERE pp.cd_code = #{cdCode}
+	</select>
+	
+	<select id="selectPrescribedDrugListAll" resultType="prslc">
+	   SELECT pp.PP_REGDATE, pp.DRUG_NO, di.DRUG_NAME, pp.PP_PERTIME,pp.PP_PERDATE,pp.PP_TOTALCOUNT
+		 FROM PATIENT p
+		      INNER JOIN CURE_DETAIL cd ON cd.P_NO = p.P_NO
+			  INNER JOIN PATIENT_PRESCRIBED pp ON pp.CD_CODE = cd.CD_CODE
+			  INNER JOIN DRUG_INFO di ON di.DRUG_NO = pp.DRUG_NO
+		WHERE p.P_NO = #{pNo}
+		  AND cd.CCC_NUMBER = 2
+	</select>
+	
+</mapper>
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Diseases-Mapper">
+	 <sql id="search">	
+		<if test="searchType == 'dc'.toString()">
+			and DZ_CODE like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'dn'.toString()">
+			and DZ_KO_NAME like '%'||#{keyword}||'%'
+		</if>
+	</sql>	
+	
+	<select id="selectDiseasesList" resultType="Diseases">
+		select
+		* 
+		from Diseases
+		where DZ_NUM is not null
+	</select>
+<!-- 	<select id="selectDiseasesListCount" resultType="int"> -->
+<!-- 		select -->
+<!-- 		count(*)  -->
+<!-- 		from Diseases -->
+<!-- 		where DZ_NUM is not null -->
+<!-- 		<include refid="search" /> -->
+<!-- 	</select> -->
+<!-- 	<select id="selectDiseasesCode" parameterType="str" resultType="Diseases"> -->
+<!-- 		select -->
+<!-- 		* -->
+<!-- 		from Diseases -->
+<!-- 		where sym_code=#{symCode} -->
+<!-- 	</select> -->
+	
+	<select id="selectDiseasesListByKeyword" resultType="Diseases">
+		select 	DZ_NUM,
+				NVL(DZ_CATEGORY,'없음') DZ_CATEGORY,
+				NVL(DZ_CODE,'없음') DZ_CODE,
+				NVL(DZ_COMMENT_YN,'없음') DZ_COMMENT_YN,
+				NVL(DZ_KO_NAME,'없음') DZ_KO_NAME,
+				NVL(DZ_SUBCODE,'없음') DZ_SUBCODE
+		from 	DISEASES
+		where	1=1
+		<include refid="search"/>
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+

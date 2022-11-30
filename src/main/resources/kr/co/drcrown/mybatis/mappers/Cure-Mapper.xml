@@ -1,0 +1,30 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Cure-Mapper">
+	<select id="selectCureListByCureCode" parameterType="str" resultType="chartCure">
+	  select c.cure_code cure_code,
+	         c.cure_regdate cure_regdate,
+	         d.dz_code dz_code,
+	         d.dz_ko_name dz_ko_name
+	    from cure c
+	   inner join diseases d
+	      on c.dz_num = d.dz_num
+	     and c.cd_code = ${cdCode}
+	    order by c.cure_regdate
+	</select>
+	
+	<select id="selectPiList" parameterType="str" resultType="curedetail">
+			SELECT *
+			FROM CURE_DETAIL
+			WHERE P_NO = ${pNo};
+	</select>
+	
+</mapper>
+
+
+
+
+
+

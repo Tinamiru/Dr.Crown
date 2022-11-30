@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="PreOrder-Mapper">
+	
+ <!-- 비품관리 매핑 -->
+	<select id="selectPreOrderListByNo" parameterType="str" resultType="preOrder">
+		select 
+		* 
+		from pre_order
+		where reo_code=#{reoCode}
+	</select>
+	
+	<select id="selectPreOrderList" parameterType="str" resultType="preOrder">
+		select 
+		* 
+		from pre_order
+	</select>
+	
+</mapper>

@@ -1,0 +1,93 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Manage-Mapper">
+	<sql id="search">	
+		<if test="searchType == '1'.toString()">
+			and BOOKING_STATE_CODE = '1'		
+		</if>		
+		<if test="searchType == '2'.toString()">
+			and BOOKING_STATE_CODE != '1'			
+		</if>		
+	</sql>
+	<sql id="search3">	
+		<if test="filterType == 'g'.toString()">
+			, ( SELECT TO_CHAR(BOOKING_RDATE, 'YYYY-MM-DD') AS hiredate
+              ,COUNT(*) cnt     
+           FROM BOOKING
+          WHERE BOOKING_RDATE BETWEEN TO_DATE(#{strDate}, 'YYYY-MM-DD')
+                             AND TO_DATE(#{endDate}, 'YYYY-MM-DD') 
+          GROUP BY BOOKING_RDATE
+        ) c		
+		</if>
+				
+	</sql>
+	<sql id="search2">	
+		<if test="filterType == 'g'.toString()">
+			 	and b.dt = c.hiredate(+)
+		</if>
+		
+	</sql>
+	<sql id="search4">	
+		<if test="filterType == 'g'.toString()">
+			     , NVL(SUM(c.cnt), 0) bokCnt
+		</if>
+		
+	</sql>
+<!-- and BOOKING_STATE_CODE = '1' -->
+
+	<select id="patStats" parameterType="map" resultType="map">
+	SELECT TO_CHAR(b.dt, 'YYYY-MM-DD') AS vitdate
+	     , NVL(SUM(a.cnt), 0) cnt
+	     <include refid="search4" />
+	  FROM ( SELECT TO_CHAR(BOOKING_RDATE, 'YYYY-MM-DD') AS vitdate
+	              ,COUNT(*) cnt
+	           FROM BOOKING
+	          WHERE BOOKING_RDATE BETWEEN TO_DATE(#{strDate}, 'YYYY-MM-DD')
+	                             AND TO_DATE(#{endDate}, 'YYYY-MM-DD') 
+	                             <include refid="search" />
+	          GROUP BY BOOKING_RDATE
+	        ) a
+	                             <include refid="search3" />
+	      , ( SELECT TO_DATE(#{strDate},'YYYY-MM-DD') + LEVEL - 1 AS dt
+	            FROM dual 
+	       <![CDATA[  CONNECT BY LEVEL <= (TO_DATE(#{endDate},'YYYY-MM-DD') ]]>
+	                            - TO_DATE(#{strDate},'YYYY-MM-DD') + 1) 
+	        ) b
+	  WHERE b.dt = a.vitdate(+)
+	  <include refid="search2" />
+	  GROUP BY b.dt
+	  ORDER BY b.dt
+	</select>
+	<select id="patStatsmon" parameterType="map" resultType="map">
+	SELECT TO_CHAR(b.dt, 'YYYY-MM') AS vitdate
+	     , NVL(SUM(a.cnt), 0) cnt
+	     <include refid="search4" />
+	  FROM ( SELECT TO_CHAR(BOOKING_RDATE, 'YYYY-MM-DD') AS vitdate
+	              ,COUNT(*) cnt
+	           FROM BOOKING
+	          WHERE BOOKING_RDATE BETWEEN TO_DATE(#{strDate}, 'YYYY-MM-DD')
+	                             AND TO_DATE(#{endDate}, 'YYYY-MM-DD') 
+	                             <include refid="search" />
+	          GROUP BY BOOKING_RDATE
+	        ) a
+	                             <include refid="search3" />
+	      , ( SELECT TO_DATE(#{strDate},'YYYY-MM-DD') + LEVEL - 1 AS dt
+	            FROM dual 
+	       <![CDATA[  CONNECT BY LEVEL <= (TO_DATE(#{endDate},'YYYY-MM-DD') ]]>
+	                            - TO_DATE(#{strDate},'YYYY-MM-DD') + 1) 
+	        ) b
+	  WHERE b.dt = a.vitdate(+)
+	  <include refid="search2" />
+	  GROUP BY TO_CHAR(b.dt, 'YYYY-MM')
+ 	  ORDER BY TO_CHAR(b.dt, 'YYYY-MM')
+	</select>
+	
+</mapper>
+
+
+
+
+
+

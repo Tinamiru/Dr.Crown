@@ -1,0 +1,87 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Document-Mapper">
+	 		
+<!-- 		<sql id="search">
+		<if test="searchType == 'n'.toString()">
+			and DOC_CODE like '%'||#{keyword}||'%'			
+		</if>
+		<if test="searchType == 'm'.toString()">
+			and equip_maker like '%'||#{keyword}||'%'			
+		</if>
+	</sql>
+	
+	<select id="searchDocumentist" resultType="stock">		
+		select 
+		* 
+		from equiplist
+		where equip_Code is not null
+		<include refid="search"/>
+		order by equip_category
+	</select> 		 -->
+	 		
+
+	 		<!-- 환자번호를 통한 문서 조회 -->
+	<select id="selectDocumentListByDocCode" resultType="document">
+		select
+		* 
+		from DOCUMENT
+		where DOC_CODE = #{DOC_CODE}
+	</select>
+		
+
+		
+		<!-- 환자번호를 통한 문서 조회 -->
+	<select id="selectDocumentListByPno" resultType="document">
+		select
+		* 
+		from DOCUMENT
+		where DOC_PNO = #{docPno}
+        ORDER By DOC_CODE DESC
+	</select>
+	
+    <!--  환자번호를 통한 출력 안된 문서정보리스트-->
+	<select id="selectPrintDocumentListByPno" resultType="document">
+			select
+		* 
+		from DOCUMENT
+		where DOC_PNO = #{docPno}
+        and DOC_STATE = '0'
+        ORDER By DOC_CODE DESC
+	</select>
+	
+		<!--문서출력완료 -->
+	<update id="printDocument" parameterType="document">
+		update DOCUMENT
+		set
+		DOC_STATE = '1'
+		where DOC_CODE=#{docCode}	
+	</update>	
+	
+	<!-- 문서 등록 -->
+	<update id="insertDocument" parameterType="document">
+		insert into 
+		DOCUMENT(DOC_CODE,DOC_KIND,DOC_USE,DOC_CONTENT,DOC_WRITER,DOC_REGDATE,DOC_SYM,DOC_REGNO,DOC_NAME,DOC_STATE,DOC_PNO)
+		values(GET_DOCUMENTCODE('now'),#{docKind},#{docUse},#{docContent},#{docWriter},SYSDATE,#{docSym},#{docRegNo},#{docName},'0',#{docPno})
+	</update>
+		
+	<!-- 문서 수정 -->
+	<update id="updateDocument" parameterType="document">
+		update DOCUMENT
+		set
+		DOC_USE = #{docUse}, DOC_CONTENT = #{docContent}, DOC_UPDATE =SYSDATE,  DOC_SYM=#{docSym}
+		where DOC_CODE=#{docCode}	
+	</update>	
+	
+	<!-- 문서 삭제 -->
+	<update id="deleteDocument" parameterType="str">
+		delete 
+		from DOCUMENT 
+		where DOC_CODE=#{docCode}		
+	</update>
+	
+	
+	
+</mapper>

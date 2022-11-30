@@ -1,0 +1,54 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TreatmentList-Mapper">
+	<sql id="searchTretment">
+		<if test="searchType == 'tn'.toString()">
+		 AND tl.TL_TITLE LIKE '%'||#{keyword}||'%'	
+		</if>
+		<if test="searchType == 'tl'.toString()">
+	     AND tlc.tlc_name like '%'||#{keyword}||'%'	
+		</if>
+		<if test="searchType == 'ts'.toString()">
+	     AND tsc.tsc_name LIKE '%'||#{keyword}||'%'	
+		</if>
+	</sql>
+	<select id="selectTreatmentListAll" resultType="tlc">
+		select tlc_code, tlc_name
+		  from TL_LARGE_CATEGORY
+	</select>
+	<select id="selectTscList" resultType="tsc" parameterType="int">
+		select TSC_CODE, TSC_NAME, TLC_CODE
+		  from TL_SMALL_CATEGORY
+		 where tlc_code = #{tlcCode}
+	</select>
+	<select id="selectTlList" resultType="tlList" parameterType="int">
+		SELECT DISTINCT tl_title, tsc_code, count(CASE WHEN tc_code = 1 THEN 1 END)AS TL_need_teeth
+		FROM TREATMENT_LIST
+		where tsc_code = #{tscCode}
+		group BY tl_title, tsc_code
+		ORDER BY TSC_CODE
+	</select>
+	
+	<select id="selectTreatmentDetailList" resultType="tlDetail" parameterType="tlSelectDetail">
+		select tl.TL_NUMBER, tl.tl_code, tl.tl_name, tl.tl_price, tl.tl_medication, tl.tl_count, tl.tl_bydate, tc.tc_name 
+		  from TREATMENT_LIST tl
+		       INNER JOIN TL_CLASSIFICATION tc ON tl.TC_CODE = tc.tc_code
+		 where tl.TLC_CODE = #{tlcCode}
+		   and tl.TSC_CODE = #{tscCode}
+		   and tl.tl_title = #{tlTitle}
+	</select>
+	
+	<select id="selectTreatmentListByKeyword" resultType="tlsc" parameterType="csc">
+		SELECT DISTINCT tl_title, tsc.tsc_code, tsc.TSC_NAME, tlc.tlc_code, tlc.TLC_NAME, count(CASE WHEN tl.tc_code = 1 THEN 1 END)AS TL_need_teeth
+		  FROM TREATMENT_LIST tl
+		       INNER JOIN TL_LARGE_CATEGORY tlc ON tl.TLC_CODE = tlc.TLC_CODE
+		       INNER JOIN TL_SMALL_CATEGORY tsc ON tl.TSC_CODE = tsc.TSC_CODE
+		 group BY tl.tl_title, tsc.tsc_code, tsc.TSC_NAME, tlc.tlc_code, tlc.TLC_NAME
+		HAVING 1=1
+		  <include refid="searchTretment" />
+		 ORDER BY TSC_CODE
+	</select>
+	
+</mapper>

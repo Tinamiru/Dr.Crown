@@ -1,0 +1,45 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Prescription-Mapper">
+	 		
+
+<!-- ===================처방전=============== -->	
+	<!--처방전출력완료 -->
+	<update id="printPrescription" parameterType="prescription">
+		update CURE_DETAIL
+		set
+		cd_is_printed = '1'
+		where CD_CODE=#{cdCode}	
+	</update>	
+	
+	
+	
+    <!--  환자번호를 통한 출력 안된 처방전정보리스트-->
+	<select id="selectPrintPrescriptionListByPnoString" resultType="prescription">
+	select cd.cd_code, cd.ccc_number, cd_regdate, m.mem_name
+	      from cure_detail cd
+	      inner join member m on cd.mem_id = m.mem_id
+	      where cd.p_no = #{docPno}
+	      and ccc_number = 2
+	      and cd_is_printed = '0'
+	</select>
+	
+	    <!-- 번호를 통한 처방전 조회 -->
+	<select id="selectPrescriptionPrint" resultType="prescription">
+	select 
+      DR.DRUG_NAME, PA.*, cd.cd_is_printed,m.mem_name
+      from PATIENT_PRESCRIBED PA
+      inner join DRUG_INFO DR
+      on PA.DRUG_NO = DR.DRUG_NO
+      inner join cure_detail cd on cd.cd_code = pa.cd_code
+      inner join member m on cd.mem_id = m.mem_id
+      where PA.CD_CODE=#{cdCode}
+	</select>
+	
+	
+
+	
+	
+</mapper>

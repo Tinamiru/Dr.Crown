@@ -1,0 +1,50 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Ptpay-Mapper">
+	<select id="listPtpay" resultType="map" parameterType="map">
+        SELECT CD_CODE, CD_REGDATE, CD_TOTALPAY+6000 as CD_TOTALPAY,
+	    		(CASE 
+	    			WHEN CD_IS_FULLPAY = 0
+	    			THEN '미수납'
+	    			ELSE '완납'
+	    		END) AS CD_IS_FULLPAY
+	    FROM CURE_DETAIL cd
+	    WHERE P_NO = #{pNo}
+	    AND CD_IS_FULLPAY = 0
+	    AND CCC_NUMBER = 0
+	    order by CD_REGDATE
+	</select>
+	<select id="selectlistPtpay" resultType="map" parameterType="map">
+     SELECT cd.cd_code, p.P_NAME, cd.CD_REGDATE, m.MEM_NAME, tl.TL_CODE, tl.TL_NAME, tl.TL_PRICE, cd.CD_TOTALPAY+6000 as CD_TOTALPAY, cd.CD_IS_FULLPAY, cd.P_NO 
+      FROM PATIENT_TREATMENT pt
+           INNER JOIN CURE_DETAIL cd ON cd.CD_CODE =pt.CD_CODE
+           INNER JOIN PATIENT p ON p.P_NO = cd.P_NO
+           INNER JOIN TREATMENT_LIST tl ON tl.TL_NUMBER = pt.TL_NUMBER 
+           INNER JOIN "MEMBER" m ON m.MEM_ID = cd.MEM_ID 
+      WHERE cd.cd_code = ${cdCode}
+	</select>
+	<update id="insertPtpay" parameterType="map">
+		insert into 
+		PT_PAY(PPAY_NO, CD_CODE, PPAY_MYAMOUNT, PPAY_CASH, PPAY_CARD, PPAY_NONPAY,PPAY_PAID,PPAY_MEM,PPAY_MEMO,PPAY_CANCEL)
+		values(PT_PAY_SEQ.nextVal, #{cdCode}, #{ppayMyamount}, #{ppayCash}, #{ppayCard}, #{ppayNonpay}, #{ppayPaid}, #{ppayMem},#{ppayMemo},#{ppayCancel})
+	</update>
+	<update id="updatePtpay" parameterType="map">
+		insert into 
+		PT_PAY(PPAY_NO, CD_CODE, PPAY_MYAMOUNT, PPAY_CASH, PPAY_CARD, PPAY_NONPAY,PPAY_PAID,PPAY_MEM,PPAY_MEMO,PPAY_CANCEL)
+		values(PT_PAY_SEQ.nextVal, #{cdCode}, #{ppayMyamount}, #{ppayCash}, #{ppayCard}, #{ppayNonpay}, #{ppayPaid}, #{ppayMem},#{ppayMemo},#{ppayCancel})
+		
+		
+		update PT_PAY 
+		set 
+		PPAY_CASH=#{ppayCash},PPAY_CARD=#{ppayCard},PPAY_NONPAY=#{ppayNonpay},PPAY_PAID=#{ppayPaid}, PPAY_MEMO=#{ppayMemo},PPAY_CANCEL=#{ppayCancel},minfo_update=sysdate
+		where minfo_no=#{minfoNo}
+	</update>
+	<update id="endPtpay" parameterType="map">
+		update CURE_DETAIL 
+		set 
+		CD_IS_FULLPAY=1
+		where cd_code=#{cdCode}
+	</update>
+</mapper>
